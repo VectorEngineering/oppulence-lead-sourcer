@@ -1,8 +1,8 @@
+import { WorkflowStatus } from '@/types/workflow'
 import { getAppUrl } from '@/lib/helper/appUrl'
 import prisma from '@/lib/prisma'
-import { WorkflowStatus } from '@/types/workflow'
 
-export async function GET(req: Request) {
+export async function GET(_req: Request) {
     const now = new Date()
     const workflows = await prisma.workflow.findMany({
         select: { id: true },

@@ -1,10 +1,11 @@
 'use server'
 
-import { getAppUrl } from '@/lib/helper/appUrl'
-import { stripe } from '@/lib/stripe/stripe'
-import { getCreditsPack, PackId } from '@/types/billing'
+import { PackId, getCreditsPack } from '@/types/billing'
+
 import { auth } from '@clerk/nextjs/server'
+import { getAppUrl } from '@/lib/helper/appUrl'
 import { redirect } from 'next/navigation'
+import { stripe } from '@/lib/stripe/stripe'
 
 export async function PurchaseCredits(packId: PackId) {
     const { userId } = auth()
@@ -16,7 +17,6 @@ export async function PurchaseCredits(packId: PackId) {
     if (!selectedPack) {
         throw new Error('invalid pack')
     }
-    const priceId = selectedPack?.priceId
 
     const session = await stripe.checkout.sessions.create({
         mode: 'payment',
