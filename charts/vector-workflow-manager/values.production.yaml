@@ -34,7 +34,7 @@ extraDeploy: []
 ## @section Parameters
 
 ## @param replicaCount Number of replicas (do not change it)
-replicaCount: 1
+replicaCount: 2
 
 updateStrategy:
   ## @param updateStrategy.type Update strategy type (do not change it)
