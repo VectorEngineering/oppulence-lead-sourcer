@@ -118,19 +118,19 @@ jobs:
           HELM_SET_ARGS=""
           if [ ! -z "${{ secrets.POSTGRES_HOST }}" ]; then
             HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.enabled=true"
-            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.host='${{ secrets.POSTGRES_HOST }}'"
+            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.host=${{ secrets.POSTGRES_HOST }}"
           fi
           if [ ! -z "${{ secrets.POSTGRES_PORT }}" ]; then
-            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.port='${{ secrets.POSTGRES_PORT }}'"
+            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.port=${{ secrets.POSTGRES_PORT }}"
           fi
           if [ ! -z "${{ secrets.POSTGRES_USER }}" ]; then
-            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.username='${{ secrets.POSTGRES_USER }}'"
+            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.username=${{ secrets.POSTGRES_USER }}"
           fi
           if [ ! -z "${{ secrets.POSTGRES_PASSWORD }}" ]; then
-            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.password='${{ secrets.POSTGRES_PASSWORD }}' --set config.password='${{ secrets.POSTGRES_PASSWORD }}'"
+            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.password=${{ secrets.POSTGRES_PASSWORD }} --set config.password=${{ secrets.POSTGRES_PASSWORD }}"
           fi
           if [ ! -z "${{ secrets.POSTGRES_DATABASE }}" ]; then
-            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.database='${{ secrets.POSTGRES_DATABASE }}'"
+            HELM_SET_ARGS="$HELM_SET_ARGS --set externalPostgresql.database=${{ secrets.POSTGRES_DATABASE }}"
           fi
 
           if [ ! -z "${{ inputs.helm_values }}" ]; then
