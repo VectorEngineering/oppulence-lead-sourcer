@@ -1,6 +1,5 @@
-import { waitFor } from '@/lib/helper/waitFor'
-import { ScrollToElementTask } from '@/lib/workflow/task/ScrollToElement'
 import { ExecutionEnvironment } from '@/types/executor'
+import { ScrollToElementTask } from '@/lib/workflow/task/ScrollToElement'
 
 export async function ScrollToElementExecutor(environment: ExecutionEnvironment<typeof ScrollToElementTask>): Promise<boolean> {
     try {

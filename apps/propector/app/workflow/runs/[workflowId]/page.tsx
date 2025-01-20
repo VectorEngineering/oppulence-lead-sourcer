@@ -18,7 +18,6 @@ export default function ExecutionsPage({ params }: { params: { workflowId: strin
                     </div>
                 }
             >
-                {/* @ts-expect-error Async Server Component */}
                 <ExecutionsTableWrapper workflowId={params.workflowId} />
             </Suspense>
         </div>

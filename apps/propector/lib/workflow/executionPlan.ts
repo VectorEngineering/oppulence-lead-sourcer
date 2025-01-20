@@ -1,7 +1,8 @@
-import { TaskRegistry } from '@/lib/workflow/task/registry'
 import { AppNode, AppNodeMissingInputs } from '@/types/appNode'
 import { WorkflowExecutionPlan, WorkflowExecutionPlanPhase } from '@/types/workflow'
+
 import { Edge } from '@xyflow/react'
+import { TaskRegistry } from '@/lib/workflow/task/registry'
 
 export enum FlowToExecutionPlanValidationError {
     'NO_ENTRY_POINT',
@@ -94,7 +95,7 @@ export function FlowToExecutionPlan(nodes: AppNode[], edges: Edge[]): FlowToExec
 }
 
 function getInvalidInputs(node: AppNode, edges: Edge[], planned: Set<string>) {
-    const invalidInputs = []
+    const invalidInputs: string[] = []
     const inputs = TaskRegistry[node.data.type].inputs
     for (const input of inputs) {
         const inputValue = node.data.inputs[input.name]
@@ -126,6 +127,10 @@ function getInvalidInputs(node: AppNode, edges: Edge[], planned: Set<string>) {
             }
         }
 
+        // At this point, the input is invalid because:
+        // 1. It has no value provided directly
+        // 2. If it's required, there's no linked output from a planned node
+        // 3. If it's optional but has a linked output, that output's node isn't planned yet
         invalidInputs.push(input.name)
     }
 

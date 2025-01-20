@@ -1,13 +1,14 @@
 'use client'
 
+import { CoinsIcon, Loader2Icon } from 'lucide-react'
+
 import { GetAvailableCredits } from '@/actions/billing/getAvailableCredits'
+import Link from 'next/link'
+import React from 'react'
 import ReactCountUpWrapper from '@/components/ReactCountUpWrapper'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { Query, useQuery } from '@tanstack/react-query'
-import { CoinsIcon, Loader2Icon } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 function UserAvailableCreditsBadge() {
     const query = useQuery({

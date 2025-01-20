@@ -1,8 +1,10 @@
 'use client'
+
 import { DialogHeader, DialogTitle } from '@/components/ui/dialog'
+
+import { LucideIcon } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
-import { Icon, LucideIcon } from 'lucide-react'
 
 interface Props {
     title?: string

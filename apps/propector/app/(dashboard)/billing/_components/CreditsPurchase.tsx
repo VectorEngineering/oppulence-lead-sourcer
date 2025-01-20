@@ -1,14 +1,15 @@
 'use client'
 
-import React, { useState } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { CoinsIcon, CreditCard } from 'lucide-react'
 import { CreditsPack, PackId } from '@/types/billing'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Label } from '@/components/ui/label'
+import React, { useState } from 'react'
+
 import { Button } from '@/components/ui/button'
-import { useMutation } from '@tanstack/react-query'
+import { Label } from '@/components/ui/label'
 import { PurchaseCredits } from '@/actions/billing/purchaseCredits'
+import { useMutation } from '@tanstack/react-query'
 
 export default function CreditsPurchase() {
     const [selectedPack, setSelectedPack] = useState(PackId.MEDIUM)
@@ -34,10 +35,18 @@ export default function CreditsPurchase() {
                         <div
                             key={pack.id}
                             className='flex items-center space-x-3 bg-secondary/50 rounded-lg p-3 hover:bg-secondary'
+                            role='button'
+                            tabIndex={0}
                             onClick={() => setSelectedPack(pack.id)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault()
+                                    setSelectedPack(pack.id)
+                                }
+                            }}
                         >
                             <RadioGroupItem value={pack.id} id={pack.id} />
-                            <Label className='flex justify-between w-full cursor-pointer'>
+                            <Label htmlFor={pack.id} className='flex justify-between w-full cursor-pointer'>
                                 <span className='font-medium'>
                                     {pack.name} - {pack.label}
                                 </span>

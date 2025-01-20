@@ -28,7 +28,6 @@ export default function CredentialsPage() {
                 </Alert>
 
                 <Suspense fallback={<Skeleton className='h-[300px] w-full' />}>
-                    {/* @ts-expect-error Async Server Component */}
                     <UserCredentials />
                 </Suspense>
             </div>

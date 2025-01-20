@@ -25,7 +25,6 @@ export default function ExecutionViewerPage({
                         </div>
                     }
                 >
-                    {/* @ts-expect-error Async Server Component */}
                     <ExecutionViewerWrapper executionId={params.executionId} />
                 </Suspense>
             </section>

@@ -20,7 +20,6 @@ function page() {
 
             <div className='h-full py-6'>
                 <Suspense fallback={<UserWorkflowsSkeleton />}>
-                    {/* @ts-expect-error Async Server Component */}
                     <UserWorkflows />
                 </Suspense>
             </div>

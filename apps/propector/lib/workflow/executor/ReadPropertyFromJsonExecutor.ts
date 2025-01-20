@@ -1,6 +1,5 @@
-import { ClickElementTask } from '@/lib/workflow/task/ClickElement'
-import { ReadPropertyFromJsonTask } from '@/lib/workflow/task/ReadPropertyFromJson'
 import { ExecutionEnvironment } from '@/types/executor'
+import { ReadPropertyFromJsonTask } from '@/lib/workflow/task/ReadPropertyFromJson'
 
 export async function ReadPropertyFromJsonExecutor(environment: ExecutionEnvironment<typeof ReadPropertyFromJsonTask>): Promise<boolean> {
     try {

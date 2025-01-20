@@ -25,21 +25,17 @@ function HomePage({ searchParams }: { searchParams: { month?: string; year?: str
             <div className='flex justify-between'>
                 <h1 className='text-3xl font-bold'>Home</h1>
                 <Suspense fallback={<Skeleton className='w-[180px] h-[40px]' />}>
-                    {/* @ts-expect-error Async Server Component */}
                     <PeriodSelectorWrapper selectedPeriod={period} />
                 </Suspense>
             </div>
             <div className='h-full py-6 flex flex-col gap-4'>
                 <Suspense fallback={<StatsCardSkeleton />}>
-                    {/* @ts-expect-error Async Server Component */}
                     <StatsCards selectedPeriod={period} />
                 </Suspense>
                 <Suspense fallback={<Skeleton className='w-full h-[300px]' />}>
-                    {/* @ts-expect-error Async Server Component */}
                     <StatsExecutionStatus selectedPeriod={period} />
                 </Suspense>
                 <Suspense fallback={<Skeleton className='w-full h-[300px]' />}>
-                    {/* @ts-expect-error Async Server Component */}
                     <CreditsUsageInPeriod selectedPeriod={period} />
                 </Suspense>
             </div>

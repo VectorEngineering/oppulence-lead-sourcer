@@ -1,11 +1,12 @@
 'use server'
 
-import { PeriodToDateRange } from '@/lib/helper/dates'
-import prisma from '@/lib/prisma'
-import { Period } from '@/types/analytics'
 import { ExecutionPhaseStatus, WorkflowExecutionStatus } from '@/types/workflow'
-import { auth } from '@clerk/nextjs/server'
 import { eachDayOfInterval, format } from 'date-fns'
+
+import { Period } from '@/types/analytics'
+import { PeriodToDateRange } from '@/lib/helper/dates'
+import { auth } from '@clerk/nextjs/server'
+import prisma from '@/lib/prisma'
 
 type Stats = Record<
     string,
@@ -52,7 +53,7 @@ export async function GetCreditUsageInPeriod(period: Period) {
             return acc
         }, {} as any)
 
-    executionPhases.forEach((phase) => {
+    executionPhases.forEach((phase: any) => {
         const date = format(phase.startedAt!, dateFormat)
         if (phase.status === COMPLETED) {
             stats[date].success += phase.creditsConsumed || 0

@@ -1,27 +1,29 @@
 'use client'
 
-import DeletableEdge from '@/app/workflow/_components/edges/DeletableEdge'
-import NodeComponent from '@/app/workflow/_components/nodes/NodeComponent'
-import { CreateFlowNode } from '@/lib/workflow/createFlowNode'
-import { TaskRegistry } from '@/lib/workflow/task/registry'
-import { AppNode } from '@/types/appNode'
-import { TaskType } from '@/types/task'
-import { Workflow } from '@prisma/client'
+import '@xyflow/react/dist/style.css'
+
 import {
-    addEdge,
     Background,
     BackgroundVariant,
     Connection,
     Controls,
     Edge,
-    getOutgoers,
     ReactFlow,
+    addEdge,
+    getOutgoers,
     useEdgesState,
     useNodesState,
     useReactFlow
 } from '@xyflow/react'
-import '@xyflow/react/dist/style.css'
 import { useCallback, useEffect } from 'react'
+
+import { AppNode } from '@/types/appNode'
+import { CreateFlowNode } from '@/lib/workflow/createFlowNode'
+import DeletableEdge from '@/app/workflow/_components/edges/DeletableEdge'
+import NodeComponent from '@/app/workflow/_components/nodes/NodeComponent'
+import { TaskRegistry } from '@/lib/workflow/task/registry'
+import { TaskType } from '@/types/task'
+import type { Workflow } from '@prisma/client'
 
 const nodeTypes = {
     FlowScrapeNode: NodeComponent
@@ -48,7 +50,9 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
             if (!flow.viewport) return
             const { x = 0, y = 0, zoom = 1 } = flow.viewport
             setViewport({ x, y, zoom })
-        } catch (error) {}
+        } catch (error) {
+            console.error('Failed to parse workflow definition:', error)
+        }
     }, [workflow.definition, setEdges, setNodes, setViewport])
 
     const onDragOver = useCallback((event: React.DragEvent) => {
@@ -60,7 +64,7 @@ function FlowEditor({ workflow }: { workflow: Workflow }) {
         (event: React.DragEvent) => {
             event.preventDefault()
             const taskType = event.dataTransfer.getData('application/reactflow')
-            if (typeof taskType === undefined || !taskType) return
+            if (!taskType) return
 
             const position = screenToFlowPosition({
                 x: event.clientX,

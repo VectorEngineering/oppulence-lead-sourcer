@@ -19,16 +19,13 @@ export default function BillingPage() {
         <div className='mx-auto p-4 space-y-8'>
             <h1 className='text-3xl font-bold'>Billing</h1>
             <Suspense fallback={<Skeleton className='h-[166px] w-full' />}>
-                {/* @ts-expect-error Async Server Component */}
                 <BalanceCard />
             </Suspense>
             <CreditsPurchase />
             <Suspense fallback={<Skeleton className='h-[300px] w-full' />}>
-                {/* @ts-expect-error Async Server Component */}
                 <CreditUsageCard />
             </Suspense>
             <Suspense fallback={<Skeleton className='h-[300px] w-full' />}>
-                {/* @ts-expect-error Async Server Component */}
                 <TransactionHistoryCard />
             </Suspense>
         </div>
