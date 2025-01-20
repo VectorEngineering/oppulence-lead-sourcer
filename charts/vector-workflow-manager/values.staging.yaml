@@ -260,9 +260,13 @@ extraArgs: {}
   # name: ""
 
 ## @param extraEnvVars Additional container environment variables
-extraEnvVars: []
-  # - name: MY-NAME
-  #   value: "MY-VALUE"
+extraEnvVars:
+  LOG_LEVEL: error
+  APIKEY_STORAGE_TYPE: db
+  SHOW_COMMUNITY_NODES: true
+  DISABLE_FLOWISE_TELEMETRY: true
+  S3_FORCE_PATH_STYLE: true
+  DISABLE_CHATFLOW_REUSE: false
 
 ## @param extraEnvVarsCM Name of existing ConfigMap containing additional container environment variables
 extraEnvVarsCM:
