@@ -4,7 +4,6 @@ import BrowserInstanceParam from '@/app/workflow/_components/nodes/param/Browser
 import CredentialsParam from '@/app/workflow/_components/nodes/param/CredentialsParam'
 import SelectParam from '@/app/workflow/_components/nodes/param/SelectParam'
 import StringParam from '@/app/workflow/_components/nodes/param/StringParam'
-import { Input } from '@/components/ui/input'
 import { AppNode } from '@/types/appNode'
 import { TaskParam, TaskParamType } from '@/types/task'
 import { useReactFlow } from '@xyflow/react'

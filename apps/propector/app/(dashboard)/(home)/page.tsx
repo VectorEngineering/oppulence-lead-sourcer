@@ -11,7 +11,6 @@ import { Period } from '@/types/analytics'
 import PeriodSelector from '@/app/(dashboard)/(home)/_components/PeriodSelector'
 import { Skeleton } from '@/components/ui/skeleton'
 import StatsCard from '@/app/(dashboard)/(home)/_components/StatsCard'
-import { waitFor } from '@/lib/helper/waitFor'
 
 function HomePage({ searchParams }: { searchParams: { month?: string; year?: string } }) {
     const currentDate = new Date()

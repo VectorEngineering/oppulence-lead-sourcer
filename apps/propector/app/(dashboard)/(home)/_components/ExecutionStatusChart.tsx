@@ -4,9 +4,8 @@ import { GetWorkflowExecutionStats } from '@/actions/analytics/getWorkflowExecut
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
+import { ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 import { Layers2 } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
 type ChartData = Awaited<ReturnType<typeof GetWorkflowExecutionStats>>

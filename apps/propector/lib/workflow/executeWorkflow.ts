@@ -3,7 +3,7 @@ import 'server-only'
 import { Browser, Page } from 'puppeteer'
 import { Environment, ExecutionEnvironment } from '@/types/executor'
 import { ExecutionPhaseStatus, WorkflowExecutionStatus } from '@/types/workflow'
-import { TaskParamType, TaskType } from '@/types/task'
+import { TaskParamType } from '@/types/task'
 
 import { AppNode } from '@/types/appNode'
 import { Edge } from '@xyflow/react'
@@ -12,10 +12,8 @@ import { ExecutorRegistry } from '@/lib/workflow/executor/registry'
 import { LogCollector } from '@/types/log'
 import { TaskRegistry } from '@/lib/workflow/task/registry'
 import { createLogCollector } from '@/lib/log'
-import { env } from 'process'
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import { waitFor } from '@/lib/helper/waitFor'
 
 export async function ExecuteWorkflow(executionId: string, nextRunAt?: Date) {
     const execution = await prisma.workflowExecution.findUnique({

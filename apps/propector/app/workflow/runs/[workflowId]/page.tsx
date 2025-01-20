@@ -4,8 +4,6 @@ import ExecutionsTable from '@/app/workflow/runs/[workflowId]/_components/Execut
 import { GetWorkflowExecutions } from '@/actions/workflows/getWorkflowExecutions'
 import { Suspense } from 'react'
 import Topbar from '@/app/workflow/_components/topbar/Topbar'
-import { exec } from 'child_process'
-import { waitFor } from '@/lib/helper/waitFor'
 
 export default function ExecutionsPage({ params }: { params: { workflowId: string } }) {
     return (

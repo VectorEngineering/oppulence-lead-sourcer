@@ -2,7 +2,6 @@
 
 import { MobileSidebar } from '@/components/Sidebar'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
-import { Link } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 

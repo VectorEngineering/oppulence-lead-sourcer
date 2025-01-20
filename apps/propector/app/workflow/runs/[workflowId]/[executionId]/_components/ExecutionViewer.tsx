@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input'
 import { ExecutionLog } from '@prisma/client'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { cn } from '@/lib/utils'
-import { LogLevel, LogLevels } from '@/types/log'
+import { LogLevel } from '@/types/log'
 import PhaseStatusBadge from '@/app/workflow/runs/[workflowId]/[executionId]/_components/PhaseStatusBadge'
 import ReactCountUpWrapper from '@/components/ReactCountUpWrapper'
 

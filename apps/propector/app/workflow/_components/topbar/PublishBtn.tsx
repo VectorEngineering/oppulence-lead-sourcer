@@ -1,11 +1,10 @@
 'use client'
 
-import { PlayIcon, UploadIcon } from 'lucide-react'
+import { UploadIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { PublishWorkflow } from '@/actions/workflows/publishWorkflow'
 import React from 'react'
-import { RunWorkflow } from '@/actions/workflows/runWorkflow'
 import { toast } from 'sonner'
 import useExecutionPlan from '@/components/hooks/useExecutionPlan'
 import { useMutation } from '@tanstack/react-query'

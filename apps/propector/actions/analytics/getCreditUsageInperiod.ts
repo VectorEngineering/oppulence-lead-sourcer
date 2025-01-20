@@ -1,6 +1,6 @@
 'use server'
 
-import { ExecutionPhaseStatus, WorkflowExecutionStatus } from '@/types/workflow'
+import { ExecutionPhaseStatus } from '@/types/workflow'
 import { eachDayOfInterval, format } from 'date-fns'
 
 import { Period } from '@/types/analytics'
