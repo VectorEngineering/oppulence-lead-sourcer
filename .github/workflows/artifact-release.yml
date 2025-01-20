@@ -83,7 +83,6 @@ jobs:
   #           wait-on-timeout: 120
   #           browser: chrome
   build-flowise:
-    needs: run
     name: Build Flowise images for ${{ inputs.environment }}
     uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
     with:
