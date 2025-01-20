@@ -6,7 +6,7 @@ icon: https://avatars.githubusercontent.com/u/128289781
 maintainers:
   - name: sebastien-prudhomme
     email: sebastien.prudhomme@gmail.com
-name: flowise
+name: vector-workflow-manager
 sources:
   - https://github.com/FlowiseAI/Flowise
   - https://github.com/cowboysysop/charts/tree/master/charts/flowise
