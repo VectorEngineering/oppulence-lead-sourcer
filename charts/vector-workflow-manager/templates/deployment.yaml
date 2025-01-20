@@ -99,7 +99,7 @@ spec:
             - /bin/sh
             - -ec
             - |
-              wait4x postgresql "postgresql://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${POSTGRESQL_DATABASE}?sslmode=require" --timeout 0
+              wait4x postgresql "postgresql://${POSTGRESQL_USERNAME}:${POSTGRESQL_PASSWORD}@${POSTGRESQL_HOST}/${POSTGRESQL_DATABASE}?sslmode=require" --timeout 0
           env:
             - name: POSTGRESQL_HOST
               value: {{ include "flowise.postgresql.host" . | quote }}
