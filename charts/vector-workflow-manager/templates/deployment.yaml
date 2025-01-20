@@ -187,7 +187,14 @@ spec:
             - name: DATABASE_NAME
               value: {{ include "flowise.postgresql.database" . | quote }}
             {{- end }}
+            # always enable ssl for external postgresql
+            {{- if .Values.externalPostgresql.enabled }}
+            - name: DATABASE_SSL
+              value: "true"
+            {{- end }}
             - name: DISABLE_FLOWISE_TELEMETRY
+              value: "true"
+            {{- if .Values.extraEnvVars }}
               value: "true"
             {{- if .Values.extraEnvVars }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}

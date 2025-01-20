@@ -1,13 +1,15 @@
 import 'reflect-metadata'
-import path from 'path'
+
 import * as fs from 'fs'
+
 import { DataSource } from 'typeorm'
-import { getUserHome } from './utils'
 import { entities } from './database/entities'
-import { sqliteMigrations } from './database/migrations/sqlite'
-import { mysqlMigrations } from './database/migrations/mysql'
+import { getUserHome } from './utils'
 import { mariadbMigrations } from './database/migrations/mariadb'
+import { mysqlMigrations } from './database/migrations/mysql'
+import path from 'path'
 import { postgresMigrations } from './database/migrations/postgres'
+import { sqliteMigrations } from './database/migrations/sqlite'
 
 let appDataSource: DataSource
 
