@@ -58,7 +58,7 @@ image:
 
 pdb:
   ## @param pdb.create Specifies whether a pod disruption budget should be created
-  create: true
+  create: false
 
   ## @param pdb.minAvailable Minimum number/percentage of pods that should remain scheduled
   minAvailable: 1
