@@ -17,8 +17,8 @@ This chart bootstraps a Flowise deployment on a [Kubernetes](http://kubernetes.i
 
 ## Prerequisites
 
-- Kubernetes >= 1.24
-- Helm >= 3.9
+-   Kubernetes >= 1.24
+-   Helm >= 3.9
 
 ## Installing
 
@@ -47,16 +47,16 @@ The command upgrades the existing `my-release` deployment with the most latest r
 
 The MariaDB subchart has been updated to a major release, see these upgrade instructions:
 
-- https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1700
-- https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1600
-- https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1400
-- https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1300
+-   https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1700
+-   https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1600
+-   https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1400
+-   https://github.com/bitnami/charts/tree/master/bitnami/mariadb#to-1300
 
 The PostgreSQL subchart has been updated to a major release, see these upgrade instructions:
 
-- https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1500
-- https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1400
-- https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1300
+-   https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1500
+-   https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1400
+-   https://github.com/bitnami/charts/tree/main/bitnami/postgresql#to-1300
 
 ### Upgrading to version 2.0.0
 

@@ -95,7 +95,7 @@ jobs:
     name: Build Flowise images for ${{ inputs.environment }}
     uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
     with:
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./Dockerfile
       image-name: feelguuds/vector-workflow-manager
       context: .
       platform: linux/amd64
