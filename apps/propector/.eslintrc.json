@@ -5,6 +5,8 @@
   ],
   "rules": {
     "no-implicit-any": "off",
-    "no-redeclare": "off"
-  }
+    "no-redeclare": "off",
+    "@next/next/no-html-link-for-pages": ["error", "apps/propector/app"]
+  },
+  "ignorePatterns": ["*.json"]
 }
