@@ -1,9 +1,10 @@
-import prisma from '@/lib/prisma'
+import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger } from '@/types/workflow'
+
 import { ExecuteWorkflow } from '@/lib/workflow/executeWorkflow'
 import { TaskRegistry } from '@/lib/workflow/task/registry'
-import { ExecutionPhaseStatus, WorkflowExecutionPlan, WorkflowExecutionStatus, WorkflowExecutionTrigger } from '@/types/workflow'
-import { timingSafeEqual } from 'crypto'
 import parser from 'cron-parser'
+import prisma from '@/lib/prisma'
+import { timingSafeEqual } from 'crypto'
 
 function isValidSecret(secret: string) {
     const API_SECRET = process.env.API_SECRET
@@ -30,6 +31,12 @@ export async function GET(request: Request) {
 
     const { searchParams } = new URL(request.url)
     const workflowId = searchParams.get('workflowId') as string
+    const executionId = searchParams.get('executionId') as string
+
+    if (executionId.length > 0) {
+        await ExecuteWorkflow(executionId)
+        return Response.json({ success: true })
+    }
 
     if (!workflowId) {
         return Response.json({ error: 'bad request' }, { status: 400 })

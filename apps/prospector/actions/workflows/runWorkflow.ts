@@ -1,9 +1,5 @@
 'use server'
 
-import prisma from '@/lib/prisma'
-import { ExecuteWorkflow } from '@/lib/workflow/executeWorkflow'
-import { FlowToExecutionPlan } from '@/lib/workflow/executionPlan'
-import { TaskRegistry } from '@/lib/workflow/task/registry'
 import {
     ExecutionPhaseStatus,
     WorkflowExecutionPlan,
@@ -11,10 +7,16 @@ import {
     WorkflowExecutionTrigger,
     WorkflowStatus
 } from '@/types/workflow'
-import { auth } from '@clerk/nextjs/server'
+
 import { Erica_One } from 'next/font/google'
-import { redirect } from 'next/navigation'
+import { ExecuteWorkflow } from '@/lib/workflow/executeWorkflow'
+import { FlowToExecutionPlan } from '@/lib/workflow/executionPlan'
+import { TaskRegistry } from '@/lib/workflow/task/registry'
+import { auth } from '@clerk/nextjs/server'
+import { getAppUrl } from '@/lib/helper/appUrl'
 import { number } from 'zod'
+import prisma from '@/lib/prisma'
+import { redirect } from 'next/navigation'
 
 export async function RunWorkflow(form: { workflowId: string; flowDefinition?: string }) {
     const { userId } = auth()
@@ -95,7 +97,15 @@ export async function RunWorkflow(form: { workflowId: string; flowDefinition?: s
     if (!execution) {
         throw new Error('workflow execution not created')
     }
+    // TODO: run this via a cloudflare worker with workflows enabled 
+    const triggerApiUrl = getAppUrl(`api/workflows/execute?executionId=${execution.id}`)
 
-    ExecuteWorkflow(execution.id) // run this on background
+    fetch(triggerApiUrl, {
+        headers: {
+            Authorization: `Bearer ${process.env.API_SECRET!}`
+        },
+        cache: 'no-store'
+    }).catch((error) => console.error('Error triggering workflow with id', workflowId, ':error->', error.message))
+
     redirect(`/workflow/runs/${workflowId}/${execution.id}`)
 }
