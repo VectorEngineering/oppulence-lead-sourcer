@@ -10,7 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prisma:generate": "prisma generate",
-    "format": "prettier --write ./**/*.{ts,tsx}"
+    "format": "prettier --write ./**/*.{ts,tsx}",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.3.3",
