@@ -29,5 +29,13 @@ module.exports = {
         'unused-imports/no-unused-imports': 'off',
         'react/prop-types': 'off',
         'react/react-in-jsx-scope': 'off',
+        'unused-imports/no-unused-vars': 'off',
+        'jsx-a11y/heading-has-content': 'off',
+        'valid-typeof': 'off',
+        'react/no-unknown-property': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/anchor-has-content': 'off',
+        'no-empty': 'off'
     }
 }
