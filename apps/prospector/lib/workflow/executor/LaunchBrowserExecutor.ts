@@ -12,7 +12,7 @@ export async function LaunchBrowserExecutor(environment: ExecutionEnvironment<ty
             executablePath: await chromium.executablePath(),
             args: chromium.args,
             defaultViewport: chromium.defaultViewport,
-            ignoreDefaultArgs: ["--disable-extensions"],
+            ignoreDefaultArgs: ['--disable-extensions']
         })
         environment.log.info('Browser started successfully')
         environment.setBrowser(browser as any)

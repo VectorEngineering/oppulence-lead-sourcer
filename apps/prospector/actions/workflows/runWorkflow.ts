@@ -97,7 +97,7 @@ export async function RunWorkflow(form: { workflowId: string; flowDefinition?: s
     if (!execution) {
         throw new Error('workflow execution not created')
     }
-    // TODO: run this via a cloudflare worker with workflows enabled 
+    // TODO: run this via a cloudflare worker with workflows enabled
     const triggerApiUrl = getAppUrl(`api/workflows/execute?executionId=${execution.id}`)
 
     fetch(triggerApiUrl, {

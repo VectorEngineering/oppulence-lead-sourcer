@@ -81,10 +81,12 @@ export default function RootLayout({
             }}
         >
             <html lang='en' className={cn('antialiased overflow-x-hidden', inter.variable, jetbrainsMono.variable)}>
-                <head>
-                    <script src='https://unpkg.com/react-scan/dist/auto.global.js' async />
-                    <link rel='apple-touch-icon' href='/icon.png' />
-                </head>
+                {process.env.NODE_ENV === 'development' && (
+                    <head>
+                        <script src='https://unpkg.com/react-scan/dist/auto.global.js' async />
+                        <link rel='apple-touch-icon' href='/icon.png' />
+                    </head>
+                )}
                 <body
                     className={cn(
                         inter.className,
