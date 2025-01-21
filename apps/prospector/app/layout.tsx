@@ -33,24 +33,24 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
     title: {
-        default: 'ScrapeFlow',
-        template: '%s | ScrapeFlow'
+        default: 'Prospector',
+        template: '%s | Prospector'
     },
-    description: 'Enterprise-grade web scraping and automation platform',
-    applicationName: 'ScrapeFlow',
+    description: 'Enterprise-grade lead sourcing and automation platform',
+    applicationName: 'Prospector',
     appleWebApp: {
         capable: true,
         statusBarStyle: 'default',
-        title: 'ScrapeFlow'
+        title: 'Prospector'
     },
     formatDetection: {
         telephone: false
     },
     openGraph: {
         type: 'website',
-        siteName: 'ScrapeFlow',
-        title: 'ScrapeFlow',
-        description: 'Enterprise-grade web scraping and automation platform'
+        siteName: 'Prospector',
+        title: 'Prospector',
+        description: 'Enterprise-grade lead sourcing and automation platform'
     }
 }
 
