@@ -11,7 +11,7 @@
         "api-documentation"
     ],
     "scripts": {
-        "build": "turbo run build --filter=!./apps/*",
+        "build": "turbo run build",
         "build-force": "pnpm clean && turbo run build --force",
         "dev": "turbo run dev --parallel",
         "start": "run-script-os",
@@ -75,7 +75,7 @@
         "@qdrant/openapi-typescript-fetch": "1.2.6",
         "openai": "4.57.3",
         "protobufjs": "7.4.0",
-        "zod": "3.22.4"
+        "zod": "3.23.8"
     },
     "eslintIgnore": [
         "**/dist",
