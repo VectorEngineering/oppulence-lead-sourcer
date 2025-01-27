@@ -1,0 +1,36 @@
+---
+title: 'Introduction'
+description: 'API reference for Archon'
+---
+
+## Welcome to Archon API
+
+Archon provides a powerful API for managing forms and capturing leads. This API reference will guide you through the available endpoints and how to use them effectively.
+
+## Key Concepts
+
+Before diving into the API endpoints, it's important to understand a few key concepts:
+
+1. **Endpoints**: In Archon, an endpoint represents a unique submission point for your forms. Each endpoint has its own ID.
+
+2. **Leads**: A lead is created when a form is submitted to an endpoint. It contains the information provided by the user.
+
+3. **Schemas**: You can define custom schemas for your endpoints to validate incoming data and ensure data integrity.
+
+## Authentication
+
+All API endpoints are authenticated using Bearer tokens. You need to include your API key in the Authorization header of your requests.
+
+bash
+Authorization: Bearer YOUR_API_KEY
+https://app.Archon/api
+
+## Available Endpoints
+
+Currently, the main endpoint available is:
+
+- [Create Lead](/api-reference/endpoint/create): `POST /api/endpoints/{endpointId}`
+
+This endpoint allows you to create a new lead for a specific endpoint ID.
+
+For detailed information on how to use each endpoint, please refer to their individual documentation pages.

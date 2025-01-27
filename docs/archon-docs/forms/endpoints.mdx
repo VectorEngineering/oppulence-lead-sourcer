@@ -1,0 +1,59 @@
+---
+title: "Creating and Using Endpoints"
+icon: webhook
+---
+
+# Creating an Endpoint
+
+To create a new endpoint for your form submissions, follow these steps:
+
+1. Navigate to the "Create an Endpoint" page in your dashboard.
+
+2. Fill in the following details:
+
+   ## Endpoint Name
+   Enter a unique name for your endpoint. This helps you identify the endpoint in your dashboard.
+
+   ## Schema
+   Define the structure of your form data by adding fields. For each field, specify:
+   - Field name
+   - Data type (choose from):
+     - String
+     - Number
+     - Boolean
+     - Date
+     - Email
+     - Phone
+     - URL
+     - Zip Code
+
+   Click "Add Field +" to include additional fields in your schema.
+
+   ## Enable HTML Form Posting
+   Toggle this option on if you want to allow direct form submissions via HTML. When enabled, you can use the following options:
+
+   - **Success Redirect URL**: Enter the URL where users should be redirected after a successful form submission.
+   - **Fail Redirect URL**: Enter the URL where users should be redirected if the form submission fails.
+
+   Note: Redirect URLs are only used when posting a lead by HTML form.
+
+   ## Include Webhook
+   Toggle this option on if you want to send form data to a webhook. When enabled:
+
+   - **Webhook URL**: Enter the URL of your webhook that will receive the form data.
+
+3. Click "Create Endpoint" to finalize the creation of your new endpoint.
+
+# Using Your Endpoint
+
+After creating an endpoint, you can use it in your application:
+
+1. Copy the endpoint URL provided after creation.
+2. Use this URL as the action attribute in your HTML form or as the submission URL in your JavaScript code.
+3. To view detailed instructions for your specific endpoint, visit:
+   ```
+   app.Archon/endpoints/{your-endpoint-id}
+   ```
+   Replace `{your-endpoint-id}` with the actual ID of your endpoint.
+   
+   This page includes examples of how to use your endpoint with a basic HTML form, a JavaScript fetch call, and a React form styled with [shadcn/ui](https://ui.shadcn.com/docs).
