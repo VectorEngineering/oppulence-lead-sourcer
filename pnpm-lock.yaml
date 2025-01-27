@@ -350,35 +350,17 @@ importers:
         specifier: ^5
         version: 5.5.2
 
-  cloudflare/api:
+  cloudflare/semantic-cache:
     dependencies:
-      '@axiomhq/js':
-        specifier: 1.0.0-rc.2
-        version: 1.0.0-rc.2
-      '@hono/zod-openapi':
-        specifier: ^0.11.0
-        version: 0.11.1(hono@4.6.19)(zod@3.23.8)
-      '@hono/zod-validator':
-        specifier: ^0.2.1
-        version: 0.2.2(hono@4.6.19)(zod@3.23.8)
+      '@chronark/zod-bird':
+        specifier: ^0.3.9
+        version: 0.3.10
       '@planetscale/database':
-        specifier: ^1.16.0
+        specifier: ^1.18.0
         version: 1.19.0
-      '@playbookmedia/auditlog':
-        specifier: workspace:^
-        version: link:../../internal/auditlog
       '@playbookmedia/cache':
         specifier: workspace:^
         version: link:../../libraries/cache
-      '@playbookmedia/clickhouse':
-        specifier: workspace:^
-        version: link:../../libraries/clickhouse
-      '@playbookmedia/db':
-        specifier: workspace:^
-        version: link:../../internal/db
-      '@playbookmedia/encryption':
-        specifier: workspace:^
-        version: link:../../internal/encryption
       '@playbookmedia/error':
         specifier: workspace:^
         version: link:../../libraries/error
@@ -388,27 +370,27 @@ importers:
       '@playbookmedia/id':
         specifier: workspace:^
         version: link:../../internal/id
-      '@playbookmedia/keys':
-        specifier: workspace:^
-        version: link:../../internal/keys
       '@playbookmedia/logs':
         specifier: workspace:^
         version: link:../../internal/logger
       '@playbookmedia/metrics':
         specifier: workspace:^
         version: link:../../internal/metrics
-      '@playbookmedia/rbac':
-        specifier: workspace:^
-        version: link:../../libraries/rbac
-      '@playbookmedia/validation':
-        specifier: workspace:^
-        version: link:../../libraries/validation
       '@playbookmedia/worker-logging':
         specifier: workspace:^
         version: link:../../internal/worker-logging
+      ai:
+        specifier: ^3.0.23
+        version: 3.3.40(openai@4.57.3(encoding@0.1.13)(zod@3.23.8))(react@19.0.0)(sswr@2.1.0(svelte@4.2.18))(svelte@4.2.18)(vue@3.4.31(typescript@5.7.3))(zod@3.23.8)
+      drizzle-orm:
+        specifier: generated
+        version: 0.32.0-aaf764c(@cloudflare/workers-types@4.20250124.3)(@libsql/client@0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@types/pg@8.11.6)(@types/react@19.0.7)(bun-types@1.2.0)(mysql2@3.11.4)(pg@8.11.5)(prisma@6.0.1)(react@19.0.0)(sqlite3@5.1.7)
       hono:
-        specifier: ^4.6.3
+        specifier: ^4.2.7
         version: 4.6.19
+      openai:
+        specifier: 4.57.3
+        version: 4.57.3(encoding@0.1.13)(zod@3.23.8)
       superjson:
         specifier: ^2.2.1
         version: 2.2.2
@@ -418,25 +400,41 @@ importers:
     devDependencies:
       '@cloudflare/vitest-pool-workers':
         specifier: ^0.4.1
-        version: 0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@1.6.0)
+        version: 0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@2.1.8(@types/node@20.17.16)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1))
       '@cloudflare/workers-types':
         specifier: ^4.20240603.0
         version: 4.20250124.3
-      '@playbookmedia/api':
-        specifier: workspace:^
-        version: link:../../libraries/api
-      '@playbookmedia/tsconfig':
-        specifier: workspace:^
-        version: link:../../libraries/tsconfig
-      '@vitest/ui':
-        specifier: ^1.6.0
-        version: 1.6.0(vitest@1.6.0)
+      '@types/node':
+        specifier: ^20.14.9
+        version: 20.17.16
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       typescript:
         specifier: ^5.5.3
         version: 5.7.3
-      vitest:
-        specifier: ^1.6.0
-        version: 1.6.0(@types/node@22.10.10)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
+      wrangler:
+        specifier: ^3.62.0
+        version: 3.105.1(@cloudflare/workers-types@4.20250124.3)(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+
+  cloudflare/workflows:
+    dependencies:
+      '@planetscale/database':
+        specifier: ^1.19.0
+        version: 1.19.0
+      '@playbookmedia/db':
+        specifier: workspace:^
+        version: link:../../internal/db
+      '@playbookmedia/id':
+        specifier: workspace:^
+        version: link:../../internal/id
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20241022.0
+        version: 4.20250124.3
+      typescript:
+        specifier: ^5.0.4
+        version: 5.7.3
       wrangler:
         specifier: ^3.92.0
         version: 3.105.1(@cloudflare/workers-types@4.20250124.3)(bufferutil@4.0.8)(utf-8-validate@6.0.4)
@@ -3582,11 +3580,6 @@ packages:
     resolution: {integrity: sha512-plcUZ75X99CHJsmWY50ZWcukmwIFISZZzKzlFk4cAiEabuAY5s6cCgTdlf2p82unYSV7VtgpQyTM2YURP+A5UQ==}
     engines: {node: '>=18'}
 
-  '@asteasolutions/zod-to-openapi@7.3.0':
-    resolution: {integrity: sha512-7tE/r1gXwMIvGnXVUdIqUhCU1RevEFC4Jk6Bussa0fk1ecbnnINkZzj1EOAJyE/M3AI25DnHT/zKQL1/FPFi8Q==}
-    peerDependencies:
-      zod: 3.23.8
-
   '@atomico/rollup-plugin-sizes@1.1.4':
     resolution: {integrity: sha512-ilxLw9hT+kWXIx8mYoAFLA2eIVfLrsnabPCaGo5Mkrj8qxhEkZvFddcnH2HTp/hDKFEIJRpZVpXecsPp3FOdRw==}
     peerDependencies:
@@ -4089,10 +4082,6 @@ packages:
   '@aws-sdk/xml-builder@3.523.0':
     resolution: {integrity: sha512-wfvyVymj2TUw7SuDor9IuFcAzJZvWRBZotvY/wQJOlYa3UP3Oezzecy64N4FWfBJEsZdrTN+HOZFl+IzTWWnUA==}
     engines: {node: '>=14.0.0'}
-
-  '@axiomhq/js@1.0.0-rc.2':
-    resolution: {integrity: sha512-BQJQNkumdKZgbLGhf3DZb6A8w/31jtX3hWtdv0mMiSE3O5PioeIZNxRTMoWRChxt8TylZrJoVezqrw/ooWPoyQ==}
-    engines: {node: '>=16'}
 
   '@azure-rest/ai-document-intelligence@1.0.0':
     resolution: {integrity: sha512-FvmwUWce9BFl7iegNmSfwYw5zmyZY3uMWOGuRfTfvYKJuzwyZ5CiwGdBqhvKGI6DlT0k4LNKI6Y4oiHOMkZyUQ==}
@@ -5426,6 +5415,9 @@ packages:
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+
+  '@chronark/zod-bird@0.3.10':
+    resolution: {integrity: sha512-QkGvy8Lz+NTGPOfBH2lIEAxiaizp9vrEufxsi1wYz8WM0/ADqs4hUqO1zRjt7ntoZdKiXCcnpZtzUMdOjfo5AQ==}
 
   '@clerk/backend@1.14.1':
     resolution: {integrity: sha512-YlKMpiVo4UITw3sgA+9QrAFRILVOz5hgB1Zw180Y2LEZ5a+MdpX668vJKGh7riSweMN7JQvU2jlsKGRO+1bXDw==}
@@ -7078,25 +7070,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hono/zod-openapi@0.11.1':
-    resolution: {integrity: sha512-lCeAu1fH5cWRQccGsiiJBxHQKT1ueMYP3efdY/4VX6MvGNaLjFiIf5haXhbF2pr3+Eln7ZogKUVSVF+NoCWtgw==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      hono: '>=3.11.3'
-      zod: 3.23.8
-
-  '@hono/zod-validator@0.2.1':
-    resolution: {integrity: sha512-HFoxln7Q6JsE64qz2WBS28SD33UB2alp3aRKmcWnNLDzEL1BLsWfbdX6e1HIiUprHYTIXf5y7ax8eYidKUwyaA==}
-    peerDependencies:
-      hono: '>=3.9.0'
-      zod: 3.23.8
-
-  '@hono/zod-validator@0.2.2':
-    resolution: {integrity: sha512-dSDxaPV70Py8wuIU2QNpoVEIOSzSXZ/6/B/h4xA7eOMz7+AarKTSGV8E6QwrdcCbBLkpqfJ4Q2TmBO0eP1tCBQ==}
-    peerDependencies:
-      hono: '>=3.9.0'
-      zod: 3.23.8
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -18171,6 +18144,95 @@ packages:
       sqlite3:
         optional: true
 
+  drizzle-orm@0.32.0-aaf764c:
+    resolution: {integrity: sha512-TpG2xZhiGUyxWMJTXpVwuuFsh0VrNxPzYOZfsDaFbZS0lBbAN1xC2TBUK4pv1DMGxygq+clvqNMd908RznJZRA==}
+    peerDependencies:
+      '@aws-sdk/client-rds-data': '>=3'
+      '@cloudflare/workers-types': '>=3'
+      '@electric-sql/pglite': '>=0.1.1'
+      '@libsql/client': '*'
+      '@neondatabase/serverless': '>=0.1'
+      '@op-engineering/op-sqlite': '>=2'
+      '@opentelemetry/api': ^1.4.1
+      '@planetscale/database': '>=1'
+      '@prisma/client': '*'
+      '@tidbcloud/serverless': '*'
+      '@types/better-sqlite3': '*'
+      '@types/pg': '*'
+      '@types/react': '>=18'
+      '@types/sql.js': '*'
+      '@vercel/postgres': '>=0.8.0'
+      '@xata.io/client': '*'
+      better-sqlite3: '>=7'
+      bun-types: '*'
+      expo-sqlite: '>=13.2.0'
+      knex: '*'
+      kysely: '*'
+      mysql2: '>=2'
+      pg: '>=8'
+      postgres: '>=3'
+      prisma: '*'
+      react: '>=18'
+      sql.js: '>=1'
+      sqlite3: '>=5'
+    peerDependenciesMeta:
+      '@aws-sdk/client-rds-data':
+        optional: true
+      '@cloudflare/workers-types':
+        optional: true
+      '@electric-sql/pglite':
+        optional: true
+      '@libsql/client':
+        optional: true
+      '@neondatabase/serverless':
+        optional: true
+      '@op-engineering/op-sqlite':
+        optional: true
+      '@opentelemetry/api':
+        optional: true
+      '@planetscale/database':
+        optional: true
+      '@prisma/client':
+        optional: true
+      '@tidbcloud/serverless':
+        optional: true
+      '@types/better-sqlite3':
+        optional: true
+      '@types/pg':
+        optional: true
+      '@types/react':
+        optional: true
+      '@types/sql.js':
+        optional: true
+      '@vercel/postgres':
+        optional: true
+      '@xata.io/client':
+        optional: true
+      better-sqlite3:
+        optional: true
+      bun-types:
+        optional: true
+      expo-sqlite:
+        optional: true
+      knex:
+        optional: true
+      kysely:
+        optional: true
+      mysql2:
+        optional: true
+      pg:
+        optional: true
+      postgres:
+        optional: true
+      prisma:
+        optional: true
+      react:
+        optional: true
+      sql.js:
+        optional: true
+      sqlite3:
+        optional: true
+
   duck@0.1.12:
     resolution: {integrity: sha512-wkctla1O6VfP89gQ+J/yDesM0S7B7XLXjKGzXxMDVFg7uEn706niAtyYovKbyq1oT9YwDcly721/iUWoc8MVRg==}
 
@@ -19268,9 +19330,6 @@ packages:
   fetch-h2@3.0.2:
     resolution: {integrity: sha512-Lo6UPdMKKc9Ond7yjG2vq0mnocspOLh1oV6+XZdtfdexacvMSz5xm3WoQhTAdoR2+UqPlyMNqcqfecipoD+l/A==}
     engines: {node: '>=12'}
-
-  fetch-retry@5.0.6:
-    resolution: {integrity: sha512-3yurQZ2hD9VISAhJJP9bpYFNQrHHBXE2JxxjY5aLEcDi46RmAzJE2OC9FAde0yis5ElW0jTTzs0zfg/Cca4XqQ==}
 
   fflate@0.4.8:
     resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
@@ -23841,9 +23900,6 @@ packages:
     resolution: {integrity: sha512-c/hfooPx+RBIOPM09GSxABOZhYPblDoyaGhqBkD/59vtpN21jEuWKDlM0KYTvqJVlSYjKs0tBcIdeXKChlSPtw==}
     hasBin: true
 
-  openapi3-ts@4.4.0:
-    resolution: {integrity: sha512-9asTNB9IkKEzWMcHmVZE7Ts3kC9G7AFHfs8i7caD8HbI76gEjdkId4z/AkP83xdZsH7PLAnnbl47qZkXuxpArw==}
-
   opener@1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
@@ -25381,10 +25437,6 @@ packages:
 
   qs@6.11.2:
     resolution: {integrity: sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==}
-    engines: {node: '>=0.6'}
-
-  qs@6.12.1:
-    resolution: {integrity: sha512-zWmv4RSuB9r2mYQw3zxQuHWeU+42aKi1wWig/j4ele4ygELZ7PEO6MM7rim9oAQH2A5MWfsAVf/jPvTPgCbvUQ==}
     engines: {node: '>=0.6'}
 
   qs@6.13.0:
@@ -30131,11 +30183,6 @@ snapshots:
       - '@bufbuild/protobuf'
       - '@connectrpc/connect'
 
-  '@asteasolutions/zod-to-openapi@7.3.0(zod@3.23.8)':
-    dependencies:
-      openapi3-ts: 4.4.0
-      zod: 3.23.8
-
   '@atomico/rollup-plugin-sizes@1.1.4(rollup@3.29.4)':
     dependencies:
       brotli-size: 4.0.0
@@ -31949,11 +31996,6 @@ snapshots:
     dependencies:
       '@smithy/types': 2.11.0
       tslib: 2.6.2
-
-  '@axiomhq/js@1.0.0-rc.2':
-    dependencies:
-      fetch-retry: 5.0.6
-      uuid: 8.3.2
 
   '@azure-rest/ai-document-intelligence@1.0.0':
     dependencies:
@@ -34402,6 +34444,10 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
+  '@chronark/zod-bird@0.3.10':
+    dependencies:
+      zod: 3.23.8
+
   '@clerk/backend@1.14.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@clerk/shared': 2.9.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -34512,7 +34558,7 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
-  '@cloudflare/vitest-pool-workers@0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@1.6.0)':
+  '@cloudflare/vitest-pool-workers@0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@2.1.8(@types/node@20.17.16)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1))':
     dependencies:
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8
@@ -34522,7 +34568,7 @@ snapshots:
       esbuild: 0.17.19
       miniflare: 3.20240909.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       semver: 7.6.3
-      vitest: 1.6.0(@types/node@22.10.10)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
+      vitest: 2.1.8(@types/node@20.17.16)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
       wrangler: 3.77.0(@cloudflare/workers-types@4.20250124.3)(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       zod: 3.23.8
     transitivePeerDependencies:
@@ -35789,23 +35835,6 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@hono/zod-openapi@0.11.1(hono@4.6.19)(zod@3.23.8)':
-    dependencies:
-      '@asteasolutions/zod-to-openapi': 7.3.0(zod@3.23.8)
-      '@hono/zod-validator': 0.2.1(hono@4.6.19)(zod@3.23.8)
-      hono: 4.6.19
-      zod: 3.23.8
-
-  '@hono/zod-validator@0.2.1(hono@4.6.19)(zod@3.23.8)':
-    dependencies:
-      hono: 4.6.19
-      zod: 3.23.8
-
-  '@hono/zod-validator@0.2.2(hono@4.6.19)(zod@3.23.8)':
-    dependencies:
-      hono: 4.6.19
-      zod: 3.23.8
-
   '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@19.0.0))':
     dependencies:
       react-hook-form: 7.54.2(react@19.0.0)
@@ -36867,7 +36896,7 @@ snapshots:
 
   '@llamaindex/cloud@0.0.5(node-fetch@2.7.0(encoding@0.1.13))':
     dependencies:
-      '@types/qs': 6.9.12
+      '@types/qs': 6.9.17
       form-data: 4.0.1
       js-base64: 3.7.7
       qs: 6.13.0
@@ -47687,7 +47716,8 @@ snapshots:
       pathe: 1.1.2
       picocolors: 1.1.1
       sirv: 2.0.4
-      vitest: 1.6.0(@types/node@22.10.10)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
+      vitest: 1.6.0(@types/node@20.17.16)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
+    optional: true
 
   '@vitest/utils@0.32.4':
     dependencies:
@@ -51395,6 +51425,23 @@ snapshots:
       react: 19.0.0
       sqlite3: 5.1.7
 
+  drizzle-orm@0.32.0-aaf764c(@cloudflare/workers-types@4.20250124.3)(@libsql/client@0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@types/pg@8.11.6)(@types/react@19.0.7)(bun-types@1.2.0)(mysql2@3.11.4)(pg@8.11.5)(prisma@6.0.1)(react@19.0.0)(sqlite3@5.1.7):
+    optionalDependencies:
+      '@cloudflare/workers-types': 4.20250124.3
+      '@libsql/client': 0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@neondatabase/serverless': 0.10.4
+      '@opentelemetry/api': 1.9.0
+      '@planetscale/database': 1.19.0
+      '@prisma/client': 6.0.1(prisma@6.0.1)
+      '@types/pg': 8.11.6
+      '@types/react': 19.0.7
+      bun-types: 1.2.0
+      mysql2: 3.11.4
+      pg: 8.11.5
+      prisma: 6.0.1
+      react: 19.0.0
+      sqlite3: 5.1.7
+
   duck@0.1.12:
     dependencies:
       underscore: 1.13.6
@@ -53254,11 +53301,10 @@ snapshots:
       to-arraybuffer: 1.0.1
       tough-cookie: 4.1.3
 
-  fetch-retry@5.0.6: {}
-
   fflate@0.4.8: {}
 
-  fflate@0.8.2: {}
+  fflate@0.8.2:
+    optional: true
 
   figures@2.0.0:
     dependencies:
@@ -59425,7 +59471,7 @@ snapshots:
       form-data-encoder: 1.7.2
       formdata-node: 4.4.1
       node-fetch: 2.7.0(encoding@0.1.13)
-      qs: 6.12.1
+      qs: 6.13.0
     optionalDependencies:
       zod: 3.23.8
     transitivePeerDependencies:
@@ -59443,10 +59489,6 @@ snapshots:
       supports-color: 9.4.0
       undici: 5.28.4
       yargs-parser: 21.1.1
-
-  openapi3-ts@4.4.0:
-    dependencies:
-      yaml: 2.7.0
 
   opener@1.5.2: {}
 
@@ -61117,10 +61159,6 @@ snapshots:
       side-channel: 1.0.6
 
   qs@6.11.2:
-    dependencies:
-      side-channel: 1.0.6
-
-  qs@6.12.1:
     dependencies:
       side-channel: 1.0.6
 
@@ -67434,7 +67472,8 @@ snapshots:
 
   yaml@2.4.1: {}
 
-  yaml@2.7.0: {}
+  yaml@2.7.0:
+    optional: true
 
   yargs-parser@20.2.9: {}
 
