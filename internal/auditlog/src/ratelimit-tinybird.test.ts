@@ -1,4 +1,4 @@
-import { priorityLevel, ratelimitSchemaV1, rateLimitStrategy, sharding } from './ratelimit-tinybird'
+import { priorityLevel, rateLimitStrategy, ratelimitSchemaV1, sharding } from './ratelimit-tinybird'
 
 describe('Rate Limit Schema', () => {
     const validRateLimit = {

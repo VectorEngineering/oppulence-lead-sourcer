@@ -11,8 +11,8 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@playbookmedia/encoding": "workspace:^",
-    "@playbookmedia/error": "workspace:^"
+    "@playbookmedia/encoding": "workspace:*",
+    "@playbookmedia/error": "workspace:*"
   },
   "license": "MIT"
 }

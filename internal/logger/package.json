@@ -12,7 +12,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "@playbookmedia/metrics": "workspace:^",
+    "@playbookmedia/metrics": "workspace:*",
     "vitest": "^2.1.8",
     "zod": "^3.23.5"
   },

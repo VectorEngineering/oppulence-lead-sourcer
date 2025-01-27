@@ -350,6 +350,97 @@ importers:
         specifier: ^5
         version: 5.5.2
 
+  cloudflare/api:
+    dependencies:
+      '@axiomhq/js':
+        specifier: 1.0.0-rc.2
+        version: 1.0.0-rc.2
+      '@hono/zod-openapi':
+        specifier: ^0.11.0
+        version: 0.11.1(hono@4.6.19)(zod@3.23.8)
+      '@hono/zod-validator':
+        specifier: ^0.2.1
+        version: 0.2.2(hono@4.6.19)(zod@3.23.8)
+      '@planetscale/database':
+        specifier: ^1.16.0
+        version: 1.19.0
+      '@playbookmedia/auditlog':
+        specifier: workspace:^
+        version: link:../../internal/auditlog
+      '@playbookmedia/cache':
+        specifier: workspace:^
+        version: link:../../libraries/cache
+      '@playbookmedia/clickhouse':
+        specifier: workspace:^
+        version: link:../../libraries/clickhouse
+      '@playbookmedia/db':
+        specifier: workspace:^
+        version: link:../../internal/db
+      '@playbookmedia/encryption':
+        specifier: workspace:^
+        version: link:../../internal/encryption
+      '@playbookmedia/error':
+        specifier: workspace:^
+        version: link:../../libraries/error
+      '@playbookmedia/hash':
+        specifier: workspace:^
+        version: link:../../internal/hash
+      '@playbookmedia/id':
+        specifier: workspace:^
+        version: link:../../internal/id
+      '@playbookmedia/keys':
+        specifier: workspace:^
+        version: link:../../internal/keys
+      '@playbookmedia/logs':
+        specifier: workspace:^
+        version: link:../../internal/logger
+      '@playbookmedia/metrics':
+        specifier: workspace:^
+        version: link:../../internal/metrics
+      '@playbookmedia/rbac':
+        specifier: workspace:^
+        version: link:../../libraries/rbac
+      '@playbookmedia/validation':
+        specifier: workspace:^
+        version: link:../../libraries/validation
+      '@playbookmedia/worker-logging':
+        specifier: workspace:^
+        version: link:../../internal/worker-logging
+      hono:
+        specifier: ^4.6.3
+        version: 4.6.19
+      superjson:
+        specifier: ^2.2.1
+        version: 2.2.2
+      zod:
+        specifier: 3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@cloudflare/vitest-pool-workers':
+        specifier: ^0.4.1
+        version: 0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@1.6.0)
+      '@cloudflare/workers-types':
+        specifier: ^4.20240603.0
+        version: 4.20250124.3
+      '@playbookmedia/api':
+        specifier: workspace:^
+        version: link:../../libraries/api
+      '@playbookmedia/tsconfig':
+        specifier: workspace:^
+        version: link:../../libraries/tsconfig
+      '@vitest/ui':
+        specifier: ^1.6.0
+        version: 1.6.0(vitest@1.6.0)
+      typescript:
+        specifier: ^5.5.3
+        version: 5.7.3
+      vitest:
+        specifier: ^1.6.0
+        version: 1.6.0(@types/node@22.10.10)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
+      wrangler:
+        specifier: ^3.92.0
+        version: 3.105.1(@cloudflare/workers-types@4.20250124.3)(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+
   cloudflare/billing:
     dependencies:
       '@agentic/serper':
@@ -371,19 +462,19 @@ importers:
         specifier: ^1.16.0
         version: 1.19.0
       '@playbookmedia/billing':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/billing
       '@playbookmedia/clickhouse':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/clickhouse
       '@playbookmedia/db':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/db
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/error
       '@playbookmedia/id':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/id
       '@trigger.dev/nextjs':
         specifier: 3.3.1
@@ -444,10 +535,10 @@ importers:
         specifier: 1.0.0-rc.2
         version: 1.0.0-rc.2
       '@playbookmedia/logs':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/logger
       '@playbookmedia/metrics':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/metrics
       fflate:
         specifier: ^0.8.2
@@ -478,25 +569,25 @@ importers:
         specifier: ^1.18.0
         version: 1.19.0
       '@playbookmedia/cache':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/cache
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/error
       '@playbookmedia/hash':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/hash
       '@playbookmedia/id':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/id
       '@playbookmedia/logs':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/logger
       '@playbookmedia/metrics':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/metrics
       '@playbookmedia/worker-logging':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/worker-logging
       ai:
         specifier: ^3.0.23
@@ -542,10 +633,10 @@ importers:
         specifier: ^1.19.0
         version: 1.19.0
       '@playbookmedia/db':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/db
       '@playbookmedia/id':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internal/id
     devDependencies:
       '@cloudflare/workers-types':
@@ -783,7 +874,7 @@ importers:
         specifier: ^1.5.2
         version: 1.15.7(ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/error
       ai:
         specifier: ^3.0.23
@@ -827,20 +918,20 @@ importers:
         specifier: ^1.16.0
         version: 1.19.0
       '@playbookmedia/billing':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../billing
       '@playbookmedia/id':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../id
       drizzle-orm:
         specifier: ^0.31.2
         version: 0.31.4(@cloudflare/workers-types@4.20250124.3)(@libsql/client@0.7.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))(@neondatabase/serverless@0.10.4)(@opentelemetry/api@1.9.0)(@planetscale/database@1.19.0)(@prisma/client@6.0.1(prisma@6.0.1))(@types/pg@8.11.6)(@types/react@19.0.7)(bun-types@1.2.0)(mysql2@3.11.4)(pg@8.11.5)(prisma@6.0.1)(react@19.0.0)(sqlite3@5.1.7)
     devDependencies:
       '@playbookmedia/events':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/events
       '@playbookmedia/tsconfig':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/tsconfig
       '@types/node':
         specifier: ^20.14.9
@@ -870,10 +961,10 @@ importers:
   internal/encryption:
     dependencies:
       '@playbookmedia/encoding':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../encoding
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/error
     devDependencies:
       drizzle-kit:
@@ -936,7 +1027,7 @@ importers:
   internal/keys:
     dependencies:
       '@playbookmedia/hash':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../hash
       base-x:
         specifier: ^4.0.0
@@ -949,7 +1040,7 @@ importers:
   internal/logger:
     dependencies:
       '@playbookmedia/metrics':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../metrics
       vitest:
         specifier: ^2.1.8
@@ -1039,7 +1130,7 @@ importers:
         version: 4.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@playbookmedia/tsconfig':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/tsconfig
       '@types/node':
         specifier: ^20.14.9
@@ -1054,7 +1145,7 @@ importers:
   internal/vercel:
     dependencies:
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libraries/error
       zod:
         specifier: 3.23.8
@@ -1070,7 +1161,7 @@ importers:
   internal/worker-logging:
     dependencies:
       '@playbookmedia/logs':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../logger
     devDependencies:
       typescript:
@@ -1151,11 +1242,11 @@ importers:
   libraries/api:
     dependencies:
       '@playbookmedia/rbac':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../rbac
     devDependencies:
       '@playbookmedia/tsconfig':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tsconfig
       '@types/node':
         specifier: ^20.14.9
@@ -1255,7 +1346,7 @@ importers:
         specifier: ^1.6.0
         version: 1.10.1
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../error
       zod:
         specifier: 3.23.8
@@ -1283,7 +1374,7 @@ importers:
         specifier: ^1.6.0
         version: 1.10.1
       '@playbookmedia/error':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../error
       faker:
         specifier: ^6.6.6
@@ -3069,10 +3160,10 @@ importers:
         specifier: ^6.9.0
         version: 6.11.2(express@4.18.3)
       flowise-components:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../components
       flowise-ui:
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../ui
       global-agent:
         specifier: ^3.0.0
@@ -3788,6 +3879,11 @@ packages:
   '@arcjet/transport@1.0.0-alpha.34':
     resolution: {integrity: sha512-plcUZ75X99CHJsmWY50ZWcukmwIFISZZzKzlFk4cAiEabuAY5s6cCgTdlf2p82unYSV7VtgpQyTM2YURP+A5UQ==}
     engines: {node: '>=18'}
+
+  '@asteasolutions/zod-to-openapi@7.3.0':
+    resolution: {integrity: sha512-7tE/r1gXwMIvGnXVUdIqUhCU1RevEFC4Jk6Bussa0fk1ecbnnINkZzj1EOAJyE/M3AI25DnHT/zKQL1/FPFi8Q==}
+    peerDependencies:
+      zod: 3.23.8
 
   '@atomico/rollup-plugin-sizes@1.1.4':
     resolution: {integrity: sha512-ilxLw9hT+kWXIx8mYoAFLA2eIVfLrsnabPCaGo5Mkrj8qxhEkZvFddcnH2HTp/hDKFEIJRpZVpXecsPp3FOdRw==}
@@ -7330,6 +7426,25 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
+
+  '@hono/zod-openapi@0.11.1':
+    resolution: {integrity: sha512-lCeAu1fH5cWRQccGsiiJBxHQKT1ueMYP3efdY/4VX6MvGNaLjFiIf5haXhbF2pr3+Eln7ZogKUVSVF+NoCWtgw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      hono: '>=3.11.3'
+      zod: 3.23.8
+
+  '@hono/zod-validator@0.2.1':
+    resolution: {integrity: sha512-HFoxln7Q6JsE64qz2WBS28SD33UB2alp3aRKmcWnNLDzEL1BLsWfbdX6e1HIiUprHYTIXf5y7ax8eYidKUwyaA==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: 3.23.8
+
+  '@hono/zod-validator@0.2.2':
+    resolution: {integrity: sha512-dSDxaPV70Py8wuIU2QNpoVEIOSzSXZ/6/B/h4xA7eOMz7+AarKTSGV8E6QwrdcCbBLkpqfJ4Q2TmBO0eP1tCBQ==}
+    peerDependencies:
+      hono: '>=3.9.0'
+      zod: 3.23.8
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -24430,6 +24545,9 @@ packages:
     resolution: {integrity: sha512-c/hfooPx+RBIOPM09GSxABOZhYPblDoyaGhqBkD/59vtpN21jEuWKDlM0KYTvqJVlSYjKs0tBcIdeXKChlSPtw==}
     hasBin: true
 
+  openapi3-ts@4.4.0:
+    resolution: {integrity: sha512-9asTNB9IkKEzWMcHmVZE7Ts3kC9G7AFHfs8i7caD8HbI76gEjdkId4z/AkP83xdZsH7PLAnnbl47qZkXuxpArw==}
+
   opener@1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
@@ -30886,6 +31004,11 @@ snapshots:
       - '@bufbuild/protobuf'
       - '@connectrpc/connect'
 
+  '@asteasolutions/zod-to-openapi@7.3.0(zod@3.23.8)':
+    dependencies:
+      openapi3-ts: 4.4.0
+      zod: 3.23.8
+
   '@atomico/rollup-plugin-sizes@1.1.4(rollup@3.29.4)':
     dependencies:
       brotli-size: 4.0.0
@@ -35325,6 +35448,25 @@ snapshots:
     dependencies:
       mime: 3.0.0
 
+  '@cloudflare/vitest-pool-workers@0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@1.6.0)':
+    dependencies:
+      '@vitest/runner': 2.1.8
+      '@vitest/snapshot': 2.1.8
+      birpc: 0.2.14
+      cjs-module-lexer: 1.2.3
+      devalue: 4.3.3
+      esbuild: 0.17.19
+      miniflare: 3.20240909.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      semver: 7.6.3
+      vitest: 1.6.0(@types/node@22.10.10)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
+      wrangler: 3.77.0(@cloudflare/workers-types@4.20250124.3)(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - '@cloudflare/workers-types'
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
   '@cloudflare/vitest-pool-workers@0.4.31(@cloudflare/workers-types@4.20250124.3)(@vitest/runner@2.1.8)(@vitest/snapshot@2.1.8)(bufferutil@4.0.8)(utf-8-validate@6.0.4)(vitest@2.1.8(@types/node@20.17.16)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1))':
     dependencies:
       '@vitest/runner': 2.1.8
@@ -36611,6 +36753,23 @@ snapshots:
   '@hapi/topo@5.1.0':
     dependencies:
       '@hapi/hoek': 9.3.0
+
+  '@hono/zod-openapi@0.11.1(hono@4.6.19)(zod@3.23.8)':
+    dependencies:
+      '@asteasolutions/zod-to-openapi': 7.3.0(zod@3.23.8)
+      '@hono/zod-validator': 0.2.1(hono@4.6.19)(zod@3.23.8)
+      hono: 4.6.19
+      zod: 3.23.8
+
+  '@hono/zod-validator@0.2.1(hono@4.6.19)(zod@3.23.8)':
+    dependencies:
+      hono: 4.6.19
+      zod: 3.23.8
+
+  '@hono/zod-validator@0.2.2(hono@4.6.19)(zod@3.23.8)':
+    dependencies:
+      hono: 4.6.19
+      zod: 3.23.8
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@19.0.0))':
     dependencies:
@@ -48658,8 +48817,7 @@ snapshots:
       pathe: 1.1.2
       picocolors: 1.1.1
       sirv: 2.0.4
-      vitest: 1.6.0(@types/node@20.17.16)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
-    optional: true
+      vitest: 1.6.0(@types/node@22.10.10)(@vitest/ui@1.6.0)(jsdom@22.1.0(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.4))(less@4.2.2)(sass@1.71.1)(terser@5.29.1)
 
   '@vitest/utils@0.32.4':
     dependencies:
@@ -60563,6 +60721,10 @@ snapshots:
       undici: 5.28.4
       yargs-parser: 21.1.1
 
+  openapi3-ts@4.4.0:
+    dependencies:
+      yaml: 2.7.0
+
   opener@1.5.2: {}
 
   option@0.2.4: {}
@@ -68635,8 +68797,7 @@ snapshots:
 
   yaml@2.4.1: {}
 
-  yaml@2.7.0:
-    optional: true
+  yaml@2.7.0: {}
 
   yargs-parser@20.2.9: {}
 

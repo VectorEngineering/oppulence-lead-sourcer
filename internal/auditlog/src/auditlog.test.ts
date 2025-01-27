@@ -1,4 +1,4 @@
-import { auditLogSchemaV1, solomonaiAuditLogEvents } from './auditlog'
+import { auditLogSchemaV1, unkeyAuditLogEvents } from './auditlog'
 
 describe('Audit Log Schema', () => {
     const validAuditLog = {
@@ -177,7 +177,7 @@ describe('Audit Log Schema', () => {
 
     // Event Tests
     test('validates all audit log event types', () => {
-        const events = Object.values(solomonaiAuditLogEvents.enum)
+        const events = Object.values(unkeyAuditLogEvents.enum)
         events.forEach((event) => {
             const log = { ...validAuditLog, event }
             const result = auditLogSchemaV1.safeParse(log)

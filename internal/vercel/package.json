@@ -11,7 +11,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "@playbookmedia/error": "workspace:^",
+    "@playbookmedia/error": "workspace:*",
     "zod": "^3.23.5"
   },
   "license": "MIT"

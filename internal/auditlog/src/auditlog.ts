@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const solomonaiAuditLogEvents = z.enum([
+export const unkeyAuditLogEvents = z.enum([
     // Workspace Management
     'workspace.create',
     'workspace.update',
@@ -290,13 +290,18 @@ export const auditLogSchemaV1 = z.object({
             sdkVersion: z.string().optional(),
             apiVersion: z.string().optional(),
             featureFlags: z.record(z.boolean()).optional(),
-            quotaRemaining: z.number().optional()
+            quotaRemaining: z.number().optional(),
+
+            // Ratelimit specific data
+            name: z.string().optional(),
+            limit: z.number().optional(),
+            duration: z.number().optional()
         })
         .passthrough()
         .optional(),
 
     actor: z.object({
-        type: z.enum(['user', 'system', 'api']),
+        type: z.enum(['user', 'system', 'api', "key", "llm"]),
         id: z.string(),
         name: z.string().optional(),
         email: z.string().optional(),
@@ -346,7 +351,7 @@ export const auditLogSchemaV1 = z.object({
 
                     // Lifecycle
                     createdAt: z.number().optional(),
-                    updatedAt: z.number().optional(),
+                    updatedAt: z.number().nullable().optional(),
                     expiresAt: z.number().optional(),
 
                     // API Resource specifics
@@ -354,6 +359,14 @@ export const auditLogSchemaV1 = z.object({
                     method: z.string().optional(),
                     rateLimitQuota: z.number().optional(),
                     cacheTTL: z.number().optional(),
+
+                    // Ratelimit specific data
+                    name: z.string().optional(),
+                    limit: z.number().optional(),
+                    duration: z.number().optional(),
+                    identityId: z.string().nullable().optional(),
+                    keyId: z.string().nullable().optional(),
+                    workspaceId: z.string().optional(),
 
                     // Service metrics
                     uptime: z.number().optional(),
@@ -373,6 +386,7 @@ export const auditLogSchemaV1 = z.object({
                 })
                 .passthrough()
                 .optional()
+                .nullable(),
         })
     ),
 

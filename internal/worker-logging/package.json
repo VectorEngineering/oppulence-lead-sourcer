@@ -9,7 +9,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "@playbookmedia/logs": "workspace:^"
+    "@playbookmedia/logs": "workspace:*"
   },
   "license": "MIT"
 }

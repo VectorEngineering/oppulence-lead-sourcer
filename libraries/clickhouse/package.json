@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@clickhouse/client-web": "^1.6.0",
-    "@playbookmedia/error": "workspace:^",
+    "@playbookmedia/error": "workspace:*",
     "zod": "^3.23.8"
   }
 }

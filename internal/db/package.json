@@ -14,8 +14,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
-    "@playbookmedia/events": "workspace:^",
-    "@playbookmedia/tsconfig": "workspace:^",
+    "@playbookmedia/events": "workspace:*",
+    "@playbookmedia/tsconfig": "workspace:*",
     "dotenv-cli": "^7.4.1",
     "drizzle-kit": "0.22.7",
     "mysql2": "^3.10.3",
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@planetscale/database": "^1.16.0",
-    "@playbookmedia/billing": "workspace:^",
-    "@playbookmedia/id": "workspace:^",
+    "@playbookmedia/billing": "workspace:*",
+    "@playbookmedia/id": "workspace:*",
     "drizzle-orm": "^0.31.2"
   },
   "license": "MIT"

@@ -12,7 +12,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "@playbookmedia/hash": "workspace:^",
+    "@playbookmedia/hash": "workspace:*",
     "base-x": "^4.0.0"
   },
   "license": "MIT"

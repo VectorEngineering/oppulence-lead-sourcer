@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@planetscale/database": "^1.19.0",
-    "@playbookmedia/db": "workspace:^",
-    "@playbookmedia/id": "workspace:^"
+    "@playbookmedia/db": "workspace:*",
+    "@playbookmedia/id": "workspace:*"
   },
   "author": "Yoan Yomba",
   "license": "MIT"
