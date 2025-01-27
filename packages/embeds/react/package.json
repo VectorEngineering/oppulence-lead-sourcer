@@ -35,8 +35,8 @@
     "class-variance-authority": "^0.7.0",
     "vite": "5.2.9"
   },
-  "author": "Steven Tey <stevensteel97@gmail.com>",
-  "homepage": "https://dub.co",
+  "author": "Yoan Yomba <yoanyomba@solomon-ai.co>",
+  "homepage": "https://app.thinkthank.io",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/steven-tey/dub.git"
