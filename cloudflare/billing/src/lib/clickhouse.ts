@@ -1,4 +1,4 @@
-import { ClickHouse } from "@playbookmedia/clickhouse";
-import { env } from "./env";
+import { ClickHouse } from '@playbookmedia/clickhouse'
+import { env } from './env'
 
-export const clickhouse = new ClickHouse({ url: env().CLICKHOUSE_URL });
+export const clickhouse = new ClickHouse({ url: env().CLICKHOUSE_URL })

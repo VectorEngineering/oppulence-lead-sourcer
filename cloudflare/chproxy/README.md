@@ -8,26 +8,28 @@ Read more: [Architecture Documentation](https://engineering.unkey.com/docs/archi
 
 ## Features
 
-- Implements ClickHouse HTTP interface
-- Buffers rows in memory
-- Periodic flushing (time-based or buffer-full)
-- Optional usage in development
+-   Implements ClickHouse HTTP interface
+-   Buffers rows in memory
+-   Periodic flushing (time-based or buffer-full)
+-   Optional usage in development
 
 ## Configuration
 
 The service is configured entirely through environment variables:
 
-| Variable | Required | Type | Default | Description |
-|----------|----------|------|---------|-------------|
-| `PORT` | No | integer | 7123 | The port to listen on |
-| `BASIC_AUTH` | Yes | string | - | Auth credentials in format `<username>:<password>` |
-| `CLICKHOUSE_URL` | Yes | string | - | ClickHouse cluster HTTP URL with credentials |
+| Variable         | Required | Type    | Default | Description                                        |
+| ---------------- | -------- | ------- | ------- | -------------------------------------------------- |
+| `PORT`           | No       | integer | 7123    | The port to listen on                              |
+| `BASIC_AUTH`     | Yes      | string  | -       | Auth credentials in format `<username>:<password>` |
+| `CLICKHOUSE_URL` | Yes      | string  | -       | ClickHouse cluster HTTP URL with credentials       |
 
 ### Basic Auth
+
 Basic auth was chosen for compatibility with ClickHouse SDKs. Configure your SDK URL as:
 https://proxyUser:proxyPassword@host:port
 
 ### ClickHouse URL Example
+
 https://username:password@abc.us-east-1.aws.clickhouse.cloud:8123
 
 ## Development
@@ -35,6 +37,7 @@ https://username:password@abc.us-east-1.aws.clickhouse.cloud:8123
 ### Running Locally
 
 Using Go:
+
 ```bash
 cd /apps/chproxy
 go build -o chproxy .
@@ -42,7 +45,8 @@ go build -o chproxy .
 ```
 
 Using Docker:
-- Refer to the docker-compose reference for container setup
+
+-   Refer to the docker-compose reference for container setup
 
 ## Infrastructure
 

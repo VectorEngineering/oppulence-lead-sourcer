@@ -1,35 +1,35 @@
-import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
-import type { Context } from '@/pkg/hono/app';
-import { sha256 } from '@playbookmedia/hash';
+import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions'
+import type { Context } from '@/pkg/hono/app'
+import { sha256 } from '@playbookmedia/hash'
 
 export async function createCompletionChunk(content: string, stop = false) {
-  return {
-    id: `chatcmpl-${await sha256(content)}-${stop}`,
-    object: 'chat.completion.chunk',
-    created: new Date().toISOString(),
-    model: 'gpt-4',
-    choices: [
-      {
-        delta: {
-          content,
-        },
-        index: 0,
-        finish_reason: stop ? 'stop' : null,
-      },
-    ],
-  };
+    return {
+        id: `chatcmpl-${await sha256(content)}-${stop}`,
+        object: 'chat.completion.chunk',
+        created: new Date().toISOString(),
+        model: 'gpt-4',
+        choices: [
+            {
+                delta: {
+                    content
+                },
+                index: 0,
+                finish_reason: stop ? 'stop' : null
+            }
+        ]
+    }
 }
 
 export function OpenAIResponse(content: string) {
-  return {
-    choices: [
-      {
-        message: {
-          content,
-        },
-      },
-    ],
-  };
+    return {
+        choices: [
+            {
+                message: {
+                    content
+                }
+            }
+        ]
+    }
 }
 
 /**
@@ -46,23 +46,18 @@ export function OpenAIResponse(content: string) {
  * @returns The extracted word, or an empty string if no word is found.
  */
 export function extractWord(chunk: string): string {
-  const match = chunk.match(/"((?:\\"|[^"])*)"/);
-  return match?.[1]?.replace(/\\"/g, '"') ?? '';
+    const match = chunk.match(/"((?:\\"|[^"])*)"/)
+    return match?.[1]?.replace(/\\"/g, '"') ?? ''
 }
 
-export function parseMessagesToString(
-  messages: Array<ChatCompletionMessageParam>
-) {
-  return (messages.at(-1)?.content || '') as string;
+export function parseMessagesToString(messages: Array<ChatCompletionMessageParam>) {
+    return (messages.at(-1)?.content || '') as string
 }
 
-export async function getEmbeddings(
-  c: Context,
-  messages: string
-): Promise<number[]> {
-  const embeddings = await c.env.AI.run('@cf/baai/bge-small-en-v1.5', {
-    text: messages,
-  });
+export async function getEmbeddings(c: Context, messages: string): Promise<number[]> {
+    const embeddings = await c.env.AI.run('@cf/baai/bge-small-en-v1.5', {
+        text: messages
+    })
 
-  return embeddings.data[0]!;
+    return embeddings.data[0]!
 }

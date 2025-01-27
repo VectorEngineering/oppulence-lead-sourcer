@@ -1,2 +1,2 @@
-export * from './interface';
-export * from './noop';
+export * from './interface'
+export * from './noop'

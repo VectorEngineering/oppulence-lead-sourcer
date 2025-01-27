@@ -1,0 +1,5 @@
+import { z } from 'zod';
+
+export const TransactionScalarFieldEnumSchema = z.enum(['id','name','description','note','internalNotes','reference','amount','baseAmount','balance','exchangeRate','fees','tax','taxRate','currency','baseCurrency','date','valueDate','createdAt','updatedAt','clearedAt','reconciledAt','cancelledAt','status','verificationStatus','reconciliationStatus','priority','riskLevel','categoryTag','categoryId','categorySlug','subcategory','method','type','direction','recurring','frequency','nextDueDate','recurringRules','internal','internalTransactionId','manual','needsReview','isDisputed','isFlagged','isReconciled','isConfidential','budgetCategory','costCenter','profitCenter','projectCode','departmentCode','complianceStatus','auditTrail','verifiedBy','verifiedAt','lastReviewedBy','lastReviewedAt','reconciliationId','matchingCriteria','reconciliationNotes','metadata','customFields','labels','notified','bankAccountId','assignedId','projectId']);
+
+export default TransactionScalarFieldEnumSchema;

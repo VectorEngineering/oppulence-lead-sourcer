@@ -1,0 +1,18 @@
+import type { Prisma } from '@prisma/client';
+
+import { z } from 'zod';
+import { StringFieldUpdateOperationsInputSchema } from './StringFieldUpdateOperationsInputSchema';
+import { NullableIntFieldUpdateOperationsInputSchema } from './NullableIntFieldUpdateOperationsInputSchema';
+import { ProgramEnrollmentStatusSchema } from './ProgramEnrollmentStatusSchema';
+import { EnumProgramEnrollmentStatusFieldUpdateOperationsInputSchema } from './EnumProgramEnrollmentStatusFieldUpdateOperationsInputSchema';
+import { DateTimeFieldUpdateOperationsInputSchema } from './DateTimeFieldUpdateOperationsInputSchema';
+
+export const ProgramEnrollmentUpdateManyMutationInputSchema: z.ZodType<Prisma.ProgramEnrollmentUpdateManyMutationInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  commissionAmount: z.union([ z.number().int(),z.lazy(() => NullableIntFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  status: z.union([ z.lazy(() => ProgramEnrollmentStatusSchema),z.lazy(() => EnumProgramEnrollmentStatusFieldUpdateOperationsInputSchema) ]).optional(),
+  createdAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+  updatedAt: z.union([ z.coerce.date(),z.lazy(() => DateTimeFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
+
+export default ProgramEnrollmentUpdateManyMutationInputSchema;

@@ -301,7 +301,7 @@ export const auditLogSchemaV1 = z.object({
         .optional(),
 
     actor: z.object({
-        type: z.enum(['user', 'system', 'api', "key", "llm"]),
+        type: z.enum(['user', 'system', 'api', 'key', 'llm']),
         id: z.string(),
         name: z.string().optional(),
         email: z.string().optional(),
@@ -386,7 +386,7 @@ export const auditLogSchemaV1 = z.object({
                 })
                 .passthrough()
                 .optional()
-                .nullable(),
+                .nullable()
         })
     ),
 

@@ -15,7 +15,10 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strictNullChecks": true
   },
   "exclude": ["node_modules"]
 }

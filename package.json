@@ -29,7 +29,22 @@
         "quick": "pretty-quick --staged",
         "postinstall": "husky install",
         "migration:create": "pnpm typeorm migration:create",
-        "sync-upstream": "bash scripts/sync-upstream.sh"
+        "sync-upstream": "bash scripts/sync-upstream.sh",
+        "clean:all": "rm -rf node_modules && rm -rf .turbo && rm -rf .next && find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find . -name '.next' -type d -prune -exec rm -rf '{}' + && find . -name '.turbo' -type d -prune -exec rm -rf '{}' +",
+        "check-docker": "./scripts/check-docker.sh",
+        "check-services": "./scripts/check-services.sh",
+        "prettier-check": "prettier --check \"**/*.{ts,tsx,md}\"",
+        "publish-cli": "turbo build --filter='@dub/cli' && cd packages/cli && npm publish && cd ../../",
+        "publish-embed-core": "turbo build --filter='@dub/embed-core' && cd packages/embeds/core && npm publish && cd ../../../",
+        "publish-embed-react": "turbo build --filter='@dub/embed-react' && cd packages/embeds/react && npm publish && cd ../../../",
+        "publish-tw": "turbo build --filter='@dub/tailwind-config' && cd packages/tailwind-config && npm publish && cd ../../",
+        "publish-ui": "turbo build --filter='@dub/ui' && cd packages/ui && npm publish && cd ../../",
+        "publish-utils": "turbo build --filter='@dub/utils' && cd packages/utils && npm publish && cd ../../",
+        "script": "echo 'Run this script in apps/web'",
+        "test": "turbo run test",
+        "start:dev": "pnpm check-docker && cd apps/web && docker-compose up -d && cd ../.. && pnpm check-services && pnpm install && pnpm -r --filter \"./packages/**\" build && cd apps/web && pnpm run prisma:generate && pnpm run prisma:push && cd ../.. && pnpm dev",
+        "precommit": "pnpm install --no-frozen-lockfile && pnpm format && pnpm i && pnpm build",
+        "build-oppulence": "turbo build --filter=@playbookmedia/oppulence"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,md}": "eslint --fix"

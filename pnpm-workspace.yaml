@@ -6,3 +6,5 @@ packages:
     - 'libraries/*'
     - 'libraries/design-system/*'
     - 'cloudflare/*'
+    - 'dub-packages/*'
+    - 'dub-packages/embeds/*'

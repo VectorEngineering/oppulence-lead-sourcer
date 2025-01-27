@@ -16,124 +16,131 @@ By mastering these concepts and techniques, you can significantly improve the qu
 
 ## Understanding Large Language Models (LLMs)
 
-- LLMs are prediction engines that take a sequence of words as input and predict the most likely sequence to follow.
-- They assign probabilities to potential next sequences and select one.
-- Their knowledge comes from training on massive text corpora, which influences their strengths and limitations.
-- While LLM responses often seem plausible, they may sometimes be random or not grounded in reality. This is a problem, always write prompts that are specific and avoid ambiguity or hallucinations.
-- When tasking the AI to write prompts, consider these characteristics to craft effective instructions.
+-   LLMs are prediction engines that take a sequence of words as input and predict the most likely sequence to follow.
+-   They assign probabilities to potential next sequences and select one.
+-   Their knowledge comes from training on massive text corpora, which influences their strengths and limitations.
+-   While LLM responses often seem plausible, they may sometimes be random or not grounded in reality. This is a problem, always write prompts that are specific and avoid ambiguity or hallucinations.
+-   When tasking the AI to write prompts, consider these characteristics to craft effective instructions.
 
 ## The Importance of Prompts
 
-- Prompts are the starting points for your text generation.
-- Crafting your prompt is the means by which you "instruct" or "program" the model.
-- They shape your responses and guide you towards the desired output.
+-   Prompts are the starting points for your text generation.
+-   Crafting your prompt is the means by which you "instruct" or "program" the model.
+-   They shape your responses and guide you towards the desired output.
 
 ## Key Principles of Prompt Engineering
 
 1. Start with Clear Instructions:
-   - Begin with a clear, specific instruction about the desired output.
-   - Example: "Create a slogan for an organic coffee shop" is more specific than "Create a slogan for a coffee shop."
-   - The results for these two prompts are the following:
+
+    - Begin with a clear, specific instruction about the desired output.
+    - Example: "Create a slogan for an organic coffee shop" is more specific than "Create a slogan for a coffee shop."
+    - The results for these two prompts are the following:
     - "Fueling your day, one cup at a time."
     - "Fuel your day the natural way with our organic brews!"
-   - Note how introducing a single descriptive term to our prompt influences the completion.
+    - Note how introducing a single descriptive term to our prompt influences the completion.
 
 2. Include Examples:
-   - Demonstrate patterns or subtleties by providing examples in the prompt.
-   - This helps convey the expected format and style of the output.
-   - Without examples:
-     Prompt:
 
-     ```
-     Create three slogans for a coffee shop with live music.
-     ```
+    - Demonstrate patterns or subtleties by providing examples in the prompt.
+    - This helps convey the expected format and style of the output.
+    - Without examples:
+      Prompt:
 
-     Completion:
+        ```
+        Create three slogans for a coffee shop with live music.
+        ```
 
-     ```
-     1. "Sip, savor, and sway to the rhythm at our coffee shop with live music!"
-     2. "Fuel your day with a cup of joe and a side of soulful tunes at our coffee shop."
-     3. "Where the coffee is hot and the music is live - come enjoy the vibe!"
-     ```
+        Completion:
+
+        ```
+        1. "Sip, savor, and sway to the rhythm at our coffee shop with live music!"
+        2. "Fuel your day with a cup of joe and a side of soulful tunes at our coffee shop."
+        3. "Where the coffee is hot and the music is live - come enjoy the vibe!"
+        ```
 
     Evaluation:
+
     - These slogans are fine, but could be even better
     - It appears the model overlooked the 'live' part in our prompt
-   - With examples:
-   Prompt:
+    - With examples:
+      Prompt:
 
-     ```
-     Create three slogans for a business with unique features.
-     Business: Bookstore with cats
-     Slogans: "Purr-fect Pages", "Books and Whiskers", "Novels and Nuzzles"
-     Business: Gym with rock climbing
-     Slogans: "Peak Performance", "Reach New Heights", "Climb Your Way Fit"
-     Business: Coffee shop with live music
-     Slogans:
-     ```
+        ```
+        Create three slogans for a business with unique features.
+        Business: Bookstore with cats
+        Slogans: "Purr-fect Pages", "Books and Whiskers", "Novels and Nuzzles"
+        Business: Gym with rock climbing
+        Slogans: "Peak Performance", "Reach New Heights", "Climb Your Way Fit"
+        Business: Coffee shop with live music
+        Slogans:
+        ```
 
-     Completion:
+        Completion:
 
-     ```
-     "Java Jams", "Brews and Beats", "Caffeine and Concerts"
-     ```
+        ```
+        "Java Jams", "Brews and Beats", "Caffeine and Concerts"
+        ```
 
-     Evaluation:
-     - Incorporating examples of expected output for a certain input prompted the model to generate the kind of names we aimed for.
+        Evaluation:
 
-- When including examples, comment above that you want me to review the examples and potentially provide placeholders for me to fill in
+        - Incorporating examples of expected output for a certain input prompted the model to generate the kind of names we aimed for.
+
+-   When including examples, comment above that you want me to review the examples and potentially provide placeholders for me to fill in
 
 3. Consider Temperature Settings:
-   - Temperature (0 to 1) controls the randomness of your outputs.
-   - Lower temperature (0) leads to more deterministic, focused responses.
-   - Higher temperature (1) produces more diverse, creative outputs.
-   - Choose based on the task: lower for factual tasks, higher for creative tasks.
-   - Comment on the nature of the task you're prompting for to guide the model's creativity & adjust the temperature accordingly.
-   - Example with temperature 1:
-     Prompt:
 
-     ```
-     Create three slogans for a business with unique features.
-     Business: Bookstore with cats
-     Slogans: "Purr-fect Pages", "Books and Whiskers", "Novels and Nuzzles"
-     Business: Gym with rock climbing
-     Slogans: "Peak Performance", "Reach New Heights", "Climb Your Way Fit"
-     Business: Coffee shop with live music
-     Slogans:
-     ```
+    - Temperature (0 to 1) controls the randomness of your outputs.
+    - Lower temperature (0) leads to more deterministic, focused responses.
+    - Higher temperature (1) produces more diverse, creative outputs.
+    - Choose based on the task: lower for factual tasks, higher for creative tasks.
+    - Comment on the nature of the task you're prompting for to guide the model's creativity & adjust the temperature accordingly.
+    - Example with temperature 1:
+      Prompt:
 
-     Completion:
-     - first completion:
+        ```
+        Create three slogans for a business with unique features.
+        Business: Bookstore with cats
+        Slogans: "Purr-fect Pages", "Books and Whiskers", "Novels and Nuzzles"
+        Business: Gym with rock climbing
+        Slogans: "Peak Performance", "Reach New Heights", "Climb Your Way Fit"
+        Business: Coffee shop with live music
+        Slogans:
+        ```
 
-     ```
-     "Beans and Beats", "Espresso and Echoes", "Music, Mocha, and More"
-     ```
+        Completion:
 
-     - second completion:
+        - first completion:
 
-     ```
-     "Jazz up your Java", "Sip, Sit, and Listen", "Groove and Grind"
-     ```
+        ```
+        "Beans and Beats", "Espresso and Echoes", "Music, Mocha, and More"
+        ```
 
-     - third completion:
+        - second completion:
 
-     ```
-     "Java Jams", "A Sip of Sound", "Caffeine and Concerts"
-     ```
+        ```
+        "Jazz up your Java", "Sip, Sit, and Listen", "Groove and Grind"
+        ```
 
-     - fourth completion:
+        - third completion:
 
-     ```
-     "Beans and Beats", "Caffeine and Concerts", "Music to Your Mocha"
-     ```
+        ```
+        "Java Jams", "A Sip of Sound", "Caffeine and Concerts"
+        ```
 
-     Evaluation:
-     - With a temperature above 0, the same prompt delivers varied completions each time.
-     - Keep in mind that the model forecasts the text most likely to follow the preceding text.
+        - fourth completion:
+
+        ```
+        "Beans and Beats", "Caffeine and Concerts", "Music to Your Mocha"
+        ```
+
+        Evaluation:
+
+        - With a temperature above 0, the same prompt delivers varied completions each time.
+        - Keep in mind that the model forecasts the text most likely to follow the preceding text.
 
 4. Iterate and Refine:
-   - If the initial output isn't satisfactory, refine the prompt and try again.
-   - Add more context, examples, or specific instructions as needed.
+    - If the initial output isn't satisfactory, refine the prompt and try again.
+    - Add more context, examples, or specific instructions as needed.
 
 ### Teach a Bot to Fish
 
@@ -172,7 +179,7 @@ In this example below, we ask the model to output the commands in [reverse polis
 
 > 🧠 There are some interesting subtle things going on in that example, beyond just command generation. When we ask it to add a memo to the “shake shack” expense, the model knows that the command `add-memo` takes an expense ID. But we never tell it the expense ID, so it looks up “Shake Shack” in the table of expenses we provided it, then grabs the ID from the corresponding ID column, and then uses that as an argument to `add-memo`.
 
-Getting command grammars working reliably in complex situations can be tricky. The best levers we have here are to provide lots of descriptions, and as **many examples** of usage as we can. Large language models are [few-shot learners](https://en.wikipedia.org/wiki/Few-shot_learning_(natural_language_processing)), meaning that they can learn a new task by being provided just a few examples. In general, the more examples you provide the better off you’ll be – but that also eats into your token budget, so it’s a balance.
+Getting command grammars working reliably in complex situations can be tricky. The best levers we have here are to provide lots of descriptions, and as **many examples** of usage as we can. Large language models are [few-shot learners](<https://en.wikipedia.org/wiki/Few-shot_learning_(natural_language_processing)>), meaning that they can learn a new task by being provided just a few examples. In general, the more examples you provide the better off you’ll be – but that also eats into your token budget, so it’s a balance.
 
 Here’s a more complex example, with the output specified in JSON instead of RPN. And we use Typescript to define the return types of commands.
 
@@ -195,37 +202,37 @@ The output types are:
 
 ```typescript
 type LinkedAccount = {
-    id: string,
+    id: string
     bank_details: {
-        name: string,
-        type: string,
-    },
-    brex_account_id: string,
-    last_four: string,
+        name: string
+        type: string
+    }
+    brex_account_id: string
+    last_four: string
     available_balance: {
-        amount: number,
-        as_of_date: Date,
-    },
+        amount: number
+        as_of_date: Date
+    }
     current_balance: {
-            amount: number,
-        as_of_date: Date,
-    },
+        amount: number
+        as_of_date: Date
+    }
 }
 
 type Expense = {
-  id: string,
-  memo: string,
-  amount: number,
+    id: string
+    memo: string
+    amount: number
 }
 
 type Budget = {
-  id: string,
-  name: string,
-  description: string,
-  limit: {
-    amount: number,
-    currency: string,
-  }
+    id: string
+    name: string
+    description: string
+    limit: {
+        amount: number
+        currency: string
+    }
 }
 ```
 
@@ -252,7 +259,8 @@ Output the commands in JSON as an abstract syntax tree.
 IMPORTANT - Only respond with a program. Do not respond with any text that isn't part of a program. Do not write prose, even if instructed. Do not explain yourself.
 
 You can only generate commands, but you are an expert at generating commands.
-~~~
+
+```
 
 </details>
 
@@ -296,7 +304,8 @@ We see that the bot:
 <details>
 <summary>(Full prompt)</summary>
 
-~~~
+```
+
 You are a helpful assistant. You run in a loop, seeking additional information to answer a user's question until you are able to answer the question.
 
 Today is June 1, 2025. My name is Fabian Seacaster. My employee ID is 82442.
@@ -316,6 +325,7 @@ Your response will be in JSON and will include a "Thought" + "Action" to retriev
 You will continue generating thoughts and actions until you get to an answer, or conclude that you can't.
 
 Example 1:
+
 ```
 User: What is the population of Philadelphia?
 
@@ -334,6 +344,7 @@ Assistant: {
 ```
 
 Example 2:
+
 ```
 User: What is my manager's city?
 
@@ -366,7 +377,8 @@ Assistant: {
   "answer": "Your manager lives in Philadelphia."
 }
 ```
-~~~
+
+````
 
 </details>
 
@@ -443,154 +455,156 @@ Not all data is flat and linear. Sometimes you’ll need to embed data that is n
 <details>
 <summary>(Full prompt)</summary>
 
-~~~
+````
+
 You are a helpful assistant. You answer questions about users. Here is what you know about them:
 
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "contact": {
-        "address": {
-          "street": "123 Main St",
-          "city": "Anytown",
-          "state": "CA",
-          "zip": "12345"
-        },
-        "phone": "555-555-1234",
-        "email": "johndoe@example.com"
-      }
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "contact": {
-        "address": {
-          "street": "456 Elm St",
-          "city": "Sometown",
-          "state": "TX",
-          "zip": "54321"
-        },
-        "phone": "555-555-5678",
-        "email": "janesmith@example.com"
-      }
-    },
-    {
-      "id": 3,
-      "name": "Alice Johnson",
-      "contact": {
-        "address": {
-          "street": "789 Oak St",
-          "city": "Othertown",
-          "state": "NY",
-          "zip": "67890"
-        },
-        "phone": "555-555-2468",
-        "email": "alicejohnson@example.com"
-      }
-    },
-    {
-      "id": 4,
-      "name": "Bob Williams",
-      "contact": {
-        "address": {
-          "street": "135 Maple St",
-          "city": "Thistown",
-          "state": "FL",
-          "zip": "98765"
-        },
-        "phone": "555-555-8642",
-        "email": "bobwilliams@example.com"
-      }
-    },
-    {
-      "id": 5,
-      "name": "Charlie Brown",
-      "contact": {
-        "address": {
-          "street": "246 Pine St",
-          "city": "Thatstown",
-          "state": "WA",
-          "zip": "86420"
-        },
-        "phone": "555-555-7531",
-        "email": "charliebrown@example.com"
-      }
-    },
-    {
-      "id": 6,
-      "name": "Diane Davis",
-      "contact": {
-        "address": {
-          "street": "369 Willow St",
-          "city": "Sumtown",
-          "state": "CO",
-          "zip": "15980"
-        },
-        "phone": "555-555-9512",
-        "email": "dianedavis@example.com"
-      }
-    },
-    {
-      "id": 7,
-      "name": "Edward Martinez",
-      "contact": {
-        "address": {
-          "street": "482 Aspen St",
-          "city": "Newtown",
-          "state": "MI",
-          "zip": "35742"
-        },
-        "phone": "555-555-6813",
-        "email": "edwardmartinez@example.com"
-      }
-    },
-    {
-      "id": 8,
-      "name": "Fiona Taylor",
-      "contact": {
-        "address": {
-          "street": "531 Birch St",
-          "city": "Oldtown",
-          "state": "OH",
-          "zip": "85249"
-        },
-        "phone": "555-555-4268",
-        "email": "fionataylor@example.com"
-      }
-    },
-    {
-      "id": 9,
-      "name": "George Thompson",
-      "contact": {
-        "address": {
-          "street": "678 Cedar St",
-          "city": "Nexttown",
-          "state": "GA",
-          "zip": "74125"
-        },
-        "phone": "555-555-3142",
-        "email": "georgethompson@example.com"
-      }
-    },
-    {
-      "id": 10,
-      "name": "Helen White",
-      "contact": {
-        "address": {
-          "street": "852 Spruce St",
-          "city": "Lasttown",
-          "state": "VA",
-          "zip": "96321"
-        },
-        "phone": "555-555-7890",
-        "email": "helenwhite@example.com"
-      }
-    }
-  ]
+"users": [
+{
+"id": 1,
+"name": "John Doe",
+"contact": {
+"address": {
+"street": "123 Main St",
+"city": "Anytown",
+"state": "CA",
+"zip": "12345"
+},
+"phone": "555-555-1234",
+"email": "johndoe@example.com"
 }
-~~~
+},
+{
+"id": 2,
+"name": "Jane Smith",
+"contact": {
+"address": {
+"street": "456 Elm St",
+"city": "Sometown",
+"state": "TX",
+"zip": "54321"
+},
+"phone": "555-555-5678",
+"email": "janesmith@example.com"
+}
+},
+{
+"id": 3,
+"name": "Alice Johnson",
+"contact": {
+"address": {
+"street": "789 Oak St",
+"city": "Othertown",
+"state": "NY",
+"zip": "67890"
+},
+"phone": "555-555-2468",
+"email": "alicejohnson@example.com"
+}
+},
+{
+"id": 4,
+"name": "Bob Williams",
+"contact": {
+"address": {
+"street": "135 Maple St",
+"city": "Thistown",
+"state": "FL",
+"zip": "98765"
+},
+"phone": "555-555-8642",
+"email": "bobwilliams@example.com"
+}
+},
+{
+"id": 5,
+"name": "Charlie Brown",
+"contact": {
+"address": {
+"street": "246 Pine St",
+"city": "Thatstown",
+"state": "WA",
+"zip": "86420"
+},
+"phone": "555-555-7531",
+"email": "charliebrown@example.com"
+}
+},
+{
+"id": 6,
+"name": "Diane Davis",
+"contact": {
+"address": {
+"street": "369 Willow St",
+"city": "Sumtown",
+"state": "CO",
+"zip": "15980"
+},
+"phone": "555-555-9512",
+"email": "dianedavis@example.com"
+}
+},
+{
+"id": 7,
+"name": "Edward Martinez",
+"contact": {
+"address": {
+"street": "482 Aspen St",
+"city": "Newtown",
+"state": "MI",
+"zip": "35742"
+},
+"phone": "555-555-6813",
+"email": "edwardmartinez@example.com"
+}
+},
+{
+"id": 8,
+"name": "Fiona Taylor",
+"contact": {
+"address": {
+"street": "531 Birch St",
+"city": "Oldtown",
+"state": "OH",
+"zip": "85249"
+},
+"phone": "555-555-4268",
+"email": "fionataylor@example.com"
+}
+},
+{
+"id": 9,
+"name": "George Thompson",
+"contact": {
+"address": {
+"street": "678 Cedar St",
+"city": "Nexttown",
+"state": "GA",
+"zip": "74125"
+},
+"phone": "555-555-3142",
+"email": "georgethompson@example.com"
+}
+},
+{
+"id": 10,
+"name": "Helen White",
+"contact": {
+"address": {
+"street": "852 Spruce St",
+"city": "Lasttown",
+"state": "VA",
+"zip": "96321"
+},
+"phone": "555-555-7890",
+"email": "helenwhite@example.com"
+}
+}
+]
+}
+
+```
 
 </details>
 
@@ -603,79 +617,81 @@ If using nested `JSON` winds up being too verbose for your token budget, fallbac
 <details>
 <summary>(Full prompt)</summary>
 
-~~~
+```
+
 You are a helpful assistant. You answer questions about users. Here is what you know about them:
 
 Table 1: users
-| id (PK) | name            |
+| id (PK) | name |
 | ------- | --------------- |
-| 1       | John Doe        |
-| 2       | Jane Smith      |
-| 3       | Alice Johnson   |
-| 4       | Bob Williams    |
-| 5       | Charlie Brown   |
-| 6       | Diane Davis     |
-| 7       | Edward Martinez |
-| 8       | Fiona Taylor    |
-| 9       | George Thompson |
-| 10      | Helen White     |
+| 1 | John Doe |
+| 2 | Jane Smith |
+| 3 | Alice Johnson |
+| 4 | Bob Williams |
+| 5 | Charlie Brown |
+| 6 | Diane Davis |
+| 7 | Edward Martinez |
+| 8 | Fiona Taylor |
+| 9 | George Thompson |
+| 10 | Helen White |
 
 Table 2: addresses
-| id (PK) | user_id (FK) | street        | city      | state | zip   |
+| id (PK) | user_id (FK) | street | city | state | zip |
 | ------- | ------------ | ------------- | --------- | ----- | ----- |
-| 1       | 1            | 123 Main St   | Anytown   | CA    | 12345 |
-| 2       | 2            | 456 Elm St    | Sometown  | TX    | 54321 |
-| 3       | 3            | 789 Oak St    | Othertown | NY    | 67890 |
-| 4       | 4            | 135 Maple St  | Thistown  | FL    | 98765 |
-| 5       | 5            | 246 Pine St   | Thatstown | WA    | 86420 |
-| 6       | 6            | 369 Willow St | Sumtown   | CO    | 15980 |
-| 7       | 7            | 482 Aspen St  | Newtown   | MI    | 35742 |
-| 8       | 8            | 531 Birch St  | Oldtown   | OH    | 85249 |
-| 9       | 9            | 678 Cedar St  | Nexttown  | GA    | 74125 |
-| 10      | 10           | 852 Spruce St | Lasttown  | VA    | 96321 |
+| 1 | 1 | 123 Main St | Anytown | CA | 12345 |
+| 2 | 2 | 456 Elm St | Sometown | TX | 54321 |
+| 3 | 3 | 789 Oak St | Othertown | NY | 67890 |
+| 4 | 4 | 135 Maple St | Thistown | FL | 98765 |
+| 5 | 5 | 246 Pine St | Thatstown | WA | 86420 |
+| 6 | 6 | 369 Willow St | Sumtown | CO | 15980 |
+| 7 | 7 | 482 Aspen St | Newtown | MI | 35742 |
+| 8 | 8 | 531 Birch St | Oldtown | OH | 85249 |
+| 9 | 9 | 678 Cedar St | Nexttown | GA | 74125 |
+| 10 | 10 | 852 Spruce St | Lasttown | VA | 96321 |
 
 Table 3: phone_numbers
-| id (PK) | user_id (FK) | phone        |
+| id (PK) | user_id (FK) | phone |
 | ------- | ------------ | ------------ |
-| 1       | 1            | 555-555-1234 |
-| 2       | 2            | 555-555-5678 |
-| 3       | 3            | 555-555-2468 |
-| 4       | 4            | 555-555-8642 |
-| 5       | 5            | 555-555-7531 |
-| 6       | 6            | 555-555-9512 |
-| 7       | 7            | 555-555-6813 |
-| 8       | 8            | 555-555-4268 |
-| 9       | 9            | 555-555-3142 |
-| 10      | 10           | 555-555-7890 |
+| 1 | 1 | 555-555-1234 |
+| 2 | 2 | 555-555-5678 |
+| 3 | 3 | 555-555-2468 |
+| 4 | 4 | 555-555-8642 |
+| 5 | 5 | 555-555-7531 |
+| 6 | 6 | 555-555-9512 |
+| 7 | 7 | 555-555-6813 |
+| 8 | 8 | 555-555-4268 |
+| 9 | 9 | 555-555-3142 |
+| 10 | 10 | 555-555-7890 |
 
 Table 4: emails
-| id (PK) | user_id (FK) | email                      |
+| id (PK) | user_id (FK) | email |
 | ------- | ------------ | -------------------------- |
-| 1       | 1            | johndoe@example.com        |
-| 2       | 2            | janesmith@example.com      |
-| 3       | 3            | alicejohnson@example.com   |
-| 4       | 4            | bobwilliams@example.com    |
-| 5       | 5            | charliebrown@example.com   |
-| 6       | 6            | dianedavis@example.com     |
-| 7       | 7            | edwardmartinez@example.com |
-| 8       | 8            | fionataylor@example.com    |
-| 9       | 9            | georgethompson@example.com |
-| 10      | 10           | helenwhite@example.com     |
+| 1 | 1 | johndoe@example.com |
+| 2 | 2 | janesmith@example.com |
+| 3 | 3 | alicejohnson@example.com |
+| 4 | 4 | bobwilliams@example.com |
+| 5 | 5 | charliebrown@example.com |
+| 6 | 6 | dianedavis@example.com |
+| 7 | 7 | edwardmartinez@example.com |
+| 8 | 8 | fionataylor@example.com |
+| 9 | 9 | georgethompson@example.com |
+| 10 | 10 | helenwhite@example.com |
 
 Table 5: cities
-| id (PK) | name      | state | population | median_income |
+| id (PK) | name | state | population | median_income |
 | ------- | --------- | ----- | ---------- | ------------- |
-| 1       | Anytown   | CA    | 50,000     | $70,000       |
-| 2       | Sometown  | TX    | 100,000    | $60,000       |
-| 3       | Othertown | NY    | 25,000     | $80,000       |
-| 4       | Thistown  | FL    | 75,000     | $65,000       |
-| 5       | Thatstown | WA    | 40,000     | $75,000       |
-| 6       | Sumtown   | CO    | 20,000     | $85,000       |
-| 7       | Newtown   | MI    | 60,000     | $55,000       |
-| 8       | Oldtown   | OH    | 30,000     | $70,000       |
-| 9       | Nexttown  | GA    | 15,000     | $90,000       |
-| 10      | Lasttown  | VA    | 10,000     | $100,000      |
-~~~
+| 1 | Anytown | CA | 50,000 | $70,000 |
+| 2 | Sometown | TX | 100,000 | $60,000 |
+| 3 | Othertown | NY | 25,000 | $80,000 |
+| 4 | Thistown | FL | 75,000 | $65,000 |
+| 5 | Thatstown | WA | 40,000 | $75,000 |
+| 6 | Sumtown | CO | 20,000 | $85,000 |
+| 7 | Newtown | MI | 60,000 | $55,000 |
+| 8 | Oldtown | OH | 30,000 | $70,000 |
+| 9 | Nexttown | GA | 15,000 | $90,000 |
+| 10 | Lasttown | VA | 10,000 | $100,000 |
+
+```
 
 </details>
 
@@ -697,8 +713,10 @@ By default, language models output natural language text, but frequently we need
 
 Make sure you give the model an example of the output format you’d like. Building on our previous travel example above, we can augment our prompt to tell it:
 
-~~~
+```
+
 Produce your output as JSON. The format should be:
+
 ```
 {
     message: "The message to show the user",
@@ -708,7 +726,8 @@ Produce your output as JSON. The format should be:
 ```
 
 Do not include the IDs in your message.
-~~~
+
+```
 
 And now we’ll get interactions like this:
 
@@ -795,3 +814,4 @@ Iterative Refinement:
 6. Model Considerations:
 • Larger models can generally handle longer and more complex prompts effectively.
 • Smaller models may require more concise and focused prompts.
+```

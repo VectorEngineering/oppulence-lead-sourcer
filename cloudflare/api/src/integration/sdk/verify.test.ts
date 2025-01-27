@@ -1,94 +1,94 @@
-import { describe } from "node:test";
-import { IntegrationHarness } from "@/pkg/testutil/integration-harness";
-import { type Flatten, SolomonAI, and, or } from "@playbookmedia/api/src/index"; // use unbundled raw esm typescript
-import { expect, test } from "vitest";
+import { describe } from 'node:test'
+import { IntegrationHarness } from '@/pkg/testutil/integration-harness'
+import { type Flatten, SolomonAI, and, or } from '@playbookmedia/api/src/index' // use unbundled raw esm typescript
+import { expect, test } from 'vitest'
 
-test("with raw query", async (t) => {
-  const h = await IntegrationHarness.init(t);
-  const { key } = await h.createKey();
-
-  const sdk = new SolomonAI({
-    baseUrl: h.baseUrl,
-    rootKey: "not-needed-for-this-test",
-  });
-
-  const { result, error } = await sdk.keys.verify({
-    apiId: h.resources.userApi.id,
-    key,
-    authorization: {
-      permissions: {
-        and: ["p1", "p2"],
-      },
-    },
-  });
-  expect(error).toBeUndefined();
-  expect(result).toBeDefined();
-
-  expect(result!.valid).toBe(false);
-  expect(result!.code).toBe("INSUFFICIENT_PERMISSIONS");
-});
-
-describe("with typesafe generated permissions", () => {
-  test("returns valid", async (t) => {
-    const h = await IntegrationHarness.init(t);
-    const { key } = await h.createKey({
-      roles: [
-        {
-          name: "domain.manager",
-          permissions: ["domain.create", "dns.record.create", "domain.delete"],
-        },
-      ],
-    });
+test('with raw query', async (t) => {
+    const h = await IntegrationHarness.init(t)
+    const { key } = await h.createKey()
 
     const sdk = new SolomonAI({
-      baseUrl: h.baseUrl,
-      rootKey: "not-needed-for-this-test",
-    });
+        baseUrl: h.baseUrl,
+        rootKey: 'not-needed-for-this-test'
+    })
 
-    type Resources = {
-      domain: "create" | "delete" | "read";
-      dns: {
-        record: "create" | "read" | "delete";
-      };
-    };
-    type Permissions = Flatten<Resources, ".">;
+    const { result, error } = await sdk.keys.verify({
+        apiId: h.resources.userApi.id,
+        key,
+        authorization: {
+            permissions: {
+                and: ['p1', 'p2']
+            }
+        }
+    })
+    expect(error).toBeUndefined()
+    expect(result).toBeDefined()
 
-    const { result, error } = await sdk.keys.verify<Permissions>({
-      apiId: h.resources.userApi.id,
-      key,
-      authorization: {
-        permissions: or("domain.create", "dns.record.create"),
-      },
-    });
+    expect(result!.valid).toBe(false)
+    expect(result!.code).toBe('INSUFFICIENT_PERMISSIONS')
+})
 
-    expect(error).toBeUndefined();
-    expect(result).toBeDefined();
+describe('with typesafe generated permissions', () => {
+    test('returns valid', async (t) => {
+        const h = await IntegrationHarness.init(t)
+        const { key } = await h.createKey({
+            roles: [
+                {
+                    name: 'domain.manager',
+                    permissions: ['domain.create', 'dns.record.create', 'domain.delete']
+                }
+            ]
+        })
 
-    expect(result!.valid).toBe(true);
-  });
+        const sdk = new SolomonAI({
+            baseUrl: h.baseUrl,
+            rootKey: 'not-needed-for-this-test'
+        })
 
-  test("with helper functions", async (t) => {
-    const h = await IntegrationHarness.init(t);
-    const { key } = await h.createKey();
+        type Resources = {
+            domain: 'create' | 'delete' | 'read'
+            dns: {
+                record: 'create' | 'read' | 'delete'
+            }
+        }
+        type Permissions = Flatten<Resources, '.'>
 
-    const sdk = new SolomonAI({
-      baseUrl: h.baseUrl,
-      rootKey: "not-needed-for-this-test",
-    });
+        const { result, error } = await sdk.keys.verify<Permissions>({
+            apiId: h.resources.userApi.id,
+            key,
+            authorization: {
+                permissions: or('domain.create', 'dns.record.create')
+            }
+        })
 
-    type Permission = "p1" | "p2";
+        expect(error).toBeUndefined()
+        expect(result).toBeDefined()
 
-    const { result, error } = await sdk.keys.verify<Permission>({
-      apiId: h.resources.userApi.id,
-      key,
-      authorization: {
-        permissions: and("p1", "p2"),
-      },
-    });
-    expect(error).toBeUndefined();
-    expect(result).toBeDefined();
+        expect(result!.valid).toBe(true)
+    })
 
-    expect(result!.valid).toBe(false);
-    expect(result!.code).toBe("INSUFFICIENT_PERMISSIONS");
-  });
-});
+    test('with helper functions', async (t) => {
+        const h = await IntegrationHarness.init(t)
+        const { key } = await h.createKey()
+
+        const sdk = new SolomonAI({
+            baseUrl: h.baseUrl,
+            rootKey: 'not-needed-for-this-test'
+        })
+
+        type Permission = 'p1' | 'p2'
+
+        const { result, error } = await sdk.keys.verify<Permission>({
+            apiId: h.resources.userApi.id,
+            key,
+            authorization: {
+                permissions: and('p1', 'p2')
+            }
+        })
+        expect(error).toBeUndefined()
+        expect(result).toBeDefined()
+
+        expect(result!.valid).toBe(false)
+        expect(result!.code).toBe('INSUFFICIENT_PERMISSIONS')
+    })
+})
