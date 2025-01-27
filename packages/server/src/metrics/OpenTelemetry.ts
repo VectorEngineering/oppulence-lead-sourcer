@@ -1,10 +1,11 @@
-import { FLOWISE_METRIC_COUNTERS, IMetricsProvider } from '../Interface.Metrics'
-import { Resource } from '@opentelemetry/resources'
 import { ATTR_SERVICE_NAME, ATTR_SERVICE_VERSION } from '@opentelemetry/semantic-conventions'
-import { MeterProvider, PeriodicExportingMetricReader, Histogram } from '@opentelemetry/sdk-metrics'
-import { diag, DiagLogLevel, DiagConsoleLogger, Attributes, Counter } from '@opentelemetry/api'
-import { getVersion } from 'flowise-components'
+import { Attributes, Counter, DiagConsoleLogger, DiagLogLevel, diag } from '@opentelemetry/api'
+import { FLOWISE_METRIC_COUNTERS, IMetricsProvider } from '../Interface.Metrics'
+import { Histogram, MeterProvider, PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics'
+
+import { Resource } from '@opentelemetry/resources'
 import express from 'express'
+import { getVersion } from 'flowise-components'
 
 export class OpenTelemetry implements IMetricsProvider {
     private app: express.Application
@@ -151,7 +152,7 @@ export class OpenTelemetry implements IMetricsProvider {
     async incrementCounter(counter: string, payload: any): Promise<void> {
         // Increment OpenTelemetry counter with the payload
         if (this.counters.has(counter)) {
-            ;(this.counters.get(counter) as Counter<Attributes>).add(1, payload)
+            ; (this.counters.get(counter) as Counter<Attributes>).add(1, payload)
         }
     }
 }

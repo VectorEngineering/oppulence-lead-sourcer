@@ -1,0 +1,1199 @@
+enum AnalyticsKeyScope {
+  query
+  send
+}
+
+type Articles implements BlockDocument & BlockList {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _meta: ListMeta!
+
+  """The key used to search from the frontend."""
+  _searchKey: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+
+  """
+  Returns the first item in the list, or null if the list is empty. Useful when you expect only one result.
+  """
+  item: ArticlesItem
+
+  """
+  Returns the list of items after filtering and paginating according to the arguments sent by the client.
+  """
+  items: [ArticlesItem!]!
+}
+
+""""""
+type ArticlesItem implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  author: AuthorsItem
+  body: Body
+  excerpt: String
+  ogImage: BlockOgImage!
+  related: [ArticlesItem!]
+}
+
+input ArticlesItemFilterInput {
+  AND: ArticlesItemFilterInput
+  OR: ArticlesItemFilterInput
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  author: ArticlesItemFilterInput__author_0___untitled
+  excerpt: StringFilter
+  related: ArticlesItemFilterInput__related_0___untitled
+}
+
+input ArticlesItemFilterInput__author_0___untitled {
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  xProfile: StringFilter
+}
+
+input ArticlesItemFilterInput__related_0___untitled {
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  excerpt: StringFilter
+}
+
+enum ArticlesItemOrderByEnum {
+  _sys_createdAt__ASC
+  _sys_createdAt__DESC
+  _sys_hash__ASC
+  _sys_hash__DESC
+  _sys_id__ASC
+  _sys_id__DESC
+  _sys_lastModifiedAt__ASC
+  _sys_lastModifiedAt__DESC
+  _sys_slug__ASC
+  _sys_slug__DESC
+  _sys_title__ASC
+  _sys_title__DESC
+  author__ASC
+  author__DESC
+  body__ASC
+  body__DESC
+  excerpt__ASC
+  excerpt__DESC
+  ogImage__ASC
+  ogImage__DESC
+  related__ASC
+  related__DESC
+}
+
+type Authors implements BlockDocument & BlockList {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _meta: ListMeta!
+
+  """The key used to search from the frontend."""
+  _searchKey: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+
+  """
+  Returns the first item in the list, or null if the list is empty. Useful when you expect only one result.
+  """
+  item: AuthorsItem
+
+  """
+  Returns the list of items after filtering and paginating according to the arguments sent by the client.
+  """
+  items: [AuthorsItem!]!
+}
+
+""""""
+type AuthorsItem implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  avatar: BlockImage!
+  xProfile: String
+}
+
+input AuthorsItemFilterInput {
+  AND: AuthorsItemFilterInput
+  OR: AuthorsItemFilterInput
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  xProfile: StringFilter
+}
+
+enum AuthorsItemOrderByEnum {
+  _sys_createdAt__ASC
+  _sys_createdAt__DESC
+  _sys_hash__ASC
+  _sys_hash__DESC
+  _sys_id__ASC
+  _sys_id__DESC
+  _sys_lastModifiedAt__ASC
+  _sys_lastModifiedAt__DESC
+  _sys_slug__ASC
+  _sys_slug__DESC
+  _sys_title__ASC
+  _sys_title__DESC
+  avatar__ASC
+  avatar__DESC
+  xProfile__ASC
+  xProfile__DESC
+}
+
+"""
+{"schemaType":"({\n  name: string;\n  required: boolean;\n  placeholder?: string;\n  defaultValue?: string;\n  helpText?: string\n} & {\n  id: string;\n  label: string\n} & ({\n  type: \"text\" | \"textarea\" | \"number\" | \"file\" | \"date\" | \"datetime\" | \"email\" | \"checkbox\" | \"hidden\"\n} | {\n  type: \"select\" | \"radio\";\n  options: string[];\n  multiple: boolean\n}))[]"}
+"""
+scalar BSHBEventSchema
+
+"""{"schemaType":"RichTextNode[]"}"""
+scalar BSHBRichTextContentSchema
+
+"""{"schemaType":"RichTextTocNode[]"}"""
+scalar BSHBRichTextTOCSchema
+
+"""["none","small","medium","large","full"]"""
+scalar BSHBSelect_83162882
+
+"""["inherit","light","dark"]"""
+scalar BSHBSelect_337363946
+
+"""
+["orange","gray","gold","bronze","brown","yellow","amber","tomato","red","ruby","crimson","pink","plum","purple","violet","iris","indigo","blue","cyan","teal","jade","green","grass","mint","lime","sky"]
+"""
+scalar BSHBSelect_893959412
+
+"""["info","warning","success","error"]"""
+scalar BSHBSelect_2084155347
+
+"""["auto","gray","mauve","slate","sage","olive","sand"]"""
+scalar BSHBSelect_2125218645
+
+"""["X","Facebook","Discord","LinkedIn","GitHub"]"""
+scalar BSHBSelect__669079093
+
+"""["90%","95%","100%","105%","110%"]"""
+scalar BSHBSelect__916555373
+
+"""["translucent","solid"]"""
+scalar BSHBSelect__1705598040
+
+type BaseRichTextJson implements RichTextJson {
+  blocks: String!
+  content: BSHBRichTextContentSchema!
+  toc: BSHBRichTextTOCSchema!
+}
+
+type BlockAudio {
+  fileName: String!
+  fileSize: Int!
+  lastModified: Float!
+  mimeType: String!
+  url: String!
+}
+
+type BlockCodeSnippet {
+  allowedLanguages: [CodeSnippetLanguage!]!
+  code: String!
+  html(
+    """Theme for the code snippet"""
+    theme: String = "github-dark"
+  ): String! @deprecated(reason: "Figuring out the correct api.")
+  language: CodeSnippetLanguage!
+}
+
+type BlockColor {
+  b: Int!
+  g: Int!
+  hex: String!
+  hsl: String!
+  r: Int!
+  rgb: String!
+}
+
+interface BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+}
+
+type BlockDocumentSys {
+  apiNamePath: String!
+  createdAt: String!
+  hash: String!
+  id: ID!
+  idPath: String!
+  lastModifiedAt: String!
+  slug: String!
+  slugPath: String!
+  title: String!
+}
+
+type BlockFile {
+  fileName: String!
+  fileSize: Int!
+  lastModified: Float!
+  mimeType: String!
+  url: String!
+}
+
+type BlockImage {
+  alt: String
+  aspectRatio: String!
+  blurDataURL: String!
+  fileName: String!
+  fileSize: Int!
+  height: Int!
+  lastModified: Float!
+  mimeType: String!
+  placeholderURL: String! @deprecated(reason: "Renamed to `blurDataURL` to match Next.js Image's naming convention.")
+  rawUrl: String! @deprecated(reason: "Use `url` instead.")
+  thumbhash: String!
+
+  "This field is used to generate the image URL with the provided options. The options are passed as arguments. For example, if you want to resize the image to 200x200 pixels, you can use the following query:\n\n```graphql\n{\n  blockImage {\n    url(width: 200, height: 200)\n  }\n}\n```\n\nThis will return the URL with the width and height set to 200 pixels.\n\nBaseHub uses Cloudflare for image resizing. Check out [all available options in their docs](https://developers.cloudflare.com/images/transform-images/transform-via-workers/#fetch-options).\n"
+  url(anim: String, background: String, blur: Int, border: String, brightness: Int, compression: String, contrast: Int, dpr: Int, fit: String, format: String, gamma: String, gravity: String, height: Int, metadata: String, quality: Int, rotate: String, sharpen: String, trim: String, width: Int): String!
+  width: Int!
+}
+
+interface BlockList implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _meta: ListMeta!
+
+  """The key used to search from the frontend."""
+  _searchKey: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+}
+
+type BlockOgImage {
+  url: String!
+}
+
+"""Rich text block"""
+interface BlockRichText {
+  html(
+    """
+    It automatically generates a unique id for each heading present in the HTML. Enabled by default.
+    """
+    slugs: Boolean = true
+
+    """Inserts a table of contents at the beginning of the HTML."""
+    toc: Boolean = false
+  ): String!
+  json: RichTextJson!
+  markdown: String!
+  plainText: String!
+  readingTime(
+    """Words per minute, defaults to average 183wpm"""
+    wpm: Int = 183
+  ): Int!
+}
+
+type BlockVideo {
+  aspectRatio: String!
+
+  """
+  The duration of the video in seconds. If the duration is not available, it will be estimated based on the file size.
+  """
+  duration: Float!
+  fileName: String!
+  fileSize: Int!
+  height: Int!
+  lastModified: Float!
+  mimeType: String!
+  url: String!
+  width: Int!
+}
+
+type Body implements BlockRichText {
+  html(
+    """
+    It automatically generates a unique id for each heading present in the HTML. Enabled by default.
+    """
+    slugs: Boolean = true
+
+    """Inserts a table of contents at the beginning of the HTML."""
+    toc: Boolean = false
+  ): String!
+  json: BodyRichText!
+  markdown: String!
+  plainText: String!
+  readingTime(
+    """Words per minute, defaults to average 183wpm"""
+    wpm: Int = 183
+  ): Int!
+}
+
+type BodyRichText implements RichTextJson {
+  blocks: [UnionCalloutComponentInlineIconComponent!]!
+  content: BSHBRichTextContentSchema!
+  toc: BSHBRichTextTOCSchema!
+}
+
+""""""
+type CalloutComponent implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  content: Content!
+  type: BSHBSelect_2084155347!
+}
+
+type Categories implements BlockDocument & BlockList {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _meta: ListMeta!
+
+  """The key used to search from the frontend."""
+  _searchKey: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+
+  """
+  Returns the first item in the list, or null if the list is empty. Useful when you expect only one result.
+  """
+  item: CategoriesItem
+
+  """
+  Returns the list of items after filtering and paginating according to the arguments sent by the client.
+  """
+  items: [CategoriesItem!]!
+}
+
+""""""
+type CategoriesItem implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  articles(
+    """Filter by a field."""
+    filter: ArticlesItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: ArticlesItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): Articles!
+  description: String
+  icon: String!
+  ogImage: BlockOgImage!
+}
+
+input CategoriesItemFilterInput {
+  AND: CategoriesItemFilterInput
+  OR: CategoriesItemFilterInput
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  articles: ListFilter
+  description: StringFilter
+  icon: StringFilter
+}
+
+enum CategoriesItemOrderByEnum {
+  _sys_createdAt__ASC
+  _sys_createdAt__DESC
+  _sys_hash__ASC
+  _sys_hash__DESC
+  _sys_id__ASC
+  _sys_id__DESC
+  _sys_lastModifiedAt__ASC
+  _sys_lastModifiedAt__DESC
+  _sys_slug__ASC
+  _sys_slug__DESC
+  _sys_title__ASC
+  _sys_title__DESC
+  articles__ASC
+  articles__DESC
+  description__ASC
+  description__DESC
+  icon__ASC
+  icon__DESC
+  ogImage__ASC
+  ogImage__DESC
+}
+
+type CategoriesSection implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  categories(
+    """Filter by a field."""
+    filter: CategoriesItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: CategoriesItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): Categories!
+  title: String
+}
+
+"""{"schemaType":"string"}"""
+scalar CodeSnippetLanguage
+
+type Components implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+}
+
+type Content implements BlockRichText {
+  html(
+    """
+    It automatically generates a unique id for each heading present in the HTML. Enabled by default.
+    """
+    slugs: Boolean = true
+
+    """Inserts a table of contents at the beginning of the HTML."""
+    toc: Boolean = false
+  ): String!
+  json: ContentRichText!
+  markdown: String!
+  plainText: String!
+  readingTime(
+    """Words per minute, defaults to average 183wpm"""
+    wpm: Int = 183
+  ): Int!
+}
+
+type ContentRichText implements RichTextJson {
+  content: BSHBRichTextContentSchema!
+  toc: BSHBRichTextTOCSchema!
+}
+
+input DateFilter {
+  eq: DateTime
+  isAfter: DateTime
+  isBefore: DateTime
+  neq: DateTime
+  onOrAfter: DateTime
+  onOrBefore: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type GetUploadSignedURL {
+  signedURL: String!
+  uploadURL: String!
+}
+
+type Index implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  categoriesSection: CategoriesSection!
+  greeting: String
+  popularArticlesSection: PopularArticlesSection!
+  rights: String!
+  socialMediaLinks(
+    """Filter by a field."""
+    filter: SocialMediaLinksItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: SocialMediaLinksItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): SocialMediaLinks!
+  subtitle: Subtitle!
+}
+
+""""""
+type InlineIconComponent implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  name: String!
+  tooltip: String
+}
+
+scalar JSON
+
+input ListFilter {
+  isEmpty: Boolean
+  length: Int
+}
+
+type ListMeta {
+  totalCount: Int!
+}
+
+""""""
+type MetadataComponent implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  description: String!
+  icon: BlockImage!
+  ogImage: BlockOgImage!
+  title: String!
+}
+
+type Mutation {
+  "Returns a signed url and an upload url so that you can upload files into your repository.\n\nExample usage with JavaScript:\n```js\nasync function handleUpload(file: File) {\n  const { getUploadSignedURL } = await basehub().mutation({\n    getUploadSignedURL: {\n      __args: { fileName: file.name },\n      signedURL: true,\n      uploadURL: true,\n    }\n  })\n\n  const { signedURL, uploadURL } = getUploadSignedURL\n\n  await fetch(signedURL, { method: 'PUT', body: file })\n\n  // done! do something with the uploadURL now\n}\n```\n"
+  getUploadSignedURL(
+    """SHA256 hash of the file. Used for reusing existing files."""
+    fileHash: String
+
+    """The file name"""
+    fileName: String!
+  ): GetUploadSignedURL!
+
+  """
+  Start an asynchronous job to mutate BaseHub data. Returns a transaction ID which you can use to get the result of the job.
+  """
+  transaction(
+    """Auto make a commit in your Repo with the specified message."""
+    autoCommit: String
+
+    """Transaction data."""
+    data: String!
+
+    """Skip running workflows and event subscribers. Defaults to false."""
+    skipWorkflows: Boolean = false
+  ): String!
+
+  """
+  Start a job that can be awaited and the result given directly. Under the hood, it runs `transaction` and polls for the result until it is available. You can pass a `timeout` argument, the default being 30_000ms.
+  """
+  transactionAwaitable(
+    """Auto make a commit in your Repo with the specified message."""
+    autoCommit: String
+
+    """Transaction data."""
+    data: String!
+
+    """Skip running workflows and event subscribers. Defaults to false."""
+    skipWorkflows: Boolean = false
+
+    """Timeout in milliseconds."""
+    timeout: Int = 30000
+  ): TransactionStatus!
+  transactionStatus(
+    """Transaction ID"""
+    id: String!
+  ): TransactionStatus!
+}
+
+type NavLinks implements BlockDocument & BlockList {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _meta: ListMeta!
+
+  """The key used to search from the frontend."""
+  _searchKey: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+
+  """
+  Returns the first item in the list, or null if the list is empty. Useful when you expect only one result.
+  """
+  item: NavLinksItem
+
+  """
+  Returns the list of items after filtering and paginating according to the arguments sent by the client.
+  """
+  items: [NavLinksItem!]!
+}
+
+""""""
+type NavLinksItem implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  href: String!
+}
+
+input NavLinksItemFilterInput {
+  AND: NavLinksItemFilterInput
+  OR: NavLinksItemFilterInput
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  href: StringFilter
+}
+
+enum NavLinksItemOrderByEnum {
+  _sys_createdAt__ASC
+  _sys_createdAt__DESC
+  _sys_hash__ASC
+  _sys_hash__DESC
+  _sys_id__ASC
+  _sys_id__DESC
+  _sys_lastModifiedAt__ASC
+  _sys_lastModifiedAt__DESC
+  _sys_slug__ASC
+  _sys_slug__DESC
+  _sys_title__ASC
+  _sys_title__DESC
+  href__ASC
+  href__DESC
+}
+
+input NumberFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  lt: Float
+  lte: Float
+  neq: Float
+}
+
+type PopularArticlesSection implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  articles: [ArticlesItem!]!
+  title: String
+}
+
+type Query {
+  """
+  Query across all of the instances of a component. Pass in filters and sorts if you want, and get each instance via the `items` key.
+  """
+  _componentInstances: _components!
+  _sys: RepoSys!
+  authors(
+    """Filter by a field."""
+    filter: AuthorsItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: AuthorsItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): Authors!
+  components: Components!
+  index: Index!
+  settings: Settings!
+}
+
+type RepoSys {
+  hash: String!
+  id: ID!
+  slug: String!
+  title: String!
+}
+
+interface RichTextJson {
+  content: BSHBRichTextContentSchema!
+  toc: BSHBRichTextTOCSchema!
+}
+
+type Settings implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  intercomAppId: String!
+  logo: BlockImage!
+  logoLightMode: BlockImage
+  metadata: MetadataComponent!
+  navLinks(
+    """Filter by a field."""
+    filter: NavLinksItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: NavLinksItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): NavLinks!
+  showUseTemplate: Boolean!
+  theme: Theme!
+}
+
+type SocialMediaLinks implements BlockDocument & BlockList {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _meta: ListMeta!
+
+  """The key used to search from the frontend."""
+  _searchKey: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+
+  """
+  Returns the first item in the list, or null if the list is empty. Useful when you expect only one result.
+  """
+  item: SocialMediaLinksItem
+
+  """
+  Returns the list of items after filtering and paginating according to the arguments sent by the client.
+  """
+  items: [SocialMediaLinksItem!]!
+}
+
+""""""
+type SocialMediaLinksItem implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  platform: BSHBSelect__669079093!
+  url: String!
+}
+
+input SocialMediaLinksItemFilterInput {
+  AND: SocialMediaLinksItemFilterInput
+  OR: SocialMediaLinksItemFilterInput
+  _sys_apiNamePath: StringFilter
+  _sys_createdAt: DateFilter
+  _sys_hash: StringFilter
+  _sys_id: StringFilter
+  _sys_idPath: StringFilter
+  _sys_lastModifiedAt: DateFilter
+  _sys_slug: StringFilter
+  _sys_slugPath: StringFilter
+  _sys_title: StringFilter
+  url: StringFilter
+}
+
+enum SocialMediaLinksItemOrderByEnum {
+  _sys_createdAt__ASC
+  _sys_createdAt__DESC
+  _sys_hash__ASC
+  _sys_hash__DESC
+  _sys_id__ASC
+  _sys_id__DESC
+  _sys_lastModifiedAt__ASC
+  _sys_lastModifiedAt__DESC
+  _sys_slug__ASC
+  _sys_slug__DESC
+  _sys_title__ASC
+  _sys_title__DESC
+  platform__ASC
+  platform__DESC
+  url__ASC
+  url__DESC
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  eq: String
+  matches: StringMatchesFilter
+  notEq: String
+  startsWith: String
+}
+
+input StringMatchesFilter {
+  caseSensitive: Boolean = true
+  pattern: String!
+}
+
+type Subtitle implements BlockRichText {
+  html(
+    """
+    It automatically generates a unique id for each heading present in the HTML. Enabled by default.
+    """
+    slugs: Boolean = true
+
+    """Inserts a table of contents at the beginning of the HTML."""
+    toc: Boolean = false
+  ): String!
+  json: SubtitleRichText!
+  markdown: String!
+  plainText: String!
+  readingTime(
+    """Words per minute, defaults to average 183wpm"""
+    wpm: Int = 183
+  ): Int!
+}
+
+type SubtitleRichText implements RichTextJson {
+  content: BSHBRichTextContentSchema!
+  toc: BSHBRichTextTOCSchema!
+}
+
+type Theme implements BlockDocument {
+  _analyticsKey(
+    """
+    The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+    
+    Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+    """
+    scope: AnalyticsKeyScope = send
+  ): String!
+  _id: String!
+  _idPath: String!
+  _slug: String!
+  _slugPath: String!
+  _sys: BlockDocumentSys!
+  _title: String!
+  accentColor: BSHBSelect_893959412!
+  appearance: BSHBSelect_337363946!
+  grayScale: BSHBSelect_2125218645!
+  panelBackground: BSHBSelect__1705598040!
+  radius: BSHBSelect_83162882!
+  scaling: BSHBSelect__916555373!
+}
+
+type TransactionStatus {
+  """Duration in milliseconds."""
+  duration: Int
+  endedAt: String
+  id: String!
+  message: String
+  startedAt: String!
+  status: TransactionStatusEnum!
+}
+
+enum TransactionStatusEnum {
+  Cancelled
+  Completed
+  Failed
+  Running
+  Scheduled
+}
+
+union UnionCalloutComponentInlineIconComponent = CalloutComponent | InlineIconComponent
+
+type Variant {
+  apiName: String!
+  color: String!
+  id: String!
+  isDefault: Boolean!
+  label: String!
+}
+
+type _components {
+  articlesItem(
+    """Filter by a field."""
+    filter: ArticlesItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: ArticlesItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): Articles!
+  authorsItem(
+    """Filter by a field."""
+    filter: AuthorsItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: AuthorsItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): Authors!
+  categoriesItem(
+    """Filter by a field."""
+    filter: CategoriesItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: CategoriesItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): Categories!
+  navLinksItem(
+    """Filter by a field."""
+    filter: NavLinksItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: NavLinksItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): NavLinks!
+  socialMediaLinksItem(
+    """Filter by a field."""
+    filter: SocialMediaLinksItemFilterInput
+
+    """Limit the number of items returned. Defaults to 500."""
+    first: Int = 500
+
+    """Order by a field."""
+    orderBy: SocialMediaLinksItemOrderByEnum
+
+    """Skip the first n items."""
+    skip: Int = 0
+  ): SocialMediaLinks!
+}
