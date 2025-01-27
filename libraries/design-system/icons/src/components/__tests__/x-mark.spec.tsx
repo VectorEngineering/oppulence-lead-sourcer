@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import XMark from "../x-mark"
+import XMark from '../x-mark'
 
-  describe("XMark", () => {
-    it("should render the icon without errors", async () => {
-      render(<XMark data-testid="icon" />)
+describe('XMark', () => {
+    it('should render the icon without errors', async () => {
+        render(<XMark data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

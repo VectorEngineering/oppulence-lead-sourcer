@@ -1,4 +1,4 @@
-import coreConfig from "./modified.tailwind.config"
+import coreConfig from './modified.tailwind.config'
 // import path from "node:path"
 
 // // Get two levels up from require.resolve("@medusajs/ui")
@@ -7,6 +7,6 @@ import coreConfig from "./modified.tailwind.config"
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    ...coreConfig,
+    ...coreConfig
     // content: [uiPath],
 }

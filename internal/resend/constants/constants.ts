@@ -24,31 +24,31 @@
  * @property SIGNATURE.NAME - Name to be used in email signature
  */
 type SubscriptionEndedConfig = {
-  readonly PLATFORM: {
-    readonly NAME: string;
-    readonly URL: string;
-  };
-  readonly URLS: {
-    readonly BILLING: string;
-    readonly SUPPORT_EMAIL: string;
-    readonly SUPPORT_EMAIL_REPLY_TO: string;
-    readonly ONBOARDING: string;
-    readonly API_REFERENCE: string;
-    readonly DISCORD: string;
-    readonly DASHBOARD: string;
-    readonly X: string;
-    readonly GITHUB: string;
-  };
-  readonly TEXT: {
-    readonly HEADING: string;
-    readonly BUTTON: string;
-    readonly SUPPORT_MESSAGE: string;
-    readonly OR_REPLY: string;
-  };
-  readonly SIGNATURE: {
-    readonly NAME: string;
-  };
-};
+    readonly PLATFORM: {
+        readonly NAME: string
+        readonly URL: string
+    }
+    readonly URLS: {
+        readonly BILLING: string
+        readonly SUPPORT_EMAIL: string
+        readonly SUPPORT_EMAIL_REPLY_TO: string
+        readonly ONBOARDING: string
+        readonly API_REFERENCE: string
+        readonly DISCORD: string
+        readonly DASHBOARD: string
+        readonly X: string
+        readonly GITHUB: string
+    }
+    readonly TEXT: {
+        readonly HEADING: string
+        readonly BUTTON: string
+        readonly SUPPORT_MESSAGE: string
+        readonly OR_REPLY: string
+    }
+    readonly SIGNATURE: {
+        readonly NAME: string
+    }
+}
 
 /**
  * Constants for the PaymentIssue email template
@@ -70,31 +70,30 @@ type SubscriptionEndedConfig = {
  * ```
  */
 const CONSTANTS: SubscriptionEndedConfig = {
-  PLATFORM: {
-    NAME: 'Solomon AI',
-    URL: 'https://solomon-ai.app',
-  },
-  URLS: {
-    BILLING: 'https://app.solomon-ai.app/settings/billing/stripe',
-    SUPPORT_EMAIL: 'support@inbox.solomon-ai.app',
-    SUPPORT_EMAIL_REPLY_TO: 'yoan@inbox.solomon-ai.app',
-    ONBOARDING: 'https://go.solomon-ai.app/onboarding',
-    API_REFERENCE: 'https://solomon-ai.app/docs/api-reference',
-    DISCORD: 'https://solomon-ai.app/discord',
-    DASHBOARD: 'https://app.solomon-ai.app',
-    X: 'https://x.com/solomon_ai',
-    GITHUB:
-      'https://github.com/SolomonAIEngineering/backend-developer-platform',
-  },
-  TEXT: {
-    HEADING: 'There was an issue with your payment.',
-    BUTTON: 'Update payment information',
-    SUPPORT_MESSAGE: 'Need help? Please reach out to',
-    OR_REPLY: 'or just reply to this email.',
-  },
-  SIGNATURE: {
-    NAME: 'Yoan Yomba',
-  },
-} as const;
+    PLATFORM: {
+        NAME: 'Solomon AI',
+        URL: 'https://solomon-ai.app'
+    },
+    URLS: {
+        BILLING: 'https://app.solomon-ai.app/settings/billing/stripe',
+        SUPPORT_EMAIL: 'support@inbox.solomon-ai.app',
+        SUPPORT_EMAIL_REPLY_TO: 'yoan@inbox.solomon-ai.app',
+        ONBOARDING: 'https://go.solomon-ai.app/onboarding',
+        API_REFERENCE: 'https://solomon-ai.app/docs/api-reference',
+        DISCORD: 'https://solomon-ai.app/discord',
+        DASHBOARD: 'https://app.solomon-ai.app',
+        X: 'https://x.com/solomon_ai',
+        GITHUB: 'https://github.com/SolomonAIEngineering/backend-developer-platform'
+    },
+    TEXT: {
+        HEADING: 'There was an issue with your payment.',
+        BUTTON: 'Update payment information',
+        SUPPORT_MESSAGE: 'Need help? Please reach out to',
+        OR_REPLY: 'or just reply to this email.'
+    },
+    SIGNATURE: {
+        NAME: 'Yoan Yomba'
+    }
+} as const
 
-export default CONSTANTS;
+export default CONSTANTS

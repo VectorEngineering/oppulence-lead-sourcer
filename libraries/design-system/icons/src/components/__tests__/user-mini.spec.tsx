@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import UserMini from "../user-mini"
+import UserMini from '../user-mini'
 
-  describe("UserMini", () => {
-    it("should render the icon without errors", async () => {
-      render(<UserMini data-testid="icon" />)
+describe('UserMini', () => {
+    it('should render the icon without errors', async () => {
+        render(<UserMini data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

@@ -1,15 +1,15 @@
-import { z } from "zod";
-import type { Querier } from "./client";
+import { z } from 'zod'
+import type { Querier } from './client'
 
 const params = z.object({
-  workspaceId: z.string(),
-  keySpaceId: z.string(),
-  keyId: z.string(),
-});
+    workspaceId: z.string(),
+    keySpaceId: z.string(),
+    keyId: z.string()
+})
 export function getLatestVerifications(ch: Querier) {
-  return async (args: z.infer<typeof params>) => {
-    const query = ch.query({
-      query: `
+    return async (args: z.infer<typeof params>) => {
+        const query = ch.query({
+            query: `
     SELECT
      time,
      outcome,
@@ -21,15 +21,15 @@ export function getLatestVerifications(ch: Querier) {
     AND key_id = {keyId: String}
     ORDER BY time DESC
     LIMIT 50`,
-      params,
-      schema: z.object({
-        time: z.number(),
-        outcome: z.string(),
-        region: z.string(),
-        tags: z.array(z.string()),
-      }),
-    });
+            params,
+            schema: z.object({
+                time: z.number(),
+                outcome: z.string(),
+                region: z.string(),
+                tags: z.array(z.string())
+            })
+        })
 
-    return query(args);
-  };
+        return query(args)
+    }
 }

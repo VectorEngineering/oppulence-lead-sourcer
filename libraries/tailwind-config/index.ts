@@ -1,4 +1,4 @@
-import { config } from "./config";
-import resolveConfig from "tailwindcss/resolveConfig";
+import { config } from './config'
+import resolveConfig from 'tailwindcss/resolveConfig'
 
-export const tailwind = resolveConfig(config);
+export const tailwind = resolveConfig(config)

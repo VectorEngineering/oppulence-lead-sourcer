@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import ClockSolid from "../clock-solid"
+import ClockSolid from '../clock-solid'
 
-  describe("ClockSolid", () => {
-    it("should render the icon without errors", async () => {
-      render(<ClockSolid data-testid="icon" />)
+describe('ClockSolid', () => {
+    it('should render the icon without errors', async () => {
+        render(<ClockSolid data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

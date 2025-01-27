@@ -1,1 +1,1 @@
-export * from "./date-segment"
+export * from './date-segment'

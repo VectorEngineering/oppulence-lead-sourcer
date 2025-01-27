@@ -1,26 +1,26 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Type definitions
 export interface Contact {
-    id: string;
-    email: string;
-    firstName: string | null;
-    lastName: string | null;
-    source: string | null;
-    subscribed: boolean;
-    userGroup: string | null;
-    userId: string | null;
-    mailingLists: Record<string, true>;
-    createdAt?: Date;
-    updatedAt?: Date;
+    id: string
+    email: string
+    firstName: string | null
+    lastName: string | null
+    source: string | null
+    subscribed: boolean
+    userGroup: string | null
+    userId: string | null
+    mailingLists: Record<string, true>
+    createdAt?: Date
+    updatedAt?: Date
 }
 
 export interface MailingList {
-    id: string;
-    name: string;
-    isPublic: boolean;
-    description?: string;
-    subscriberCount?: number;
+    id: string
+    name: string
+    isPublic: boolean
+    description?: string
+    subscriberCount?: number
 }
 
 export enum UserState {
@@ -47,20 +47,20 @@ export enum EmailTemplate {
 }
 
 // Validation schemas
-export const EmailSchema = z.string().email("Invalid email format");
-export const UserIdSchema = z.string().min(1, "User ID cannot be empty");
-export const TierSchema = z.string().min(1, "Tier cannot be empty");
+export const EmailSchema = z.string().email('Invalid email format')
+export const UserIdSchema = z.string().min(1, 'User ID cannot be empty')
+export const TierSchema = z.string().min(1, 'Tier cannot be empty')
 
 // Error classes
 export class LoopsError extends Error {
     constructor(message: string, public code: string, public originalError?: Error) {
-        super(message);
-        this.name = 'LoopsError';
+        super(message)
+        this.name = 'LoopsError'
     }
 }
 
 export class ConfigurationError extends LoopsError {
     constructor(message: string) {
-        super(message, 'CONFIGURATION_ERROR');
+        super(message, 'CONFIGURATION_ERROR')
     }
-} 
+}

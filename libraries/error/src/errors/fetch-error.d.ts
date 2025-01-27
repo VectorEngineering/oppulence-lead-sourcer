@@ -1,4 +1,4 @@
-import { BaseError } from "./base";
+import { BaseError } from './base'
 /**
  * Error class for handling HTTP/HTTPS request failures.
  * Used to wrap and enhance network-related errors with additional context.
@@ -35,28 +35,28 @@ export declare class FetchError extends BaseError<{
     /**
      * The URL that was being accessed when the error occurred
      */
-    url: string;
+    url: string
     /**
      * The HTTP method used for the request (GET, POST, etc.)
      */
-    method: string;
+    method: string
     /**
      * Additional context properties that might be relevant to the error
      * Examples: statusCode, responseTime, requestHeaders, responseBody
      */
-    [more: string]: unknown;
+    [more: string]: unknown
 }> {
     /**
      * Indicates whether the failed request can be retried.
      * True for transient errors (timeouts, 5xx responses),
      * False for permanent failures (4xx responses, invalid URLs)
      */
-    readonly retry: boolean;
+    readonly retry: boolean
     /**
      * The name of the error class, used for error identification.
      * Uses the class name directly to ensure consistency.
      */
-    readonly name: string;
+    readonly name: string
     /**
      * Creates a new FetchError instance.
      *
@@ -84,14 +84,14 @@ export declare class FetchError extends BaseError<{
      * ```
      */
     constructor(opts: {
-        message: string;
-        retry: boolean;
-        cause?: BaseError;
+        message: string
+        retry: boolean
+        cause?: BaseError
         context?: {
-            url: string;
-            method: string;
-            [more: string]: unknown;
-        };
-    });
+            url: string
+            method: string
+            [more: string]: unknown
+        }
+    })
 }
 //# sourceMappingURL=fetch-error.d.ts.map

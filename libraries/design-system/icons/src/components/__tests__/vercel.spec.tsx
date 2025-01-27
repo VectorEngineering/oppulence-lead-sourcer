@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import Vercel from "../vercel"
+import Vercel from '../vercel'
 
-  describe("Vercel", () => {
-    it("should render the icon without errors", async () => {
-      render(<Vercel data-testid="icon" />)
+describe('Vercel', () => {
+    it('should render the icon without errors', async () => {
+        render(<Vercel data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

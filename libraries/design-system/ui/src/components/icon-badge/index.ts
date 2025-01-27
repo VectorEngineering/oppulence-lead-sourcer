@@ -1,1 +1,1 @@
-export * from "./icon-badge"
+export * from './icon-badge'

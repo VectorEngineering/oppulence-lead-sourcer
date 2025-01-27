@@ -1,32 +1,32 @@
-import { Command } from "commander"
+import { Command } from 'commander'
 
-import { generateIcons } from "@/commands/icons/command"
-import { generateTokens } from "@/commands/tokens/command"
+import { generateIcons } from '@/commands/icons/command'
+import { generateTokens } from '@/commands/tokens/command'
 
-import pkg from "../package.json"
+import pkg from '../package.json'
 
 export async function createCli() {
-  const program = new Command()
+    const program = new Command()
 
-  program.name("toolbox").version(pkg.version)
+    program.name('toolbox').version(pkg.version)
 
-  // Icon
+    // Icon
 
-  const generateIconsCommand = program.command("icons")
-  generateIconsCommand.description("Generate icons from Figma")
+    const generateIconsCommand = program.command('icons')
+    generateIconsCommand.description('Generate icons from Figma')
 
-  generateIconsCommand.option("-o, --output <path>", "Output directory")
+    generateIconsCommand.option('-o, --output <path>', 'Output directory')
 
-  generateIconsCommand.action(generateIcons)
+    generateIconsCommand.action(generateIcons)
 
-  // Color tokens
+    // Color tokens
 
-  const generateTokensCommand = program.command("tokens")
-  generateTokensCommand.description("Generate tokens from Figma")
+    const generateTokensCommand = program.command('tokens')
+    generateTokensCommand.description('Generate tokens from Figma')
 
-  generateTokensCommand.option("-o, --output <path>", "Output directory")
+    generateTokensCommand.option('-o, --output <path>', 'Output directory')
 
-  generateTokensCommand.action(generateTokens)
+    generateTokensCommand.action(generateTokens)
 
-  return program
+    return program
 }

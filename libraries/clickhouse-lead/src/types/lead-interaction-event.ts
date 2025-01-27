@@ -1,9 +1,9 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Utility schema types
-const LowCardinalityString = z.string();
-const DateTimeString = z.string(); // ISO DateTime string
-const UnixTimestamp = z.number().int();
+const LowCardinalityString = z.string()
+const DateTimeString = z.string() // ISO DateTime string
+const UnixTimestamp = z.number().int()
 
 // Lead Interaction Events Schema
 export const LeadInteractionEventSchema = z.object({
@@ -175,10 +175,13 @@ export const LeadInteractionEventSchema = z.object({
     tags: z.array(LowCardinalityString),
     labels: z.record(z.string(), z.string()),
     custom_attributes: z.record(z.string(), z.string()),
-    metadata: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
+    metadata: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
     debug_info: z.string(),
     raw_data: z.string()
-});
+})
 
 // Type inference
-export type LeadInteractionEvent = z.infer<typeof LeadInteractionEventSchema>;
+export type LeadInteractionEvent = z.infer<typeof LeadInteractionEventSchema>

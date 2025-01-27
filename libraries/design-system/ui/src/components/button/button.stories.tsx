@@ -1,16 +1,16 @@
-import * as React from "react"
+import * as React from 'react'
 
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { Button } from "./button"
-import { PlusMini } from "@playbookmedia/icons"
+import { Button } from './button'
+import { PlusMini } from '@playbookmedia/icons'
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
-  component: Button,
-  parameters: {
-    layout: "centered",
-  },
+    title: 'Components/Button',
+    component: Button,
+    parameters: {
+        layout: 'centered'
+    }
 }
 
 export default meta
@@ -18,62 +18,62 @@ export default meta
 type Story = StoryObj<typeof Button>
 
 export const Primary: Story = {
-  args: {
-    children: "Action",
-  },
+    args: {
+        children: 'Action'
+    }
 }
 
 export const Secondary: Story = {
-  args: {
-    children: "Action",
-    variant: "secondary",
-  },
+    args: {
+        children: 'Action',
+        variant: 'secondary'
+    }
 }
 
 export const Transparent: Story = {
-  args: {
-    children: "Action",
-    variant: "transparent",
-  },
+    args: {
+        children: 'Action',
+        variant: 'transparent'
+    }
 }
 
 export const Danger: Story = {
-  args: {
-    children: "Action",
-    variant: "danger",
-  },
+    args: {
+        children: 'Action',
+        variant: 'danger'
+    }
 }
 
 export const Disabled: Story = {
-  args: {
-    children: "Action",
-    disabled: true,
-  },
+    args: {
+        children: 'Action',
+        disabled: true
+    }
 }
 
 export const WithIcon: Story = {
-  args: {
-    children: ["Action", <PlusMini key={1} />],
-  },
+    args: {
+        children: ['Action', <PlusMini key={1} />]
+    }
 }
 
 export const Loading: Story = {
-  args: {
-    children: "Action",
-    isLoading: true,
-  },
+    args: {
+        children: 'Action',
+        isLoading: true
+    }
 }
 
 export const Large: Story = {
-  args: {
-    children: "Action",
-    size: "large",
-  },
+    args: {
+        children: 'Action',
+        size: 'large'
+    }
 }
 
 export const XLarge: Story = {
-  args: {
-    children: "Action",
-    size: "xlarge",
-  },
+    args: {
+        children: 'Action',
+        size: 'xlarge'
+    }
 }

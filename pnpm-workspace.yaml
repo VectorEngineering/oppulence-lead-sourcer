@@ -5,3 +5,4 @@ packages:
     - 'internal/*'
     - 'libraries/*'
     - 'libraries/design-system/*'
+    - 'cloudflare/*'

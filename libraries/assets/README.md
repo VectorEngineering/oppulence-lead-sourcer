@@ -35,10 +35,10 @@ Then, you can use the fonts in your CSS:
 
 ```css
 body {
-  font-family: var(--font-geist-sans);
+    font-family: var(--font-geist-sans);
 }
 code {
-  font-family: var(--font-geist-mono);
+    font-family: var(--font-geist-mono);
 }
 ```
 

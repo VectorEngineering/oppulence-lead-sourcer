@@ -1,5 +1,5 @@
 // This config file includes the base configurations with the modified configs for UI docs
-import coreConfig from "./base.tailwind.config"
+import coreConfig from './base.tailwind.config'
 
 // modify core spacing to have "docs" prefix
 const modifiedSpacing: Record<string, string> = {}
@@ -22,12 +22,12 @@ export default {
             ...coreConfig.theme.extend,
             borderRadius: {
                 ...coreConfig.theme.extend.borderRadius,
-                ...modifiedRadius,
-            },
+                ...modifiedRadius
+            }
         },
         spacing: {
             ...coreConfig.theme.spacing,
-            ...modifiedSpacing,
-        },
-    },
+            ...modifiedSpacing
+        }
+    }
 }

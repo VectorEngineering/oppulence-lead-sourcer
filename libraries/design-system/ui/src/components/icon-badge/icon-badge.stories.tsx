@@ -1,16 +1,16 @@
-import * as React from "react"
+import * as React from 'react'
 
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { BuildingTax } from "@playbookmedia/icons"
-import { IconBadge } from "./icon-badge"
+import { BuildingTax } from '@playbookmedia/icons'
+import { IconBadge } from './icon-badge'
 
 const meta: Meta<typeof IconBadge> = {
-  title: "Components/IconBadge",
-  component: IconBadge,
-  parameters: {
-    layout: "centered",
-  },
+    title: 'Components/IconBadge',
+    component: IconBadge,
+    parameters: {
+        layout: 'centered'
+    }
 }
 
 export default meta
@@ -18,98 +18,98 @@ export default meta
 type Story = StoryObj<typeof IconBadge>
 
 export const GreyBase: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "grey",
-    size: "base",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'grey',
+        size: 'base'
+    }
 }
 
 export const GreyLarge: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "grey",
-    size: "large",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'grey',
+        size: 'large'
+    }
 }
 
 export const BlueBase: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "blue",
+    args: {
+        children: <BuildingTax />,
+        color: 'blue',
 
-    size: "base",
-  },
+        size: 'base'
+    }
 }
 
 export const BlueLarge: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "blue",
-    size: "large",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'blue',
+        size: 'large'
+    }
 }
 
 export const GreenBase: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "green",
-    size: "base",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'green',
+        size: 'base'
+    }
 }
 
 export const GreenLarge: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "green",
-    size: "large",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'green',
+        size: 'large'
+    }
 }
 
 export const RedBase: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "red",
-    size: "base",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'red',
+        size: 'base'
+    }
 }
 
 export const RedLarge: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "red",
-    size: "large",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'red',
+        size: 'large'
+    }
 }
 
 export const OrangeBase: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "orange",
-    size: "base",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'orange',
+        size: 'base'
+    }
 }
 
 export const OrangeLarge: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "orange",
-    size: "large",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'orange',
+        size: 'large'
+    }
 }
 
 export const PurpleBase: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "purple",
-    size: "base",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'purple',
+        size: 'base'
+    }
 }
 
 export const PurpleLarge: Story = {
-  args: {
-    children: <BuildingTax />,
-    color: "purple",
-    size: "large",
-  },
+    args: {
+        children: <BuildingTax />,
+        color: 'purple',
+        size: 'large'
+    }
 }

@@ -26,12 +26,12 @@
  * @example
  * Flatten<Resources, "::">
  */
-export type Flatten<T extends Record<string, unknown>, Delimiter extends string = "."> = {
-  [K in keyof T]: T[K] extends Record<string, unknown>
-    ? `${string & K}${Delimiter}${T[K] extends infer U
-        ? U extends Record<string, unknown>
-          ? Flatten<U, Delimiter>
-          : string & U
-        : never}`
-    : `${string & K}${Delimiter}${string & T[K]}`;
-}[keyof T];
+export type Flatten<T extends Record<string, unknown>, Delimiter extends string = '.'> = {
+    [K in keyof T]: T[K] extends Record<string, unknown>
+        ? `${string & K}${Delimiter}${T[K] extends infer U
+              ? U extends Record<string, unknown>
+                  ? Flatten<U, Delimiter>
+                  : string & U
+              : never}`
+        : `${string & K}${Delimiter}${string & T[K]}`
+}[keyof T]

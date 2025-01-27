@@ -1,9 +1,9 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Utility schema types
-const LowCardinalityString = z.string();
-const DateTimeString = z.string(); // ISO DateTime string
-const DateString = z.string(); // ISO Date string
+const LowCardinalityString = z.string()
+const DateTimeString = z.string() // ISO DateTime string
+const DateString = z.string() // ISO Date string
 
 // Revenue Intelligence Schema
 export const RevenueIntelligenceSchema = z.object({
@@ -116,9 +116,12 @@ export const RevenueIntelligenceSchema = z.object({
 
     // Extended Analytics
     custom_metrics: z.record(z.string(), z.number()),
-    metadata: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
+    metadata: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
     analysis_notes: z.array(z.string())
-});
+})
 
 // Type inference
-export type RevenueIntelligence = z.infer<typeof RevenueIntelligenceSchema>;
+export type RevenueIntelligence = z.infer<typeof RevenueIntelligenceSchema>

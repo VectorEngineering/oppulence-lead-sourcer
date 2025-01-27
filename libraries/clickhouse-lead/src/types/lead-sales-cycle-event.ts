@@ -1,10 +1,10 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Utility schema types
-const LowCardinalityString = z.string();
-const DateTimeString = z.string(); // ISO DateTime string
-const DateString = z.string(); // ISO Date string
-const UnixTimestamp = z.number().int();
+const LowCardinalityString = z.string()
+const DateTimeString = z.string() // ISO DateTime string
+const DateString = z.string() // ISO Date string
+const UnixTimestamp = z.number().int()
 
 // Sales Cycle Events Schema
 export const SalesCycleEventSchema = z.object({
@@ -159,7 +159,10 @@ export const SalesCycleEventSchema = z.object({
     technical_fit_score: z.number().int().min(0).max(100),
     functional_fit_score: z.number().int().min(0).max(100),
     roi_metrics: z.array(z.string()),
-    roi_calculation_details: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
+    roi_calculation_details: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
     value_drivers: z.array(z.string()),
     success_metrics: z.array(z.string()),
     implementation_complexity_score: z.number().int().min(0).max(100),
@@ -225,9 +228,15 @@ export const SalesCycleEventSchema = z.object({
     // Custom & Debug Data
     custom_fields: z.record(z.string(), z.string()),
     integration_metadata: z.record(z.string(), z.string()),
-    debug_info: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
-    raw_data: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown()))
-});
+    debug_info: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
+    raw_data: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown()))
+})
 
 // Type inference
-export type SalesCycleEvent = z.infer<typeof SalesCycleEventSchema>;
+export type SalesCycleEvent = z.infer<typeof SalesCycleEventSchema>

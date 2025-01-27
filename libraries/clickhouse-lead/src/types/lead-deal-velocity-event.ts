@@ -1,8 +1,8 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Utility schema types
-const DateTimeString = z.string(); // ISO DateTime string
-const DateString = z.string(); // ISO Date string
+const DateTimeString = z.string() // ISO DateTime string
+const DateString = z.string() // ISO Date string
 
 // Deal Velocity Metrics Schema
 export const DealVelocityMetricsSchema = z.object({
@@ -96,9 +96,15 @@ export const DealVelocityMetricsSchema = z.object({
     // Extended Analytics
     custom_metrics: z.record(z.string(), z.number()),
     analysis_notes: z.array(z.string()),
-    metadata: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
-    debug_info: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown()))
-});
+    metadata: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
+    debug_info: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown()))
+})
 
 // Type inference
-export type DealVelocityMetrics = z.infer<typeof DealVelocityMetricsSchema>;
+export type DealVelocityMetrics = z.infer<typeof DealVelocityMetricsSchema>

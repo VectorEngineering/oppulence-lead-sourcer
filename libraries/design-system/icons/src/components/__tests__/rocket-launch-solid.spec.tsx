@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import RocketLaunchSolid from "../rocket-launch-solid"
+import RocketLaunchSolid from '../rocket-launch-solid'
 
-  describe("RocketLaunchSolid", () => {
-    it("should render the icon without errors", async () => {
-      render(<RocketLaunchSolid data-testid="icon" />)
+describe('RocketLaunchSolid', () => {
+    it('should render the icon without errors', async () => {
+        render(<RocketLaunchSolid data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

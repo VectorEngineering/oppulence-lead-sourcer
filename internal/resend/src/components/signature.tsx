@@ -1,6 +1,6 @@
-import { Text } from '@react-email/text';
+import { Text } from '@react-email/text'
 // biome-ignore lint/style/useImportType: not just the type
-import * as React from 'react';
+import * as React from 'react'
 
 /**
  * Props interface for the Signature component
@@ -8,7 +8,7 @@ import * as React from 'react';
  * @property {string} signedBy - The name of the person signing the email
  */
 interface SignatureProps {
-  signedBy: string;
+    signedBy: string
 }
 
 /**
@@ -33,9 +33,9 @@ interface SignatureProps {
  * - Consistent font styling (semi-bold)
  */
 export const Signature: React.FC<SignatureProps> = ({ signedBy }) => (
-  <Text className="font-semibold">
-    Cheers,
-    <br />
-    {signedBy}
-  </Text>
-);
+    <Text className='font-semibold'>
+        Cheers,
+        <br />
+        {signedBy}
+    </Text>
+)

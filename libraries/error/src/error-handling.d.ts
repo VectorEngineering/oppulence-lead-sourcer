@@ -1,22 +1,22 @@
-import type { BaseError } from "./errors/base";
+import type { BaseError } from './errors/base'
 /**
  * Represents a successful result containing a value.
  *
  * @template V - The type of the successful value
  */
 type OkResult<V> = {
-    val: V;
-    err?: never;
-};
+    val: V
+    err?: never
+}
 /**
  * Represents a failed result containing an error.
  *
  * @template E - The type of the error, must extend BaseError
  */
 type ErrResult<E extends BaseError> = {
-    val?: never;
-    err: E;
-};
+    val?: never
+    err: E
+}
 /**
  * A discriminated union type representing either a successful result with a value
  * or a failed result with an error.
@@ -42,13 +42,13 @@ type ErrResult<E extends BaseError> = {
  * }
  * ```
  */
-export type Result<V, E extends BaseError = BaseError> = OkResult<V> | ErrResult<E>;
+export type Result<V, E extends BaseError = BaseError> = OkResult<V> | ErrResult<E>
 /**
  * Creates a successful result with no value.
  *
  * @returns An OkResult with type never
  */
-export declare function Ok(): OkResult<never>;
+export declare function Ok(): OkResult<never>
 /**
  * Creates a successful result containing the provided value.
  *
@@ -64,7 +64,7 @@ export declare function Ok(): OkResult<never>;
  * }
  * ```
  */
-export declare function Ok<V>(val: V): OkResult<V>;
+export declare function Ok<V>(val: V): OkResult<V>
 /**
  * Creates a failed result containing the provided error.
  *
@@ -88,7 +88,7 @@ export declare function Ok<V>(val: V): OkResult<V>;
  * }
  * ```
  */
-export declare function Err<E extends BaseError>(err: E): ErrResult<E>;
+export declare function Err<E extends BaseError>(err: E): ErrResult<E>
 /**
  * Wraps a promise and catches any thrown errors, converting them into a Result type.
  * This utility helps maintain type-safe error handling throughout the application.
@@ -120,6 +120,6 @@ export declare function Err<E extends BaseError>(err: E): ErrResult<E>;
  * console.log(result.val);
  * ```
  */
-export declare function wrap<T, E extends BaseError>(p: Promise<T>, errorFactory: (err: Error) => E): Promise<Result<T, E>>;
-export {};
+export declare function wrap<T, E extends BaseError>(p: Promise<T>, errorFactory: (err: Error) => E): Promise<Result<T, E>>
+export {}
 //# sourceMappingURL=error-handling.d.ts.map

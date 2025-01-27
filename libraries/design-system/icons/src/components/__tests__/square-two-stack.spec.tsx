@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import SquareTwoStack from "../square-two-stack"
+import SquareTwoStack from '../square-two-stack'
 
-  describe("SquareTwoStack", () => {
-    it("should render the icon without errors", async () => {
-      render(<SquareTwoStack data-testid="icon" />)
+describe('SquareTwoStack', () => {
+    it('should render the icon without errors', async () => {
+        render(<SquareTwoStack data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

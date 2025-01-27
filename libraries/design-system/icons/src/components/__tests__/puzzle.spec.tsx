@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import Puzzle from "../puzzle"
+import Puzzle from '../puzzle'
 
-  describe("Puzzle", () => {
-    it("should render the icon without errors", async () => {
-      render(<Puzzle data-testid="icon" />)
+describe('Puzzle', () => {
+    it('should render the icon without errors', async () => {
+        render(<Puzzle data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

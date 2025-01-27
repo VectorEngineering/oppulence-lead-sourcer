@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import ChevronDoubleRightMiniSolid from "../chevron-double-right-mini-solid"
+import ChevronDoubleRightMiniSolid from '../chevron-double-right-mini-solid'
 
-  describe("ChevronDoubleRightMiniSolid", () => {
-    it("should render the icon without errors", async () => {
-      render(<ChevronDoubleRightMiniSolid data-testid="icon" />)
+describe('ChevronDoubleRightMiniSolid', () => {
+    it('should render the icon without errors', async () => {
+        render(<ChevronDoubleRightMiniSolid data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

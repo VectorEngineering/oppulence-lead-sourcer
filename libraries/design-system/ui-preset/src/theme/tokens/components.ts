@@ -1,4 +1,4 @@
 export const components = {
-  "dark": {},
-  "light": {}
+    dark: {},
+    light: {}
 }

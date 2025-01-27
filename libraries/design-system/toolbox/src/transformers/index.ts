@@ -1,1 +1,1 @@
-export * from "./transform-svg"
+export * from './transform-svg'

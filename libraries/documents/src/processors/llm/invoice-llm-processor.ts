@@ -3,18 +3,18 @@
  * extracting structured invoice information from document content.
  */
 
-import { openai } from "@ai-sdk/openai";
-import { generateObject } from "ai";
-import { z } from "zod";
-import { LlmProcessor } from "./llm-processor";
+import { openai } from '@ai-sdk/openai'
+import { generateObject } from 'ai'
+import { z } from 'zod'
+import { LlmProcessor } from './llm-processor'
 
 // Define a schema for line items
 const lineItemSchema = z.object({
-    description: z.string().describe("A brief description of the purchased item or service."),
-    quantity: z.number().describe("The quantity of the item purchased."),
-    unitPrice: z.number().describe("The price per unit of the item."),
-    amount: z.number().describe("The total amount for this line item (quantity * unitPrice)."),
-});
+    description: z.string().describe('A brief description of the purchased item or service.'),
+    quantity: z.number().describe('The quantity of the item purchased.'),
+    unitPrice: z.number().describe('The price per unit of the item.'),
+    amount: z.number().describe('The total amount for this line item (quantity * unitPrice).')
+})
 
 /**
  * Schema definition for invoice data extraction.
@@ -22,17 +22,17 @@ const lineItemSchema = z.object({
  * Uses Zod for runtime type validation and schema definition.
  */
 const schema = z.object({
-    description: z.string().optional().describe("A brief description of the invoice."),
+    description: z.string().optional().describe('A brief description of the invoice.'),
     // Basic invoice identification
-    invoiceId: z.string().optional().describe("The unique invoice identifier."),
-    invoiceDate: z.string().optional().describe("The invoice issue date (ISO 8601 format)."),
-    dueDate: z.string().optional().describe("The due date of the invoice (ISO 8601 date string)."),
-    purchaseOrderNumber: z.string().optional().describe("The associated purchase order number, if any."),
-    paymentTerm: z.string().optional().describe("Payment terms of the invoice (e.g., Net 30)."),
+    invoiceId: z.string().optional().describe('The unique invoice identifier.'),
+    invoiceDate: z.string().optional().describe('The invoice issue date (ISO 8601 format).'),
+    dueDate: z.string().optional().describe('The due date of the invoice (ISO 8601 date string).'),
+    purchaseOrderNumber: z.string().optional().describe('The associated purchase order number, if any.'),
+    paymentTerm: z.string().optional().describe('Payment terms of the invoice (e.g., Net 30).'),
 
     // Supplier (Vendor) Information
-    vendorName: z.string().describe("The vendor or supplier name."),
-    vendorAddress: z.string().optional().describe("The complete address of the vendor."),
+    vendorName: z.string().describe('The vendor or supplier name.'),
+    vendorAddress: z.string().optional().describe('The complete address of the vendor.'),
     vendorPhone: z.string().optional().describe("The vendor's phone number."),
     vendorEmail: z.string().optional().describe("The vendor's email address."),
     website: z.string().optional().describe("The vendor's website domain without protocol (e.g. example.com)."),
@@ -44,38 +44,38 @@ const schema = z.object({
     customerPhone: z.string().optional().describe("The customer's phone number."),
 
     // Financials
-    currency: z.string().describe("The currency code of the invoice (e.g., USD, EUR)."),
-    subtotal: z.number().optional().describe("The subtotal amount before taxes and additional fees."),
-    tax: z.number().optional().describe("The total tax amount on the invoice."),
-    tip: z.number().optional().describe("Any included tip amount."),
-    previousUnpaidBalance: z.number().optional().describe("Any outstanding balance prior to this invoice."),
-    invoiceTotal: z.number().optional().describe("The total amount of the invoice."),
-    amountDue: z.number().optional().describe("The amount still due (outstanding) on the invoice."),
+    currency: z.string().describe('The currency code of the invoice (e.g., USD, EUR).'),
+    subtotal: z.number().optional().describe('The subtotal amount before taxes and additional fees.'),
+    tax: z.number().optional().describe('The total tax amount on the invoice.'),
+    tip: z.number().optional().describe('Any included tip amount.'),
+    previousUnpaidBalance: z.number().optional().describe('Any outstanding balance prior to this invoice.'),
+    invoiceTotal: z.number().optional().describe('The total amount of the invoice.'),
+    amountDue: z.number().optional().describe('The amount still due (outstanding) on the invoice.'),
 
     // Line Items
-    lineItems: z.array(lineItemSchema).optional().describe("List of items/services included in the invoice."),
+    lineItems: z.array(lineItemSchema).optional().describe('List of items/services included in the invoice.'),
 
     // Additional fields
-    type: z.string().optional().describe("The type of the document, e.g., invoice."),
-    status: z.string().optional().describe("The status of the invoice."),
-    billingPeriod: z.string().optional().describe("The billing period for the invoice."),
-    notes: z.string().optional().describe("Any additional notes related to the invoice."),
-    terms: z.string().optional().describe("Terms associated with the invoice."),
-    discounts: z.number().optional().describe("Any discounts applied to the invoice."),
-    shipping: z.number().optional().describe("Shipping costs associated with the invoice."),
-    handling: z.number().optional().describe("Handling fees associated with the invoice."),
-    taxRate: z.number().optional().describe("The tax rate applied to the invoice."),
-    taxId: z.string().optional().describe("The tax identification number for the vendor."),
-    bankDetails: z.string().optional().describe("Bank details for payment."),
-    paymentMethod: z.string().optional().describe("The method of payment for the invoice."),
-    reference: z.string().optional().describe("Any reference number associated with the invoice."),
-});
+    type: z.string().optional().describe('The type of the document, e.g., invoice.'),
+    status: z.string().optional().describe('The status of the invoice.'),
+    billingPeriod: z.string().optional().describe('The billing period for the invoice.'),
+    notes: z.string().optional().describe('Any additional notes related to the invoice.'),
+    terms: z.string().optional().describe('Terms associated with the invoice.'),
+    discounts: z.number().optional().describe('Any discounts applied to the invoice.'),
+    shipping: z.number().optional().describe('Shipping costs associated with the invoice.'),
+    handling: z.number().optional().describe('Handling fees associated with the invoice.'),
+    taxRate: z.number().optional().describe('The tax rate applied to the invoice.'),
+    taxId: z.string().optional().describe('The tax identification number for the vendor.'),
+    bankDetails: z.string().optional().describe('Bank details for payment.'),
+    paymentMethod: z.string().optional().describe('The method of payment for the invoice.'),
+    reference: z.string().optional().describe('Any reference number associated with the invoice.')
+})
 
 /**
  * Processes invoice documents using Large Language Models to extract structured information.
  * Uses OpenAI's GPT-4 model to extract structured data from the invoice content.
  * Implements strict schema validation to ensure consistent output format.
- * 
+ *
  * @example
  * ```typescript
  * const processor = new InvoiceLlmProcessor();
@@ -88,7 +88,7 @@ const schema = z.object({
 export class InvoiceLlmProcessor extends LlmProcessor {
     /**
      * Extracts structured invoice data from document content using GPT-4.
-     * 
+     *
      * @param content - Raw invoice document content
      * @returns Structured invoice data or null if extraction fails
      */
@@ -127,18 +127,17 @@ Your goal is to return the data as a valid JSON object that strictly adheres to 
 
 **Output**:
 Return the extracted data in JSON format.
-`;
-
+`
 
             const { object } = await generateObject({
-                model: openai("gpt-4o-mini"),
-                mode: "json",
+                model: openai('gpt-4o-mini'),
+                mode: 'json',
                 schema,
-                prompt,
-            });
+                prompt
+            })
 
             // Clean up website if present (remove protocols)
-            const cleanWebsite = object.website?.replace(/^https?:\/\//, "") ?? null;
+            const cleanWebsite = object.website?.replace(/^https?:\/\//, '') ?? null
 
             return {
                 name: object.vendorName,
@@ -178,9 +177,9 @@ Return the extracted data in JSON format.
                 bankDetails: object.bankDetails ?? null,
                 paymentMethod: object.paymentMethod ?? null,
                 reference: object.reference ?? null
-            };
+            }
         } catch (error) {
-            return null;
+            return null
         }
     }
 }

@@ -1,5 +1,5 @@
-import type { ZodError } from "zod";
-import { BaseError } from "./base";
+import type { ZodError } from 'zod'
+import { BaseError } from './base'
 /**
  * Error class for schema validation failures.
  * Used when data doesn't conform to its expected structure or type definition.
@@ -38,18 +38,18 @@ export declare class SchemaError extends BaseError<{
      * The raw data that failed schema validation.
      * Stored to help with debugging and error reporting.
      */
-    raw: unknown;
+    raw: unknown
 }> {
     /**
      * Always false as schema validation errors are deterministic
      * and won't be resolved by retrying.
      */
-    readonly retry = false;
+    readonly retry = false
     /**
      * The name of the error class, used for error identification.
      * Uses the class name directly to ensure consistency.
      */
-    readonly name: string;
+    readonly name: string
     /**
      * Creates a new SchemaError instance.
      *
@@ -59,12 +59,12 @@ export declare class SchemaError extends BaseError<{
      * @param opts.cause - The underlying error that caused this error (optional)
      */
     constructor(opts: {
-        message: string;
+        message: string
         context?: {
-            raw: unknown;
-        };
-        cause?: BaseError;
-    });
+            raw: unknown
+        }
+        cause?: BaseError
+    })
     /**
      * Creates a SchemaError from a Zod validation error.
      * Provides a convenient way to convert Zod errors into SchemaErrors.
@@ -93,6 +93,6 @@ export declare class SchemaError extends BaseError<{
      * }
      * ```
      */
-    static fromZod<T>(e: ZodError<T>, raw: unknown, context?: Record<string, unknown>): SchemaError;
+    static fromZod<T>(e: ZodError<T>, raw: unknown, context?: Record<string, unknown>): SchemaError
 }
 //# sourceMappingURL=schema-error.d.ts.map

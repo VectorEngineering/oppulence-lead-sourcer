@@ -1,17 +1,27 @@
-import { LoopsClient } from "loops";
-import { z } from "zod"; // For runtime type validation
-import { ConfigurationError, Contact, EmailSchema, EmailTemplate, LoopsError, MailingList, TierSchema, UserIdSchema, UserState } from "./types";
+import { LoopsClient } from 'loops'
+import { z } from 'zod' // For runtime type validation
+import {
+    ConfigurationError,
+    Contact,
+    EmailSchema,
+    EmailTemplate,
+    LoopsError,
+    MailingList,
+    TierSchema,
+    UserIdSchema,
+    UserState
+} from './types'
 
 /**
  * Singleton wrapper for the Loops API client.
  * Ensures only one instance of the client exists throughout the application lifecycle.
  */
 class LoopsClientWrapper {
-    private static instance: LoopsClientWrapper;
-    private client?: LoopsClient;
+    private static instance: LoopsClientWrapper
+    private client?: LoopsClient
 
     private constructor() {
-        this.initializeClient();
+        this.initializeClient()
     }
 
     /**
@@ -21,9 +31,9 @@ class LoopsClientWrapper {
      */
     static getInstance(): LoopsClientWrapper {
         if (!LoopsClientWrapper.instance) {
-            LoopsClientWrapper.instance = new LoopsClientWrapper();
+            LoopsClientWrapper.instance = new LoopsClientWrapper()
         }
-        return LoopsClientWrapper.instance;
+        return LoopsClientWrapper.instance
     }
 
     /**
@@ -31,11 +41,11 @@ class LoopsClientWrapper {
      * @throws {ConfigurationError} If LOOPS_API_SECRET is not set
      */
     private initializeClient(): void {
-        const apiKey = process.env.LOOPS_API_SECRET;
+        const apiKey = process.env.LOOPS_API_SECRET
         if (!apiKey) {
-            throw new ConfigurationError("LOOPS_API_SECRET is not set");
+            throw new ConfigurationError('LOOPS_API_SECRET is not set')
         }
-        this.client = new LoopsClient(apiKey);
+        this.client = new LoopsClient(apiKey)
     }
 
     /**
@@ -45,9 +55,9 @@ class LoopsClientWrapper {
      */
     getClient(): LoopsClient {
         if (!this.client) {
-            throw new ConfigurationError("Loops client not initialized");
+            throw new ConfigurationError('Loops client not initialized')
         }
-        return this.client;
+        return this.client
     }
 }
 
@@ -63,10 +73,10 @@ function logError(error: Error, context: Record<string, any> = {}): void {
             name: error.name,
             message: error.message,
             stack: error.stack,
-            ...(error instanceof LoopsError && { code: error.code }),
+            ...(error instanceof LoopsError && { code: error.code })
         },
-        context,
-    });
+        context
+    })
 }
 
 // Enhanced API functions
@@ -86,31 +96,27 @@ export async function createContact(
     email: string,
     firstName?: string,
     options: {
-        lastName?: string;
-        userGroup?: string;
-        properties?: Record<string, string | number | boolean>;
-        mailingLists?: Record<string, boolean>;
+        lastName?: string
+        userGroup?: string
+        properties?: Record<string, string | number | boolean>
+        mailingLists?: Record<string, boolean>
     } = {}
 ): Promise<{ success: boolean; id?: string }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         const contactData = {
             ...(firstName && { firstName }),
             ...(options.lastName && { lastName: options.lastName }),
             ...(options.userGroup && { userGroup: options.userGroup }),
-            ...options.properties,
-        };
+            ...options.properties
+        }
 
-        return await client.createContact(validatedEmail, contactData, options.mailingLists);
+        return await client.createContact(validatedEmail, contactData, options.mailingLists)
     } catch (error) {
-        logError(error as Error, { email, firstName, options });
-        throw new LoopsError(
-            "Failed to create contact",
-            'CREATE_CONTACT_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, firstName, options })
+        throw new LoopsError('Failed to create contact', 'CREATE_CONTACT_ERROR', error as Error)
     }
 }
 
@@ -122,17 +128,13 @@ export async function createContact(
  */
 export async function deleteContact(email: string): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
-        return await client.deleteContact({ email: validatedEmail });
+        return await client.deleteContact({ email: validatedEmail })
     } catch (error) {
-        logError(error as Error, { email });
-        throw new LoopsError(
-            "Failed to delete contact",
-            'DELETE_CONTACT_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email })
+        throw new LoopsError('Failed to delete contact', 'DELETE_CONTACT_ERROR', error as Error)
     }
 }
 
@@ -144,18 +146,14 @@ export async function deleteContact(email: string): Promise<{ success: boolean }
  * @returns {Promise<{ success: boolean }>} Result object indicating success
  * @throws {LoopsError} If tracking the upgrade fails
  */
-export async function upgradedToPremium(
-    email: string,
-    tier: string,
-    metadata?: Record<string, any>
-): Promise<{ success: boolean }> {
+export async function upgradedToPremium(email: string, tier: string, metadata?: Record<string, any>): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const validatedTier = TierSchema.parse(tier);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const validatedTier = TierSchema.parse(tier)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         return await client.sendEvent({
-            eventName: "upgraded",
+            eventName: 'upgraded',
             email: validatedEmail,
             contactProperties: {
                 tier: validatedTier,
@@ -165,38 +163,30 @@ export async function upgradedToPremium(
             eventProperties: {
                 tier: validatedTier,
                 ...metadata
-            },
-        });
+            }
+        })
     } catch (error) {
-        logError(error as Error, { email, tier, metadata });
-        throw new LoopsError(
-            "Failed to track premium upgrade",
-            'PREMIUM_UPGRADE_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, tier, metadata })
+        throw new LoopsError('Failed to track premium upgrade', 'PREMIUM_UPGRADE_ERROR', error as Error)
     }
 }
 
 export async function cancelledPremium(email: string): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         return await client.sendEvent({
-            eventName: "cancelled",
+            eventName: 'cancelled',
             email: validatedEmail,
             contactProperties: {
-                tier: "",
+                tier: '',
                 cancelDate: new Date().toISOString()
-            },
-        });
+            }
+        })
     } catch (error) {
-        logError(error as Error, { email });
-        throw new LoopsError(
-            "Failed to track premium cancellation",
-            'PREMIUM_CANCEL_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email })
+        throw new LoopsError('Failed to track premium cancellation', 'PREMIUM_CANCEL_ERROR', error as Error)
     }
 }
 
@@ -206,61 +196,50 @@ export async function findContact(
 ): Promise<Contact[]> {
     try {
         if (!params.email && !params.userId) {
-            throw new LoopsError(
-                "Either email or userId must be provided",
-                'INVALID_PARAMS'
-            );
+            throw new LoopsError('Either email or userId must be provided', 'INVALID_PARAMS')
         }
 
         if (params.email) {
-            EmailSchema.parse(params.email);
+            EmailSchema.parse(params.email)
         }
         if (params.userId) {
-            UserIdSchema.parse(params.userId);
+            UserIdSchema.parse(params.userId)
         }
 
-        const client = LoopsClientWrapper.getInstance().getClient();
-        return await client.findContact({ ...params, ...options });
+        const client = LoopsClientWrapper.getInstance().getClient()
+        return await client.findContact({ ...params, ...options })
     } catch (error) {
-        logError(error as Error, { params, options });
-        throw new LoopsError(
-            "Failed to find contact",
-            'FIND_CONTACT_ERROR',
-            error as Error
-        );
+        logError(error as Error, { params, options })
+        throw new LoopsError('Failed to find contact', 'FIND_CONTACT_ERROR', error as Error)
     }
 }
 
 export async function sendTransactionalEmail(params: {
-    transactionalId: string;
-    email: string;
-    addToAudience?: boolean;
-    dataVariables?: Record<string, string | number>;
+    transactionalId: string
+    email: string
+    addToAudience?: boolean
+    dataVariables?: Record<string, string | number>
     attachments?: Array<{
-        filename: string;
-        contentType: string;
-        data: string;
-    }>;
+        filename: string
+        contentType: string
+        data: string
+    }>
 }): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(params.email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(params.email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         const response = await client.sendTransactionalEmail({
             ...params,
-            email: validatedEmail,
-        });
+            email: validatedEmail
+        })
 
         return {
-            success: response.success,
-        };
+            success: response.success
+        }
     } catch (error) {
-        logError(error as Error, { ...params, email: params.email });
-        throw new LoopsError(
-            "Failed to send transactional email",
-            'SEND_EMAIL_ERROR',
-            error as Error
-        );
+        logError(error as Error, { ...params, email: params.email })
+        throw new LoopsError('Failed to send transactional email', 'SEND_EMAIL_ERROR', error as Error)
     }
 }
 
@@ -281,30 +260,30 @@ export async function onUserSignup(
     email: string,
     firstName: string,
     options: {
-        lastName?: string;
-        company?: string;
-        plan?: string;
-        source?: string;
-        subscribeToNewsletter?: boolean;
+        lastName?: string
+        company?: string
+        plan?: string
+        source?: string
+        subscribeToNewsletter?: boolean
     } = {}
 ): Promise<{ success: boolean; id?: string }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         const contactData = {
             firstName,
             ...options,
             userState: UserState.TRIAL,
             signupDate: new Date().toISOString()
-        };
-
-        const mailingLists: Record<string, boolean> = {};
-        if (options.subscribeToNewsletter) {
-            mailingLists['newsletter'] = true;
         }
 
-        const result = await client.createContact(validatedEmail, contactData, mailingLists);
+        const mailingLists: Record<string, boolean> = {}
+        if (options.subscribeToNewsletter) {
+            mailingLists['newsletter'] = true
+        }
+
+        const result = await client.createContact(validatedEmail, contactData, mailingLists)
 
         // Send welcome email
         if (result.success) {
@@ -313,19 +292,15 @@ export async function onUserSignup(
                 email: validatedEmail,
                 dataVariables: {
                     firstName,
-                    company: options.company || '',
+                    company: options.company || ''
                 }
-            });
+            })
         }
 
-        return result;
+        return result
     } catch (error) {
-        logError(error as Error, { email, firstName, options });
-        throw new LoopsError(
-            "Failed to process user signup",
-            'USER_SIGNUP_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, firstName, options })
+        throw new LoopsError('Failed to process user signup', 'USER_SIGNUP_ERROR', error as Error)
     }
 }
 
@@ -336,22 +311,19 @@ export async function onUserSignup(
  * @returns {Promise<{ success: boolean }>} Result object indicating success
  * @throws {LoopsError} If starting the trial fails
  */
-export async function startUserTrial(
-    email: string,
-    trialDays: number = 14
-): Promise<{ success: boolean }> {
+export async function startUserTrial(email: string, trialDays: number = 14): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
-        const trialEndDate = new Date();
-        trialEndDate.setDate(trialEndDate.getDate() + trialDays);
+        const trialEndDate = new Date()
+        trialEndDate.setDate(trialEndDate.getDate() + trialDays)
 
         await client.updateContact(validatedEmail, {
             userState: UserState.TRIAL,
             trialStartDate: new Date().toISOString(),
             trialEndDate: trialEndDate.toISOString()
-        });
+        })
 
         return await sendTransactionalEmail({
             transactionalId: EmailTemplate.TRIAL_STARTED,
@@ -360,14 +332,10 @@ export async function startUserTrial(
                 trialDays,
                 trialEndDate: trialEndDate.toISOString()
             }
-        });
+        })
     } catch (error) {
-        logError(error as Error, { email, trialDays });
-        throw new LoopsError(
-            "Failed to start user trial",
-            'TRIAL_START_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, trialDays })
+        throw new LoopsError('Failed to start user trial', 'TRIAL_START_ERROR', error as Error)
     }
 }
 
@@ -378,19 +346,16 @@ export async function startUserTrial(
  * @returns {Promise<{ success: boolean }>} Result object indicating success
  * @throws {LoopsError} If processing the payment failure fails
  */
-export async function onPaymentFailed(
-    email: string,
-    attemptCount: number
-): Promise<{ success: boolean }> {
+export async function onPaymentFailed(email: string, attemptCount: number): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         await client.updateContact(validatedEmail, {
             userState: UserState.PAST_DUE,
             lastPaymentFailDate: new Date().toISOString(),
             paymentFailAttempts: attemptCount
-        });
+        })
 
         return await sendTransactionalEmail({
             transactionalId: EmailTemplate.PAYMENT_FAILED,
@@ -399,14 +364,10 @@ export async function onPaymentFailed(
                 attemptCount,
                 gracePeriodDays: 7
             }
-        });
+        })
     } catch (error) {
-        logError(error as Error, { email, attemptCount });
-        throw new LoopsError(
-            "Failed to process payment failure",
-            'PAYMENT_FAILURE_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, attemptCount })
+        throw new LoopsError('Failed to process payment failure', 'PAYMENT_FAILURE_ERROR', error as Error)
     }
 }
 
@@ -418,14 +379,10 @@ export async function onPaymentFailed(
  * @returns {Promise<{ success: boolean }>} Result object indicating success
  * @throws {LoopsError} If processing the milestone fails
  */
-export async function onUsageMilestone(
-    email: string,
-    milestone: string,
-    metrics: Record<string, number>
-): Promise<{ success: boolean }> {
+export async function onUsageMilestone(email: string, milestone: string, metrics: Record<string, number>): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         await client.sendEvent({
             eventName: 'usage_milestone',
@@ -434,7 +391,7 @@ export async function onUsageMilestone(
                 milestone,
                 ...metrics
             }
-        });
+        })
 
         return await sendTransactionalEmail({
             transactionalId: EmailTemplate.USAGE_MILESTONE,
@@ -443,14 +400,10 @@ export async function onUsageMilestone(
                 milestone,
                 ...metrics
             }
-        });
+        })
     } catch (error) {
-        logError(error as Error, { email, milestone, metrics });
-        throw new LoopsError(
-            "Failed to process usage milestone",
-            'USAGE_MILESTONE_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, milestone, metrics })
+        throw new LoopsError('Failed to process usage milestone', 'USAGE_MILESTONE_ERROR', error as Error)
     }
 }
 
@@ -468,19 +421,19 @@ export async function onUsageMilestone(
 export async function subscribeToNewsletter(
     email: string,
     options: {
-        source?: string;
-        tags?: string[];
-        preferences?: Record<string, boolean>;
+        source?: string
+        tags?: string[]
+        preferences?: Record<string, boolean>
     } = {}
 ): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         const mailingLists: Record<string, boolean> = {
             newsletter: true,
             ...options.preferences
-        };
+        }
 
         return await client.updateContact(
             validatedEmail,
@@ -490,14 +443,10 @@ export async function subscribeToNewsletter(
                 ...(options.tags && { tags: options.tags.join(',') })
             },
             mailingLists
-        );
+        )
     } catch (error) {
-        logError(error as Error, { email, options });
-        throw new LoopsError(
-            "Failed to subscribe to newsletter",
-            'NEWSLETTER_SUBSCRIBE_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, options })
+        throw new LoopsError('Failed to subscribe to newsletter', 'NEWSLETTER_SUBSCRIBE_ERROR', error as Error)
     }
 }
 
@@ -513,13 +462,13 @@ export async function subscribeToNewsletter(
 export async function unsubscribeFromNewsletter(
     email: string,
     options: {
-        reason?: string;
-        feedback?: string;
+        reason?: string
+        feedback?: string
     } = {}
 ): Promise<{ success: boolean }> {
     try {
-        const validatedEmail = EmailSchema.parse(email);
-        const client = LoopsClientWrapper.getInstance().getClient();
+        const validatedEmail = EmailSchema.parse(email)
+        const client = LoopsClientWrapper.getInstance().getClient()
 
         return await client.updateContact(
             validatedEmail,
@@ -530,16 +479,12 @@ export async function unsubscribeFromNewsletter(
                 unsubscribeDate: new Date().toISOString()
             },
             { newsletter: false }
-        );
+        )
     } catch (error) {
-        logError(error as Error, { email, options });
-        throw new LoopsError(
-            "Failed to unsubscribe from newsletter",
-            'NEWSLETTER_UNSUBSCRIBE_ERROR',
-            error as Error
-        );
+        logError(error as Error, { email, options })
+        throw new LoopsError('Failed to unsubscribe from newsletter', 'NEWSLETTER_UNSUBSCRIBE_ERROR', error as Error)
     }
 }
 
 // Export types for consumers
-export type { Contact, LoopsError, MailingList };
+export type { Contact, LoopsError, MailingList }

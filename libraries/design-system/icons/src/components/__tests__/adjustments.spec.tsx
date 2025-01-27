@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import Adjustments from "../adjustments"
+import Adjustments from '../adjustments'
 
-  describe("Adjustments", () => {
-    it("should render the icon without errors", async () => {
-      render(<Adjustments data-testid="icon" />)
+describe('Adjustments', () => {
+    it('should render the icon without errors', async () => {
+        render(<Adjustments data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

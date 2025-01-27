@@ -1,4 +1,4 @@
-import { BaseError } from "./base";
+import { BaseError } from './base'
 /**
  * Error class for environment variable configuration issues.
  * Used when environment variables are missing, malformed, or have invalid values.
@@ -28,17 +28,17 @@ export declare class EnvError extends BaseError<{
     /**
      * The name of the environment variable that caused the error
      */
-    name: string;
+    name: string
 }> {
     /**
      * Always false as environment configuration errors cannot be resolved
      * through retries - they require configuration changes.
      */
-    readonly retry = false;
+    readonly retry = false
     /**
      * The name of the error class, used for error identification.
      * Uses the class name directly to ensure consistency.
      */
-    readonly name: string;
+    readonly name: string
 }
 //# sourceMappingURL=env-error.d.ts.map

@@ -3,18 +3,18 @@
  * Provides utilities for server-side tracking and user identification.
  */
 
-import { OpenPanel, type PostEventPayload } from '@openpanel/nextjs';
-import { waitUntil } from '@vercel/functions';
+import { OpenPanel, type PostEventPayload } from '@openpanel/nextjs'
+import { waitUntil } from '@vercel/functions'
 
 /**
  * Configuration options for setting up analytics
  */
 type Props = {
-  /** Unique identifier for the user */
-  userId?: string;
-  /** User's full name (format: "First Last") */
-  fullName?: string | null;
-};
+    /** Unique identifier for the user */
+    userId?: string
+    /** User's full name (format: "First Last") */
+    fullName?: string | null
+}
 
 /**
  * Initializes the OpenPanel analytics client for server-side tracking.
@@ -43,55 +43,55 @@ type Props = {
  * ```
  */
 export const setupAnalytics = async (options?: Props) => {
-  const { userId, fullName } = options ?? {};
+    const { userId, fullName } = options ?? {}
 
-  const client = new OpenPanel({
-    clientId: process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID!,
-    clientSecret: process.env.OPENPANEL_SECRET_KEY!,
-  });
+    const client = new OpenPanel({
+        clientId: process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID!,
+        clientSecret: process.env.OPENPANEL_SECRET_KEY!
+    })
 
-  if (userId && fullName) {
-    const [firstName, lastName] = fullName.split(' ');
+    if (userId && fullName) {
+        const [firstName, lastName] = fullName.split(' ')
 
-    waitUntil(
-      client.identify({
-        profileId: userId,
-        firstName,
-        lastName,
-      })
-    );
-  }
+        waitUntil(
+            client.identify({
+                profileId: userId,
+                firstName,
+                lastName
+            })
+        )
+    }
 
-  return {
-    /**
-     * Tracks an event server-side. Only tracks in production environment.
-     *
-     * @param options - The tracking options
-     * @param options.event - The name of the event to track
-     * @param options.properties - Additional properties to track with the event
-     *
-     * @example
-     * ```ts
-     * // In an API route or server action
-     * const analytics = await setupAnalytics();
-     *
-     * analytics.track({
-     *   event: 'payment_processed',
-     *   amount: 199.99,
-     *   currency: 'USD',
-     *   paymentMethod: 'credit_card'
-     * });
-     * ```
-     */
-    track: (options: { event: string } & PostEventPayload['properties']) => {
-      if (process.env.NODE_ENV !== 'production') {
-        console.log('Track', options);
-        return;
-      }
+    return {
+        /**
+         * Tracks an event server-side. Only tracks in production environment.
+         *
+         * @param options - The tracking options
+         * @param options.event - The name of the event to track
+         * @param options.properties - Additional properties to track with the event
+         *
+         * @example
+         * ```ts
+         * // In an API route or server action
+         * const analytics = await setupAnalytics();
+         *
+         * analytics.track({
+         *   event: 'payment_processed',
+         *   amount: 199.99,
+         *   currency: 'USD',
+         *   paymentMethod: 'credit_card'
+         * });
+         * ```
+         */
+        track: (options: { event: string } & PostEventPayload['properties']) => {
+            if (process.env.NODE_ENV !== 'production') {
+                console.log('Track', options)
+                return
+            }
 
-      const { event, ...rest } = options;
+            const { event, ...rest } = options
 
-      waitUntil(client.track(event, rest));
-    },
-  };
-};
+            waitUntil(client.track(event, rest))
+        }
+    }
+}

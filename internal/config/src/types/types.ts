@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next'
 
 /**
  * Represents a navigation item used in the main navigation menu.
@@ -8,10 +8,10 @@ import type { Metadata } from "next";
  * @property {boolean} [showOnAuth] - Optional. Determines if the item should be shown when the user is authenticated.
  */
 type NavItem = {
-  title: string;
-  href: string;
-  showOnAuth?: boolean;
-};
+    title: string
+    href: string
+    showOnAuth?: boolean
+}
 
 /**
  * Represents external links used in the site.
@@ -22,11 +22,11 @@ type NavItem = {
  * @property {string} youtube - The URL for the YouTube channel.
  */
 type Links = {
-  twitter: string;
-  github: string;
-  docs: string;
-  youtube: string;
-};
+    twitter: string
+    github: string
+    docs: string
+    youtube: string
+}
 
 /**
  * Represents payment-related configurations, including subscription links.
@@ -34,8 +34,8 @@ type Links = {
  * @property {string} subscriptionLink - The URL for managing or subscribing to a plan.
  */
 type Payments = {
-  subscriptionLink: string;
-};
+    subscriptionLink: string
+}
 
 /**
  * Represents billing-related configurations, including customer portal links.
@@ -43,8 +43,8 @@ type Payments = {
  * @property {string} customerBillingPortalLink - The URL for the customer billing portal.
  */
 type Billings = {
-  customerBillingPortalLink: string;
-};
+    customerBillingPortalLink: string
+}
 
 /**
  * Represents metadata for a Twitter card.
@@ -54,14 +54,14 @@ type Billings = {
  * @property {Array<{ url: string; width: number; height: number }>} images - An array of images, each containing a URL, width, and height for the Twitter card.
  */
 type TwitterMetadata = {
-  title: string;
-  description: string;
-  images: Array<{
-    url: string;
-    width: number;
-    height: number;
-  }>;
-};
+    title: string
+    description: string
+    images: Array<{
+        url: string
+        width: number
+        height: number
+    }>
+}
 
 /**
  * Represents Open Graph metadata for social sharing.
@@ -73,11 +73,11 @@ type TwitterMetadata = {
  * @property {string} type - The type of Open Graph object (e.g., "website", "article").
  */
 type OpenGraphMetadata = TwitterMetadata & {
-  url: string;
-  siteName: string;
-  locale: string;
-  type: string;
-};
+    url: string
+    siteName: string
+    locale: string
+    type: string
+}
 
 /**
  * Represents the site metadata, combining core metadata and social sharing metadata.
@@ -87,11 +87,11 @@ type OpenGraphMetadata = TwitterMetadata & {
  * @property {TwitterMetadata} twitter - Metadata for Twitter cards.
  * @property {OpenGraphMetadata} openGraph - Open Graph metadata for social sharing.
  */
-type SiteMetadata = Omit<Metadata, "twitter" | "openGraph"> & {
-  metadataBase: URL;
-  twitter: TwitterMetadata;
-  openGraph: OpenGraphMetadata;
-};
+type SiteMetadata = Omit<Metadata, 'twitter' | 'openGraph'> & {
+    metadataBase: URL
+    twitter: TwitterMetadata
+    openGraph: OpenGraphMetadata
+}
 
 /**
  * Represents the viewport configuration for mobile responsiveness.
@@ -103,14 +103,14 @@ type SiteMetadata = Omit<Metadata, "twitter" | "openGraph"> & {
  * @property {Array<{ media: string }>} themeColor - An array of theme colors based on media queries (e.g., light mode, dark mode).
  */
 type Viewport = {
-  width: string;
-  initialScale: number;
-  maximumScale: number;
-  userScalable: boolean;
-  themeColor: Array<{
-    media: string;
-  }>;
-};
+    width: string
+    initialScale: number
+    maximumScale: number
+    userScalable: boolean
+    themeColor: Array<{
+        media: string
+    }>
+}
 
 /**
  * Represents the details of a pricing plan.
@@ -124,13 +124,13 @@ type Viewport = {
  * @property {boolean} isMostPopular - Indicates if this plan is marked as the most popular choice.
  */
 interface PricingPlan {
-  id: string;
-  name: string;
-  description: string;
-  features: string[];
-  monthlyPrice: number;
-  yearlyPrice: number;
-  isMostPopular: boolean;
+    id: string
+    name: string
+    description: string
+    features: string[]
+    monthlyPrice: number
+    yearlyPrice: number
+    isMostPopular: boolean
 }
 
 /**
@@ -141,9 +141,9 @@ interface PricingPlan {
  * @property {string} bearerToken - The bearer token used for authentication with the financial engine.
  */
 interface FinancialEngineConfig {
-  baseUrlProd: string;
-  baseUrlDev: string;
-  bearerToken: string;
+    baseUrlProd: string
+    baseUrlDev: string
+    bearerToken: string
 }
 
 /**
@@ -178,43 +178,32 @@ interface FinancialEngineConfig {
  * @property {string} documentationUrl - The URL to the platform documentation.
  */
 type SiteConfig = {
-  platformHost: string;
-  company: string;
-  name: string;
-  email: { from: string };
-  title: string;
-  description: string;
-  platformUrl: string;
-  webUrl: string;
-  desktopUrl: string;
-  dubProjectSlug: string;
-  mfaIssuer: string;
-  uptimeUrl: string;
-  mainNav: NavItem[];
-  links: Links;
-  supportEmail: string;
-  helpUrl: string;
-  intercomAppId: string;
-  payments: Payments;
-  billings: Billings;
-  metadata: Metadata;
-  viewport: Viewport;
-  pricing: PricingPlan[];
-  financialEngine: FinancialEngineConfig;
-  termsAndConditionsUrl: string;
-  privacyPolicyUrl: string;
-  documentationUrl: string;
-};
+    platformHost: string
+    company: string
+    name: string
+    email: { from: string }
+    title: string
+    description: string
+    platformUrl: string
+    webUrl: string
+    desktopUrl: string
+    dubProjectSlug: string
+    mfaIssuer: string
+    uptimeUrl: string
+    mainNav: NavItem[]
+    links: Links
+    supportEmail: string
+    helpUrl: string
+    intercomAppId: string
+    payments: Payments
+    billings: Billings
+    metadata: Metadata
+    viewport: Viewport
+    pricing: PricingPlan[]
+    financialEngine: FinancialEngineConfig
+    termsAndConditionsUrl: string
+    privacyPolicyUrl: string
+    documentationUrl: string
+}
 
-export type {
-  Billings,
-  Links,
-  NavItem,
-  OpenGraphMetadata,
-  Payments,
-  PricingPlan,
-  SiteConfig,
-  SiteMetadata,
-  TwitterMetadata,
-  Viewport,
-};
+export type { Billings, Links, NavItem, OpenGraphMetadata, Payments, PricingPlan, SiteConfig, SiteMetadata, TwitterMetadata, Viewport }

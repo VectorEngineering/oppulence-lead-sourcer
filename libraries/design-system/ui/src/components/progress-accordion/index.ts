@@ -1,1 +1,1 @@
-export * from "./progress-accordion"
+export * from './progress-accordion'

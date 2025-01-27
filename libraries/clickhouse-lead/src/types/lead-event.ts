@@ -1,9 +1,9 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Utility schema types for commonly used patterns
-const LowCardinalityString = z.string();
-const DateTimeString = z.string(); // ISO DateTime string
-const UnixTimestamp = z.number().int();
+const LowCardinalityString = z.string()
+const DateTimeString = z.string() // ISO DateTime string
+const UnixTimestamp = z.number().int()
 
 // Lead Events Schema
 export const LeadEventSchema = z.object({
@@ -195,9 +195,18 @@ export const LeadEventSchema = z.object({
     deletion_time: DateTimeString.nullable(),
 
     // Extended Attributes
-    metadata: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
-    custom_attributes: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
-    integration_data: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
+    metadata: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
+    custom_attributes: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
+    integration_data: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
 
     // Technical Infrastructure
     tech_stack: z.array(z.string()),
@@ -229,7 +238,7 @@ export const LeadEventSchema = z.object({
     support_ticket_severity_trend: z.number().int().min(-100).max(100),
     nps_score: z.number().int().min(-100).max(100),
     churn_risk_indicators: z.array(z.string())
-});
+})
 
 // Export the type
-export type LeadEvent = z.infer<typeof LeadEventSchema>;
+export type LeadEvent = z.infer<typeof LeadEventSchema>

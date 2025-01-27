@@ -1,4 +1,3 @@
-
 # ClickHouse Table Naming Conventions
 
 This document outlines the naming conventions for tables and materialized views in our ClickHouse setup. Adhering to these conventions ensures consistency, clarity, and ease of management across our data infrastructure.
@@ -15,37 +14,39 @@ Format: `[prefix]_[domain]_[description]_[version]`
 
 ### Prefixes
 
-- `raw_`: Input data tables
-- `tmp_{yourname}_`: Temporary tables for experiments, add your name, so it's easy to identify ownership.
+-   `raw_`: Input data tables
+-   `tmp_{yourname}_`: Temporary tables for experiments, add your name, so it's easy to identify ownership.
 
 ### Domain/Category
 
 Include the domain or category of the data when applicable.
 
 Examples:
-- `keys`
-- `audit`
-- `user`
-- `gateway`
+
+-   `keys`
+-   `audit`
+-   `user`
+-   `gateway`
 
 ### Versioning
 
-- Version numbers: `_v1`, `_v2`, etc.
+-   Version numbers: `_v1`, `_v2`, etc.
 
 ### Aggregation Suffixes
 
 For aggregated or summary tables, use suffixes like:
-- `_per_day`
-- `_per_month`
-- `_summary`
+
+-   `_per_day`
+-   `_per_month`
+-   `_summary`
 
 ## Materialized View Naming Convention
 
 Format: `[description]_[aggregation]_mv_[version]`
 
-- Always suffix with `mv_[version]`
-- Include a description of the view's purpose
-- Add aggregation level if applicable
+-   Always suffix with `mv_[version]`
+-   Include a description of the view's purpose
+-   Add aggregation level if applicable
 
 ## Examples
 
@@ -65,8 +66,8 @@ Format: `[description]_[aggregation]_mv_[version]`
 
 Maintain consistent naming across related tables, views, and other objects:
 
-- `raw_user_activity_v1`
-- `user_activity_per_day_v1`
-- `user_activity_per_day_mv_v1`
+-   `raw_user_activity_v1`
+-   `user_activity_per_day_v1`
+-   `user_activity_per_day_mv_v1`
 
 By following these conventions, we ensure a clear, consistent, and scalable naming structure for our ClickHouse setup.

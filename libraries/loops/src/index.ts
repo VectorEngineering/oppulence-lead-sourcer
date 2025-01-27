@@ -6,7 +6,7 @@
 /**
  * Re-exports all functionality from the Loops client implementation
  * @see {@link ./loops.ts}
- * 
+ *
  * Available functions:
  * - createContact: Create a new contact in Loops
  * - deleteContact: Delete an existing contact
@@ -21,12 +21,12 @@
  * - subscribeToNewsletter: Subscribe users to newsletters
  * - unsubscribeFromNewsletter: Handle newsletter unsubscriptions
  */
-export * from "./loops";
+export * from './loops'
 
 /**
  * Re-exports all types, enums, and error classes
  * @see {@link ./types.ts}
- * 
+ *
  * Available types:
  * - Contact: Contact record type
  * - MailingList: Mailing list type
@@ -34,19 +34,18 @@ export * from "./loops";
  * - EmailTemplate: Email template enum
  * - LoopsError: Base error class
  * - ConfigurationError: Configuration error class
- * 
+ *
  * @example
  * ```typescript
- * import { 
- *   createContact, 
- *   UserState, 
- *   EmailTemplate, 
- *   type Contact 
+ * import {
+ *   createContact,
+ *   UserState,
+ *   EmailTemplate,
+ *   type Contact
  * } from '@playbookmedia/loops';
- * 
+ *
  * // Create a new contact
  * const contact = await createContact('user@example.com', 'John', { lastName: 'Doe' });
  * ```
  */
-export * from "./types";
-
+export * from './types'

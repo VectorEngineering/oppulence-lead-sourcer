@@ -20,9 +20,9 @@ npm install @playbookmedia/api
 2.  Use the root key to initialize the client:
 
 ```ts
-import { SolomonAI } from "@playbookmedia/api";
+import { SolomonAI } from '@playbookmedia/api'
 
-const solomonai = new SolomonAI({ rootKey: "<SOLOMONAI_ROOT_KEY>" });
+const solomonai = new SolomonAI({ rootKey: '<SOLOMONAI_ROOT_KEY>' })
 ```
 
 **Important:** Always keep your root key safe and reset it if you suspect it has been compromised.
@@ -32,24 +32,24 @@ const solomonai = new SolomonAI({ rootKey: "<SOLOMONAI_ROOT_KEY>" });
 ### Verifying a Key
 
 ```ts
-import { verifyKey } from "@playbookmedia/api";
+import { verifyKey } from '@playbookmedia/api'
 
-const { result, error } = await verifyKey("key_123");
+const { result, error } = await verifyKey('key_123')
 
 if (error) {
-  console.error(error.message);
-  // Handle potential network or bad request error
-  // A link to our docs will be in the `error.docs` field
-  return;
+    console.error(error.message)
+    // Handle potential network or bad request error
+    // A link to our docs will be in the `error.docs` field
+    return
 }
 
 if (!result.valid) {
-  // Do not grant access
-  return;
+    // Do not grant access
+    return
 }
 
 // Process request
-console.log(result);
+console.log(result)
 ```
 
 ## Response Format
@@ -60,7 +60,7 @@ All methods return either an `error` or a `result` field, never both and never n
 
 ```ts
 {
-  result: T; // The result depends on what method you called
+    result: T // The result depends on what method you called
 }
 ```
 
@@ -68,10 +68,10 @@ All methods return either an `error` or a `result` field, never both and never n
 
 ```ts
 {
-  error: {
-    message: string;
-    docs: string; // URL to relevant documentation
-  }
+    error: {
+        message: string
+        docs: string // URL to relevant documentation
+    }
 }
 ```
 
@@ -83,9 +83,9 @@ You can customize the base URL for all requests:
 
 ```ts
 const solomonai = new SolomonAI({
-  rootKey: "<SOLOMONAI_ROOT_KEY>",
-  baseUrl: "https://my.domain",
-});
+    rootKey: '<SOLOMONAI_ROOT_KEY>',
+    baseUrl: 'https://my.domain'
+})
 ```
 
 ### Retries
@@ -94,12 +94,12 @@ Configure retry behavior for network errors:
 
 ```ts
 const solomonai = new SolomonAI({
-  rootKey: "<SOLOMONAI_ROOT_KEY>",
-  retry: {
-    attempts: 3,
-    backoff: (retryCount) => retryCount * 1000,
-  },
-});
+    rootKey: '<SOLOMONAI_ROOT_KEY>',
+    retry: {
+        attempts: 3,
+        backoff: (retryCount) => retryCount * 1000
+    }
+})
 ```
 
 ### Disable Telemetry
@@ -108,7 +108,7 @@ To opt out of anonymous telemetry data collection:
 
 ```ts
 const solomonai = new SolomonAI({
-  rootKey: "<SOLOMONAI_ROOT_KEY>",
-  disableTelemetry: true,
-});
+    rootKey: '<SOLOMONAI_ROOT_KEY>',
+    disableTelemetry: true
+})
 ```

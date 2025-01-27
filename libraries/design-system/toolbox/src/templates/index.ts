@@ -1,1 +1,1 @@
-export * from "./icon-templates"
+export * from './icon-templates'

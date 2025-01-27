@@ -152,7 +152,7 @@ export class OpenTelemetry implements IMetricsProvider {
     async incrementCounter(counter: string, payload: any): Promise<void> {
         // Increment OpenTelemetry counter with the payload
         if (this.counters.has(counter)) {
-            ; (this.counters.get(counter) as Counter<Attributes>).add(1, payload)
+            ;(this.counters.get(counter) as Counter<Attributes>).add(1, payload)
         }
     }
 }

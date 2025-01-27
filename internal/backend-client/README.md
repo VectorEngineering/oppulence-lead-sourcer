@@ -4,11 +4,11 @@ This package provides a robust and flexible client for interacting with backend 
 
 ## Features
 
-- Configurable API service with support for multiple endpoints
-- Token-based authentication
-- Middleware support for request/response manipulation
-- Error handling and logging
-- TypeScript support
+-   Configurable API service with support for multiple endpoints
+-   Token-based authentication
+-   Middleware support for request/response manipulation
+-   Error handling and logging
+-   TypeScript support
 
 ## Installation
 
@@ -31,9 +31,9 @@ import { ApiServiceFactory } from '@internal/backend-client/client'
 const apiService = ApiServiceFactory.getInstance()
 // Or initialize with custom configuration
 const customConfig = {
-  apiUrl: 'https://api.example.com',
-  token: 'your-auth-token',
-  timeout: 5000,
+    apiUrl: 'https://api.example.com',
+    token: 'your-auth-token',
+    timeout: 5000
 }
 ApiServiceFactory.initialize(customConfig)
 ```
@@ -60,15 +60,15 @@ const currentToken = apiService.getToken()
 import { Middleware } from 'client-typescript-sdk'
 
 const customMiddleware: Middleware = {
-  pre: async (context) => {
-    // Modify request before sending
-  },
-  post: async (context) => {
-    // Process response after receiving
-  },
-  onError: async (context) => {
-    // Handle errors
-  },
+    pre: async (context) => {
+        // Modify request before sending
+    },
+    post: async (context) => {
+        // Process response after receiving
+    },
+    onError: async (context) => {
+        // Handle errors
+    }
 }
 ApiServiceFactory.addMiddleware(customMiddleware)
 ```
@@ -77,20 +77,20 @@ ApiServiceFactory.addMiddleware(customMiddleware)
 
 The API client can be configured using environment variables:
 
-- `API_URL`: The base URL for the API
-- `API_TOKEN`: Authentication token
-- `API_TIMEOUT`: Request timeout in milliseconds
-- `API_KEY`: API key for authentication
+-   `API_URL`: The base URL for the API
+-   `API_TOKEN`: Authentication token
+-   `API_TIMEOUT`: Request timeout in milliseconds
+-   `API_KEY`: API key for authentication
 
 ## Development
 
 ### Scripts
 
-- `npm run clean`: Remove build artifacts and node_modules
-- `npm run format`: Format code using Biome
-- `npm run lint`: Lint code using Biome
-- `npm run test`: Run tests using Jest
-- `npm run typecheck`: Run TypeScript type checking
+-   `npm run clean`: Remove build artifacts and node_modules
+-   `npm run format`: Format code using Biome
+-   `npm run lint`: Lint code using Biome
+-   `npm run test`: Run tests using Jest
+-   `npm run typecheck`: Run TypeScript type checking
 
 ### Testing
 

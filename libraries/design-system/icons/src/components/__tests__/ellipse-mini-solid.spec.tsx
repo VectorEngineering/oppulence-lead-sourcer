@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import EllipseMiniSolid from "../ellipse-mini-solid"
+import EllipseMiniSolid from '../ellipse-mini-solid'
 
-  describe("EllipseMiniSolid", () => {
-    it("should render the icon without errors", async () => {
-      render(<EllipseMiniSolid data-testid="icon" />)
+describe('EllipseMiniSolid', () => {
+    it('should render the icon without errors', async () => {
+        render(<EllipseMiniSolid data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

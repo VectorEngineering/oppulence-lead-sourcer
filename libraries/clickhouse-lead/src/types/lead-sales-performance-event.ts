@@ -1,9 +1,9 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 // Utility schema types
-const LowCardinalityString = z.string();
-const DateTimeString = z.string(); // ISO DateTime string
-const DateString = z.string(); // ISO Date string
+const LowCardinalityString = z.string()
+const DateTimeString = z.string() // ISO DateTime string
+const DateString = z.string() // ISO Date string
 
 // Sales Performance Schema
 export const SalesPerformanceSchema = z.object({
@@ -100,7 +100,10 @@ export const SalesPerformanceSchema = z.object({
 
     time_allocation: z.record(z.string(), z.number().int().nonnegative()),
     productivity_score: z.number().int().min(0).max(100),
-    work_pattern_analysis: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
+    work_pattern_analysis: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
 
     // Quality & Compliance
     forecast_accuracy: z.number().min(0).max(1),
@@ -141,9 +144,12 @@ export const SalesPerformanceSchema = z.object({
 
     // Extended Analytics
     custom_metrics: z.record(z.string(), z.number()),
-    metadata: z.string().transform((str) => JSON.parse(str)).pipe(z.record(z.unknown())),
+    metadata: z
+        .string()
+        .transform((str) => JSON.parse(str))
+        .pipe(z.record(z.unknown())),
     analysis_notes: z.array(z.string())
-});
+})
 
 // Type inference
-export type SalesPerformance = z.infer<typeof SalesPerformanceSchema>;
+export type SalesPerformance = z.infer<typeof SalesPerformanceSchema>

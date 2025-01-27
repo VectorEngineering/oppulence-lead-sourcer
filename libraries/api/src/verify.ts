@@ -1,4 +1,4 @@
-import { SolomonAI } from "./client";
+import { SolomonAI } from './client'
 
 /**
  * Verify a key
@@ -22,9 +22,8 @@ import { SolomonAI } from "./client";
  * ```
  */
 export function verifyKey(req: string | { key: string; apiId: string }) {
-  // yes this is empty to make typescript happy but we don't need a token for verifying keys
-  // it's not the cleanest but it works for now :)
-  const kmgr = new SolomonAI({ rootKey: "public" });
-  return kmgr.keys.verify(typeof req === "string" ? { key: req } : req);
+    // yes this is empty to make typescript happy but we don't need a token for verifying keys
+    // it's not the cleanest but it works for now :)
+    const kmgr = new SolomonAI({ rootKey: 'public' })
+    return kmgr.keys.verify(typeof req === 'string' ? { key: req } : req)
 }
-

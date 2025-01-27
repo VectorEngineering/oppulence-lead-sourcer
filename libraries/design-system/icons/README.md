@@ -44,5 +44,5 @@ pnpm add @playbookmedia/icons
 ## Usage
 
 ```jsx
-import { Star } from "@playbookmedia/icons"
+import { Star } from '@playbookmedia/icons'
 ```

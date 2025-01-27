@@ -383,7 +383,7 @@ class Qdrant_VectorStores implements INode {
                 if (recordManager) {
                     const vectorStoreName = collectionName
                     await recordManager.createSchema()
-                        ; (recordManager as any).namespace = (recordManager as any).namespace + '_' + vectorStoreName
+                    ;(recordManager as any).namespace = (recordManager as any).namespace + '_' + vectorStoreName
                     const keys: string[] = await recordManager.listKeys({})
 
                     await vectorStore.delete({ ids: keys })
@@ -455,9 +455,7 @@ class Qdrant_VectorStores implements INode {
         }
         if (isFileUploadEnabled && options.chatId) {
             const filter = {
-                should: Array.isArray(retrieverConfig.filter?.should)
-                    ? [...retrieverConfig.filter.should]
-                    : []
+                should: Array.isArray(retrieverConfig.filter?.should) ? [...retrieverConfig.filter.should] : []
             }
 
             filter.should.push(
@@ -483,9 +481,9 @@ class Qdrant_VectorStores implements INode {
             const retriever = vectorStore.asRetriever(retrieverConfig)
             return retriever
         } else if (output === 'vectorStore') {
-            ; (vectorStore as any).k = k
+            ;(vectorStore as any).k = k
             if (queryFilter) {
-                ; (vectorStore as any).filter = retrieverConfig.filter
+                ;(vectorStore as any).filter = retrieverConfig.filter
             }
             return vectorStore
         }

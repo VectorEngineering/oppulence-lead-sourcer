@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import TagSolid from "../tag-solid"
+import TagSolid from '../tag-solid'
 
-  describe("TagSolid", () => {
-    it("should render the icon without errors", async () => {
-      render(<TagSolid data-testid="icon" />)
+describe('TagSolid', () => {
+    it('should render the icon without errors', async () => {
+        render(<TagSolid data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})

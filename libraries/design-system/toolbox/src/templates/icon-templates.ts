@@ -1,8 +1,5 @@
-export const defaultTemplate = (
-  { jsx, componentName }: { jsx: any; componentName: string },
-  { tpl }: { tpl: any }
-) => {
-  return tpl`
+export const defaultTemplate = ({ jsx, componentName }: { jsx: any; componentName: string }, { tpl }: { tpl: any }) => {
+    return tpl`
   import * as React from "react"
 
   import type { IconProps } from "../types"
@@ -18,11 +15,8 @@ export const defaultTemplate = (
   `
 }
 
-export const fixedTemplate = (
-  { jsx, componentName }: { jsx: any; componentName: string },
-  { tpl }: { tpl: any }
-) => {
-  return tpl`
+export const fixedTemplate = ({ jsx, componentName }: { jsx: any; componentName: string }, { tpl }: { tpl: any }) => {
+    return tpl`
   import * as React from "react"
 
   import type { IconProps } from "../types"

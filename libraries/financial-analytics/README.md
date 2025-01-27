@@ -42,48 +42,48 @@ console.log('Top 5 Revenue Segments:', topSegments);
 
 ### Constructor
 
-- `constructor(transactions: PlaidAccountTransaction[])`
+-   `constructor(transactions: PlaidAccountTransaction[])`
 
 ### Public Methods
 
-- `getMonthlyARR(): number`
+-   `getMonthlyARR(): number`
 
-  - Calculates the Monthly Annual Recurring Revenue.
+    -   Calculates the Monthly Annual Recurring Revenue.
 
-- `getYearlyARR(): number`
+-   `getYearlyARR(): number`
 
-  - Calculates the Yearly Annual Recurring Revenue.
+    -   Calculates the Yearly Annual Recurring Revenue.
 
-- `getIncomeGrowthRate(startDate: Date, endDate: Date): number`
+-   `getIncomeGrowthRate(startDate: Date, endDate: Date): number`
 
-  - Calculates the income growth rate between two dates.
+    -   Calculates the income growth rate between two dates.
 
-- `getARRBreakdownBySegment(): Record<string, number>`
+-   `getARRBreakdownBySegment(): Record<string, number>`
 
-  - Provides a breakdown of ARR by business segment.
+    -   Provides a breakdown of ARR by business segment.
 
-- `getARRBreakdownByPaymentChannel(): Record<string, number>`
+-   `getARRBreakdownByPaymentChannel(): Record<string, number>`
 
-  - Provides a breakdown of ARR by payment channel.
+    -   Provides a breakdown of ARR by payment channel.
 
-- `getARRBreakdownByTransactionType(): Record<string, number>`
+-   `getARRBreakdownByTransactionType(): Record<string, number>`
 
-  - Provides a breakdown of ARR by transaction type.
+    -   Provides a breakdown of ARR by transaction type.
 
-- `getTopRevenueTransactions(limit: number): PlaidAccountTransaction[]`
+-   `getTopRevenueTransactions(limit: number): PlaidAccountTransaction[]`
 
-  - Returns the top revenue-generating transactions.
+    -   Returns the top revenue-generating transactions.
 
-- `getTopRevenueSegments(limit: number): Record<string, number>`
+-   `getTopRevenueSegments(limit: number): Record<string, number>`
 
-  - Returns the top revenue-generating business segments.
+    -   Returns the top revenue-generating business segments.
 
-- `getTopRevenuePaymentChannels(limit: number): Record<string, number>`
+-   `getTopRevenuePaymentChannels(limit: number): Record<string, number>`
 
-  - Returns the top revenue-generating payment channels.
+    -   Returns the top revenue-generating payment channels.
 
-- `getTopRevenueTransactionTypes(limit: number): Record<string, number>`
-  - Returns the top revenue-generating transaction types.
+-   `getTopRevenueTransactionTypes(limit: number): Record<string, number>`
+    -   Returns the top revenue-generating transaction types.
 
 ## Development
 
@@ -91,35 +91,35 @@ This project is developed using TypeScript. To set up the development environmen
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-org/financial-analysis.git
-   cd financial-analysis
-   ```
+    ```bash
+    git clone https://github.com/your-org/financial-analysis.git
+    cd financial-analysis
+    ```
 
 2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    npm install
+    ```
 
 3. To compile the TypeScript files:
 
-   ```bash
-   npm run build
-   ```
+    ```bash
+    npm run build
+    ```
 
 4. To run tests:
-   ```bash
-   npm test
-   ```
+    ```bash
+    npm test
+    ```
 
 ### TypeScript Configuration
 
 The project uses a `tsconfig.json` file for TypeScript configuration. Key settings include:
 
-- Strict type checking
-- ES6 module system
-- Targeting ES2018
+-   Strict type checking
+-   ES6 module system
+-   Targeting ES2018
 
 For full details, refer to the `tsconfig.json` file in the project root.
 

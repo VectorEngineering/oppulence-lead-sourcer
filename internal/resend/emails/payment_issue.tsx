@@ -1,15 +1,15 @@
-'use client';
-import { Button } from '@react-email/button';
-import { Heading } from '@react-email/heading';
-import { Hr } from '@react-email/hr';
-import { Link } from '@react-email/link';
-import { Section } from '@react-email/section';
-import { Text } from '@react-email/text';
+'use client'
+import { Button } from '@react-email/button'
+import { Heading } from '@react-email/heading'
+import { Hr } from '@react-email/hr'
+import { Link } from '@react-email/link'
+import { Section } from '@react-email/section'
+import { Text } from '@react-email/text'
 // biome-ignore lint/correctness/noUnusedImports: react-email needs this imported
-import * as React from 'react';
-import CONSTANTS from '../constants/constants';
-import { Layout } from '../src/components/layout';
-import { Signature } from '../src/components/signature';
+import * as React from 'react'
+import CONSTANTS from '../constants/constants'
+import { Layout } from '../src/components/layout'
+import { Signature } from '../src/components/signature'
 
 /**
  * Props interface for the PaymentIssue email template
@@ -18,9 +18,9 @@ import { Signature } from '../src/components/signature';
  * @property {string} date - The date when the payment issue occurred (formatted as a string)
  */
 export type Props = {
-  username: string;
-  date: string;
-};
+    username: string
+    date: string
+}
 
 /**
  * PaymentIssue email template component
@@ -46,38 +46,30 @@ export type Props = {
  * ```
  */
 export function PaymentIssue({ username, date }: Props) {
-  return (
-    <Layout>
-      <Heading className="font-sans text-3xl text-semibold text-center">
-        {CONSTANTS.TEXT.HEADING}
-      </Heading>
-      <Text>Hey {username},</Text>
-      <Text>
-        We had trouble processing your payment on {date}. Please update your
-        payment information below to prevent your account from being downgraded.
-      </Text>
+    return (
+        <Layout>
+            <Heading className='font-sans text-3xl text-semibold text-center'>{CONSTANTS.TEXT.HEADING}</Heading>
+            <Text>Hey {username},</Text>
+            <Text>
+                We had trouble processing your payment on {date}. Please update your payment information below to prevent your account from
+                being downgraded.
+            </Text>
 
-      <Section className="text-center py-3">
-        <Button
-          href={CONSTANTS.URLS.BILLING}
-          className="bg-gray-900 text-gray-50 rounded-lg p-3 w-2/3"
-        >
-          {CONSTANTS.TEXT.BUTTON}
-        </Button>
-      </Section>
+            <Section className='text-center py-3'>
+                <Button href={CONSTANTS.URLS.BILLING} className='bg-gray-900 text-gray-50 rounded-lg p-3 w-2/3'>
+                    {CONSTANTS.TEXT.BUTTON}
+                </Button>
+            </Section>
 
-      <Hr />
-      <Text>
-        {CONSTANTS.TEXT.SUPPORT_MESSAGE}{' '}
-        <Link href={`mailto:${CONSTANTS.URLS.SUPPORT_EMAIL}`}>
-          {CONSTANTS.URLS.SUPPORT_EMAIL}
-        </Link>{' '}
-        {CONSTANTS.TEXT.OR_REPLY}
-      </Text>
+            <Hr />
+            <Text>
+                {CONSTANTS.TEXT.SUPPORT_MESSAGE} <Link href={`mailto:${CONSTANTS.URLS.SUPPORT_EMAIL}`}>{CONSTANTS.URLS.SUPPORT_EMAIL}</Link>{' '}
+                {CONSTANTS.TEXT.OR_REPLY}
+            </Text>
 
-      <Signature signedBy={CONSTANTS.SIGNATURE.NAME} />
-    </Layout>
-  );
+            <Signature signedBy={CONSTANTS.SIGNATURE.NAME} />
+        </Layout>
+    )
 }
 
 /**
@@ -89,8 +81,8 @@ export function PaymentIssue({ username, date }: Props) {
  * ```
  */
 PaymentIssue.PreviewProps = {
-  username: 'Mr. Yoan Yomba',
-  date: 'Tue Dec 10 2024', // Date().toDateString
-} satisfies Props;
+    username: 'Mr. Yoan Yomba',
+    date: 'Tue Dec 10 2024' // Date().toDateString
+} satisfies Props
 
-export default PaymentIssue;
+export default PaymentIssue

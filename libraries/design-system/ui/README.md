@@ -42,9 +42,9 @@ ppnpm add @playbookmedia/ui
 ### Usage
 
 ```jsx
-import { Button } from "@playbookmedia/ui"
+import { Button } from '@playbookmedia/ui'
 
-const App = () => <Button variant="primary">Hello World</Button>
+const App = () => <Button variant='primary'>Hello World</Button>
 ```
 
 ## Documentation

@@ -1,17 +1,16 @@
-  import * as React from "react"
-  import { cleanup, render, screen } from "@testing-library/react"
+import * as React from 'react'
+import { cleanup, render, screen } from '@testing-library/react'
 
-  import Gatsby from "../gatsby"
+import Gatsby from '../gatsby'
 
-  describe("Gatsby", () => {
-    it("should render the icon without errors", async () => {
-      render(<Gatsby data-testid="icon" />)
+describe('Gatsby', () => {
+    it('should render the icon without errors', async () => {
+        render(<Gatsby data-testid='icon' />)
 
+        const svgElement = screen.getByTestId('icon')
 
-      const svgElement = screen.getByTestId("icon")
+        expect(svgElement).toBeInTheDocument()
 
-      expect(svgElement).toBeInTheDocument()
-
-      cleanup()
+        cleanup()
     })
-  })
+})
