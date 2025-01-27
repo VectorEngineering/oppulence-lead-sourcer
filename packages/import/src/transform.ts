@@ -4,9 +4,9 @@
 
 import { formatAmountValue, formatDate } from './utils'
 
+import type { Transaction } from './types'
 import { capitalCase } from 'change-case'
 import { v4 as uuidv4 } from 'uuid'
-import type { Transaction } from './types'
 
 /**
  * Transforms a raw transaction into the validated internal format
@@ -14,6 +14,8 @@ import type { Transaction } from './types'
  * @param options - Transform options
  * @param options.transaction - Raw transaction data to transform
  * @param options.inverted - Whether to invert the transaction amount (useful for different accounting perspectives)
+ * @param options.dateAdjustment - Optional date adjustment in days
+ * @param options.timezone - Optional timezone
  *
  * @returns Transformed transaction object ready for validation
  *
@@ -41,7 +43,17 @@ import type { Transaction } from './types'
  * });
  * ```
  */
-export function transform({ transaction, inverted }: { transaction: Transaction; inverted: boolean }) {
+export function transform({
+    transaction,
+    inverted,
+    dateAdjustment,
+    timezone
+}: {
+    transaction: Transaction;
+    inverted: boolean;
+    dateAdjustment?: number;
+    timezone?: string;
+}) {
     return {
         internal_id: `${transaction.workspaceId}_${uuidv4()}`,
         workspace_id: transaction.workspaceId,

@@ -1,7 +1,9 @@
-import { describe, expect, it, mock } from 'bun:test'
-import { transform } from './transform'
-import type { Transaction } from './types'
 import * as uuid from 'uuid'
+
+import { describe, expect, it, mock } from 'bun:test'
+
+import type { Transaction } from './types'
+import { transform } from './transform'
 
 // Mock uuid using Bun's mocking system
 mock.module('uuid', () => ({
@@ -13,7 +15,7 @@ describe('transform', () => {
         date: '2024-03-15T12:00:00Z',
         description: 'Test Transaction',
         amount: '1234.56',
-        teamId: 'team_123',
+        workspaceId: 'team_123',
         bankAccountId: 'account_456',
         currency: 'USD'
     }
@@ -29,7 +31,7 @@ describe('transform', () => {
 
         expect(result).toEqual({
             internal_id: 'team_123_mocked-uuid',
-            team_id: 'team_123',
+            workspace_id: 'team_123',
             status: 'posted',
             method: 'other',
             date: '2024-03-15',
@@ -38,7 +40,8 @@ describe('transform', () => {
             manual: true,
             category_slug: 'income',
             bank_account_id: 'account_456',
-            currency: 'USD'
+            currency: 'USD',
+            notified: false
         })
     })
 
