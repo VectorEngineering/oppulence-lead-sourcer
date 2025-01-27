@@ -4,7 +4,7 @@
         "experimentalDecorators": true /* Enable experimental support for TC39 stage 2 draft decorators. */,
         "emitDecoratorMetadata": true /* Emit design-type metadata for decorated declarations in source files. */,
         "target": "ES2020", // or higher
-        "outDir": "../../database/packages/components/dist",
+        "outDir": "./dist/",
         "resolveJsonModule": true,
         "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */,
         "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
@@ -16,6 +16,6 @@
         "declaration": true,
         "module": "commonjs"
     },
-    "include": ["../../database/packages/components/src", "../../database/packages/components/nodes", "../../database/packages/components/credentials"],
-    "exclude": ["../../database/packages/components/gulpfile.ts", "../../database/packages/components/node_modules", "../../database/packages/components/dist"]
+    "include": ["src", "nodes", "credentials"],
+    "exclude": ["gulpfile.ts", "node_modules", "dist"]
 }
