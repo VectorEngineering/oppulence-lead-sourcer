@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex", "driverAdapters", "prismaSchemaFolder", "omitApi"]
+}
+
+generator zod {
+  provider       = "zod-prisma-types"
+  output         = "../generated/zod"
+  useMultipleFiles = true
+  createOptionalDefaultValuesTypes = true
+  writeNullishInModelTypes = true
+}
+
+// Drizzle's planEnum: ["free", "lite", "pro", "business", "enterprise"]
+enum Plan {
+  free
+  lite
+  pro
+  business
+  enterprise
+}
+
+// Drizzle's logTypeEnum: ["success", "error"]
+enum LogType {
+  success
+  error
+}
+
+// Drizzle's logPostTypeEnum: ["http", "form", "webhook", "email"]
+enum LogPostType {
+  http
+  form
+  webhook
+  email
+}
+
+model User {
+  // Drizzle: text("id").primaryKey().notNull()
+  // If you want short IDs, you can set them manually in code or use a default approach.
+  // For simplicity, we mark it as @id with no default. You could also do: @default(uuid()) if you want UUIDs.
+  id               String   @id
+  email            String
+  name             String?
+  firstName        String?
+  lastName         String?
+  imageUrl         String?
+  username         String?
+  profileImageUrl  String?
+  hasImage         Boolean?  @default(false)
+  lastSignInAt     DateTime?
+  lastActiveAt     DateTime?
+  banned           Boolean   @default(false)
+  passwordEnabled  Boolean   @default(false)
+  twoFactorEnabled Boolean   @default(false)
+  publicMetadata   Json?
+  privateMetadata  Json?
+  unsafeMetadata   Json?
+  emailVerified    Boolean   @default(false)
+  leadCount        Int       @default(0)
+  plan             Plan?
+  stripeCustomerId String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @default(now())
+  onboardingComplete Boolean @default(false)
+  companyName      String?
+  role             String?
+  useCase          String?
+
+  // RELATIONS
+  // One user can own many workspaces
+  // Prisma side: workspaces for which this user is owner
+  workspaces       Workspace[]       @relation("WorkspaceOwner")
+  // One user can be in many workspaceMembers
+  workspaceMembers WorkspaceMember[]
+  // One user can have many endpoints
+  endpoints        Endpoint[]
+}
+
+
+

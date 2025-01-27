@@ -1,0 +1,634 @@
+//
+//  ENUMS
+//
+enum LeadPriority {
+  hot
+  warm
+  cold
+}
+
+enum LeadVerificationStatus {
+  unverified
+  pending
+  verified
+  flagged
+  rejected
+}
+
+enum LeadStage {
+  lead
+  qualified
+  negotiation
+  proposal
+  closed_won
+  closed_lost
+  onHold
+}
+
+enum LeadSource {
+  website
+  referral
+  cold_call
+  email_campaign
+  social_media
+  trade_show
+  partner
+  existing_customer
+  other
+}
+
+enum LeadCategoryTag {
+  // Lead Categories
+  lead_new
+  lead_qualified
+  lead_converted
+  // Sales Categories
+  sale_new
+  sale_renewal
+  sale_upgrade
+  sale_cross_sell
+  sale_down_sell
+  // Revenue Categories
+  revenue_subscription
+  revenue_service
+  revenue_product
+  revenue_consulting
+  revenue_training
+  // Follow-up Categories
+  followup_call
+  followup_meeting
+  followup_email
+  followup_demo
+  // Activity Categories
+  activity_meeting
+  activity_call
+  activity_email
+  activity_proposal
+  activity_contract
+  // Pipeline Categories
+  pipeline_early
+  pipeline_mid
+  pipeline_late
+  pipeline_closing
+  // Customer Categories
+  customer_new
+  customer_existing
+  customer_returning
+  customer_churned
+  // Payment Categories
+  payment_initial
+  payment_installment
+  payment_subscription
+  payment_refund
+  // Other Categories
+  other_expense
+  other_adjustment
+  other_miscellaneous
+}
+
+enum TaskStatus {
+  open
+  in_progress
+  completed
+  blocked
+  canceled
+}
+
+enum TaskPriority {
+  low
+  normal
+  high
+  urgent
+}
+
+enum LeadScoringMethod {
+  basic      // Simple point-based scoring
+  weighted   // Weighted criteria scoring
+  predictive // ML/AI-based scoring
+  custom     // Custom scoring logic
+}
+
+enum LeadRoutingStrategy {
+  round_robin    // Distribute leads evenly
+  load_balanced  // Based on current workload
+  territory      // Based on geographic territory
+  skill_based    // Based on agent expertise
+  manual         // Manual assignment only
+}
+
+//
+//  MODELS
+//
+model Lead {
+  id                String                 @id @default(cuid())
+  // Basic Lead Info
+  name              String
+  description       String?                @db.Text
+  note              String?                @db.Text
+  internalNotes     String?                @db.Text
+  reference         String?                // Deal/Opportunity reference number
+  // Amount Information
+  amount            Float                  // Deal/Opportunity value
+  probability       Float?                 // Win probability percentage
+  weightedAmount    Float?                 // amount * probability
+  actualAmount      Float?                 // Final closed amount
+  // Lead Pipeline & Status
+  leadSource        LeadSource             @default(website)
+  stage             LeadStage              @default(lead)
+  verificationStatus LeadVerificationStatus @default(unverified)
+  priority          LeadPriority           @default(warm)
+  categoryTag       LeadCategoryTag?       // Optional: keep lightweight categorization if desired
+  categories        LeadCategory[] 
+  // Sales/Activity Dates
+  closeDate         DateTime?              // Expected/Actual close date
+  nextFollowUp      DateTime?
+  lastContactDate   DateTime?
+  // Contact Details
+  contactName       String?
+  contactEmail      String?
+  contactPhone      String?
+  contactTitle      String?
+  company           String?
+  industry          String?
+  // Pipeline Management
+  pipelineStage     String?
+  salesRep          String?
+  territory         String?
+  winReason         String?
+  lossReason        String?
+  // Dates and Timing
+  date              DateTime               // Creation date (business date)
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+  archivedAt        DateTime?              // Soft-delete or archive
+  convertedAt       DateTime?              // When lead converted to an opportunity
+  qualifiedAt       DateTime?              // When lead was qualified
+  closedAt          DateTime?              // When deal was closed
+  // Activity Tracking
+  lastActivity      String?
+  nextAction        String?
+  followUpStatus    String?
+  engagementScore   Float?                 // Lead engagement metric
+  // Ownership & Audit
+  assignedId        String?
+  assignedTo        User?                  @relation(fields: [assignedId], references: [id])
+  createdBy         String?                // store user ID
+  updatedBy         String?                // store user ID
+  // Project Relation
+  projectId         String
+  project           Project                @relation(fields: [projectId], references: [id])
+  // Extended Relations
+  attachments       Document[]
+  tags              Tag[]
+  comments          LeadComment[]
+  history           LeadHistory[]
+  // Enhanced Contact Details
+  contactPreferences LeadContactPreference[]
+  socialProfiles     LeadSocialProfile[]
+  communications     LeadCommunication[]
+  decisionMakers     LeadDecisionMaker[]
+  requirements       LeadRequirement[]
+  timelines          LeadTimeline[]
+  competitors        LeadCompetitor[]
+  risks              LeadRisk[]
+  touchpoints        LeadTouchpoint[]
+  consents           LeadConsent[]
+  externalSystems    LeadExternalSystem[]
+  // Compliance and GDPR
+  dataConsent       Boolean                @default(false)
+  dataRetention     DateTime?              // When to delete/anonymize data
+  // Integration Fields
+  externalId       String?                  // IDs in external systems
+  syncStatus        String?                  // Integration sync status
+  lastSyncedAt      DateTime?
+  // Indexes
+  @@index([assignedId])
+  @@index([projectId])
+  @@index([date])
+  @@index([stage])
+  @@index([leadSource])
+  leadTasks LeadTask[]
+  // Company Details
+  companyDetails    LeadCompanyDetails?
+  personalDetails   LeadPersonalDetails?
+  metadata          LeadMetadata[]
+  labels            LeadLabel[]
+  // Deal Relation
+  deals             Deal[]
+  LeadScore LeadScore[]
+  Campaign Campaign[]
+  LeadProductFit LeadProductFit[]
+  LeadBudget LeadBudget[]
+  LeadSegmentation LeadSegmentation[]
+  LeadFeedback LeadFeedback[]
+  LeadNurturing LeadNurturing[]
+  LeadComplianceAudit LeadComplianceAudit[]
+  LeadCompetitiveAnalysis LeadCompetitiveAnalysis[]
+}
+
+model LeadComment {
+  id            String    @id @default(cuid())
+  leadId        String
+  content       String    @db.Text
+  type          String?   // Comment type (e.g., internal, review)
+  visibility    String?   // Public/Private
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  createdBy     String?   // user ID
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+model LeadHistory {
+  id            String    @id @default(cuid())
+  leadId        String
+  action        String    // Type of change
+  description   String    @db.Text
+  changes       String?     // What changed
+  metadata      String?     // Additional context
+  createdAt     DateTime  @default(now())
+  createdBy     String?   // user ID
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  // Additional fields
+  changeType    String?   // e.g., "status_change", "amount_update"
+  source        String?   // "user", "system", "integration"
+  ipAddress     String?   // IP address of change
+  userAgent     String?   // User agent of change
+  @@index([leadId])
+}
+
+
+// Contact Preferences
+model LeadContactPreference {
+  id            String    @id @default(cuid())
+  leadId        String
+  method        String    // email, phone, video, in-person
+  preferredTime String    // morning, afternoon, evening
+  preferredDays String    // CSV of days: "Mon,Wed,Fri"
+  timezone      String
+  notes         String?   @db.Text
+  isActive      Boolean   @default(true)
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+enum LeadSocialPlatform {
+  linkedin
+  twitter
+  facebook
+  instagram
+  youtube
+  tiktok
+  other
+}
+
+// Social Profiles
+model LeadSocialProfile {
+  id            String    @id @default(cuid())
+  leadId        String
+  platform      LeadSocialPlatform
+  profileUrl    String
+  username      String?
+  lastSynced    DateTime?
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Communication History
+model LeadCommunication {
+  id            String    @id @default(cuid())
+  leadId        String
+  type          String    // email, call, meeting, etc.
+  direction     String    // inbound, outbound
+  subject       String?
+  content       String    @db.Text
+  outcome       String?
+  duration      Int?      // in minutes
+  scheduledAt   DateTime?
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Decision Makers
+model LeadDecisionMaker {
+  id            String    @id @default(cuid())
+  leadId        String
+  name          String
+  title         String?
+  email         String?
+  phone         String?
+  influence     String    // primary, influencer, technical, financial
+  notes         String?   @db.Text
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Requirements
+model LeadRequirement {
+  id            String    @id @default(cuid())
+  leadId        String
+  category      String    // technical, business, financial, etc.
+  priority      String    // must-have, nice-to-have, optional
+  description   String    @db.Text
+  status        String    // pending, approved, rejected
+  notes         String?   @db.Text
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Timeline Milestones
+model LeadTimeline {
+  id            String    @id @default(cuid())
+  leadId        String
+  milestone     String
+  targetDate    DateTime
+  actualDate    DateTime?
+  status        String    // pending, completed, delayed
+  notes         String?   @db.Text
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Competitor Analysis
+model LeadCompetitor {
+  id            String    @id @default(cuid())
+  leadId        String
+  name          String
+  strengths     String    @db.Text
+  weaknesses    String    @db.Text
+  pricing       String?
+  differentiator String?  @db.Text
+  status        String    // evaluating, selected, rejected
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Risk Factors
+model LeadRisk {
+  id            String    @id @default(cuid())
+  leadId        String
+  category      String    // technical, financial, operational
+  description   String    @db.Text
+  impact        String    // high, medium, low
+  probability   String    // high, medium, low
+  mitigation    String    @db.Text
+  status        String    // identified, mitigated, accepted
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+// Marketing Touchpoints
+model LeadTouchpoint {
+  id            String    @id @default(cuid())
+  leadId        String
+  channel       String    // email, social, web, event
+  campaign      String?
+  content       String?
+  interaction   String?   // click, view, download
+  timestamp     DateTime
+  isFirstTouch  Boolean
+  isLastTouch   Boolean
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+  Campaign Campaign[]
+}
+
+// Consent Records
+model LeadConsent {
+  id            String    @id @default(cuid())
+  leadId        String
+  type          String    // marketing, data_processing, etc.
+  status        Boolean
+  source        String    // web_form, email, phone
+  ipAddress     String?
+  timestamp     DateTime
+  expiryDate    DateTime?
+  document      String?   // Link to consent document
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@index([leadId])
+}
+
+enum LeadExternalSystemProvider {
+  salesforce
+  hubspot
+  zoho
+  piperun
+  other
+}
+
+// External System Integration
+model LeadExternalSystem {
+  id            String    @id @default(cuid())
+  leadId        String
+  provider      LeadExternalSystemProvider
+  externalId    String
+  lastSynced    DateTime
+  syncStatus    String    // success, failed, pending
+  errorMessage  String?
+  lead          Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  @@unique([leadId, provider])
+  @@index([leadId])
+}
+
+// Task Management: new model for tasks/to-dos assigned to leads
+model LeadTask {
+  id            String       @id @default(cuid())
+  leadId        String
+  title         String
+  description   String?      @db.Text
+  status        TaskStatus   @default(open)
+  priority      TaskPriority @default(normal)
+  dueDate       DateTime?
+  completedAt   DateTime?
+  // Auditing & Ownership
+  assignedToId  String?
+  assignedTo    User?        @relation(fields: [assignedToId], references: [id])
+  createdBy     String?      // user ID
+  updatedBy     String?      // user ID
+  // Relations
+  lead          Lead         @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  @@index([leadId])
+  @@index([assignedToId])
+}
+
+// Company Details
+model LeadCompanyDetails {
+  id                    String    @id @default(cuid())
+  leadId               String    @unique
+  companyName          String
+  industry             String?
+  registrationNumber   String?
+  vatNumber            String?
+  annualRevenue        Float?
+  employeeCount        Int?
+  foundedYear          Int?
+  website              String?
+  linkedinUrl          String?
+  
+  // Address
+  addressLine1         String?
+  addressLine2         String?
+  city                 String?
+  state               String?
+  postalCode          String?
+  country             String?
+  
+  // Additional Details
+  businessType        String?   // LLC, Corporation, etc.
+  stockSymbol         String?   // If publicly traded
+  parentCompany       String?
+  subsidiaries        String?   @db.Text  // Comma-separated list
+  
+  // Market Info
+  marketSegment       String?
+  competitors         String?   @db.Text
+  keyProducts         String?   @db.Text
+  
+  // Financial Info
+  fiscalYearEnd       String?
+  creditRating        String?
+  paymentTerms        String?
+  
+  // Compliance
+  certifications      String?   @db.Text
+  complianceStatus    String?
+  
+  // Timestamps
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  
+  // Relation
+  lead               Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  @@index([leadId])
+}
+
+// Personal Details
+model LeadPersonalDetails {
+  id                String    @id @default(cuid())
+  leadId           String    @unique
+  
+  // Basic Info
+  firstName        String?
+  lastName         String?
+  title            String?
+  department       String?
+  
+  // Contact Info
+  email           String?
+  phoneWork       String?
+  phoneMobile     String?
+  
+  // Professional Info
+  role            String?
+  jobLevel        String?    // C-Level, VP, Manager, etc.
+  yearsInRole     Int?
+  yearsInCompany  Int?
+  
+  // Personal Info
+  birthday        DateTime?
+  gender          String?
+  languages       String?    // Comma-separated list
+  
+  // Address
+  addressLine1    String?
+  addressLine2    String?
+  city            String?
+  state           String?
+  postalCode      String?
+  country         String?
+  
+  // Preferences
+  communicationPreference String?
+  timeZone        String?
+  
+  // Professional Background
+  education       String?   @db.Text
+  certifications  String?   @db.Text
+  skills          String?   @db.Text
+  
+  // Influence
+  decisionMaker   Boolean  @default(false)
+  budgetAuthority Boolean  @default(false)
+  influenceLevel  String?  // High, Medium, Low
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relation
+  lead            Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  @@index([leadId])
+}
+
+// Metadata Table (replacing metadata Json field)
+model LeadMetadata {
+  id              String    @id @default(cuid())
+  leadId          String
+  key             String
+  value           String    @db.Text
+  type            String    // string, number, boolean, date
+  category        String?   // For organizing metadata fields
+  description     String?   @db.Text
+  isSearchable    Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  lead            Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  @@unique([leadId, key])
+  @@index([leadId])
+  @@index([key])
+}
+
+model LeadLabel {
+  id              String    @id @default(cuid())
+  leadId          String
+  name            String
+  color           String?
+  description     String?   @db.Text
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  lead            Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  
+  @@unique([leadId, name])
+  @@index([leadId])
+}
+
+model LeadCategory {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String
+  description   String?   @db.Text
+  color         String?
+  icon          String?
+  parentId      String?   // For hierarchical categories
+  path          String?   // Materialized path
+  level         Int       @default(0)
+  isSystem      Boolean   @default(false)
+  isActive      Boolean   @default(true)
+  metadata      Json?
+  projectId     String
+  // Budget and Analysis
+  budgetLimit   Float?
+  warningThreshold Float?
+  trackingEnabled Boolean @default(true)
+  // Tax Information
+  vatRate       Float?
+  taxCode       String?
+  taxDeductible Boolean @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  // Relations
+  project       Project   @relation(fields: [projectId], references: [id])
+  @@unique([projectId, slug])
+  @@index([projectId])
+  @@index([parentId])
+  leads Lead[]
+}
