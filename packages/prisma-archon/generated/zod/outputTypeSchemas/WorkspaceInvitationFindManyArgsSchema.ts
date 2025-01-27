@@ -5,7 +5,7 @@ import { WorkspaceInvitationWhereInputSchema } from '../inputTypeSchemas/Workspa
 import { WorkspaceInvitationOrderByWithRelationInputSchema } from '../inputTypeSchemas/WorkspaceInvitationOrderByWithRelationInputSchema'
 import { WorkspaceInvitationWhereUniqueInputSchema } from '../inputTypeSchemas/WorkspaceInvitationWhereUniqueInputSchema'
 import { WorkspaceInvitationScalarFieldEnumSchema } from '../inputTypeSchemas/WorkspaceInvitationScalarFieldEnumSchema'
-import { WorkspaceArgsSchema } from "../outputTypeSchemas/WorkspaceArgsSchema"
+import { WorkspaceArgsSchema } from "./WorkspaceArgsSchema"
 // Select schema needs to be in file to prevent circular imports
 //------------------------------------------------------
 

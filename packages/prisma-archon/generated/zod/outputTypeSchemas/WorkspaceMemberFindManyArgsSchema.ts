@@ -5,8 +5,8 @@ import { WorkspaceMemberWhereInputSchema } from '../inputTypeSchemas/WorkspaceMe
 import { WorkspaceMemberOrderByWithRelationInputSchema } from '../inputTypeSchemas/WorkspaceMemberOrderByWithRelationInputSchema'
 import { WorkspaceMemberWhereUniqueInputSchema } from '../inputTypeSchemas/WorkspaceMemberWhereUniqueInputSchema'
 import { WorkspaceMemberScalarFieldEnumSchema } from '../inputTypeSchemas/WorkspaceMemberScalarFieldEnumSchema'
-import { WorkspaceArgsSchema } from "../outputTypeSchemas/WorkspaceArgsSchema"
-import { UserArgsSchema } from "../outputTypeSchemas/UserArgsSchema"
+import { WorkspaceArgsSchema } from "./WorkspaceArgsSchema"
+import { UserArgsSchema } from "./UserArgsSchema"
 // Select schema needs to be in file to prevent circular imports
 //------------------------------------------------------
 
