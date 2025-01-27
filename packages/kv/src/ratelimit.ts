@@ -1,24 +1,24 @@
-import "server-only";
+import 'server-only'
 
-import { Duration, Ratelimit } from "@upstash/ratelimit";
+import { Duration, Ratelimit } from '@upstash/ratelimit'
 
-import { client } from ".";
+import { client } from '.'
 
 /**
  * Configuration options for rate limiting.
  * @interface RateLimitConfig
  */
 export interface RateLimitConfig {
-  /** Maximum number of requests allowed per window */
-  limit: number;
-  /** Time window duration in seconds or formatted string (e.g., "10s", "1m", "1h") */
-  window: Duration;
-  /** Optional prefix for Redis keys to prevent collisions */
-  prefix?: string;
-  /** Optional timeout for Redis operations in milliseconds */
-  timeout?: number;
-  /** Optional flag to enable analytics (counts total requests, blocked requests, etc.) */
-  analytics?: boolean;
+    /** Maximum number of requests allowed per window */
+    limit: number
+    /** Time window duration in seconds or formatted string (e.g., "10s", "1m", "1h") */
+    window: Duration
+    /** Optional prefix for Redis keys to prevent collisions */
+    prefix?: string
+    /** Optional timeout for Redis operations in milliseconds */
+    timeout?: number
+    /** Optional flag to enable analytics (counts total requests, blocked requests, etc.) */
+    analytics?: boolean
 }
 
 /**
@@ -26,14 +26,14 @@ export interface RateLimitConfig {
  * @interface RateLimitResult
  */
 export interface RateLimitResult {
-  /** Whether the request is allowed */
-  success: boolean;
-  /** Number of remaining requests in the current window */
-  remaining: number;
-  /** Unix timestamp (in seconds) when the current window expires */
-  reset: number;
-  /** Total number of requests allowed per window */
-  limit: number;
+    /** Whether the request is allowed */
+    success: boolean
+    /** Number of remaining requests in the current window */
+    remaining: number
+    /** Unix timestamp (in seconds) when the current window expires */
+    reset: number
+    /** Total number of requests allowed per window */
+    limit: number
 }
 
 /**
@@ -41,12 +41,12 @@ export interface RateLimitResult {
  * @const defaultConfig
  */
 const defaultConfig: RateLimitConfig = {
-  limit: 10,
-  window: "10 s",
-  prefix: "ratelimit",
-  timeout: 1000,
-  analytics: false,
-};
+    limit: 10,
+    window: '10 s',
+    prefix: 'ratelimit',
+    timeout: 1000,
+    analytics: false
+}
 
 /**
  * Creates a rate limiter instance with the specified configuration.
@@ -73,18 +73,16 @@ const defaultConfig: RateLimitConfig = {
  *
  * @throws {Error} If Redis client is not properly configured
  */
-export function createRateLimiter(
-  config: Partial<RateLimitConfig> = {},
-): Ratelimit {
-  const finalConfig = { ...defaultConfig, ...config };
+export function createRateLimiter(config: Partial<RateLimitConfig> = {}): Ratelimit {
+    const finalConfig = { ...defaultConfig, ...config }
 
-  return new Ratelimit({
-    redis: client,
-    limiter: Ratelimit.fixedWindow(finalConfig.limit, finalConfig.window),
-    prefix: finalConfig.prefix,
-    timeout: finalConfig.timeout,
-    analytics: finalConfig.analytics,
-  });
+    return new Ratelimit({
+        redis: client,
+        limiter: Ratelimit.fixedWindow(finalConfig.limit, finalConfig.window),
+        prefix: finalConfig.prefix,
+        timeout: finalConfig.timeout,
+        analytics: finalConfig.analytics
+    })
 }
 
 /**
@@ -110,29 +108,29 @@ export function createRateLimiter(
  * console.log(`Window resets at: ${new Date(result.reset * 1000).toISOString()}`);
  * ```
  */
-export const ratelimit = createRateLimiter();
+export const ratelimit = createRateLimiter()
 
 // Type definitions for framework-specific middleware
 type GenericRequest = {
-  headers: { [key: string]: string | string[] | undefined };
-  socket?: { remoteAddress?: string };
-};
+    headers: { [key: string]: string | string[] | undefined }
+    socket?: { remoteAddress?: string }
+}
 
 type GenericResponse = {
-  status(code: number): GenericResponse;
-  setHeader?(name: string, value: string | number): void;
-  header?(name: string, value: string): void;
-  json(body: unknown, status?: number): unknown;
-};
+    status(code: number): GenericResponse
+    setHeader?(name: string, value: string | number): void
+    header?(name: string, value: string): void
+    json(body: unknown, status?: number): unknown
+}
 
 /**
  * Generic middleware function type
  */
 type MiddlewareFunction<TRequest, TResponse, TNext = () => Promise<void>> = (
-  req: TRequest,
-  res: TResponse,
-  next?: TNext,
-) => Promise<unknown>;
+    req: TRequest,
+    res: TResponse,
+    next?: TNext
+) => Promise<unknown>
 
 /**
  * Creates a middleware function for handling rate limiting in HTTP servers.
@@ -165,82 +163,73 @@ type MiddlewareFunction<TRequest, TResponse, TNext = () => Promise<void>> = (
  * }
  * ```
  */
-export function createMiddleware<
-  TRequest extends GenericRequest = GenericRequest,
-  TResponse extends GenericResponse = GenericResponse,
->(
-  limiter: Ratelimit,
-  options: {
-    getIdentifier?: (req: TRequest) => string;
-    throwError?: boolean;
-  } = {},
+export function createMiddleware<TRequest extends GenericRequest = GenericRequest, TResponse extends GenericResponse = GenericResponse>(
+    limiter: Ratelimit,
+    options: {
+        getIdentifier?: (req: TRequest) => string
+        throwError?: boolean
+    } = {}
 ): MiddlewareFunction<TRequest, TResponse> {
-  return async (req: TRequest, res: TResponse) => {
-    const identifier =
-      options.getIdentifier?.(req) ||
-      (Array.isArray(req.headers["x-forwarded-for"])
-        ? req.headers["x-forwarded-for"][0]
-        : req.headers["x-forwarded-for"]) ||
-      req.socket?.remoteAddress ||
-      "127.0.0.1";
+    return async (req: TRequest, res: TResponse) => {
+        const identifier =
+            options.getIdentifier?.(req) ||
+            (Array.isArray(req.headers['x-forwarded-for']) ? req.headers['x-forwarded-for'][0] : req.headers['x-forwarded-for']) ||
+            req.socket?.remoteAddress ||
+            '127.0.0.1'
 
-    const result = await limiter.limit(String(identifier));
+        const result = await limiter.limit(String(identifier))
 
-    if (!result.success) {
-      const headers = {
-        "Retry-After": String(result.reset),
-        "X-RateLimit-Limit": String(result.limit),
-        "X-RateLimit-Remaining": String(result.remaining),
-        "X-RateLimit-Reset": String(result.reset),
-      };
+        if (!result.success) {
+            const headers = {
+                'Retry-After': String(result.reset),
+                'X-RateLimit-Limit': String(result.limit),
+                'X-RateLimit-Remaining': String(result.remaining),
+                'X-RateLimit-Reset': String(result.reset)
+            }
 
-      if (options.throwError) {
-        const error = new Error("Too Many Requests") as Error & {
-          status?: number;
-          headers?: typeof headers;
-        };
-        error.status = 429;
-        error.headers = headers;
-        throw error;
-      }
+            if (options.throwError) {
+                const error = new Error('Too Many Requests') as Error & {
+                    status?: number
+                    headers?: typeof headers
+                }
+                error.status = 429
+                error.headers = headers
+                throw error
+            }
 
-      // Set headers using the appropriate method
-      const setHeader = (name: string, value: string) => {
-        if (res.setHeader) {
-          res.setHeader(name, value);
-        } else if (res.header) {
-          res.header(name, value);
+            // Set headers using the appropriate method
+            const setHeader = (name: string, value: string) => {
+                if (res.setHeader) {
+                    res.setHeader(name, value)
+                } else if (res.header) {
+                    res.header(name, value)
+                }
+            }
+
+            setHeader('Retry-After', String(result.reset))
+            setHeader('X-RateLimit-Limit', String(result.limit))
+            setHeader('X-RateLimit-Remaining', String(result.remaining))
+            setHeader('X-RateLimit-Reset', String(result.reset))
+
+            return res.json(
+                {
+                    error: 'Too Many Requests',
+                    retryAfter: new Date(result.reset * 1000).toISOString()
+                },
+                429
+            )
         }
-      };
 
-      setHeader("Retry-After", String(result.reset));
-      setHeader("X-RateLimit-Limit", String(result.limit));
-      setHeader("X-RateLimit-Remaining", String(result.remaining));
-      setHeader("X-RateLimit-Reset", String(result.reset));
-
-      return res.json(
-        {
-          error: "Too Many Requests",
-          retryAfter: new Date(result.reset * 1000).toISOString(),
-        },
-        429,
-      );
+        return result
     }
-
-    return result;
-  };
 }
 
 /**
  * Error class for rate limit errors
  */
 export class RateLimitError extends Error {
-  constructor(
-    message: string,
-    public readonly status: number = 429,
-    public readonly headers?: Record<string, string>,
-  ) {
-    super(message);
-    this.name = "RateLimitError";
-  }
+    constructor(message: string, public readonly status: number = 429, public readonly headers?: Record<string, string>) {
+        super(message)
+        this.name = 'RateLimitError'
+    }
 }

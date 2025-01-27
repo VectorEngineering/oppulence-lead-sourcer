@@ -2,11 +2,11 @@
  * @fileoverview Transformation utilities for converting raw transaction data into validated format
  */
 
-import { formatAmountValue, formatDate } from "./utils";
+import { formatAmountValue, formatDate } from './utils'
 
-import { capitalCase } from "change-case";
-import { v4 as uuidv4 } from "uuid";
-import type { Transaction } from "./types";
+import { capitalCase } from 'change-case'
+import { v4 as uuidv4 } from 'uuid'
+import type { Transaction } from './types'
 
 /**
  * Transforms a raw transaction into the validated internal format
@@ -41,28 +41,19 @@ import type { Transaction } from "./types";
  * });
  * ```
  */
-export function transform({
-  transaction,
-  inverted,
-}: {
-  transaction: Transaction;
-  inverted: boolean;
-}) {
-  return {
-    internal_id: `${transaction.workspaceId}_${uuidv4()}`,
-    workspace_id: transaction.workspaceId,
-    status: "posted",
-    method: "other",
-    date: formatDate(transaction.date),
-    amount: formatAmountValue({ amount: transaction.amount, inverted }),
-    name: transaction?.description && capitalCase(transaction.description),
-    manual: true,
-    category_slug:
-      formatAmountValue({ amount: transaction.amount, inverted }) > 0
-        ? "income"
-        : null,
-    bank_account_id: transaction.bankAccountId,
-    currency: transaction.currency.toUpperCase(),
-    notified: true,
-  };
+export function transform({ transaction, inverted }: { transaction: Transaction; inverted: boolean }) {
+    return {
+        internal_id: `${transaction.workspaceId}_${uuidv4()}`,
+        workspace_id: transaction.workspaceId,
+        status: 'posted',
+        method: 'other',
+        date: formatDate(transaction.date),
+        amount: formatAmountValue({ amount: transaction.amount, inverted }),
+        name: transaction?.description && capitalCase(transaction.description),
+        manual: true,
+        category_slug: formatAmountValue({ amount: transaction.amount, inverted }) > 0 ? 'income' : null,
+        bank_account_id: transaction.bankAccountId,
+        currency: transaction.currency.toUpperCase(),
+        notified: true
+    }
 }

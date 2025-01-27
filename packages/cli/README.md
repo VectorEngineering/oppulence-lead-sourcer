@@ -18,21 +18,21 @@ https://github.com/user-attachments/assets/2ce9fe51-68ab-4e6d-b08d-4da09c17f90e
 ## Running Locally for Development
 
 1. Clone the repository, install dependencies and navigate to the `cli` folder:
-   ```bash
-   cd packages/cli
-   ```
+    ```bash
+    cd packages/cli
+    ```
 2. Build the package in watch mode:
-   ```bash
-   pnpm dev
-   ```
+    ```bash
+    pnpm dev
+    ```
 3. In a separate terminal, navigate to the `cli` folder again and run an [available command](#available-commands):
-   ```bash
-   pnpm start [command]
-   ```
+    ```bash
+    pnpm start [command]
+    ```
 4. See all [available commands](#available-commands) and options:
-   ```bash
-   pnpm start help
-   ```
+    ```bash
+    pnpm start help
+    ```
 
 ## Testing Production-like Setup
 
@@ -40,22 +40,22 @@ https://github.com/user-attachments/assets/2ce9fe51-68ab-4e6d-b08d-4da09c17f90e
 > If you have previously installed `dub-cli` globally, uninstall it first to avoid conflicts
 
 1. Clone the repository, install dependencies and navigate to the `cli` folder:
-   ```bash
-   cd packages/cli
-   ```
+    ```bash
+    cd packages/cli
+    ```
 2. Build the package:
-   ```bash
-   pnpm build
-   ```
+    ```bash
+    pnpm build
+    ```
 3. Link the package globally:
-   ```bash
-    npm link
-   ```
+    ```bash
+     npm link
+    ```
 4. Verify the installation:
-   ```bash
-    dub -v
-   ```
+    ```bash
+     dub -v
+    ```
 5. Run commands:
-   ```bash
-   dub [command]
-   ```
+    ```bash
+    dub [command]
+    ```

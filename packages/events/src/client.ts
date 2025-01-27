@@ -1,32 +1,28 @@
-import {
-  OpenPanelComponent,
-  type PostEventPayload,
-  useOpenPanel,
-} from "@openpanel/nextjs";
+import { OpenPanelComponent, type PostEventPayload, useOpenPanel } from '@openpanel/nextjs'
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === 'production'
 
 const Provider = () => (
-  // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
-  <OpenPanelComponent
-    clientId={process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID!}
-    trackAttributes={true}
-    trackScreenViews={isProd}
-    trackOutgoingLinks={isProd}
-  />
-);
+    // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+    <OpenPanelComponent
+        clientId={process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID!}
+        trackAttributes={true}
+        trackScreenViews={isProd}
+        trackOutgoingLinks={isProd}
+    />
+)
 
-const track = (options: { event: string } & PostEventPayload["properties"]) => {
-  const { track: openTrack } = useOpenPanel();
+const track = (options: { event: string } & PostEventPayload['properties']) => {
+    const { track: openTrack } = useOpenPanel()
 
-  if (!isProd) {
-    console.log("Track", options);
-    return;
-  }
+    if (!isProd) {
+        console.log('Track', options)
+        return
+    }
 
-  const { event, ...rest } = options;
+    const { event, ...rest } = options
 
-  openTrack(event, rest);
-};
+    openTrack(event, rest)
+}
 
-export { Provider, track };
+export { Provider, track }

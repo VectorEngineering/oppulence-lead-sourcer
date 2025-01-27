@@ -1,13 +1,13 @@
-import { init } from "./core";
-import { DubEmbed } from "./types";
+import { init } from './core'
+import { DubEmbed } from './types'
 
 declare global {
-  interface Window {
-    Dub: DubEmbed;
-  }
+    interface Window {
+        Dub: DubEmbed
+    }
 }
 
-if (typeof window !== "undefined") {
-  window.Dub = (window.Dub || {}) as DubEmbed;
-  window.Dub.init = init;
+if (typeof window !== 'undefined') {
+    window.Dub = (window.Dub || {}) as DubEmbed
+    window.Dub.init = init
 }

@@ -2,7 +2,7 @@
  * @fileoverview Utilities for mapping raw CSV data to transaction objects
  */
 
-import type { Transaction } from "./types";
+import type { Transaction } from './types'
 
 /**
  * Maps raw data rows to Transaction objects using provided field mappings
@@ -41,20 +41,20 @@ import type { Transaction } from "./types";
  * ```
  */
 export const mapTransactions = (
-  data: Record<string, string>[],
-  mappings: Record<string, string>,
-  currency: string,
-  workspaceId: string,
-  bankAccountId: string,
+    data: Record<string, string>[],
+    mappings: Record<string, string>,
+    currency: string,
+    workspaceId: string,
+    bankAccountId: string
 ): Transaction[] => {
-  return data.map((row) => ({
-    ...(Object.fromEntries(
-      Object.entries(mappings)
-        .filter(([_, value]) => value !== "")
-        .map(([key, value]) => [key, row[value]]),
-    ) as Transaction),
-    currency,
-    workspaceId,
-    bankAccountId,
-  }));
-};
+    return data.map((row) => ({
+        ...(Object.fromEntries(
+            Object.entries(mappings)
+                .filter(([_, value]) => value !== '')
+                .map(([key, value]) => [key, row[value]])
+        ) as Transaction),
+        currency,
+        workspaceId,
+        bankAccountId
+    }))
+}

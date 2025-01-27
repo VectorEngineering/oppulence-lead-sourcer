@@ -18,7 +18,7 @@ The platform configuration is organized into several key areas:
 ## Quick Start
 
 ```typescript
-import { BusinessConfig } from '@platform-config/app';
+import { BusinessConfig } from "@platform-config/app";
 
 // Access configuration values
 const { platformHost, company } = BusinessConfig;

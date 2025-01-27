@@ -13,8 +13,8 @@
  * ```
  */
 
-export * from "./mappings";
-export * from "./transform";
-export * from "./types";
-export * from "./utils";
-export * from "./validate";
+export * from './mappings'
+export * from './transform'
+export * from './types'
+export * from './utils'
+export * from './validate'

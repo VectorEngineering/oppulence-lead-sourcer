@@ -1,52 +1,47 @@
-import type { DubConfig } from "@/types";
-import { oauthClient } from "@/utils/oauth";
-import { BusinessConfig as platform } from "@dub/platform-config";
-import Configstore from "configstore";
+import type { DubConfig } from '@/types'
+import { oauthClient } from '@/utils/oauth'
+import { BusinessConfig as platform } from '@dub/platform-config'
+import Configstore from 'configstore'
 export async function getConfig(): Promise<DubConfig> {
-  const configStore = new Configstore("dub-cli");
+    const configStore = new Configstore('dub-cli')
 
-  if (!configStore.size) {
-    throw new Error(
-      `Access token not found. Please run ${platform.company} login to authenticate with ${platform.company}.`,
-    );
-  }
+    if (!configStore.size) {
+        throw new Error(`Access token not found. Please run ${platform.company} login to authenticate with ${platform.company}.`)
+    }
 
-  const config = configStore.all as DubConfig;
+    const config = configStore.all as DubConfig
 
-  if (config.expires_at && Date.now() >= config.expires_at) {
-    const { accessToken, refreshToken, expiresAt } =
-      await oauthClient.refreshToken({
-        accessToken: config.access_token,
-        refreshToken: config.refresh_token,
-        expiresAt: config.expires_at,
-      });
+    if (config.expires_at && Date.now() >= config.expires_at) {
+        const { accessToken, refreshToken, expiresAt } = await oauthClient.refreshToken({
+            accessToken: config.access_token,
+            refreshToken: config.refresh_token,
+            expiresAt: config.expires_at
+        })
 
-    return await setConfig({
-      access_token: accessToken,
-      refresh_token: refreshToken,
-      expires_at: expiresAt,
-    });
-  }
+        return await setConfig({
+            access_token: accessToken,
+            refresh_token: refreshToken,
+            expires_at: expiresAt
+        })
+    }
 
-  return await configStore.all;
+    return await configStore.all
 }
 
-export async function setConfig(
-  newConfig: Partial<DubConfig>,
-): Promise<DubConfig> {
-  const configStore = new Configstore("dub-cli");
-  const existingConfig: DubConfig = configStore.all;
+export async function setConfig(newConfig: Partial<DubConfig>): Promise<DubConfig> {
+    const configStore = new Configstore('dub-cli')
+    const existingConfig: DubConfig = configStore.all
 
-  const updatedConfig: DubConfig = {
-    ...existingConfig,
-    ...newConfig,
-  };
+    const updatedConfig: DubConfig = {
+        ...existingConfig,
+        ...newConfig
+    }
 
-  configStore.set(updatedConfig);
+    configStore.set(updatedConfig)
 
-  if (!configStore.path) {
-    throw new Error("Failed to create or update config file");
-  }
+    if (!configStore.path) {
+        throw new Error('Failed to create or update config file')
+    }
 
-  return updatedConfig;
+    return updatedConfig
 }

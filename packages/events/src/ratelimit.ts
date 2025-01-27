@@ -1,7 +1,7 @@
-import "server-only";
+import 'server-only'
 
-import { Ratelimit } from "@upstash/ratelimit";
-import { client } from ".";
+import { Ratelimit } from '@upstash/ratelimit'
+import { client } from '.'
 
 /**
  * Rate limiter instance configured with a fixed window strategy.
@@ -26,6 +26,6 @@ import { client } from ".";
  * @see {@link https://github.com/upstash/ratelimit Documentation for @upstash/ratelimit}
  */
 export const ratelimit = new Ratelimit({
-  limiter: Ratelimit.fixedWindow(10, "10s"),
-  redis: client,
-});
+    limiter: Ratelimit.fixedWindow(10, '10s'),
+    redis: client
+})

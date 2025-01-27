@@ -1,0 +1,43 @@
+import type { Prisma } from '@prisma/client'
+
+import { z } from 'zod'
+import { NullableJsonNullValueInputSchema } from './NullableJsonNullValueInputSchema'
+import { InputJsonValueSchema } from './InputJsonValueSchema'
+import { UserCreateNestedOneWithoutDocumentInputSchema } from './UserCreateNestedOneWithoutDocumentInputSchema'
+import { ProjectCreateNestedOneWithoutDocumentInputSchema } from './ProjectCreateNestedOneWithoutDocumentInputSchema'
+import { DealCreateNestedManyWithoutAttachmentsInputSchema } from './DealCreateNestedManyWithoutAttachmentsInputSchema'
+import { LeadCreateNestedManyWithoutAttachmentsInputSchema } from './LeadCreateNestedManyWithoutAttachmentsInputSchema'
+
+export const DocumentCreateInputSchema: z.ZodType<Prisma.DocumentCreateInput> = z
+    .object({
+        id: z.string().cuid().optional(),
+        body: z.string().optional().nullable(),
+        createdAt: z.coerce.date().optional().nullable(),
+        metadata: z.union([z.lazy(() => NullableJsonNullValueInputSchema), InputJsonValueSchema]).optional(),
+        name: z.string().optional().nullable(),
+        objectId: z.string().optional().nullable(),
+        parentId: z.string().optional().nullable(),
+        pathTokens: z.string(),
+        tag: z.string().optional().nullable(),
+        title: z.string().optional().nullable(),
+        description: z.string().optional().nullable(),
+        type: z.string().optional().nullable(),
+        url: z.string(),
+        size: z.number().int().optional().nullable(),
+        mimeType: z.string().optional().nullable(),
+        isConfidential: z.boolean().optional(),
+        documentType: z.string().optional().nullable(),
+        version: z.string().optional().nullable(),
+        status: z.string().optional().nullable(),
+        updatedAt: z.coerce.date().optional(),
+        expiryDate: z.coerce.date().optional().nullable(),
+        shareableLink: z.string().optional().nullable(),
+        createdBy: z.string().optional().nullable(),
+        owner: z.lazy(() => UserCreateNestedOneWithoutDocumentInputSchema).optional(),
+        project: z.lazy(() => ProjectCreateNestedOneWithoutDocumentInputSchema).optional(),
+        Deal: z.lazy(() => DealCreateNestedManyWithoutAttachmentsInputSchema).optional(),
+        Lead: z.lazy(() => LeadCreateNestedManyWithoutAttachmentsInputSchema).optional()
+    })
+    .strict()
+
+export default DocumentCreateInputSchema
