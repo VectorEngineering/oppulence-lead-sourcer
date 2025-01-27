@@ -1,14 +1,15 @@
-import { flatten } from 'lodash'
-import { v4 as uuid } from 'uuid'
+import { FLOWISE_CHATID, getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
+import { ICommonObject, INode, INodeData, INodeOutputsValue, INodeParams, IndexingResult } from '../../../src/Interface'
+import { QdrantLibArgs, QdrantVectorStore } from '@langchain/qdrant'
+
+import { Document } from '@langchain/core/documents'
+import { Embeddings } from '@langchain/core/embeddings'
 import { QdrantClient } from '@qdrant/js-client-rest'
 import { VectorStoreRetrieverInput } from '@langchain/core/vectorstores'
-import { Document } from '@langchain/core/documents'
-import { QdrantVectorStore, QdrantLibArgs } from '@langchain/qdrant'
-import { Embeddings } from '@langchain/core/embeddings'
-import { ICommonObject, INode, INodeData, INodeOutputsValue, INodeParams, IndexingResult } from '../../../src/Interface'
-import { FLOWISE_CHATID, getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
-import { index } from '../../../src/indexing'
+import { flatten } from 'lodash'
 import { howToUseFileUpload } from '../VectorStoreUtils'
+import { index } from '../../../src/indexing'
+import { v4 as uuid } from 'uuid'
 
 type RetrieverConfig = Partial<VectorStoreRetrieverInput<QdrantVectorStore>>
 type QdrantAddDocumentOptions = {
@@ -382,7 +383,7 @@ class Qdrant_VectorStores implements INode {
                 if (recordManager) {
                     const vectorStoreName = collectionName
                     await recordManager.createSchema()
-                    ;(recordManager as any).namespace = (recordManager as any).namespace + '_' + vectorStoreName
+                        ; (recordManager as any).namespace = (recordManager as any).namespace + '_' + vectorStoreName
                     const keys: string[] = await recordManager.listKeys({})
 
                     await vectorStore.delete({ ids: keys })
@@ -453,11 +454,13 @@ class Qdrant_VectorStores implements INode {
             retrieverConfig.filter = typeof queryFilter === 'object' ? queryFilter : JSON.parse(queryFilter)
         }
         if (isFileUploadEnabled && options.chatId) {
-            retrieverConfig.filter = retrieverConfig.filter || {}
+            const filter = {
+                should: Array.isArray(retrieverConfig.filter?.should)
+                    ? [...retrieverConfig.filter.should]
+                    : []
+            }
 
-            retrieverConfig.filter.should = Array.isArray(retrieverConfig.filter.should) ? retrieverConfig.filter.should : []
-
-            retrieverConfig.filter.should.push(
+            filter.should.push(
                 {
                     key: `metadata.${FLOWISE_CHATID}`,
                     match: {
@@ -470,6 +473,8 @@ class Qdrant_VectorStores implements INode {
                     }
                 }
             )
+
+            retrieverConfig.filter = filter
         }
 
         const vectorStore = await QdrantVectorStore.fromExistingCollection(embeddings, dbConfig)
@@ -478,9 +483,9 @@ class Qdrant_VectorStores implements INode {
             const retriever = vectorStore.asRetriever(retrieverConfig)
             return retriever
         } else if (output === 'vectorStore') {
-            ;(vectorStore as any).k = k
+            ; (vectorStore as any).k = k
             if (queryFilter) {
-                ;(vectorStore as any).filter = retrieverConfig.filter
+                ; (vectorStore as any).filter = retrieverConfig.filter
             }
             return vectorStore
         }

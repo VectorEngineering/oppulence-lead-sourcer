@@ -218,7 +218,7 @@ export const getStuffFromEnv = (options) => {
 
     // 3.
     const gitBranch = "main";
-    const gitCommitSHA = "ad33c9b65dff2c958b93dbd8c708d6517f44f931";
+    const gitCommitSHA = "4a29b8ba526fefa0c2aa3ee06319ab910a167a50";
 
     return {
       isForcedDraft: false,
@@ -243,7 +243,7 @@ import type { TransactionStatusGenqlSelection } from './schema';
 export type * from "@basehub/mutation-api-helpers";
 import { createFetcher } from "./runtime";
 
-export const sdkBuildId = "bshb_sdk_3bc64c2e75756";
+export const sdkBuildId = "bshb_sdk_e2ae6aa91b947";
 export const resolvedRef = {"repoHash":"a6462053","type":"branch","ref":"main","createSuggestedBranchLink":null,"id":"PKEXwGZsp0nxpBNHdM4k0","name":"main","git":null,"createdAt":"2024-12-10T07:36:06.692Z","archivedAt":null,"archivedBy":null,"headCommitId":"wa3drJhtWJfNdZzz6oYhO","isDefault":true,"workingRootBlockId":"NcmtyUizMfzDtonoYjAx0"};
 export const gitBranchDeploymentURL = null;
 export const productionDeploymentURL = null;
@@ -352,7 +352,7 @@ export const basehub = (options?: Options) => {
     if (typeof options?.next !== 'undefined') return {}
 
     const cacheTag = cacheTagFromQuery(originalRequest)
-    return { next: { tags: [cacheTag] }, headers: { 'x-basehub-sdk-build-id': "bshb_sdk_3bc64c2e75756", 'x-basehub-cache-tag': cacheTag }}
+    return { next: { tags: [cacheTag] }, headers: { 'x-basehub-sdk-build-id': "bshb_sdk_e2ae6aa91b947", 'x-basehub-cache-tag': cacheTag }}
   }
 
   return {

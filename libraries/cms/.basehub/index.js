@@ -2904,7 +2904,7 @@ var getStuffFromEnv = (options) => {
   basehubUrl.searchParams.delete("draft");
   basehubUrl.searchParams.delete("api-version");
   const gitBranch = "main";
-  const gitCommitSHA = "ad33c9b65dff2c958b93dbd8c708d6517f44f931";
+  const gitCommitSHA = "4a29b8ba526fefa0c2aa3ee06319ab910a167a50";
   return {
     isForcedDraft: false,
     draft,
@@ -2921,7 +2921,7 @@ var getStuffFromEnv = (options) => {
     }
   };
 };
-var sdkBuildId = "bshb_sdk_3bc64c2e75756";
+var sdkBuildId = "bshb_sdk_e2ae6aa91b947";
 var resolvedRef = { "repoHash": "a6462053", "type": "branch", "ref": "main", "createSuggestedBranchLink": null, "id": "PKEXwGZsp0nxpBNHdM4k0", "name": "main", "git": null, "createdAt": "2024-12-10T07:36:06.692Z", "archivedAt": null, "archivedBy": null, "headCommitId": "wa3drJhtWJfNdZzz6oYhO", "isDefault": true, "workingRootBlockId": "NcmtyUizMfzDtonoYjAx0" };
 var gitBranchDeploymentURL = null;
 var productionDeploymentURL = null;
@@ -2988,7 +2988,7 @@ var basehub = (options) => {
     if (typeof options?.next !== "undefined")
       return {};
     const cacheTag = cacheTagFromQuery(originalRequest);
-    return { next: { tags: [cacheTag] }, headers: { "x-basehub-sdk-build-id": "bshb_sdk_3bc64c2e75756", "x-basehub-cache-tag": cacheTag } };
+    return { next: { tags: [cacheTag] }, headers: { "x-basehub-sdk-build-id": "bshb_sdk_e2ae6aa91b947", "x-basehub-cache-tag": cacheTag } };
   };
   return {
     ...createClient2(options),
