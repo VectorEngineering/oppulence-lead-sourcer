@@ -11,7 +11,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch"
   },
