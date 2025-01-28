@@ -47,15 +47,14 @@ add_upstream() {
     fi
 }
 
-# Function to fetch and rebase from upstream main branch
+# Function to fetch and merge from upstream main branch
 update_from_template() {
     echo "Fetching latest changes from upstream..."
     git fetch upstream main
-
-    echo "Rebasing current branch onto upstream/main..."
-    if ! git rebase upstream/main; then
-        echo "Error: Rebase failed. Aborting rebase and restoring original state..."
-        git rebase --abort
+    
+    echo "Merging upstream/main into current branch..."
+    if ! git merge upstream/main; then
+        echo "Error: Merge failed. Please resolve conflicts manually."
         exit 1
     fi
 }
