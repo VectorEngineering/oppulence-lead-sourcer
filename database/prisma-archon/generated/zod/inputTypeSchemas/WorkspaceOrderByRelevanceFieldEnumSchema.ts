@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const WorkspaceOrderByRelevanceFieldEnumSchema = z.enum(['id', 'name', 'description', 'ownerId'])
+export const WorkspaceOrderByRelevanceFieldEnumSchema = z.enum(['id','name','description','ownerId']);
 
-export default WorkspaceOrderByRelevanceFieldEnumSchema
+export default WorkspaceOrderByRelevanceFieldEnumSchema;

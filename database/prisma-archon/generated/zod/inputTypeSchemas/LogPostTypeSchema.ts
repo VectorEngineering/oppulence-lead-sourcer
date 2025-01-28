@@ -1,7 +1,7 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const LogPostTypeSchema = z.enum(['http', 'form', 'webhook', 'email'])
+export const LogPostTypeSchema = z.enum(['http','form','webhook','email']);
 
 export type LogPostTypeType = `${z.infer<typeof LogPostTypeSchema>}`
 
-export default LogPostTypeSchema
+export default LogPostTypeSchema;

@@ -1,15 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { PlanSchema } from './PlanSchema'
+import { z } from 'zod';
+import { PlanSchema } from './PlanSchema';
 
-export const NullableEnumPlanFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableEnumPlanFieldUpdateOperationsInput> = z
-    .object({
-        set: z
-            .lazy(() => PlanSchema)
-            .optional()
-            .nullable()
-    })
-    .strict()
+export const NullableEnumPlanFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableEnumPlanFieldUpdateOperationsInput> = z.object({
+  set: z.lazy(() => PlanSchema).optional().nullable()
+}).strict();
 
-export default NullableEnumPlanFieldUpdateOperationsInputSchema
+export default NullableEnumPlanFieldUpdateOperationsInputSchema;

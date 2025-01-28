@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const WorkspaceScalarFieldEnumSchema = z.enum(['id', 'name', 'description', 'ownerId', 'createdAt', 'updatedAt'])
+export const WorkspaceScalarFieldEnumSchema = z.enum(['id','name','description','ownerId','createdAt','updatedAt']);
 
-export default WorkspaceScalarFieldEnumSchema
+export default WorkspaceScalarFieldEnumSchema;
