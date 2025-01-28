@@ -2244,6 +2244,25 @@ importers:
         specifier: ^2.88.2
         version: 2.88.2
 
+  libraries/dub-tailwind-config:
+    dependencies:
+      '@tailwindcss/forms':
+        specifier: ^0.5.6
+        version: 0.5.10(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3)))
+      '@tailwindcss/typography':
+        specifier: ^0.5.9
+        version: 0.5.16(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3)))
+      tailwind-scrollbar-hide:
+        specifier: ^1.1.7
+        version: 1.3.1(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3)))
+      tailwindcss-radix:
+        specifier: ^2.8.0
+        version: 2.9.0
+    devDependencies:
+      tailwindcss:
+        specifier: ^3.4.4
+        version: 3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3))
+
   libraries/email:
     dependencies:
       '@playbookmedia/env':
@@ -2817,6 +2836,34 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
 
+  libraries/stripe-app:
+    dependencies:
+      '@dub/platform-config':
+        specifier: workspace:*
+        version: link:../platform-config
+      '@stripe/ui-extension-sdk':
+        specifier: ^8.8.1
+        version: 8.9.2(stripe@13.11.0)
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
+      stripe:
+        specifier: ^13.11.0
+        version: 13.11.0
+    devDependencies:
+      '@stripe/ui-extension-tools':
+        specifier: ^0.0.1
+        version: 0.0.1(@babel/core@7.26.0)(babel-jest@27.5.1(@babel/core@7.26.0))(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@4.9.5))
+      '@types/react':
+        specifier: ^19.0.2
+        version: 19.0.8
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.0.3(@types/react@19.0.8)
+
   libraries/tailwind-config:
     dependencies:
       '@tailwindcss/typography':
@@ -3347,19 +3394,6 @@ importers:
         specifier: ^5.4.5
         version: 5.5.2
 
-  packages/events:
-    dependencies:
-      '@openpanel/nextjs':
-        specifier: ^1.0.6
-        version: 1.0.7(next@15.1.6(@babel/core@7.24.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.49.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.71.1))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@vercel/functions':
-        specifier: ^1.5.0
-        version: 1.5.2(@aws-sdk/credential-provider-web-identity@3.723.0(@aws-sdk/client-sts@3.723.0))
-    devDependencies:
-      typescript:
-        specifier: ^5.6.3
-        version: 5.7.3
-
   packages/server:
     dependencies:
       '@aws-sdk/client-secrets-manager':
@@ -3573,53 +3607,6 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.5.2
-
-  packages/stripe-app:
-    dependencies:
-      '@dub/platform-config':
-        specifier: workspace:*
-        version: link:../../libraries/platform-config
-      '@stripe/ui-extension-sdk':
-        specifier: ^8.8.1
-        version: 8.9.2(stripe@13.11.0)
-      react:
-        specifier: ^19.0.0
-        version: 19.0.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
-      stripe:
-        specifier: ^13.11.0
-        version: 13.11.0
-    devDependencies:
-      '@stripe/ui-extension-tools':
-        specifier: ^0.0.1
-        version: 0.0.1(@babel/core@7.26.0)(babel-jest@27.5.1(@babel/core@7.26.0))(bufferutil@4.0.8)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@4.9.5))
-      '@types/react':
-        specifier: ^19.0.2
-        version: 19.0.7
-      '@types/react-dom':
-        specifier: ^19.0.2
-        version: 19.0.3(@types/react@19.0.7)
-
-  packages/tailwind-config:
-    dependencies:
-      '@tailwindcss/forms':
-        specifier: ^0.5.6
-        version: 0.5.10(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3)))
-      '@tailwindcss/typography':
-        specifier: ^0.5.9
-        version: 0.5.16(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3)))
-      tailwind-scrollbar-hide:
-        specifier: ^1.1.7
-        version: 1.3.1(tailwindcss@3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3)))
-      tailwindcss-radix:
-        specifier: ^2.8.0
-        version: 2.9.0
-    devDependencies:
-      tailwindcss:
-        specifier: ^3.4.4
-        version: 3.4.17(ts-node@10.9.2(@swc/core@1.4.6(@swc/helpers@0.5.15))(@types/node@22.10.10)(typescript@5.7.3))
 
   packages/ui:
     dependencies:
@@ -50485,6 +50472,10 @@ snapshots:
     dependencies:
       '@types/react': 19.0.7
 
+  '@types/react-dom@19.0.3(@types/react@19.0.8)':
+    dependencies:
+      '@types/react': 19.0.8
+
   '@types/react-reconciler@0.26.7':
     dependencies:
       '@types/react': 18.3.18
@@ -50515,7 +50506,6 @@ snapshots:
   '@types/react@19.0.8':
     dependencies:
       csstype: 3.1.3
-    optional: true
 
   '@types/request@2.48.12':
     dependencies:
@@ -60352,8 +60342,8 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/generator': 7.26.5
       '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.0)
-      '@babel/traverse': 7.26.5
-      '@babel/types': 7.26.5
+      '@babel/traverse': 7.26.7
+      '@babel/types': 7.26.7
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
       '@types/babel__traverse': 7.20.5
@@ -60647,7 +60637,7 @@ snapshots:
       parse5: 6.0.1
       saxes: 5.0.1
       symbol-tree: 3.2.4
-      tough-cookie: 4.1.3
+      tough-cookie: 4.1.4
       w3c-hr-time: 1.0.2
       w3c-xmlserializer: 2.0.0
       webidl-conversions: 6.1.0
