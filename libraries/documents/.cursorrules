@@ -1,6 +1,4 @@
-Apologies for the misunderstanding earlier. Given that your TypeScript package is part of a Next.js monorepo but **does not** utilize React for its functionality, I’ve tailored the guidelines accordingly. These enhancements focus on leveraging Next.js features without relying on React components, ensuring your package integrates seamlessly within the Next.js ecosystem while maintaining optimal code quality and structure.
 
----
 
 ## **TypeScript Package Development Guidelines for Next.js Monorepo (Non-React)**
 
