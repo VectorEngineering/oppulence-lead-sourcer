@@ -5,7 +5,7 @@ packages:
     - 'internal/*'
     - 'libraries/*'
     - 'libraries/design-system/*'
+    - 'libraries/embeds/*'
     - 'cloudflare/*'
-    - 'dub-packages/*'
-    - 'dub-packages/embeds/*'
     - 'database/*'
+  - "apps/web/.react-email"
