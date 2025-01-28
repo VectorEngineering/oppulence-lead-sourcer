@@ -8,4 +8,4 @@ packages:
     - 'libraries/embeds/*'
     - 'cloudflare/*'
     - 'database/*'
-  - "apps/web/.react-email"
+    - 'apps/web/.react-email'

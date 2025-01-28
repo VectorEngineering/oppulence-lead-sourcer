@@ -92,7 +92,9 @@
         "@qdrant/openapi-typescript-fetch": "1.2.6",
         "openai": "4.57.3",
         "protobufjs": "7.4.0",
-        "zod": "3.23.8"
+        "zod": "3.23.8",
+        "@radix-ui/react-dialog": "1.0.5",
+        "@radix-ui/react-popover": "1.0.7"
     },
     "eslintIgnore": [
         "**/dist",
