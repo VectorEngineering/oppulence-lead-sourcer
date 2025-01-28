@@ -1,6 +1,6 @@
 # @playbookmedia/auth
 
-A Next.js authentication package built on top of Clerk, providing seamless authentication with customizable UI components.
+A comprehensive authentication package built on top of Clerk.js, providing seamless authentication and user management capabilities for Next.js applications.
 
 ## Features
 
@@ -9,169 +9,186 @@ A Next.js authentication package built on top of Clerk, providing seamless authe
 - 🎯 **Type-safe**: Full TypeScript support
 - 🎭 **Customizable**: Extensive styling and behavior customization options
 - 🌓 **Dark Mode**: Automatic dark mode support
+- 🚀 **Next.js 13+ App Router support**: Seamless integration with Next.js App Router
+- 📋 **Server-side and client-side authentication**: Robust authentication capabilities
 
 ## Installation
 
 ```bash
-# Using pnpm (recommended)
-pnpm add @playbookmedia/auth
-
-# Using npm
 npm install @playbookmedia/auth
-
-# Using yarn
+# or
 yarn add @playbookmedia/auth
+# or
+pnpm add @playbookmedia/auth
 ```
 
-## Quick Start
+## Features
 
-1. Set up your Clerk environment variables:
+- Pre-built authentication components
+- Middleware for route protection
+- Customizable UI elements
+- TypeScript support
+- Next.js 13+ App Router support
+- Server-side and client-side authentication
 
-```env
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-CLERK_SECRET_KEY=your_secret_key
-```
+## Usage
 
-2. Wrap your application with the AuthProvider:
+### Authentication Components
 
-```tsx
-// app/layout.tsx
-import { AuthProvider } from '@playbookmedia/auth'
+#### Sign In Component
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+```typescript
+import { SignIn } from '@playbookmedia/auth/components'
+
+export default function SignInPage() {
   return (
-    <html lang="en">
-      <body>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
-      </body>
-    </html>
+    <div>
+      <h1>Welcome Back</h1>
+      <SignIn />
+    </div>
   )
 }
 ```
 
-3. Add authentication middleware:
+#### Sign Up Component
 
-```ts
+```typescript
+import { SignUp } from '@playbookmedia/auth/components'
+
+export default function SignUpPage() {
+  return (
+    <div>
+      <h1>Create an Account</h1>
+      <SignUp />
+    </div>
+  )
+}
+```
+
+### Middleware Implementation
+
+```typescript
 // middleware.ts
 import { authMiddleware } from '@playbookmedia/auth/middleware'
 
 export default authMiddleware({
-  publicRoutes: ['/']
+  // Your middleware configuration
+  publicRoutes: ['/'],
+  ignoredRoutes: ['/api/public']
 })
 
+// Required for middleware to work correctly
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)']
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
 }
 ```
 
-## Components
+### Client Usage
 
-### SignIn
+```typescript
+'use client'
 
-```tsx
-import { SignIn } from '@playbookmedia/auth/components'
+import { useAuth } from '@playbookmedia/auth/client'
 
-export default function SignInPage() {
-  return <SignIn />
-}
-```
+export function ProfileButton() {
+  const { user, isSignedIn, signOut } = useAuth()
 
-### SignUp
-
-```tsx
-import { SignUp } from '@playbookmedia/auth/components'
-
-export default function SignUpPage() {
-  return <SignUp />
-}
-```
-
-## Customization
-
-### Theme Customization
-
-The AuthProvider automatically integrates with your app's theme using `next-themes`. You can further customize the appearance:
-
-```tsx
-import { AuthProvider } from '@playbookmedia/auth'
-import type { Theme } from '@clerk/types'
-
-const customAppearance: Partial<Theme> = {
-  variables: {
-    colorPrimary: '#0070f3',
-    fontFamily: 'Inter, system-ui'
-  },
-  elements: {
-    formButtonPrimary: 'bg-blue-500 hover:bg-blue-600',
-    card: 'shadow-lg'
+  if (!isSignedIn) {
+    return null
   }
-}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <AuthProvider customAppearance={customAppearance}>
-      {children}
-    </AuthProvider>
+    <button onClick={() => signOut()}>
+      Sign out {user.firstName}
+    </button>
   )
 }
 ```
 
 ### Server-Side Usage
 
-For server components and API routes:
-
-```tsx
+```typescript
 import { auth } from '@playbookmedia/auth/server'
-
+ 
 export default async function Page() {
   const { userId } = auth()
-  
+ 
   if (!userId) {
-    redirect('/sign-in')
+    return <div>Please sign in</div>
   }
-  
-  return <div>Protected Content</div>
+ 
+  return <div>Your user ID is: {userId}</div>
 }
 ```
 
-### Client-Side Usage
+## Configuration
 
-For client components:
+The package requires Clerk.js configuration which should be set in your environment variables:
 
-```tsx
-'use client'
-
-import { useAuth } from '@playbookmedia/auth/client'
-
-export default function UserProfile() {
-  const { user } = useAuth()
-  
-  if (!user) return null
-  
-  return <div>Welcome, {user.firstName}!</div>
-}
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
 ```
+
+## Component Customization
+
+You can customize the appearance of authentication components:
+
+```typescript
+<SignIn
+  appearance={{
+    elements: {
+      header: 'hidden',
+      // Add more custom styles
+    },
+    variables: {
+      colorPrimary: '#000000',
+      // Add more custom variables
+    }
+  }}
+/>
+```
+
+## Protected Routes
+
+Example of protecting routes with the middleware:
+
+```typescript
+// middleware.ts
+export default authMiddleware({
+  publicRoutes: [
+    '/',
+    '/about',
+    '/pricing',
+    '/api/public(.*)',
+  ],
+  ignoredRoutes: [
+    '/_next/static/(.*)',
+    '/favicon.ico',
+  ]
+})
+```
+
+## Best Practices
+
+1. Always protect sensitive routes using the middleware
+2. Use server-side authentication checks for data fetching
+3. Implement proper error handling for authentication states
+4. Keep authentication keys secure using environment variables
+5. Use TypeScript for better type safety
+6. Follow the principle of least privilege when setting up permissions
 
 ## TypeScript Support
 
-This package includes comprehensive TypeScript definitions:
-
-```typescript
-import type { AuthProviderProps } from '@playbookmedia/auth'
-import type { Theme } from '@clerk/types'
-
-// Available types
-interface AuthProviderProps {
-  customAppearance?: Partial<Theme>
-  children: React.ReactNode
-}
-```
+The package includes comprehensive TypeScript definitions for:
+- Component props
+- Hook return types
+- Middleware configurations
+- User and session types
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+Please read our contributing guidelines before submitting pull requests.
 
 ## License
 
