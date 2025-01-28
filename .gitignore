@@ -110,3 +110,39 @@
 .basehub
 
 *.tinyb
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+.env
+
+# vercel
+.vercel
+
+# tinybird
+.venv
+.tinyb
+
+# turbo
+.turbo
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# miscellaneous
+/pages/api/scripts*
+packages/stripe-app/.build/*
+.react-email
+.contentlayer
+.vscode
+*.csv
+*.ndjson
+.vitest
+*storybook.log
