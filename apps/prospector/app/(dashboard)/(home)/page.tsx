@@ -1,5 +1,5 @@
-import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from 'lucide-react'
-import React, { Suspense } from 'react'
+import { CirclePlayIcon, CoinsIcon, LucideProps, WaypointsIcon } from 'lucide-react'
+import React, { FC, Suspense } from 'react'
 
 import CreditUsageChart from '@/app/(dashboard)/billing/_components/CreditUsageChart'
 import ExecutionStatusChart from '@/app/(dashboard)/(home)/_components/ExecutionStatusChart'
@@ -52,9 +52,9 @@ async function StatsCards({ selectedPeriod }: { selectedPeriod: Period }) {
     const data = await GetStatsCardsValues(selectedPeriod)
     return (
         <div className='grid gap-3 lg:gap-8 lg:grid-cols-3 min-h-[120px]'>
-            <StatsCard title='Workflow executions' value={data.workflowExecutions} icon={CirclePlayIcon} />
-            <StatsCard title='Phase executions' value={data.phaseExecutions} icon={WaypointsIcon} />
-            <StatsCard title='Credits consumed' value={data.creditsConsumed} icon={CoinsIcon} />
+            <StatsCard title='Workflow executions' value={data.workflowExecutions} icon={CirclePlayIcon as FC<LucideProps>} />
+            <StatsCard title='Phase executions' value={data.phaseExecutions} icon={WaypointsIcon as FC<LucideProps>} />
+            <StatsCard title='Credits consumed' value={data.creditsConsumed} icon={CoinsIcon as FC<LucideProps>} />
         </div>
     )
 }

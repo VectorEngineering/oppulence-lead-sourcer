@@ -13,6 +13,7 @@ overrides:
   zod: 3.23.8
   '@radix-ui/react-dialog': 1.0.5
   '@radix-ui/react-popover': 1.0.7
+  undici: 5.28.2
   set-value: ^3.0.3
 
 importers:
@@ -33742,13 +33743,9 @@ packages:
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
-  undici@5.28.4:
-    resolution: {integrity: sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==}
+  undici@5.28.2:
+    resolution: {integrity: sha512-wh1pHJHnUeQV5Xa8/kyQhO7WFa8M34l026L5P/+2TYiakvGy5Rdc8jWZVyG7ieht/0WgJLEd3kcU5gKx+6GC8w==}
     engines: {node: '>=14.0'}
-
-  undici@6.21.1:
-    resolution: {integrity: sha512-q/1rj5D0/zayJB2FraXdaWxbhWiNKDvu8naDT2dl1yTlvJp4BLtOcp2a5BvgGNQpYYJzau7tf1WgKv3b+7mqpQ==}
-    engines: {node: '>=18.17'}
 
   unenv-nightly@2.0.0-1724863496.70db6f1:
     resolution: {integrity: sha512-r+VIl1gnsI4WQxluruSQhy8alpAf1AsLRLm4sEKp3otCyTIVD6I6wHEYzeQnwsyWgaD4+3BD4A/eqrgOpdTzhw==}
@@ -42944,7 +42941,7 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 1.10.0
       '@connectrpc/connect': 1.6.1(@bufbuild/protobuf@1.10.0)
-      undici: 5.28.4
+      undici: 5.28.2
 
   '@connectrpc/connect-web@1.6.1(@bufbuild/protobuf@1.10.0)(@connectrpc/connect@1.6.1(@bufbuild/protobuf@1.10.0))':
     dependencies:
@@ -43193,7 +43190,7 @@ snapshots:
       ms: 2.1.3
       secure-json-parse: 2.7.0
       tslib: 2.8.1
-      undici: 5.28.4
+      undici: 5.28.2
     transitivePeerDependencies:
       - supports-color
 
@@ -48076,7 +48073,7 @@ snapshots:
       '@qdrant/openapi-typescript-fetch': 1.2.6
       '@sevinf/maybe': 0.5.0
       typescript: 5.5.2
-      undici: 5.28.4
+      undici: 5.28.2
 
   '@qdrant/openapi-typescript-fetch@1.2.6': {}
 
@@ -53856,7 +53853,7 @@ snapshots:
       debug: 2.6.9
       invariant: 2.2.4
       metro: 0.81.1(bufferutil@4.0.8)
-      metro-config: 0.81.1(bufferutil@4.0.8)
+      metro-config: 0.81.1(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       metro-core: 0.81.1
       readline: 1.3.0
       semver: 7.6.3
@@ -59612,7 +59609,7 @@ snapshots:
       is-buffer: 2.0.5
       is-node-process: 1.2.0
       throttleit: 2.1.0
-      undici: 5.28.4
+      undici: 5.28.2
 
   '@vercel/edge-config-fs@0.1.0': {}
 
@@ -62571,7 +62568,7 @@ snapshots:
       parse5: 7.1.2
       parse5-htmlparser2-tree-adapter: 7.0.0
       parse5-parser-stream: 7.1.2
-      undici: 6.21.1
+      undici: 5.28.2
       whatwg-mimetype: 4.0.0
 
   cheerio@1.0.0-rc.12:
@@ -71894,22 +71891,6 @@ snapshots:
       flow-enums-runtime: 0.0.6
       metro-core: 0.81.1
 
-  metro-config@0.81.1(bufferutil@4.0.8):
-    dependencies:
-      connect: 3.7.0
-      cosmiconfig: 5.2.1
-      flow-enums-runtime: 0.0.6
-      jest-validate: 29.7.0
-      metro: 0.81.1(bufferutil@4.0.8)
-      metro-cache: 0.81.1
-      metro-core: 0.81.1
-      metro-runtime: 0.81.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-    optional: true
-
   metro-config@0.81.1(bufferutil@4.0.8)(utf-8-validate@6.0.4):
     dependencies:
       connect: 3.7.0
@@ -72063,7 +72044,7 @@ snapshots:
       metro-babel-transformer: 0.81.1
       metro-cache: 0.81.1
       metro-cache-key: 0.81.1
-      metro-config: 0.81.1(bufferutil@4.0.8)
+      metro-config: 0.81.1(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       metro-core: 0.81.1
       metro-file-map: 0.81.1
       metro-resolver: 0.81.1
@@ -72554,7 +72535,7 @@ snapshots:
       exit-hook: 2.2.1
       glob-to-regexp: 0.4.1
       stoppable: 1.1.0
-      undici: 5.28.4
+      undici: 5.28.2
       workerd: 1.20240909.0
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       youch: 3.3.4
@@ -72573,7 +72554,7 @@ snapshots:
       exit-hook: 2.2.1
       glob-to-regexp: 0.4.1
       stoppable: 1.1.0
-      undici: 5.28.4
+      undici: 5.28.2
       workerd: 1.20250124.0
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       youch: 3.3.4
@@ -74108,7 +74089,7 @@ snapshots:
       fast-glob: 3.3.3
       js-yaml: 4.1.0
       supports-color: 9.4.0
-      undici: 5.28.4
+      undici: 5.28.2
       yargs-parser: 21.1.1
 
   openapi3-ts@4.4.0:
@@ -80266,7 +80247,7 @@ snapshots:
       ssh-remote-port-forward: 1.0.4
       tar-fs: 3.0.8
       tmp: 0.2.3
-      undici: 5.28.4
+      undici: 5.28.2
     transitivePeerDependencies:
       - bare-buffer
       - supports-color
@@ -81344,11 +81325,9 @@ snapshots:
 
   undici-types@6.20.0: {}
 
-  undici@5.28.4:
+  undici@5.28.2:
     dependencies:
       '@fastify/busboy': 2.1.1
-
-  undici@6.21.1: {}
 
   unenv-nightly@2.0.0-1724863496.70db6f1:
     dependencies:

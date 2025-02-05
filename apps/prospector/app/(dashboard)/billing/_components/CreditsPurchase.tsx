@@ -23,10 +23,7 @@ export default function CreditsPurchase() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className='text-xl font-bold flex items-center gap-2'>
-                    <CoinsIcon className='h-6 w-6 text-primary' />
-                    Purchase Credits
-                </CardTitle>
+                <CardTitle className='text-xl font-bold flex items-center gap-2'>Purchase Credits</CardTitle>
                 <CardDescription>Select the number of credits you want to purchase</CardDescription>
             </CardHeader>
             <CardContent>
@@ -56,7 +53,7 @@ export default function CreditsPurchase() {
                         mutation.mutate(selectedPack)
                     }}
                 >
-                    <CreditCard className='mr-2 h-5 w-5' /> Purchase credits
+                    {mutation.isPending ? 'Purchasing...' : 'Purchase credits'}
                 </Button>
             </CardFooter>
         </Card>
