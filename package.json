@@ -44,7 +44,9 @@
         "test": "turbo run test",
         "start:dev": "pnpm check-docker && cd apps/web && docker-compose up -d && cd ../.. && pnpm check-services && pnpm install && pnpm -r --filter \"./packages/**\" build && cd apps/web && pnpm run prisma:generate && pnpm run prisma:push && cd ../.. && pnpm dev",
         "precommit": "pnpm install --no-frozen-lockfile && pnpm format && pnpm i && pnpm build",
-        "build-oppulence": "turbo build --filter=@playbookmedia/oppulence"
+        "build-oppulence": "turbo build --filter=@playbookmedia/oppulence",
+        "version": "changeset version",
+        "prepare": "husky install"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,md}": "eslint --fix"
@@ -130,6 +132,8 @@
         ]
     },
     "dependencies": {
+        "@changesets/cli": "^2.27.12",
+        "gitmoji-cli": "^9.5.0",
         "pkg-types": "^1.3.1"
     }
 }
