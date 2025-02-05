@@ -14,12 +14,12 @@ pnpm add @playbookmedia/webhooks
 
 ## Features
 
-- Secure webhook delivery
-- Organization-based webhook management
-- App portal access for webhook configuration
-- TypeScript support
-- Server-side implementation
-- Automatic organization context handling
+-   Secure webhook delivery
+-   Organization-based webhook management
+-   App portal access for webhook configuration
+-   TypeScript support
+-   Server-side implementation
+-   Automatic organization context handling
 
 ## Usage
 
@@ -30,19 +30,17 @@ import { send } from '@playbookmedia/webhooks'
 
 // Send a webhook event
 await send('user.created', {
-  userId: '123',
-  email: 'user@example.com',
-  createdAt: new Date().toISOString()
+    userId: '123',
+    email: 'user@example.com',
+    createdAt: new Date().toISOString()
 })
 
 // Send a webhook event with custom payload
 await send('order.completed', {
-  orderId: 'order_123',
-  total: 99.99,
-  currency: 'USD',
-  items: [
-    { id: 'item_1', quantity: 2 }
-  ]
+    orderId: 'order_123',
+    total: 99.99,
+    currency: 'USD',
+    items: [{ id: 'item_1', quantity: 2 }]
 })
 ```
 
@@ -53,18 +51,18 @@ import { getAppPortal } from '@playbookmedia/webhooks'
 
 // Get the app portal URL for webhook configuration
 export async function WebhookConfigPage() {
-  const portalData = await getAppPortal()
-  
-  if (!portalData) {
-    return <div>Not authorized</div>
-  }
+    const portalData = await getAppPortal()
 
-  return (
-    <div>
-      <h1>Webhook Configuration</h1>
-      <a href={portalData.url}>Configure Webhooks</a>
-    </div>
-  )
+    if (!portalData) {
+        return <div>Not authorized</div>
+    }
+
+    return (
+        <div>
+            <h1>Webhook Configuration</h1>
+            <a href={portalData.url}>Configure Webhooks</a>
+        </div>
+    )
 }
 ```
 
@@ -124,7 +122,7 @@ const { orgId } = await auth()
 
 // Webhooks are scoped to the organization
 await send('event.type', {
-  // payload data
+    // payload data
 })
 ```
 
@@ -134,13 +132,13 @@ await send('event.type', {
 import { send } from '@playbookmedia/webhooks'
 
 try {
-  await send('event.type', payload)
+    await send('event.type', payload)
 } catch (error) {
-  if (error.message === 'SVIX_TOKEN is not set') {
-    // Handle configuration error
-  } else {
-    // Handle other errors
-  }
+    if (error.message === 'SVIX_TOKEN is not set') {
+        // Handle configuration error
+    } else {
+        // Handle other errors
+    }
 }
 ```
 
@@ -157,10 +155,11 @@ try {
 ## TypeScript Support
 
 The package includes TypeScript definitions for:
-- Event types
-- Payload structures
-- Configuration options
-- Function parameters and return types
+
+-   Event types
+-   Payload structures
+-   Configuration options
+-   Function parameters and return types
 
 ## Contributing
 
@@ -168,4 +167,4 @@ Please read our contributing guidelines before submitting pull requests.
 
 ## License
 
-MIT 
+MIT

@@ -1,33 +1,27 @@
 module.exports = {
-    extends: [
-        'eslint:recommended',
-        'plugin:markdown/recommended',
-        'plugin:react/recommended',
-        'plugin:react/jsx-runtime',
-        'plugin:react-hooks/recommended',
-        'plugin:jsx-a11y/recommended',
-        'plugin:prettier/recommended'
-    ],
-    settings: {
-        react: {
-            version: 'detect'
-        }
-    },
-    parser: '@typescript-eslint/parser',
-    ignorePatterns: ['**/node_modules', '**/dist', '**/build', '**/package-lock.json'],
+    root: true,
+    extends: ['next/core-web-vitals'],
     plugins: ['unused-imports'],
     rules: {
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
-        'no-unused-vars': 'off',
+        'no-console': 'warn',
+        'no-irregular-whitespace': 'warn',
         'unused-imports/no-unused-imports': 'warn',
-        'unused-imports/no-unused-vars': ['warn', { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' }],
-        'no-undef': 'off',
-        'no-console': [process.env.CI ? 'error' : 'warn', { allow: ['warn', 'error', 'info'] }],
-        'prettier/prettier': 'error',
-        'no-redeclare': 'off',
-        'react/react-in-jsx-scope': 'off',
-        'unused-imports/no-unused-imports': 'off',
-        'react/prop-types': 'off',
-        'react/react-in-jsx-scope': 'off',
+        'unused-imports/no-unused-vars': 'warn',
+        'jsx-a11y/no-autofocus': 'off',
+        'jsx-a11y/click-events-have-key-events': 'warn',
+        'jsx-a11y/interactive-supports-focus': 'warn',
+        'jsx-a11y/label-has-associated-control': 'warn',
+        'jsx-a11y/alt-text': 'warn',
+        'jsx-a11y/role-supports-aria-props': 'warn',
+        '@next/next/no-img-element': 'warn',
+        'react-hooks/exhaustive-deps': 'warn',
+        'react/jsx-no-target-blank': [
+            'error',
+            {
+                allowReferrer: false
+            }
+        ],
+        'no-empty-pattern': 'warn',
+        'no-inner-declarations': 'off'
     }
 }

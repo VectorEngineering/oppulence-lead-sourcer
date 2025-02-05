@@ -14,12 +14,12 @@ pnpm add @playbookmedia/storage
 
 ## Features
 
-- Seamless integration with Vercel Blob
-- Client-side and server-side storage capabilities
-- Type-safe API
-- Secure file uploads and downloads
-- URL generation for stored files
-- Automatic content type detection
+-   Seamless integration with Vercel Blob
+-   Client-side and server-side storage capabilities
+-   Type-safe API
+-   Secure file uploads and downloads
+-   URL generation for stored files
+-   Automatic content type detection
 
 ## Usage
 
@@ -30,8 +30,8 @@ import { put, del, list } from '@playbookmedia/storage'
 
 // Upload a file
 const { url } = await put('my-file.txt', Buffer.from('Hello, World!'), {
-  access: 'public',
-  addRandomSuffix: true
+    access: 'public',
+    addRandomSuffix: true
 })
 
 // List files
@@ -48,15 +48,15 @@ import { upload } from '@playbookmedia/storage/client'
 
 // Handle file upload from a form
 async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  event.preventDefault()
-  const file = event.currentTarget.file.files[0]
-  
-  const { url } = await upload(file.name, file, {
-    access: 'public',
-    handleUploadUrl: '/api/upload'
-  })
-  
-  console.log('File uploaded:', url)
+    event.preventDefault()
+    const file = event.currentTarget.file.files[0]
+
+    const { url } = await upload(file.name, file, {
+        access: 'public',
+        handleUploadUrl: '/api/upload'
+    })
+
+    console.log('File uploaded:', url)
 }
 ```
 
@@ -65,17 +65,17 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
 ```typescript
 // app/api/upload/route.ts
 import { handleUpload } from '@playbookmedia/storage'
- 
+
 export async function POST(request: Request) {
-  try {
-    const response = await handleUpload(request)
-    return response
-  } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' }
-    })
-  }
+    try {
+        const response = await handleUpload(request)
+        return response
+    } catch (error) {
+        return new Response(JSON.stringify({ error: error.message }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' }
+        })
+    }
 }
 ```
 
@@ -94,12 +94,12 @@ You can control file access using the `access` parameter:
 ```typescript
 // Public file
 const { url: publicUrl } = await put('public-file.txt', data, {
-  access: 'public'
+    access: 'public'
 })
 
 // Private file
 const { url: privateUrl } = await put('private-file.txt', data, {
-  access: 'private'
+    access: 'private'
 })
 ```
 
@@ -113,7 +113,7 @@ const url = await getUrl('my-file.txt')
 
 // Get a temporary URL for a private file
 const tempUrl = await getUrl('private-file.txt', {
-  expiresIn: 3600 // 1 hour
+    expiresIn: 3600 // 1 hour
 })
 ```
 
@@ -124,17 +124,17 @@ const tempUrl = await getUrl('private-file.txt', {
 ```typescript
 // Upload with metadata
 const { url } = await put('image.jpg', imageBuffer, {
-  access: 'public',
-  metadata: {
-    userId: '123',
-    category: 'profile'
-  }
+    access: 'public',
+    metadata: {
+        userId: '123',
+        category: 'profile'
+    }
 })
 
 // Upload with content type
 const { url } = await put('data.json', jsonBuffer, {
-  access: 'public',
-  contentType: 'application/json'
+    access: 'public',
+    contentType: 'application/json'
 })
 ```
 
@@ -146,13 +146,13 @@ const { blobs } = await list()
 
 // List files with prefix
 const { blobs: imageBlobs } = await list({
-  prefix: 'images/'
+    prefix: 'images/'
 })
 
 // Paginated listing
 const { blobs, cursor } = await list({
-  limit: 100,
-  cursor: previousCursor
+    limit: 100,
+    cursor: previousCursor
 })
 ```
 
@@ -163,10 +163,7 @@ const { blobs, cursor } = await list({
 await del('file-to-delete.txt')
 
 // Delete multiple files
-await Promise.all([
-  del('file1.txt'),
-  del('file2.txt')
-])
+await Promise.all([del('file1.txt'), del('file2.txt')])
 ```
 
 ## Best Practices
@@ -182,10 +179,11 @@ await Promise.all([
 ## TypeScript Support
 
 The package includes TypeScript definitions for:
-- Upload functions and options
-- List operations and responses
-- URL generation options
-- Error types
+
+-   Upload functions and options
+-   List operations and responses
+-   URL generation options
+-   Error types
 
 ```typescript
 import type { PutOptions, ListResponse, GetUrlOptions } from '@playbookmedia/storage'
@@ -195,15 +193,15 @@ import type { PutOptions, ListResponse, GetUrlOptions } from '@playbookmedia/sto
 
 ```typescript
 try {
-  const { url } = await put('file.txt', data)
+    const { url } = await put('file.txt', data)
 } catch (error) {
-  if (error.name === 'BlobSizeError') {
-    // Handle file size error
-  } else if (error.name === 'BlobAccessError') {
-    // Handle access error
-  } else {
-    // Handle other errors
-  }
+    if (error.name === 'BlobSizeError') {
+        // Handle file size error
+    } else if (error.name === 'BlobAccessError') {
+        // Handle access error
+    } else {
+        // Handle other errors
+    }
 }
 ```
 
@@ -213,4 +211,4 @@ Please read our contributing guidelines before submitting pull requests.
 
 ## License
 
-MIT 
+MIT

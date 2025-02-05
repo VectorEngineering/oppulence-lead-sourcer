@@ -149,7 +149,9 @@ export const WithCard: Story = {
         {['card1', 'card2'].map((card) => (
           <div
             key={card}
-            className={`relative cursor-pointer rounded-lg border-2 p-4 ${value === card ? 'border-blue-500 bg-blue-50' : 'border-gray-200'} `}
+            className={`relative cursor-pointer rounded-lg border-2 p-4 ${
+              value === card ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+            } `}
           >
             <div className="flex items-start space-x-2">
               <RadioGroupItem value={card} id={card} className="mt-1" />
@@ -179,7 +181,9 @@ export const WithImages: Story = {
         className="grid grid-cols-2 gap-4"
       >
         <div
-          className={`relative cursor-pointer rounded-lg border-2 p-4 ${value === 'light' ? 'border-blue-500' : 'border-gray-200'} `}
+          className={`relative cursor-pointer rounded-lg border-2 p-4 ${
+            value === 'light' ? 'border-blue-500' : 'border-gray-200'
+          } `}
         >
           <div className="flex flex-col items-center space-y-2">
             <div className="h-24 w-full rounded-md border bg-white" />
@@ -190,7 +194,9 @@ export const WithImages: Story = {
           </div>
         </div>
         <div
-          className={`relative cursor-pointer rounded-lg border-2 p-4 ${value === 'dark' ? 'border-blue-500' : 'border-gray-200'} `}
+          className={`relative cursor-pointer rounded-lg border-2 p-4 ${
+            value === 'dark' ? 'border-blue-500' : 'border-gray-200'
+          } `}
         >
           <div className="flex flex-col items-center space-y-2">
             <div className="h-24 w-full rounded-md border bg-gray-900" />

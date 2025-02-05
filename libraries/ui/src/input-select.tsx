@@ -1,5 +1,14 @@
-import { Check, ChevronDown, Search, X } from 'lucide-react'
+import { cn } from '@dub/utils'
+import {
+  flip,
+  offset,
+  size,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react'
 import { Command, useCommandState } from 'cmdk'
+import { Check, ChevronDown, Search, X } from 'lucide-react'
 import {
   Dispatch,
   InputHTMLAttributes,
@@ -13,19 +22,9 @@ import {
   useRef,
   useState,
 } from 'react'
-import {
-  flip,
-  offset,
-  size,
-  useDismiss,
-  useFloating,
-  useInteractions,
-} from '@floating-ui/react'
-
+import { Drawer } from 'vaul'
 import { Badge } from './badge'
 import { BlurImage } from './blur-image'
-import { Drawer } from 'vaul'
-import { cn } from '@dub/utils'
 import { useMediaQuery } from './hooks'
 import { useScrollProgress } from './hooks/use-scroll-progress'
 
@@ -41,12 +40,12 @@ const InputSelectContext = createContext<{
 }>({
   inputAttrs: {},
   openCommandList: false,
-  setOpenCommandList: () => { },
+  setOpenCommandList: () => {},
   inputValue: '',
-  setInputValue: () => { },
+  setInputValue: () => {},
   disabled: false,
   selectedItem: null,
-  setSelectedItem: () => { },
+  setSelectedItem: () => {},
 })
 
 export interface InputSelectItemProps {
@@ -102,17 +101,17 @@ export function InputSelect({
 
     return inputChanged
       ? // Filter the items
-      items.filter((item: InputSelectItemProps) =>
-        item.value.toLowerCase().includes(search)
-      )
+        items.filter((item: InputSelectItemProps) =>
+          item.value.toLowerCase().includes(search)
+        )
       : inputValue
-        ? // Just sort the items instead of filtering
+      ? // Just sort the items instead of filtering
         items.sort(
           (a: InputSelectItemProps, b: InputSelectItemProps) =>
             (b.value.toLowerCase().includes(search) ? 1 : 0) -
             (a.value.toLowerCase().includes(search) ? 1 : 0)
         )
-        : items
+      : items
   }, [inputChanged, inputValue, items])
 
   const {
@@ -417,45 +416,53 @@ function CloseChevron() {
 }
 
 function SelectorList({ items }: { items: InputSelectItemProps[] }) {
-  const { inputValue, setSelectedItem, setOpenCommandList } = useContext(InputSelectContext)
-  const search = useCommandState((state) => state.search)
+  const { setSelectedItem, setOpenCommandList, setInputValue } =
+    useContext(InputSelectContext)
 
-  return (
-    <>
-      {items.length === 0 && search && (
-        <Command.Empty>No results found for "{search}"</Command.Empty>
-      )}
-      {items.map((item) => (
-        <Command.Item
-          key={item.id}
-          value={item.value}
-          onSelect={() => {
-            setSelectedItem(item)
-            setOpenCommandList(false)
-          }}
-          className="group flex cursor-pointer items-center justify-between rounded-md px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 active:bg-gray-200 aria-selected:bg-gray-100"
-          disabled={item.disabled}
+  return items.map((item) => (
+    <Command.Item
+      key={item.id}
+      value={item.value}
+      disabled={item.disabled}
+      onSelect={() => {
+        setSelectedItem(item)
+        setInputValue(item.value)
+        setOpenCommandList(false)
+      }}
+      className="group flex cursor-pointer items-center justify-between rounded-md px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 aria-disabled:hover:bg-white aria-selected:bg-gray-100 aria-selected:text-gray-900"
+    >
+      <div className="flex items-center space-x-2">
+        {item.image && (
+          <BlurImage
+            src={item.image}
+            alt={item.value}
+            className="h-4 w-4 rounded-full"
+            width={16}
+            height={16}
+          />
+        )}
+        <p
+          className={cn(
+            'whitespace-nowrap py-0.5 text-sm',
+            item.color && 'rounded-md px-2',
+            item.color === 'red' && 'bg-red-100 text-red-600',
+            item.color === 'yellow' && 'bg-yellow-100 text-yellow-600',
+            item.color === 'green' && 'bg-green-100 text-green-600',
+            item.color === 'blue' && 'bg-blue-100 text-blue-600',
+            item.color === 'purple' && 'bg-purple-100 text-purple-600',
+            item.color === 'brown' && 'bg-brown-100 text-brown-600'
+          )}
         >
-          <div className="flex items-center space-x-2">
-            {item.image && (
-              <BlurImage
-                src={item.image}
-                alt={item.value}
-                className="h-7 w-7 rounded-full"
-                width={28}
-                height={28}
-              />
-            )}
-            <span>{item.value}</span>
-            {item.label && (
-              <Badge variant="neutral" className="ml-2">
-                {item.label}
-              </Badge>
-            )}
-          </div>
-          <Check className="invisible h-4 w-4 text-blue-500 group-aria-selected:visible" />
-        </Command.Item>
-      ))}
-    </>
-  )
+          {item.value}
+        </p>
+        {item.label && (
+          <Badge className="text-xs" variant="neutral">
+            {item.label}
+          </Badge>
+        )}
+      </div>
+
+      <Check className="invisible h-5 w-5 text-gray-500 aria-selected:visible" />
+    </Command.Item>
+  ))
 }

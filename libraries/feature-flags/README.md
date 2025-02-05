@@ -14,12 +14,12 @@ pnpm add @playbookmedia/feature-flags
 
 ## Features
 
-- Integration with Vercel Flags
-- PostHog analytics-based feature targeting
-- User-based feature targeting
-- Type-safe feature flag creation
-- Default value fallbacks
-- Server-side feature flag evaluation
+-   Integration with Vercel Flags
+-   PostHog analytics-based feature targeting
+-   User-based feature targeting
+-   Type-safe feature flag creation
+-   Default value fallbacks
+-   Server-side feature flag evaluation
 
 ## Usage
 
@@ -42,11 +42,11 @@ import { myNewFeature } from '@playbookmedia/feature-flags'
 
 // In a server component or API route
 export default async function Page() {
-  if (await myNewFeature()) {
-    return <div>New Feature Enabled!</div>
-  }
-  
-  return <div>Standard Feature</div>
+    if (await myNewFeature()) {
+        return <div>New Feature Enabled!</div>
+    }
+
+    return <div>Standard Feature</div>
 }
 ```
 
@@ -81,17 +81,17 @@ Feature flags are evaluated in the following order:
 
 ```typescript
 async function evaluateFlag() {
-  // Get user context
-  const { userId } = await auth()
-  
-  if (!userId) {
-    return false // Default value
-  }
-  
-  // Check PostHog
-  const isEnabled = await analytics.isFeatureEnabled('flagKey', userId)
-  
-  return isEnabled ?? false
+    // Get user context
+    const { userId } = await auth()
+
+    if (!userId) {
+        return false // Default value
+    }
+
+    // Check PostHog
+    const isEnabled = await analytics.isFeatureEnabled('flagKey', userId)
+
+    return isEnabled ?? false
 }
 ```
 
@@ -108,9 +108,10 @@ async function evaluateFlag() {
 ## TypeScript Support
 
 The package includes TypeScript definitions for:
-- Flag creation functions
-- Configuration options
-- Return types
+
+-   Flag creation functions
+-   Configuration options
+-   Return types
 
 ```typescript
 import { createFlag } from '@playbookmedia/feature-flags/lib/create-flag'
@@ -123,16 +124,18 @@ const myFlag = createFlag('myFlag')
 ## Integration with PostHog
 
 Feature flags are tightly integrated with PostHog for:
-- User targeting
-- A/B testing
-- Gradual rollouts
-- Analytics tracking
+
+-   User targeting
+-   A/B testing
+-   Gradual rollouts
+-   Analytics tracking
 
 Configure feature flags in PostHog to:
-- Target specific users or groups
-- Set percentage-based rollouts
-- Define complex targeting rules
-- Track feature usage
+
+-   Target specific users or groups
+-   Set percentage-based rollouts
+-   Define complex targeting rules
+-   Track feature usage
 
 ## Error Handling
 
@@ -140,12 +143,12 @@ Configure feature flags in PostHog to:
 import { myFeature } from '@playbookmedia/feature-flags'
 
 try {
-  const isEnabled = await myFeature()
-  // Use the feature flag
+    const isEnabled = await myFeature()
+    // Use the feature flag
 } catch (error) {
-  // Handle any errors (e.g., PostHog API issues)
-  console.error('Feature flag evaluation failed:', error)
-  return false // Safe default
+    // Handle any errors (e.g., PostHog API issues)
+    console.error('Feature flag evaluation failed:', error)
+    return false // Safe default
 }
 ```
 
@@ -155,4 +158,4 @@ Please read our contributing guidelines before submitting pull requests.
 
 ## License
 
-MIT 
+MIT

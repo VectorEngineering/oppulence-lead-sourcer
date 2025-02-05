@@ -14,12 +14,18 @@ export function getUserAvatarUrl(user?: User | null) {
 
   if (!user?.id) return 'https://api.dicebear.com/9.x/micah/svg'
 
-  const dicebear = `https://api.dicebear.com/9.x/micah/svg?seed=${encodeURIComponent(user.id)}`
+  const dicebear = `https://api.dicebear.com/9.x/micah/svg?seed=${encodeURIComponent(
+    user.id
+  )}`
   // Gravatar default doesn't support SVG or query params, so we use PNG and encoded / params
-  const encodedDicebear = `https://api.dicebear.com/9.x/micah/png/${encodeURIComponent(`seed=${encodeURIComponent(user.id)}`)}`
+  const encodedDicebear = `https://api.dicebear.com/9.x/micah/png/${encodeURIComponent(
+    `seed=${encodeURIComponent(user.id)}`
+  )}`
 
   return user.email
-    ? `https://www.gravatar.com/avatar/${sha256(user.email)}?d=${encodeURIComponent(encodedDicebear)}`
+    ? `https://www.gravatar.com/avatar/${sha256(
+        user.email
+      )}?d=${encodeURIComponent(encodedDicebear)}`
     : dicebear
 }
 

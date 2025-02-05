@@ -14,12 +14,12 @@ pnpm add @playbookmedia/analytics
 
 ## Features
 
-- Client-side analytics tracking
-- Server-side analytics tracking
-- React integration with PostHog Provider
-- Automatic page leave tracking
-- Manual pageview capture
-- TypeScript support
+-   Client-side analytics tracking
+-   Server-side analytics tracking
+-   React integration with PostHog Provider
+-   Automatic page leave tracking
+-   Manual pageview capture
+-   TypeScript support
 
 ## Usage
 
@@ -32,23 +32,19 @@ import { PostHogProvider, analytics } from '@playbookmedia/analytics/posthog/cli
 
 // Wrap your app with the PostHog provider
 function App({ children }) {
-  return (
-    <PostHogProvider>
-      {children}
-    </PostHogProvider>
-  )
+    return <PostHogProvider>{children}</PostHogProvider>
 }
 
 // Track events
 analytics.capture('button_clicked', {
-  buttonName: 'signup',
-  location: 'header'
+    buttonName: 'signup',
+    location: 'header'
 })
 
 // Identify users
 analytics.identify('user123', {
-  name: 'John Doe',
-  email: 'john@example.com'
+    name: 'John Doe',
+    email: 'john@example.com'
 })
 ```
 
@@ -59,22 +55,22 @@ import { analytics } from '@playbookmedia/analytics/posthog/server'
 
 // Track server-side events
 await analytics.capture({
-  distinctId: 'user123',
-  event: 'server_action_completed',
-  properties: {
-    action: 'data_processing',
-    duration: 1500
-  }
+    distinctId: 'user123',
+    event: 'server_action_completed',
+    properties: {
+        action: 'data_processing',
+        duration: 1500
+    }
 })
 
 // Update user properties
 await analytics.groupIdentify({
-  groupType: 'organization',
-  groupKey: 'org123',
-  properties: {
-    name: 'Acme Corp',
-    plan: 'enterprise'
-  }
+    groupType: 'organization',
+    groupKey: 'org123',
+    properties: {
+        name: 'Acme Corp',
+        plan: 'enterprise'
+    }
 })
 ```
 
@@ -90,16 +86,18 @@ NEXT_PUBLIC_POSTHOG_HOST=your_posthog_host
 ### Client Configuration Options
 
 The client is configured with these defaults:
-- `api_host: '/ingest'`
-- `capture_pageview: false` (manual capture)
-- `capture_pageleave: true`
-- `person_profiles: 'identified_only'`
+
+-   `api_host: '/ingest'`
+-   `capture_pageview: false` (manual capture)
+-   `capture_pageleave: true`
+-   `person_profiles: 'identified_only'`
 
 ### Server Configuration Options
 
 The server client is configured with immediate flushing for serverless environments:
-- `flushAt: 1`
-- `flushInterval: 0`
+
+-   `flushAt: 1`
+-   `flushInterval: 0`
 
 ## Best Practices
 
@@ -113,10 +111,11 @@ The server client is configured with immediate flushing for serverless environme
 ## TypeScript Support
 
 The package includes full TypeScript support with type definitions for:
-- Event properties
-- User properties
-- Configuration options
-- React components
+
+-   Event properties
+-   User properties
+-   Configuration options
+-   React components
 
 ## Contributing
 
@@ -124,4 +123,4 @@ Please read our contributing guidelines before submitting pull requests.
 
 ## License
 
-MIT 
+MIT

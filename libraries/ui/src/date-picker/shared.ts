@@ -157,7 +157,9 @@ export const validatePresets = (
 
           if (presetDay && presetDay < fromDay.getDate()) {
             throw new Error(
-              `Preset ${preset.dateRange.from}'s 'from' is before fromDay ${format(fromDay, 'MMM dd, yyyy')}.`
+              `Preset ${
+                preset.dateRange.from
+              }'s 'from' is before fromDay ${format(fromDay, 'MMM dd, yyyy')}.`
             )
           }
         }

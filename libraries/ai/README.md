@@ -4,11 +4,11 @@ A modern, type-safe AI chat components and utilities library for Next.js applica
 
 ## Features
 
-- 🎯 **Type-safe**: Built with TypeScript for robust type checking and better developer experience
-- 🎨 **Customizable**: Flexible components that can be styled with Tailwind CSS
-- 🔒 **Secure**: Safe handling of API keys and environment variables
-- ⚡ **Performant**: Optimized for Next.js applications
-- 🧩 **Modular**: Use only what you need with tree-shakeable exports
+-   🎯 **Type-safe**: Built with TypeScript for robust type checking and better developer experience
+-   🎨 **Customizable**: Flexible components that can be styled with Tailwind CSS
+-   🔒 **Secure**: Safe handling of API keys and environment variables
+-   ⚡ **Performant**: Optimized for Next.js applications
+-   🧩 **Modular**: Use only what you need with tree-shakeable exports
 
 ## Installation
 
@@ -38,18 +38,18 @@ import { Message, Thread } from '@playbookmedia/ai'
 import type { Message as MessageType } from 'ai'
 
 export default function Chat() {
-  const messages: MessageType[] = [
-    { id: '1', role: 'user', content: 'Hello!' },
-    { id: '2', role: 'assistant', content: 'Hi there! How can I help you?' }
-  ]
+    const messages: MessageType[] = [
+        { id: '1', role: 'user', content: 'Hello!' },
+        { id: '2', role: 'assistant', content: 'Hi there! How can I help you?' }
+    ]
 
-  return (
-    <Thread>
-      {messages.map(message => (
-        <Message key={message.id} data={message} />
-      ))}
-    </Thread>
-  )
+    return (
+        <Thread>
+            {messages.map((message) => (
+                <Message key={message.id} data={message} />
+            ))}
+        </Thread>
+    )
 }
 ```
 
@@ -61,17 +61,14 @@ A container component for displaying a sequence of chat messages.
 
 ```tsx
 import { Thread } from '@playbookmedia/ai'
-
-<Thread className="custom-class">
-  {/* Messages go here */}
-</Thread>
+;<Thread className='custom-class'>{/* Messages go here */}</Thread>
 ```
 
 #### Props
 
-- `children`: React nodes to render within the thread
-- `className`: Optional custom CSS classes (merged with default styles)
-- `...props`: All standard HTML div props are supported
+-   `children`: React nodes to render within the thread
+-   `className`: Optional custom CSS classes (merged with default styles)
+-   `...props`: All standard HTML div props are supported
 
 ### Message
 
@@ -87,7 +84,7 @@ const message: MessageType = {
   content: '# Hello\nThis is a message with **Markdown** support.'
 }
 
-<Message 
+<Message
   data={message}
   markdown={{
     components: {
@@ -101,12 +98,12 @@ const message: MessageType = {
 
 #### Props
 
-- `data`: Message object containing:
-  - `id`: Unique identifier
-  - `role`: 'user' | 'assistant'
-  - `content`: Message content (supports Markdown)
-- `markdown`: Optional configuration for react-markdown
-  - `components`: Custom components for rendering Markdown elements
+-   `data`: Message object containing:
+    -   `id`: Unique identifier
+    -   `role`: 'user' | 'assistant'
+    -   `content`: Message content (supports Markdown)
+-   `markdown`: Optional configuration for react-markdown
+    -   `components`: Custom components for rendering Markdown elements
 
 ## Utilities
 
@@ -119,7 +116,7 @@ import { provider } from '@playbookmedia/ai/lib/provider'
 
 // Use with Vercel AI SDK
 const completion = await provider.chat({
-  messages: [{ role: 'user', content: 'Hello!' }]
+    messages: [{ role: 'user', content: 'Hello!' }]
 })
 ```
 
@@ -127,8 +124,8 @@ const completion = await provider.chat({
 
 The components use Tailwind CSS for styling and can be customized using the `className` prop. Default styles include:
 
-- Thread: Flexbox container with vertical layout and scrolling
-- Message: Role-based styling (user/assistant) with rounded corners and appropriate colors
+-   Thread: Flexbox container with vertical layout and scrolling
+-   Message: Role-based styling (user/assistant) with rounded corners and appropriate colors
 
 ## TypeScript Support
 
@@ -139,9 +136,9 @@ import type { Message as MessageType } from 'ai'
 
 // Message type includes:
 interface Message {
-  id: string
-  role: 'user' | 'assistant'
-  content: string
+    id: string
+    role: 'user' | 'assistant'
+    content: string
 }
 ```
 
@@ -155,6 +152,6 @@ MIT © [Playbook Media](https://github.com/playbookmedia)
 
 ## Related
 
-- [Vercel AI SDK](https://github.com/vercel/ai)
-- [OpenAI API](https://platform.openai.com/docs/api-reference)
-- [React Markdown](https://github.com/remarkjs/react-markdown) 
+-   [Vercel AI SDK](https://github.com/vercel/ai)
+-   [OpenAI API](https://platform.openai.com/docs/api-reference)
+-   [React Markdown](https://github.com/remarkjs/react-markdown)

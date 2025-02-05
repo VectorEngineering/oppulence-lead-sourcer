@@ -1,23 +1,21 @@
-import { defineConfig } from 'tsup'
+import { type Options, defineConfig } from 'tsup'
 
-export default defineConfig({
+export default defineConfig((options: Options) => ({
   entry: {
-    'index': 'src/index.tsx',
+    index: 'src/index.tsx',
     'icons/index': 'src/icons/index.tsx',
     'charts/index': 'src/charts/index.ts',
     'ui/index': 'src/ui/index.tsx',
-    'hooks/index': 'src/hooks/index.ts'
   },
-  format: ['cjs', 'esm'],
-  dts: true,
-  clean: true,
-  external: [
-    'react',
-    'react-dom'
-  ],
+  target: 'node18',
+  format: ['esm'],
   esbuildOptions(options) {
-    options.alias = {
-      '@': './src'
+    options.banner = {
+      js: '"use client"',
     }
-  }
-})
+  },
+  dts: true,
+  minify: true,
+  external: ['react'],
+  ...options,
+}))

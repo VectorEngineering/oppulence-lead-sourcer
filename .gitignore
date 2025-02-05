@@ -41,6 +41,7 @@
 ## secrets
 **/*.key
 **/api.json
+**/*.next
 
 ## uploads
 **/uploads

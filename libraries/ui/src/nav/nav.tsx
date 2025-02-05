@@ -110,7 +110,7 @@ export function Nav({
             className={cn(
               'absolute inset-0 block border-b border-transparent transition-all',
               scrolled &&
-              'border-neutral-100 bg-white/75 backdrop-blur-lg dark:border-white/10 dark:bg-black/75'
+                'border-neutral-100 bg-white/75 backdrop-blur-lg dark:border-white/10 dark:bg-black/75'
             )}
           />
           <MaxWidthWrapper className={cn('relative', maxWidthWrapperClassName)}>
@@ -244,13 +244,11 @@ function WithTrigger({
   trigger,
   children,
 }: PropsWithChildren<{ trigger: boolean }>) {
-  if (!trigger) {
-    return <>{children}</>
-  }
-
-  return (
+  return trigger ? (
     <NavigationMenuPrimitive.Trigger asChild>
-      <div>{children}</div>
+      {children}
     </NavigationMenuPrimitive.Trigger>
+  ) : (
+    children
   )
 }

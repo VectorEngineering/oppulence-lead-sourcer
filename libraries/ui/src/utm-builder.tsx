@@ -1,5 +1,8 @@
 'use client'
 
+import { cn } from '@dub/utils'
+import { ReactNode, useEffect, useId, useRef, useState } from 'react'
+import { useMediaQuery } from './hooks/use-media-query'
 import {
   Flag6,
   Gift,
@@ -8,11 +11,7 @@ import {
   Page2,
   SatelliteDish,
 } from './icons/nucleo'
-import { ReactNode, useEffect, useId, useRef, useState } from 'react'
-
 import { Tooltip } from './tooltip'
-import { cn } from '@dub/utils'
-import { useMediaQuery } from './hooks/use-media-query'
 
 export const UTM_PARAMETERS = [
   {
@@ -157,13 +156,11 @@ function DisabledTooltipWrapper({
   children: ReactNode
   disabledTooltip?: string | ReactNode
 }) {
-  if (!disabledTooltip) {
-    return <>{children}</>
-  }
-
-  return (
+  return disabledTooltip ? (
     <Tooltip content={disabledTooltip} disableHoverableContent>
-      <div>{children}</div>
+      {children}
     </Tooltip>
+  ) : (
+    children
   )
 }

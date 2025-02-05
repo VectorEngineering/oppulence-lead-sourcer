@@ -1,23 +1,15 @@
 {
-  "extends": "@playbookmedia/tsconfig/react-library.json",
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"],
+  "extends": "tsconfig/react-library.json",
+  "include": [".", "stories", ".storybook"],
+  "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
-    "strict": true,
-    "skipLibCheck": true,
     "jsx": "react-jsx",
-    "module": "ESNext",
-    "declaration": true,
-    "declarationDir": "dist",
-    "sourceMap": true,
-    "outDir": "dist",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "react": ["./node_modules/@types/react"]
-    }
+      "@/*": ["src/*"]
+    },
+    "lib": ["dom", "es2017"],
+    "target": "es2017",
+    "strict": true
   }
 }

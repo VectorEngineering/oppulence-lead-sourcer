@@ -6,8 +6,7 @@
   "module": "./index.ts",
   "types": "./index.ts",
   "scripts": {
-    "generate": "npx prisma generate --schema=./schema && pnpm run generate:zod",
-    "generate:zod": "npx prisma generate zod --schema=./schema",
+    "generate": "npx prisma generate --schema=./schema",
     "push": "npx prisma db push --schema=./schema",
     "studio": "npx prisma studio --schema=./schema --browser none",
     "prebuild": "pnpm run generate",
@@ -16,10 +15,7 @@
   "dependencies": {
     "@planetscale/database": "^1.18.0",
     "@prisma/adapter-planetscale": "^5.18.0",
-    "@prisma/client": "5.18.0",
-    "decimal.js": "^10.4.3",
-    "zod": "^3.24.1",
-    "zod-prisma-types": "^3.2.1"
+    "@prisma/client": "5.18.0"
   },
   "devDependencies": {
     "@types/node": "18.11.9",
@@ -30,10 +26,6 @@
   "exports": {
     ".": "./index.ts",
     "./edge": "./edge.ts",
-    "./client": "./client.ts",
-    "./zod": "./generated/zod/index.ts"
-  },
-  "prisma": {
-    "schema": "schema"
+    "./client": "./client.ts"
   }
 }

@@ -90,7 +90,9 @@ const columns = [
       }
       return (
         <span
-          className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${roleColors[info.getValue()]}`}
+          className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
+            roleColors[info.getValue()]
+          }`}
         >
           {info.getValue()}
         </span>

@@ -64,7 +64,6 @@ class DubEmbed {
                 )
             }
         })
-
         ;(root ?? document.body).appendChild(container)
 
         return container

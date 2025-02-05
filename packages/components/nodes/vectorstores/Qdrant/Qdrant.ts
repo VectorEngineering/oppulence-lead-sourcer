@@ -222,10 +222,12 @@ class Qdrant_VectorStores implements INode {
                     if (isFileUploadEnabled && options.chatId) {
                         flattenDocs[i].metadata = { ...flattenDocs[i].metadata, [FLOWISE_CHATID]: options.chatId }
                     }
-                    finalDocs.push(new Document({
-                        pageContent: flattenDocs[i].pageContent,
-                        metadata: flattenDocs[i].metadata
-                    }))
+                    finalDocs.push(
+                        new Document({
+                            pageContent: flattenDocs[i].pageContent,
+                            metadata: flattenDocs[i].metadata
+                        })
+                    )
                 }
             }
 
@@ -386,7 +388,7 @@ class Qdrant_VectorStores implements INode {
                 if (recordManager) {
                     const vectorStoreName = collectionName
                     await recordManager.createSchema()
-                        ; (recordManager as any).namespace = (recordManager as any).namespace + '_' + vectorStoreName
+                    ;(recordManager as any).namespace = (recordManager as any).namespace + '_' + vectorStoreName
                     const keys: string[] = await recordManager.listKeys({})
 
                     await vectorStore.delete({ ids: keys })
@@ -484,9 +486,9 @@ class Qdrant_VectorStores implements INode {
             const retriever = vectorStore.asRetriever(retrieverConfig)
             return retriever
         } else if (output === 'vectorStore') {
-            ; (vectorStore as any).k = k
+            ;(vectorStore as any).k = k
             if (queryFilter) {
-                ; (vectorStore as any).filter = retrieverConfig.filter
+                ;(vectorStore as any).filter = retrieverConfig.filter
             }
             return vectorStore
         }

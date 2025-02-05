@@ -9,14 +9,6 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex", "driverAdapters", "prismaSchemaFolder", "omitApi"]
 }
 
-generator zod {
-  provider       = "zod-prisma-types"
-  output         = "../generated/zod"
-  useMultipleFiles = true
-  createOptionalDefaultValuesTypes = true
-  writeNullishInModelTypes = true
-}
-
 model User {
   id            String    @id @default(cuid())
   name          String?
