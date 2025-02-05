@@ -1,7 +1,8 @@
-import { TaskRegistry } from '@/lib/workflow/task/registry'
 import { AppNode, AppNodeMissingInputs } from '@/types/appNode'
 import { WorkflowExecutionPlan, WorkflowExecutionPlanPhase } from '@/types/workflow'
+
 import { Edge } from '@xyflow/react'
+import { TaskRegistry } from '@/lib/workflow/task/registry'
 
 export enum FlowToExecutionPlanValidationError {
     'NO_ENTRY_POINT',
@@ -94,7 +95,7 @@ export function FlowToExecutionPlan(nodes: AppNode[], edges: Edge[]): FlowToExec
 }
 
 function getInvalidInputs(node: AppNode, edges: Edge[], planned: Set<string>) {
-    const invalidInputs = []
+    const invalidInputs: string[] = []
     const inputs = TaskRegistry[node.data.type].inputs
     for (const input of inputs) {
         const inputValue = node.data.inputs[input.name]

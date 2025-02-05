@@ -1,14 +1,13 @@
 'use client'
 
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ChartColumnStackedIcon, Layers2 } from 'lucide-react'
-import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
+import * as React from 'react'
 
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis } from 'recharts'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+
+import { ChartColumnStackedIcon } from 'lucide-react'
+import { ChartContainer } from '@/components/ui/chart'
 import { GetCreditUsageInPeriod } from '@/actions/analytics/getCreditUsageInperiod'
-import { GetWorkflowExecutionStats } from '@/actions/analytics/getWorkflowExecutionStats'
-import React from 'react'
-import { Separator } from '@/components/ui/separator'
 
 type ChartData = Awaited<ReturnType<typeof GetCreditUsageInPeriod>>
 
@@ -23,7 +22,7 @@ const chartConfig = {
     }
 }
 
-export default function CreditUsageChart({ data, title, description }: { data: ChartData; title: string; description: string }) {
+const CreditUsageChart: React.FC<{ data: ChartData; title: string; description: string }> = ({ data, title, description }) => {
     return (
         <Card>
             <CardHeader>
@@ -51,8 +50,8 @@ export default function CreditUsageChart({ data, title, description }: { data: C
                                 })
                             }}
                         />
-                        <ChartLegend content={<ChartLegendContent />} />
-                        <ChartTooltip content={<ChartTooltipContent className='w-[250px]' />} />
+                        <Legend />
+                        <Tooltip />
                         <Bar
                             fillOpacity={0.8}
                             radius={[0, 0, 4, 4]}
@@ -75,3 +74,4 @@ export default function CreditUsageChart({ data, title, description }: { data: C
         </Card>
     )
 }
+export default CreditUsageChart
