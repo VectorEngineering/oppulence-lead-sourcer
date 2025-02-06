@@ -1,6 +1,6 @@
-import { dirname, join } from "node:path";
+import { dirname, join } from 'node:path'
 
-import type { StorybookConfig } from "@storybook/nextjs";
+import type { StorybookConfig } from '@storybook/nextjs'
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -9,44 +9,41 @@ import type { StorybookConfig } from "@storybook/nextjs";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, "package.json")));
+    return dirname(require.resolve(join(value, 'package.json')))
 }
 const config: StorybookConfig = {
-  stories: [
-    "../components/**/*.mdx",
-    "../components/**/*.stories.@(js|jsx|ts|tsx)",
-  ],
-  addons: [
-    getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-essentials"),
-    getAbsolutePath("@storybook/addon-onboarding"),
-    getAbsolutePath("@storybook/addon-interactions"),
-    getAbsolutePath("@chromatic-com/storybook"),
-    {
-      name: "@storybook/addon-styling",
-      options: {
-        postCss: {
-          implementation: require.resolve("postcss"),
-        },
-      },
+    stories: ['../components/**/*.mdx', '../components/**/*.stories.@(js|jsx|ts|tsx)'],
+    addons: [
+        getAbsolutePath('@storybook/addon-links'),
+        getAbsolutePath('@storybook/addon-essentials'),
+        getAbsolutePath('@storybook/addon-onboarding'),
+        getAbsolutePath('@storybook/addon-interactions'),
+        getAbsolutePath('@chromatic-com/storybook'),
+        {
+            name: '@storybook/addon-styling',
+            options: {
+                postCss: {
+                    implementation: require.resolve('postcss')
+                }
+            }
+        }
+    ],
+    framework: {
+        name: getAbsolutePath('@storybook/nextjs'),
+        options: {}
     },
-  ],
-  framework: {
-    name: getAbsolutePath("@storybook/nextjs"),
-    options: {},
-  },
-  docs: {
-    autodocs: "tag",
-  },
-  staticDirs: ["../public"],
-  webpackFinal: async (config) => {
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        "@": dirname(join(__dirname, "../")),
-      };
+    docs: {
+        autodocs: 'tag'
+    },
+    staticDirs: ['../public'],
+    webpackFinal: async (config) => {
+        if (config.resolve) {
+            config.resolve.alias = {
+                ...config.resolve.alias,
+                '@': dirname(join(__dirname, '../'))
+            }
+        }
+        return config
     }
-    return config;
-  },
-};
-export default config;
+}
+export default config

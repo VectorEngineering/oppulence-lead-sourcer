@@ -1,40 +1,40 @@
 // Import global styles
-import "../app/globals.css";
+import '../app/globals.css'
 
-import type { Preview } from "@storybook/react";
-import { SidebarProvider } from "../components/ui/sidebar";
+import type { Preview } from '@storybook/react'
+import { SidebarProvider } from '../components/ui/sidebar'
 
 const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-    backgrounds: {
-      default: "light",
-      values: [
-        {
-          name: "light",
-          value: "#ffffff",
+    parameters: {
+        controls: {
+            matchers: {
+                color: /(background|color)$/i,
+                date: /Date$/i
+            }
         },
-        {
-          name: "dark",
-          value: "#0f172a",
-        },
-      ],
+        backgrounds: {
+            default: 'light',
+            values: [
+                {
+                    name: 'light',
+                    value: '#ffffff'
+                },
+                {
+                    name: 'dark',
+                    value: '#0f172a'
+                }
+            ]
+        }
     },
-  },
-  decorators: [
-    (Story) => (
-      <div className="bg-background min-h-screen">
-        <SidebarProvider>
-          <Story />
-        </SidebarProvider>
-      </div>
-    ),
-  ],
-};
+    decorators: [
+        (Story) => (
+            <div className='bg-background min-h-screen'>
+                <SidebarProvider>
+                    <Story />
+                </SidebarProvider>
+            </div>
+        )
+    ]
+}
 
-export default preview;
+export default preview

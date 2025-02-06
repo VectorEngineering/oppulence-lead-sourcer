@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { NavUser } from "@/components/nav-user";
+import { NavUser } from '@/components/nav-user'
 
 const meta: Meta<typeof NavUser> = {
-  component: NavUser,
-  parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component: `
+    component: NavUser,
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: `
 The NavUser component displays user information and provides access to user-related actions.
 
 ## Features
@@ -59,56 +59,55 @@ The dropdown menu includes:
 - Implements responsive design
 - Handles avatar loading states
 - Manages user session state
-`,
-      },
+`
+            }
+        }
     },
-  },
-  args: {
-    user: {
-      name: "John Doe",
-      email: "john@example.com",
-      avatar: "https://github.com/shadcn.png",
+    args: {
+        user: {
+            name: 'John Doe',
+            email: 'john@example.com',
+            avatar: 'https://github.com/shadcn.png'
+        }
     },
-  },
-  argTypes: {
-    user: {
-      control: "object",
-      description: "User object containing profile information",
+    argTypes: {
+        user: {
+            control: 'object',
+            description: 'User object containing profile information'
+        }
     },
-  },
-  tags: ["autodocs"],
-};
+    tags: ['autodocs']
+}
 
-export default meta;
-type Story = StoryObj<typeof NavUser>;
+export default meta
+type Story = StoryObj<typeof NavUser>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const WithoutAvatar: Story = {
-  args: {
-    user: {
-      name: "John Doe",
-      email: "john@example.com",
-      avatar: "",
-    },
-  },
-};
+    args: {
+        user: {
+            name: 'John Doe',
+            email: 'john@example.com',
+            avatar: ''
+        }
+    }
+}
 
 export const LongUserInfo: Story = {
-  args: {
-    user: {
-      name: "John Doe with a Very Long Name That Should Truncate",
-      email:
-        "john.doe.with.a.very.long.email.address@really-long-domain-name.com",
-      avatar: "https://github.com/shadcn.png",
-    },
-  },
-};
+    args: {
+        user: {
+            name: 'John Doe with a Very Long Name That Should Truncate',
+            email: 'john.doe.with.a.very.long.email.address@really-long-domain-name.com',
+            avatar: 'https://github.com/shadcn.png'
+        }
+    }
+}
 
 export const Mobile: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: "mobile1",
-    },
-  },
-};
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1'
+        }
+    }
+}

@@ -6,54 +6,54 @@
  * @returns The generated Shadcn form as a string.
  */
 export const generateShadcnForm = (schema: GeneralSchema[]): string => {
-  const getZodType = (field: GeneralSchema) => {
-    let zodType = "";
-    switch (field.value) {
-      case "string":
-        zodType = "z.string()";
-        break;
-      case "number":
-        zodType = "z.number()";
-        break;
-      case "date":
-        zodType = "z.date()";
-        break;
-      case "boolean":
-        zodType = "z.boolean()";
-        break;
-      case "email":
-        zodType = "z.string().email()";
-        break;
-      case "url":
-        zodType = "z.string().url()";
-        break;
-      case "phone":
-        zodType = "z.string().regex(/^\\+?[1-9]\\d{1,14}$/)";
-        break;
-      case "zip_code":
-        zodType = "z.string().regex(/^\\d{5}(?:[-\\s]\\d{4})?$/)";
-        break;
-      default:
-        zodType = "z.string()";
+    const getZodType = (field: GeneralSchema) => {
+        let zodType = ''
+        switch (field.value) {
+            case 'string':
+                zodType = 'z.string()'
+                break
+            case 'number':
+                zodType = 'z.number()'
+                break
+            case 'date':
+                zodType = 'z.date()'
+                break
+            case 'boolean':
+                zodType = 'z.boolean()'
+                break
+            case 'email':
+                zodType = 'z.string().email()'
+                break
+            case 'url':
+                zodType = 'z.string().url()'
+                break
+            case 'phone':
+                zodType = 'z.string().regex(/^\\+?[1-9]\\d{1,14}$/)'
+                break
+            case 'zip_code':
+                zodType = 'z.string().regex(/^\\d{5}(?:[-\\s]\\d{4})?$/)'
+                break
+            default:
+                zodType = 'z.string()'
+        }
+        if (field.required) {
+            zodType += ".min(1, { message: 'This field is required' })"
+        }
+        return zodType
     }
-    if (field.required) {
-      zodType += ".min(1, { message: 'This field is required' })";
-    }
-    return zodType;
-  };
 
-  const getFieldComponent = (field: GeneralSchema) => {
-    if (field.value === "boolean") {
-      return `
+    const getFieldComponent = (field: GeneralSchema) => {
+        if (field.value === 'boolean') {
+            return `
         <Switch
           className="flex"
           checked={field.value}
           onCheckedChange={field.onChange}
         />
-      `;
-    }
-    if (field.value === "date") {
-      return `
+      `
+        }
+        if (field.value === 'date') {
+            return `
         <Popover>
           <PopoverTrigger className="flex" asChild>
             <Button
@@ -76,21 +76,21 @@ export const generateShadcnForm = (schema: GeneralSchema[]): string => {
             />
           </PopoverContent>
         </Popover>
-      `;
-    }
-    return `
+      `
+        }
+        return `
         <Input
           placeholder="${field.key}"
           {...field}
           type="${field.value}"
         />
-      `;
-  };
+      `
+    }
 
-  const hasBooleanField = schema.some((field) => field.value === "boolean");
-  const hasDateField = schema.some((field) => field.value === "date");
+    const hasBooleanField = schema.some((field) => field.value === 'boolean')
+    const hasDateField = schema.some((field) => field.value === 'date')
 
-  return `"use client";
+    return `"use client";
 
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -101,15 +101,15 @@ import { Calendar as CalendarIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 ${
-  hasBooleanField
-    ? `
+    hasBooleanField
+        ? `
 import { Switch } from "@/components/ui/switch";
 `
-    : ""
+        : ''
 }
 ${
-  hasDateField
-    ? `
+    hasDateField
+        ? `
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -117,7 +117,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 `
-    : ""
+        : ''
 }
 import {
   Form,
@@ -131,7 +131,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  ${schema.map((field) => `${field.key}: ${getZodType(field)}`).join(",\n  ")}
+  ${schema.map((field) => `${field.key}: ${getZodType(field)}`).join(',\n  ')}
 });
 
 export function RouterForm() {
@@ -147,8 +147,8 @@ export function RouterForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         ${schema
-          .map(
-            (field) => `
+            .map(
+                (field) => `
         <FormField
           control={form.control}
           name="${field.key}"
@@ -165,13 +165,13 @@ export function RouterForm() {
             </FormItem>
           )}
         />
-        `,
-          )
-          .join("")}
+        `
+            )
+            .join('')}
         <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
 }
-`;
-};
+`
+}

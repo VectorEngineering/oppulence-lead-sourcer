@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react'
+import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
 
-import { TeamSwitcher } from "@/components/team-switcher";
+import { TeamSwitcher } from '@/components/team-switcher'
 
 const meta: Meta<typeof TeamSwitcher> = {
-  component: TeamSwitcher,
-  parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component: `
+    component: TeamSwitcher,
+    parameters: {
+        layout: 'centered',
+        docs: {
+            description: {
+                component: `
 The TeamSwitcher component allows users to switch between different teams or workspaces.
 
 ## Features
@@ -66,76 +66,76 @@ export default function TeamNavigation() {
 - Maintains selected team state
 - Handles team switching logic
 - Supports keyboard shortcuts
-`,
-      },
+`
+            }
+        }
     },
-  },
-  args: {
-    teams: [
-      {
-        name: "Acme Inc",
-        logo: GalleryVerticalEnd,
-        plan: "Enterprise",
-      },
-      {
-        name: "Acme Corp",
-        logo: AudioWaveform,
-        plan: "Startup",
-      },
-      {
-        name: "Personal",
-        logo: Command,
-        plan: "Free",
-      },
-    ],
-  },
-  argTypes: {
-    teams: {
-      control: "object",
-      description: "Array of team objects",
+    args: {
+        teams: [
+            {
+                name: 'Acme Inc',
+                logo: GalleryVerticalEnd,
+                plan: 'Enterprise'
+            },
+            {
+                name: 'Acme Corp',
+                logo: AudioWaveform,
+                plan: 'Startup'
+            },
+            {
+                name: 'Personal',
+                logo: Command,
+                plan: 'Free'
+            }
+        ]
     },
-  },
-  tags: ["autodocs"],
-};
+    argTypes: {
+        teams: {
+            control: 'object',
+            description: 'Array of team objects'
+        }
+    },
+    tags: ['autodocs']
+}
 
-export default meta;
-type Story = StoryObj<typeof TeamSwitcher>;
+export default meta
+type Story = StoryObj<typeof TeamSwitcher>
 
-export const Default: Story = {};
+export const Default: Story = {}
 
 export const SingleTeam: Story = {
-  args: {
-    teams: [
-      {
-        name: "Solo Project",
-        logo: Command,
-        plan: "Free",
-      },
-    ],
-  },
-};
+    args: {
+        teams: [
+            {
+                name: 'Solo Project',
+                logo: Command,
+                plan: 'Free'
+            }
+        ]
+    }
+}
 
 export const WithLongNames: Story = {
-  args: {
-    teams: [
-      {
-        name: "Very Long Team Name That Should Truncate Properly",
-        logo: GalleryVerticalEnd,
-        plan: "Enterprise Plus Premium Extended",
-      },
-      {
-        name: "Another Long Team Name for Testing",
-        logo: Command,
-        plan: "Professional Extended Plus",
-      },
-    ],
-  },
-};
+    args: {
+        teams: [
+            {
+                name: 'Very Long Team Name That Should Truncate Properly',
+                logo: GalleryVerticalEnd,
+                plan: 'Enterprise Plus Premium Extended'
+            },
+            {
+                name: 'Another Long Team Name for Testing',
+                logo: Command,
+                plan: 'Professional Extended Plus'
+            }
+        ]
+    }
+}
 
 export const Mobile: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: "mobile1",
-    },
-  },
-};
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1'
+        }
+    }
+}

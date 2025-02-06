@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { AppSidebar } from "./app-sidebar";
+import { AppSidebar } from './app-sidebar'
 
 const meta: Meta<typeof AppSidebar> = {
-  component: AppSidebar,
-  parameters: {
-    layout: "fullscreen",
-    docs: {
-      description: {
-        component: `
+    component: AppSidebar,
+    parameters: {
+        layout: 'fullscreen',
+        docs: {
+            description: {
+                component: `
 The AppSidebar component is the main navigation sidebar for the application. It provides:
 - Team switching functionality
 - Main navigation menu
@@ -47,47 +47,47 @@ export default function Layout({ children }) {
 - Implements responsive design patterns
 - Handles mobile and desktop layouts
 - Manages state for collapsible sections
-`,
-      },
+`
+            }
+        }
     },
-  },
-  argTypes: {
-    className: {
-      control: "text",
-      description: "Additional CSS classes to apply to the sidebar",
+    argTypes: {
+        className: {
+            control: 'text',
+            description: 'Additional CSS classes to apply to the sidebar'
+        },
+        collapsible: {
+            control: 'select',
+            options: ['icon', 'full', false],
+            description: 'Controls the collapsible behavior of the sidebar'
+        }
     },
-    collapsible: {
-      control: "select",
-      options: ["icon", "full", false],
-      description: "Controls the collapsible behavior of the sidebar",
-    },
-  },
-  tags: ["autodocs"],
-};
+    tags: ['autodocs']
+}
 
-export default meta;
-type Story = StoryObj<typeof AppSidebar>;
+export default meta
+type Story = StoryObj<typeof AppSidebar>
 
 export const Default: Story = {
-  args: {
-    className: "h-screen",
-  },
-};
+    args: {
+        className: 'h-screen'
+    }
+}
 
 export const Collapsed: Story = {
-  args: {
-    className: "h-screen",
-    collapsible: "icon",
-  },
-};
+    args: {
+        className: 'h-screen',
+        collapsible: 'icon'
+    }
+}
 
 export const Mobile: Story = {
-  args: {
-    className: "h-screen",
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: "mobile1",
+    args: {
+        className: 'h-screen'
     },
-  },
-};
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1'
+        }
+    }
+}
