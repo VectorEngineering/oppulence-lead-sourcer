@@ -46,7 +46,10 @@
         "precommit": "pnpm install --no-frozen-lockfile && pnpm format && pnpm i && pnpm build",
         "build-oppulence": "turbo build --filter=@playbookmedia/oppulence",
         "version": "changeset version",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "type-check": "tsc --noEmit",
+        "test:affected": "jest --bail --findRelatedTests $(git diff --cached --name-only | grep -E '\\.(ts|tsx|js|jsx)$')",
+        "actionlint": "actionlint"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,md}": "eslint --fix"
@@ -73,7 +76,8 @@
         "rimraf": "^3.0.2",
         "run-script-os": "^1.1.6",
         "turbo": "1.10.16",
-        "typescript": "^5.4.5"
+        "typescript": "^5.4.5",
+        "actionlint": "^1.6.26"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
