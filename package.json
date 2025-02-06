@@ -47,12 +47,23 @@
         "build-oppulence": "turbo build --filter=@playbookmedia/oppulence",
         "version": "changeset version",
         "prepare": "husky install",
-        "type-check": "tsc --noEmit",
+        "lint-staged": "lint-staged",
+        "type-check": "turbo type-check",
+        "type-check:ci": "pnpm -r exec tsc --noEmit",
         "test:affected": "jest --bail --findRelatedTests $(git diff --cached --name-only | grep -E '\\.(ts|tsx|js|jsx)$')",
-        "actionlint": "actionlint"
+        "actionlint": "pnpm dlx actionlint"
     },
     "lint-staged": {
-        "*.{js,jsx,ts,tsx,json,md}": "eslint --fix"
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{json,md,yml,yaml}": [
+            "prettier --write"
+        ],
+        "*.{css,scss}": [
+            "prettier --write"
+        ]
     },
     "devDependencies": {
         "@babel/preset-env": "^7.19.4",
@@ -68,16 +79,15 @@
         "eslint-plugin-react": "^7.26.1",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-unused-imports": "^2.0.0",
-        "husky": "^8.0.1",
+        "husky": "^8.0.3",
         "kill-port": "^2.0.1",
-        "lint-staged": "^13.0.3",
-        "prettier": "^2.7.1",
+        "lint-staged": "^15.2.0",
+        "prettier": "^3.2.0",
         "pretty-quick": "^3.1.3",
         "rimraf": "^3.0.2",
         "run-script-os": "^1.1.6",
         "turbo": "1.10.16",
-        "typescript": "^5.4.5",
-        "actionlint": "^1.6.26"
+        "typescript": "^5.4.5"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
