@@ -1,5 +1,5 @@
-import sharedConfig from '@dub/tailwind-config/tailwind.config'
 import type { Config } from 'tailwindcss'
+import sharedConfig from '@dub/tailwind-config/tailwind.config'
 
 const config: Pick<Config, 'presets'> = {
   presets: [
@@ -15,24 +15,59 @@ const config: Pick<Config, 'presets'> = {
       theme: {
         extend: {
           ...sharedConfig?.theme?.extend,
+          colors: {
+            ...sharedConfig?.theme?.extend?.colors,
+            // Enhanced semantic color system
+            surface: {
+              DEFAULT: 'rgb(var(--surface) / <alpha-value>)',
+              elevated: 'rgb(var(--surface-elevated) / <alpha-value>)',
+              lowered: 'rgb(var(--surface-lowered) / <alpha-value>)',
+            },
+            content: {
+              DEFAULT: 'rgb(var(--content) / <alpha-value>)',
+              subtle: 'rgb(var(--content-subtle) / <alpha-value>)',
+              muted: 'rgb(var(--content-muted) / <alpha-value>)',
+            },
+            accent: {
+              DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+              subtle: 'rgb(var(--accent-subtle) / <alpha-value>)',
+              muted: 'rgb(var(--accent-muted) / <alpha-value>)',
+            },
+          },
+          typography: {
+            DEFAULT: {
+              css: {
+                maxWidth: '65ch',
+                color: 'rgb(var(--content))',
+                lineHeight: '1.75',
+                a: {
+                  color: 'rgb(var(--accent))',
+                  textDecoration: 'none',
+                  '&:hover': {
+                    textDecoration: 'underline',
+                  },
+                },
+              },
+            },
+          },
           animation: {
             ...sharedConfig?.theme?.extend?.animation,
-            // Infinite scroll animation
             'infinite-scroll': 'infinite-scroll 22s linear infinite',
             'infinite-scroll-y': 'infinite-scroll-y 22s linear infinite',
-            // Text appear animation
-            'text-appear': 'text-appear 0.15s ease',
-            // Table pinned column shadow animation
+            'text-appear': 'text-appear 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
             'table-pinned-shadow': 'table-pinned-shadow cubic-bezier(0, 0, 1, 0)',
-            // OTP caret blink animation
             'caret-blink': 'caret-blink 1s ease-out infinite',
-            // Pulse scale animation used for onboarding/welcome
             'pulse-scale': 'pulse-scale 6s ease-out infinite',
             'gradient-move': 'gradient-move 5s linear infinite',
+            float: 'float 6s ease-in-out infinite',
+            'slide-up': 'slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            'slide-down': 'slide-down 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            'fade-in': 'fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            'fade-out': 'fade-out 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+            'spin-slow': 'spin 4s linear infinite',
           },
           keyframes: {
             ...sharedConfig?.theme?.extend?.keyframes,
-            // Infinite scroll animation
             'infinite-scroll': {
               '0%': { transform: 'translateX(0)' },
               '100%': { transform: 'translateX(var(--scroll, -150%))' },
@@ -41,7 +76,6 @@ const config: Pick<Config, 'presets'> = {
               '0%': { transform: 'translateY(0)' },
               '100%': { transform: 'translateY(var(--scroll, -150%))' },
             },
-            // Text appear animation
             'text-appear': {
               '0%': {
                 opacity: '0',
@@ -52,27 +86,84 @@ const config: Pick<Config, 'presets'> = {
                 transform: 'rotateX(0deg) scale(1)',
               },
             },
-            // Table pinned column shadow animation
-            'table-pinned-shadow': {
-              '0%': { filter: 'drop-shadow(rgba(0, 0, 0, 0.1) -2px 10px 6px)' },
-              '100%': { filter: 'drop-shadow(rgba(0, 0, 0, 0) -2px 10px 6px)' },
+            float: {
+              '0%, 100%': {
+                transform: 'translateY(0)',
+              },
+              '50%': {
+                transform: 'translateY(-10px)',
+              },
             },
-            // OTP caret blink animation
-            'caret-blink': {
-              '0%,70%,100%': { opacity: '0' },
-              '20%,50%': { opacity: '1' },
+            'slide-up': {
+              '0%': {
+                transform: 'translateY(10px)',
+                opacity: '0',
+              },
+              '100%': {
+                transform: 'translateY(0)',
+                opacity: '1',
+              },
             },
-            // Pulse scale animation used for onboarding/welcome
-            'pulse-scale': {
-              '0%': { transform: 'scale(0.8)', opacity: '0' },
-              '30%': { opacity: '1' },
-              '100%': { transform: 'scale(2)', opacity: '0' },
+            'slide-down': {
+              '0%': {
+                transform: 'translateY(-10px)',
+                opacity: '0',
+              },
+              '100%': {
+                transform: 'translateY(0)',
+                opacity: '1',
+              },
             },
-            // Gradient move animation for gradient text
-            'gradient-move': {
-              '0%': { backgroundPosition: '0% 50%' },
-              '100%': { backgroundPosition: '200% 50%' },
+            'fade-in': {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
             },
+            'fade-out': {
+              '0%': { opacity: '1' },
+              '100%': { opacity: '0' },
+            },
+          },
+          // Enhanced backdrop blur utilities
+          backdropBlur: {
+            xs: '2px',
+            sm: '4px',
+            md: '8px',
+            lg: '12px',
+            xl: '16px',
+            '2xl': '24px',
+          },
+          // Modern box shadow system
+          boxShadow: {
+            subtle: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+            elevated: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+            prominent: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+            floating: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+          },
+          // Enhanced border radius
+          borderRadius: {
+            '4xl': '2rem',
+            '5xl': '2.5rem',
+            '6xl': '3rem',
+          },
+          // Glass effect utilities
+          backdropFilter: {
+            none: 'none',
+            glass: 'blur(16px) saturate(180%)',
+          },
+          // Gradient utilities
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            'gradient-subtle': 'linear-gradient(to right, var(--tw-gradient-stops))',
+          },
+          // Enhanced spacing scale
+          spacing: {
+            '4.5': '1.125rem',
+            '5.5': '1.375rem',
+            '6.5': '1.625rem',
+            '7.5': '1.875rem',
+            '8.5': '2.125rem',
+            '9.5': '2.375rem',
           },
         },
       },
