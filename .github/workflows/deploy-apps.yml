@@ -1,0 +1,170 @@
+name: Reusable App Deployment Workflow
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        required: true
+        type: string
+        description: "The name of the app to deploy (www, archon, oppulence, prospector)"
+      environment:
+        required: false
+        type: string
+        default: 'production'
+        description: "The environment to deploy to"
+      skip_build:
+        required: false
+        type: boolean
+        default: false
+        description: "Skip build step if app doesn't require building"
+    secrets:
+      VERCEL_TOKEN:
+        required: true
+        description: "Vercel deployment token"
+      VERCEL_ORG_ID:
+        required: true
+        description: "Vercel organization ID"
+      VERCEL_PROJECT_ID:
+        required: true
+        description: "Vercel project ID"
+      SLACK_WEBHOOK_URL:
+        required: false
+        description: "Slack webhook URL for notifications"
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  TURBO_TEAM: ${{ secrets.VERCEL_ORG_ID }}
+  SENTRY_SUPPRESS_GLOBAL_ERROR_HANDLER_FILE_WARNING: true
+  NODE_OPTIONS: "--max-old-space-size=8192"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      # Cache dependencies
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # Cache Next.js build
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            apps/${{ inputs.app_name }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ inputs.app_name }}-${{ hashFiles('apps/${{ inputs.app_name }}/package.json', 'apps/${{ inputs.app_name }}/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: apps/${{ inputs.app_name }}
+
+      # Run tests if they exist
+      - name: Run Tests
+        if: hashFiles('apps/${{ inputs.app_name }}/package.json') != '' && contains(hashFiles('apps/${{ inputs.app_name }}/package.json'), 'test')
+        run: pnpm test
+        working-directory: apps/${{ inputs.app_name }}
+
+      # Validate environment
+      - name: Validate Environment
+        run: |
+          if [ ! -f .env.local ] && [ -f .env.local.example ]; then
+            cp .env.local.example .env.local
+          fi
+        working-directory: apps/${{ inputs.app_name }}
+
+      - name: Pull Vercel Environment Information
+        id: env-pull
+        run: pnpm dlx vercel pull --yes --environment=${{ inputs.environment }} --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: apps/${{ inputs.app_name }}
+
+      - name: Build Project
+        id: build
+        if: inputs.skip_build != true
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          if pnpm dlx vercel build --token=${{ secrets.VERCEL_TOKEN }}; then
+            echo "build_status=success" >> $GITHUB_OUTPUT
+          else
+            echo "build_status=failed" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+        working-directory: apps/${{ inputs.app_name }}
+
+      - name: Deploy to Vercel
+        id: deploy
+        run: |
+          DEPLOY_URL=$(pnpm dlx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --prod)
+          echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+          if [ $? -eq 0 ]; then
+            echo "deploy_status=success" >> $GITHUB_OUTPUT
+          else
+            echo "deploy_status=failed" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+        working-directory: apps/${{ inputs.app_name }}
+
+      - name: Notify Slack on Success
+        if: success() && inputs.environment == 'production'
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "✅ Successfully deployed ${{ inputs.app_name }} to ${{ inputs.environment }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*✅ Successful Deployment*\n• App: `${{ inputs.app_name }}`\n• Environment: `${{ inputs.environment }}`\n• URL: ${{ steps.deploy.outputs.deploy_url }}\n• Commit: `${{ github.sha }}`"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on Failure
+        if: failure() && inputs.environment == 'production'
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "❌ Failed to deploy ${{ inputs.app_name }} to ${{ inputs.environment }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*❌ Deployment Failed*\n• App: `${{ inputs.app_name }}`\n• Environment: `${{ inputs.environment }}`\n• Stage: ${{ steps.build.outcome == 'failure' && 'Build' || 'Deploy' }}\n• Commit: `${{ github.sha }}`\n\nCheck the <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|workflow logs> for details."
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 

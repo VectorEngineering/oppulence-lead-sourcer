@@ -1,0 +1,158 @@
+name: Reusable Cloudflare Worker Deployment
+
+on:
+  workflow_call:
+    inputs:
+      worker_name:
+        required: true
+        type: string
+        description: "The name of the worker to deploy (api, billing, logdrain, workflows, semantic-cache, chproxy)"
+      environment:
+        required: false
+        type: string
+        default: 'production'
+        description: "The environment to deploy to"
+      skip_build:
+        required: false
+        type: boolean
+        default: false
+        description: "Skip build step if worker doesn't require building"
+    secrets:
+      CF_API_TOKEN:
+        required: true
+        description: "Cloudflare API Token with Workers deployment permissions"
+      CF_ACCOUNT_ID:
+        required: true
+        description: "Cloudflare Account ID"
+      SLACK_WEBHOOK_URL:
+        required: false
+        description: "Slack webhook URL for notifications"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      # Cache dependencies
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: cloudflare/${{ inputs.worker_name }}
+
+      - name: Install Wrangler
+        run: pnpm add -g wrangler
+
+      # Validate wrangler configuration
+      - name: Validate Wrangler Config
+        run: |
+          if [ ! -f wrangler.toml ]; then
+            echo "Error: wrangler.toml not found"
+            exit 1
+          fi
+          wrangler config validate
+        working-directory: cloudflare/${{ inputs.worker_name }}
+
+      # Run tests if they exist
+      - name: Run Tests
+        if: hashFiles('cloudflare/${{ inputs.worker_name }}/package.json') != '' && contains(hashFiles('cloudflare/${{ inputs.worker_name }}/package.json'), 'test')
+        run: pnpm test
+        working-directory: cloudflare/${{ inputs.worker_name }}
+
+      # Build step (skippable)
+      - name: Build Worker
+        if: inputs.skip_build != true
+        run: pnpm run build
+        working-directory: cloudflare/${{ inputs.worker_name }}
+
+      # Deploy with better error handling and rollback capability
+      - name: Deploy to Cloudflare Workers
+        id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          # Store the current version ID before deployment
+          CURRENT_VERSION=$(wrangler version list --json | jq -r '.[0].id' || echo "none")
+          echo "Previous version: $CURRENT_VERSION"
+
+          # Attempt deployment
+          if wrangler deploy \
+            --name ${{ inputs.worker_name }}-${{ inputs.environment }} \
+            --env ${{ inputs.environment }}; then
+            echo "deployment_status=success" >> $GITHUB_OUTPUT
+          else
+            echo "deployment_status=failed" >> $GITHUB_OUTPUT
+            # Attempt rollback if we had a previous version
+            if [ "$CURRENT_VERSION" != "none" ]; then
+              echo "Attempting rollback to version $CURRENT_VERSION"
+              wrangler rollback --version-id $CURRENT_VERSION
+            fi
+            exit 1
+          fi
+        working-directory: cloudflare/${{ inputs.worker_name }}
+
+      # Notify Slack on completion (if webhook provided)
+      - name: Notify Slack on Success
+        if: success() && inputs.environment == 'production'
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "✅ Successfully deployed ${{ inputs.worker_name }} worker to ${{ inputs.environment }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*✅ Successful Deployment*\n• Worker: `${{ inputs.worker_name }}`\n• Environment: `${{ inputs.environment }}`\n• Commit: `${{ github.sha }}`"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on Failure
+        if: failure() && inputs.environment == 'production'
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "text": "❌ Failed to deploy ${{ inputs.worker_name }} worker to ${{ inputs.environment }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*❌ Deployment Failed*\n• Worker: `${{ inputs.worker_name }}`\n• Environment: `${{ inputs.environment }}`\n• Commit: `${{ github.sha }}`\n\nCheck the <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|workflow logs> for details."
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 

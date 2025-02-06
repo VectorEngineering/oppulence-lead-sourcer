@@ -1,0 +1,113 @@
+name: Deploy All Apps To Vercel
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: choice
+        options:
+          - production
+          - preview
+        default: 'production'
+      specific_app:
+        description: 'Deploy specific app (select all for deploying all apps)'
+        required: false
+        type: choice
+        options:
+          - all
+          - www
+          - archon
+          - oppulence
+          - prospector
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/**'
+
+# Ensure only one deployment workflow runs at a time per environment
+concurrency:
+  group: vercel-deploy-${{ github.event.inputs.environment || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            www: apps/www/**
+            archon: apps/archon/**
+            oppulence: apps/oppulence/**
+            prospector: apps/prospector/**
+
+  deploy-www:
+    needs: changes
+    if: |
+      needs.changes.outputs.apps.www == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_app == 'all' || github.event.inputs.specific_app == 'www'))
+    uses: ./.github/workflows/deploy-apps.yml
+    with:
+      app_name: www
+      environment: ${{ github.event.inputs.environment || 'production' }}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_WWW }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  deploy-archon:
+    needs: changes
+    if: |
+      needs.changes.outputs.apps.archon == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_app == 'all' || github.event.inputs.specific_app == 'archon'))
+    uses: ./.github/workflows/deploy-apps.yml
+    with:
+      app_name: archon
+      environment: ${{ github.event.inputs.environment || 'production' }}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_ARCHON }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  deploy-oppulence:
+    needs: changes
+    if: |
+      needs.changes.outputs.apps.oppulence == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_app == 'all' || github.event.inputs.specific_app == 'oppulence'))
+    uses: ./.github/workflows/deploy-apps.yml
+    with:
+      app_name: oppulence
+      environment: ${{ github.event.inputs.environment || 'production' }}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_OPPULENCE }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  deploy-prospector:
+    needs: changes
+    if: |
+      needs.changes.outputs.apps.prospector == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_app == 'all' || github.event.inputs.specific_app == 'prospector'))
+    uses: ./.github/workflows/deploy-apps.yml
+    with:
+      app_name: prospector
+      environment: ${{ github.event.inputs.environment || 'production' }}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_PROSPECTOR }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
