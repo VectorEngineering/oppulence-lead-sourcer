@@ -1,0 +1,203 @@
+{{- if .Values.worker.enabled }}
+apiVersion: {{ include "common.capabilities.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ include "flowise.fullname" . }}-worker
+  labels:
+    {{- include "flowise.labels" . | nindent 4 }}
+    app.kubernetes.io/component: worker
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if or .Values.worker.deploymentAnnotations .Values.commonAnnotations }}
+  {{- $annotations := include "common.tplvalues.merge" ( dict "values" ( list .Values.worker.deploymentAnnotations .Values.commonAnnotations ) "context" . ) }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" $annotations "context" $ ) | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.worker.replicaCount | default 1 }}
+  selector:
+    matchLabels:
+      {{- include "flowise.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: worker
+  {{- if .Values.worker.updateStrategy }}
+  strategy: {{- toYaml .Values.worker.updateStrategy | nindent 4 }}
+  {{- end }}
+  template:
+    metadata:
+      labels:
+        {{- include "flowise.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: worker
+        {{- if .Values.worker.podLabels }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.worker.podLabels "context" $ ) | nindent 8 }}
+        {{- end }}
+      annotations:
+        {{- if .Values.worker.podAnnotations }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.worker.podAnnotations "context" $ ) | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- include "common.images.pullSecrets" ( dict "images" ( list .Values.image ) "global" .Values.global ) | nindent 6 }}
+      serviceAccountName: {{ include "flowise.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.worker.podSecurityContext | nindent 8 }}
+      initContainers:
+        {{- if or .Values.mariadb.enabled .Values.externalMariadb.enabled }}
+        - name: wait-mariadb
+          securityContext:
+            {{- toYaml .Values.wait.securityContext | nindent 12 }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.wait.image "global" .Values.global ) }}
+          imagePullPolicy: {{ .Values.wait.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -ec
+            - |
+              wait4x mysql "${MARIADB_USERNAME}:${MARIADB_PASSWORD}@tcp(${MARIADB_HOST}:${MARIADB_PORT})/${MARIADB_DATABASE}" --timeout 0
+          env:
+            - name: MARIADB_HOST
+              value: {{ include "flowise.mariadb.host" . | quote }}
+            - name: MARIADB_PORT
+              value: {{ include "flowise.mariadb.port" . | quote }}
+            - name: MARIADB_USERNAME
+              value: {{ include "flowise.mariadb.username" . | quote }}
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "flowise.mariadb.secretName" . }}
+                  key: {{ include "flowise.mariadb.secretKeyPassword" . }}
+            - name: MARIADB_DATABASE
+              value: {{ include "flowise.mariadb.database" . | quote }}
+        {{- end }}
+        {{- if .Values.redis.enabled }}
+        - name: wait-redis
+          securityContext:
+            {{- toYaml .Values.wait.securityContext | nindent 12 }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.wait.image "global" .Values.global ) }}
+          imagePullPolicy: {{ .Values.wait.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -ec
+            - |
+              wait4x redis "redis://$REDIS_PASSWORD@$REDIS_HOST:$REDIS_PORT" --timeout 0
+          env:
+            - name: REDIS_HOST
+              value: {{ include "flowise.redis.host" . | quote }}
+            - name: REDIS_PORT
+              value: {{ include "flowise.redis.port" . | quote }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "flowise.redis.secretName" . }}
+                  key: redis-password
+        {{- end }}
+      containers:
+        - name: worker
+          securityContext:
+            {{- toYaml .Values.worker.securityContext | nindent 12 }}
+          image: {{ include "common.images.image" ( dict "imageRoot" .Values.image "global" .Values.global ) }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              sleep 3
+              flowise worker
+          env:
+            - name: MODE
+              value: "worker"
+            - name: WORKER_CONCURRENCY
+              value: {{ .Values.worker.concurrency | default "10" | quote }}
+            - name: QUEUE_NAME
+              value: {{ .Values.worker.queueName | default "flowise" | quote }}
+            {{- if .Values.redis.enabled }}
+            - name: REDIS_URL
+              value: redis://:$(REDIS_PASSWORD)@{{ include "flowise.redis.host" . }}:{{ include "flowise.redis.port" . }}
+            - name: REDIS_HOST
+              value: {{ include "flowise.redis.host" . | quote }}
+            - name: REDIS_PORT
+              value: {{ include "flowise.redis.port" . | quote }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "flowise.redis.secretName" . }}
+                  key: redis-password
+            {{- if .Values.redis.tls.enabled }}
+            - name: REDIS_TLS
+              value: "true"
+            {{- if .Values.redis.tls.cert }}
+            - name: REDIS_CERT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "flowise.redis.tlsSecretName" . }}
+                  key: cert
+            {{- end }}
+            {{- if .Values.redis.tls.key }}
+            - name: REDIS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "flowise.redis.tlsSecretName" . }}
+                  key: key
+            {{- end }}
+            {{- if .Values.redis.tls.ca }}
+            - name: REDIS_CA
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "flowise.redis.tlsSecretName" . }}
+                  key: ca
+            {{- end }}
+            {{- end }}
+            {{- end }}
+            - name: QUEUE_REDIS_EVENT_STREAM_MAX_LEN
+              value: {{ .Values.worker.redisEventStreamMaxLen | default "10000" | quote }}
+            - name: DATABASE_PATH
+              value: /data
+            - name: APIKEY_PATH
+              value: /data
+            - name: SECRETKEY_PATH
+              value: /data
+            - name: BLOB_STORAGE_PATH
+              value: /data/storage
+            {{- if .Values.worker.extraEnvVars }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.worker.extraEnvVars "context" $) | nindent 12 }}
+            {{- end }}
+          {{- if or .Values.worker.extraEnvVarsCM .Values.worker.extraEnvVarsSecret }}
+          envFrom:
+            {{- if .Values.worker.extraEnvVarsCM }}
+            - configMapRef:
+                name: {{ include "common.tplvalues.render" (dict "value" .Values.worker.extraEnvVarsCM "context" $) }}
+            {{- end }}
+            {{- if .Values.worker.extraEnvVarsSecret }}
+            - secretRef:
+                name: {{ include "common.tplvalues.render" (dict "value" .Values.worker.extraEnvVarsSecret "context" $) }}
+            {{- end }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.worker.resources | nindent 12 }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            {{- if .Values.worker.extraVolumeMounts }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.worker.extraVolumeMounts "context" $) | nindent 12 }}
+            {{- end }}
+      {{- with .Values.worker.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.worker.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.worker.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ default (include "flowise.fullname" .) .Values.persistence.existingClaim }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        {{- if .Values.worker.extraVolumes }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.worker.extraVolumes "context" $) | nindent 8 }}
+        {{- end }}
+{{- end }} 

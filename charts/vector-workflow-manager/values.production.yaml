@@ -480,3 +480,85 @@ tests:
 
     ## @param tests.image.pullPolicy Image pull policy
     pullPolicy: IfNotPresent
+
+## @section Worker parameters
+
+worker:
+  ## @param worker.enabled Enable worker mode deployment
+  enabled: true
+
+  ## @param worker.replicaCount Number of worker replicas
+  replicaCount: 3
+
+  ## @param worker.concurrency Number of concurrent tasks per worker
+  concurrency: 20
+
+  ## @param worker.queueName Name of the queue to process
+  queueName: "flowise"
+
+  ## @param worker.redisEventStreamMaxLen Maximum length of Redis event stream
+  redisEventStreamMaxLen: 10000
+
+  ## @param worker.resources CPU/Memory resource requests/limits
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+
+  ## @param worker.podSecurityContext Worker pod security context
+  podSecurityContext: {}
+
+  ## @param worker.securityContext Worker container security context
+  securityContext: {}
+
+  ## @param worker.nodeSelector Node labels for worker pod assignment
+  nodeSelector: {}
+
+  ## @param worker.tolerations Tolerations for worker pod assignment
+  tolerations: []
+
+  ## @param worker.affinity Map of worker node/pod affinities
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+              - worker
+          topologyKey: kubernetes.io/hostname
+
+  ## @param worker.updateStrategy Worker deployment update strategy
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+## @section Redis parameters
+
+redis:
+  ## @param redis.enabled Enable Redis for worker queue
+  enabled: true
+
+  auth:
+    ## @param redis.auth.enabled Enable Redis authentication
+    enabled: true
+    ## @param redis.auth.password Redis password
+    password: ""
+
+  tls:
+    ## @param redis.tls.enabled Enable TLS for Redis
+    enabled: true
+    ## @param redis.tls.cert Redis TLS certificate
+    cert: ""
+    ## @param redis.tls.key Redis TLS key
+    key: ""
+    ## @param redis.tls.ca Redis TLS CA
+    ca: ""
