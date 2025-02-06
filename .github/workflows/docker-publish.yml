@@ -1,0 +1,165 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+    paths:
+      - 'apps/**'
+      - 'cloudflare/**'
+      - 'docs/**'
+      - '.github/workflows/docker-*.yml'
+  pull_request:
+    paths:
+      - 'apps/**'
+      - 'cloudflare/**'
+      - 'docs/**'
+      - '.github/workflows/docker-*.yml'
+  workflow_dispatch:
+    inputs:
+      specific_service:
+        description: 'Build specific service (leave empty for all)'
+        required: false
+        type: choice
+        options:
+          - all
+          - archon
+          - api
+          - chproxy
+          - archon-docs
+          - oppulence-docs
+          - thinkthank-docs
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      archon: ${{ steps.filter.outputs.archon }}
+      api: ${{ steps.filter.outputs.api }}
+      chproxy: ${{ steps.filter.outputs.chproxy }}
+      archon_docs: ${{ steps.filter.outputs.archon_docs }}
+      oppulence_docs: ${{ steps.filter.outputs.oppulence_docs }}
+      thinkthank_docs: ${{ steps.filter.outputs.thinkthank_docs }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            archon:
+              - 'apps/archon/**'
+              - 'apps/archon/Dockerfile'
+            api:
+              - 'cloudflare/api/**'
+              - 'cloudflare/api/Dockerfile'
+            chproxy:
+              - 'cloudflare/chproxy/**'
+              - 'cloudflare/chproxy/Dockerfile'
+            archon_docs:
+              - 'docs/archon-docs/**'
+              - 'docs/archon-docs/Dockerfile'
+            oppulence_docs:
+              - 'docs/oppulence-docs/**'
+              - 'docs/oppulence-docs/Dockerfile'
+            thinkthank_docs:
+              - 'docs/thinkthank-docs/**'
+              - 'docs/thinkthank-docs/Dockerfile'
+
+  build-archon:
+    needs: changes
+    if: |
+      needs.changes.outputs.archon == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_service == 'all' || github.event.inputs.specific_service == 'archon'))
+    uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
+    with:
+      dockerfile: apps/archon/Dockerfile
+      image-name: vector-archon
+      platform: linux/amd64,linux/arm64
+      context: .
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  build-api:
+    needs: changes
+    if: |
+      needs.changes.outputs.api == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_service == 'all' || github.event.inputs.specific_service == 'api'))
+    uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
+    with:
+      dockerfile: cloudflare/api/Dockerfile
+      image-name: vector-api
+      platform: linux/amd64  # API only supports amd64 due to workerd
+      context: .
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  build-chproxy:
+    needs: changes
+    if: |
+      needs.changes.outputs.chproxy == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_service == 'all' || github.event.inputs.specific_service == 'chproxy'))
+    uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
+    with:
+      dockerfile: cloudflare/chproxy/Dockerfile
+      image-name: vector-chproxy
+      platform: linux/amd64,linux/arm64
+      context: cloudflare/chproxy
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  build-archon-docs:
+    needs: changes
+    if: |
+      needs.changes.outputs.archon_docs == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_service == 'all' || github.event.inputs.specific_service == 'archon-docs'))
+    uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
+    with:
+      dockerfile: docs/archon-docs/Dockerfile
+      image-name: vector-archon-docs
+      platform: linux/amd64,linux/arm64
+      context: docs/archon-docs
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  build-oppulence-docs:
+    needs: changes
+    if: |
+      needs.changes.outputs.oppulence_docs == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_service == 'all' || github.event.inputs.specific_service == 'oppulence-docs'))
+    uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
+    with:
+      dockerfile: docs/oppulence-docs/Dockerfile
+      image-name: vector-oppulence-docs
+      platform: linux/amd64,linux/arm64
+      context: docs/oppulence-docs
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  build-thinkthank-docs:
+    needs: changes
+    if: |
+      needs.changes.outputs.thinkthank_docs == 'true' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.specific_service == 'all' || github.event.inputs.specific_service == 'thinkthank-docs'))
+    uses: ./.github/workflows/reusable-deploy-docker-artifacts.yml
+    with:
+      dockerfile: docs/thinkthank-docs/Dockerfile
+      image-name: vector-thinkthank-docs
+      platform: linux/amd64,linux/arm64
+      context: docs/thinkthank-docs
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }} 
