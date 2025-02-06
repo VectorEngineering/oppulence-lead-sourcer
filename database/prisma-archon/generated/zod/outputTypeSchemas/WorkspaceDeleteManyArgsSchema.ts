@@ -1,11 +1,9 @@
-import { z } from 'zod'
-import type { Prisma } from '@prisma/client'
+import { z } from 'zod';
+import type { Prisma } from '@prisma/client';
 import { WorkspaceWhereInputSchema } from '../inputTypeSchemas/WorkspaceWhereInputSchema'
 
-export const WorkspaceDeleteManyArgsSchema: z.ZodType<Prisma.WorkspaceDeleteManyArgs> = z
-    .object({
-        where: WorkspaceWhereInputSchema.optional()
-    })
-    .strict()
+export const WorkspaceDeleteManyArgsSchema: z.ZodType<Prisma.WorkspaceDeleteManyArgs> = z.object({
+  where: WorkspaceWhereInputSchema.optional(),
+}).strict() ;
 
-export default WorkspaceDeleteManyArgsSchema
+export default WorkspaceDeleteManyArgsSchema;

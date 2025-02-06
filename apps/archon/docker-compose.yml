@@ -1,0 +1,68 @@
+services:
+  ps-mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: planetscale
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    command:
+      [
+        "--max_connections=1000",
+        "--default-authentication-plugin=mysql_native_password",
+      ]
+    ports:
+      - 3306:3306
+    volumes:
+      - ps-mysql:/var/lib/mysql
+
+  planetscale-proxy:
+    image: ghcr.io/mattrobenolt/ps-http-sim:latest
+    command:
+      [
+        "-mysql-no-pass",
+        "-listen-port=3900",
+        "-mysql-dbname=planetscale",
+        "-mysql-addr=ps-mysql",
+      ]
+    depends_on:
+      - ps-mysql
+    ports:
+      - 3900:3900
+    links:
+      - ps-mysql
+
+  # web:
+  #   build:
+  #     context: ../../
+  #     dockerfile: apps/router/Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   env_file:
+  #     - .env.local
+  #   environment:
+  #     POSTGRES_URL: postgresql://postgres:mypassword@db:5432/postgres
+  #     POSTGRES_HOST: db
+  #     POSTGRES_PORT: 5432
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: mypassword
+  #     POSTGRES_DB: postgres
+  #     WATCHPACK_POLLING: "true"
+  #     CHOKIDAR_USEPOLLING: "true"
+  #   volumes:
+  #     - ./:/app/apps/router
+  #     - /app/apps/router/node_modules
+  #     - /app/apps/router/.next
+  #     - app-cache:/app/apps/router/.cache
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  ps-mysql:
