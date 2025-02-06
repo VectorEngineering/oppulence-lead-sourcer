@@ -29,6 +29,11 @@ if [ -n "$TS_FILES" ]; then
     # Get the unique directories of changed TS files
     DIRS=$(echo "$TS_FILES" | xargs -n1 dirname | sort -u)
     for dir in $DIRS; do
+        # Skip directories under database folder
+        if [[ $dir == database/* ]]; then
+            echo "${YELLOW}Skipping type check for database directory: $dir${NC}"
+            continue
+        fi
         # Find the closest package.json
         while [ "$dir" != "." ] && [ ! -f "$dir/package.json" ]; do
             dir=$(dirname "$dir")

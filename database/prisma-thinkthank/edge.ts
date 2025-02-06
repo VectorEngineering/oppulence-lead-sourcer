@@ -1,6 +1,7 @@
 import { Client } from '@planetscale/database'
-import { PrismaPlanetScale } from '@prisma/adapter-planetscale'
+import type { DriverAdapter } from '@prisma/client/runtime/library'
 import { PrismaClient } from '@prisma/client'
+import { PrismaPlanetScale } from '@prisma/adapter-planetscale'
 
 type CustomFetch = (url: string, init?: RequestInit) => Promise<Response>
 
@@ -30,6 +31,18 @@ const client = new Client({
 
 const adapter = new PrismaPlanetScale(client)
 
-export const prismaEdge = new PrismaClient({
-    adapter
+type PlanetScaleQuery = Parameters<typeof adapter.queryRaw>[0]
+
+// Add required properties to satisfy DriverAdapter interface
+const adapterWithTransaction: DriverAdapter = {
+    ...adapter,
+    startTransaction: () => {
+        throw new Error('Transactions are not supported in edge runtime')
+    },
+    queryRaw: (params: PlanetScaleQuery) => adapter.queryRaw(params),
+    executeRaw: (params: PlanetScaleQuery) => adapter.executeRaw(params)
+}
+
+export const prismaEdge: PrismaClient = new PrismaClient({
+    adapter: adapterWithTransaction
 })
