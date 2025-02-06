@@ -53,7 +53,11 @@ export const TierSchema = z.string().min(1, 'Tier cannot be empty')
 
 // Error classes
 export class LoopsError extends Error {
-    constructor(message: string, public code: string, public originalError?: Error) {
+    constructor(
+        message: string,
+        public code: string,
+        public originalError?: Error
+    ) {
         super(message)
         this.name = 'LoopsError'
     }

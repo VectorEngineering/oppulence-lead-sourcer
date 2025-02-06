@@ -295,7 +295,11 @@ class JSONLinesLoader extends TextLoader {
     metadata?: ICommonObject
     additionalMetadata: ICommonObject[] = []
 
-    constructor(filePathOrBlob: string | Blob, public pointer: string, metadata?: any) {
+    constructor(
+        filePathOrBlob: string | Blob,
+        public pointer: string,
+        metadata?: any
+    ) {
         super(filePathOrBlob)
         if (metadata) {
             this.metadata = typeof metadata === 'object' ? metadata : JSON.parse(metadata)

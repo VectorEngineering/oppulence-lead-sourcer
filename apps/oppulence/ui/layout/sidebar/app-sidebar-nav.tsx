@@ -264,8 +264,8 @@ export function AppSidebarNav({
     return pathname.startsWith('/account/settings')
       ? 'userSettings'
       : pathname.startsWith(`/${slug}/settings`)
-      ? 'workspaceSettings'
-      : 'default'
+        ? 'workspaceSettings'
+        : 'default'
   }, [slug, pathname])
 
   return (

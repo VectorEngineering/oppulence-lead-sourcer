@@ -111,8 +111,8 @@ export default function CustomerFeedbackAlert({
                   feedback.priority === 'High'
                     ? 'text-red-600'
                     : feedback.priority === 'Medium'
-                    ? 'text-yellow-600'
-                    : 'text-green-600'
+                      ? 'text-yellow-600'
+                      : 'text-green-600'
                 }
               >
                 {feedback.priority}

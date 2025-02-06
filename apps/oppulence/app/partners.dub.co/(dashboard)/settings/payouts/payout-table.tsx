@@ -155,7 +155,7 @@ export function PayoutTable() {
       {detailsSheetState.payout && (
         <PayoutDetailsSheet
           isOpen={detailsSheetState.open}
-          setIsOpen={open => setDetailsSheetState(s => ({ ...s, open } as any))}
+          setIsOpen={open => setDetailsSheetState(s => ({ ...s, open }) as any)}
           payout={detailsSheetState.payout}
         />
       )}

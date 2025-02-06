@@ -1,23 +1,21 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortOrderSchema } from './SortOrderSchema'
+import { z } from 'zod';
+import { SortOrderSchema } from './SortOrderSchema';
 
-export const DocumentCountOrderByAggregateInputSchema: z.ZodType<Prisma.DocumentCountOrderByAggregateInput> = z
-    .object({
-        id: z.lazy(() => SortOrderSchema).optional(),
-        body: z.lazy(() => SortOrderSchema).optional(),
-        createdAt: z.lazy(() => SortOrderSchema).optional(),
-        metadata: z.lazy(() => SortOrderSchema).optional(),
-        name: z.lazy(() => SortOrderSchema).optional(),
-        objectId: z.lazy(() => SortOrderSchema).optional(),
-        ownerId: z.lazy(() => SortOrderSchema).optional(),
-        parentId: z.lazy(() => SortOrderSchema).optional(),
-        pathTokens: z.lazy(() => SortOrderSchema).optional(),
-        tag: z.lazy(() => SortOrderSchema).optional(),
-        projectId: z.lazy(() => SortOrderSchema).optional(),
-        title: z.lazy(() => SortOrderSchema).optional()
-    })
-    .strict()
+export const DocumentCountOrderByAggregateInputSchema: z.ZodType<Prisma.DocumentCountOrderByAggregateInput> = z.object({
+  id: z.lazy(() => SortOrderSchema).optional(),
+  body: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  metadata: z.lazy(() => SortOrderSchema).optional(),
+  name: z.lazy(() => SortOrderSchema).optional(),
+  objectId: z.lazy(() => SortOrderSchema).optional(),
+  ownerId: z.lazy(() => SortOrderSchema).optional(),
+  parentId: z.lazy(() => SortOrderSchema).optional(),
+  pathTokens: z.lazy(() => SortOrderSchema).optional(),
+  tag: z.lazy(() => SortOrderSchema).optional(),
+  projectId: z.lazy(() => SortOrderSchema).optional(),
+  title: z.lazy(() => SortOrderSchema).optional()
+}).strict();
 
-export default DocumentCountOrderByAggregateInputSchema
+export default DocumentCountOrderByAggregateInputSchema;

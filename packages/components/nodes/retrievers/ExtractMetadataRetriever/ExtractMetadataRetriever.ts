@@ -148,7 +148,7 @@ class ExtractMetadataRetriever_Retrievers implements INode {
         const retriever = DynamicMetadataRetriever.fromVectorStore(vectorStore, {
             structuredLLM: llm,
             prompt: dynamicMetadataFilterRetrieverPrompt,
-            topK: topK ? parseInt(topK, 10) : (vectorStore as any)?.k ?? 4
+            topK: topK ? parseInt(topK, 10) : ((vectorStore as any)?.k ?? 4)
         })
 
         if (output === 'retriever') return retriever

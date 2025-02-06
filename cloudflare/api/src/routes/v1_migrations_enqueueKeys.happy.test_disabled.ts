@@ -260,7 +260,7 @@ describe('with metadata', () => {
                         k: Math.random(),
                         l: Math.random()
                     }
-                } as const)
+                }) as const
         )
 
         const res = await h.post<V1MigrationsEnqueueKeysRequest, V1MigrationsEnqueueKeysResponse>({
@@ -601,7 +601,7 @@ test('creates 100 keys', async (t) => {
                 plaintext: crypto.randomUUID(),
                 apiId: h.resources.userApi.id,
                 enabled: Math.random() > 0.5
-            } as const)
+            }) as const
     )
 
     const res = await h.post<V1MigrationsEnqueueKeysRequest, V1MigrationsEnqueueKeysResponse>({

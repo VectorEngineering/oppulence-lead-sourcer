@@ -30,21 +30,21 @@ Found an issue? [Report it](https://github.com/FlowiseAI/Flowise/issues/new/choo
 
 Not sure what to contribute? Some ideas:
 
--   Create new components from `packages/components`
--   Update existing components such as extending functionality, fixing bugs
--   Add new chatflow ideas
+- Create new components from `packages/components`
+- Update existing components such as extending functionality, fixing bugs
+- Add new chatflow ideas
 
 ### Developers
 
 Flowise has 3 different modules in a single mono repository.
 
--   `server`: Node backend to serve API logics
--   `ui`: React frontend
--   `components`: Third-party nodes integrations
+- `server`: Node backend to serve API logics
+- `ui`: React frontend
+- `components`: Third-party nodes integrations
 
 #### Prerequisite
 
--   Install [PNPM](https://pnpm.io/installation). The project is configured to use pnpm v9.
+- Install [PNPM](https://pnpm.io/installation). The project is configured to use pnpm v9.
     ```bash
     npm i -g pnpm
     ```

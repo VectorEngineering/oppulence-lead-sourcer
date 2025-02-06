@@ -23,7 +23,7 @@ const columnAccessors = {
   trigger: (r: Row) => (r.qr ? 'QR scan' : 'Link click'),
   event: (r: LeadEvent | SaleEvent) => r.eventName,
   link: (r: Row) => r.domain + (r.key === '_root' ? '' : `/${r.key}`),
-  country: (r: Row) => (r.country ? COUNTRIES[r.country] ?? r.country : r.country),
+  country: (r: Row) => (r.country ? (COUNTRIES[r.country] ?? r.country) : r.country),
   customer: (r: LeadEvent | SaleEvent) =>
     r.customer.name + (r.customer.email ? ` <${r.customer.email}>` : ''),
   invoiceId: (r: SaleEvent) => r.sale.invoiceId,

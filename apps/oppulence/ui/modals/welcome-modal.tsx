@@ -54,7 +54,7 @@ function WelcomeModal({
   }, [searchParams, planId])
 
   const plan = planId
-    ? PLANS.find(p => p.name.toLowerCase() === planId.replace('+', ' ').toLowerCase()) ?? PRO_PLAN
+    ? (PLANS.find(p => p.name.toLowerCase() === planId.replace('+', ' ').toLowerCase()) ?? PRO_PLAN)
     : undefined
 
   return (

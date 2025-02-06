@@ -14,12 +14,12 @@ pnpm add @playbookmedia/analytics
 
 ## Features
 
--   Client-side analytics tracking
--   Server-side analytics tracking
--   React integration with PostHog Provider
--   Automatic page leave tracking
--   Manual pageview capture
--   TypeScript support
+- Client-side analytics tracking
+- Server-side analytics tracking
+- React integration with PostHog Provider
+- Automatic page leave tracking
+- Manual pageview capture
+- TypeScript support
 
 ## Usage
 
@@ -87,17 +87,17 @@ NEXT_PUBLIC_POSTHOG_HOST=your_posthog_host
 
 The client is configured with these defaults:
 
--   `api_host: '/ingest'`
--   `capture_pageview: false` (manual capture)
--   `capture_pageleave: true`
--   `person_profiles: 'identified_only'`
+- `api_host: '/ingest'`
+- `capture_pageview: false` (manual capture)
+- `capture_pageleave: true`
+- `person_profiles: 'identified_only'`
 
 ### Server Configuration Options
 
 The server client is configured with immediate flushing for serverless environments:
 
--   `flushAt: 1`
--   `flushInterval: 0`
+- `flushAt: 1`
+- `flushInterval: 0`
 
 ## Best Practices
 
@@ -112,10 +112,10 @@ The server client is configured with immediate flushing for serverless environme
 
 The package includes full TypeScript support with type definitions for:
 
--   Event properties
--   User properties
--   Configuration options
--   React components
+- Event properties
+- User properties
+- Configuration options
+- React components
 
 ## Contributing
 

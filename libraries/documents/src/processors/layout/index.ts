@@ -64,15 +64,18 @@ export class LayoutProcessor {
 
         if (!firstTable?.cells?.length) return null
 
-        const cellsByRow = firstTable.cells.reduce((acc, cell) => {
-            const rowIndex = cell.rowIndex ?? 0
-            if (!acc[rowIndex]) acc[rowIndex] = []
-            acc[rowIndex].push({
-                columnIndex: cell.columnIndex ?? 0,
-                content: cell.content ?? ''
-            })
-            return acc
-        }, {} as Record<number, { columnIndex: number; content: string }[]>)
+        const cellsByRow = firstTable.cells.reduce(
+            (acc, cell) => {
+                const rowIndex = cell.rowIndex ?? 0
+                if (!acc[rowIndex]) acc[rowIndex] = []
+                acc[rowIndex].push({
+                    columnIndex: cell.columnIndex ?? 0,
+                    content: cell.content ?? ''
+                })
+                return acc
+            },
+            {} as Record<number, { columnIndex: number; content: string }[]>
+        )
 
         return Object.entries(cellsByRow)
             .sort(([a], [b]) => Number(a) - Number(b))

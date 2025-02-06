@@ -196,11 +196,14 @@ class SmallBusinessAnalytics {
     private getTopCategory(transactions: PlaidAccountTransaction[], type: 'expense' | 'revenue'): string {
         const categories = transactions
             .filter((t) => t.amount !== undefined && (type === 'expense' ? t.amount > 0 : t.amount < 0))
-            .reduce((acc, t) => {
-                const category = t.personalFinanceCategoryPrimary || 'Uncategorized'
-                acc[category] = (acc[category] || 0) + Math.abs(t.amount!)
-                return acc
-            }, {} as Record<string, number>)
+            .reduce(
+                (acc, t) => {
+                    const category = t.personalFinanceCategoryPrimary || 'Uncategorized'
+                    acc[category] = (acc[category] || 0) + Math.abs(t.amount!)
+                    return acc
+                },
+                {} as Record<string, number>
+            )
         return Object.entries(categories).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'None'
     }
 
@@ -228,11 +231,14 @@ class SmallBusinessAnalytics {
      * @returns The name of the most frequent merchant.
      */
     private getMostFrequentMerchant(transactions: PlaidAccountTransaction[]): string {
-        const merchantCounts = transactions.reduce((acc, t) => {
-            const merchant = t.merchantName || 'Unknown'
-            acc[merchant] = (acc[merchant] || 0) + 1
-            return acc
-        }, {} as Record<string, number>)
+        const merchantCounts = transactions.reduce(
+            (acc, t) => {
+                const merchant = t.merchantName || 'Unknown'
+                acc[merchant] = (acc[merchant] || 0) + 1
+                return acc
+            },
+            {} as Record<string, number>
+        )
         return Object.entries(merchantCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'None'
     }
 
@@ -346,11 +352,14 @@ class SmallBusinessAnalytics {
      * @returns An object with categories as keys and their percentage distribution as values.
      */
     private getCategoriesDistribution(transactions: PlaidAccountTransaction[]): Record<string, number> {
-        const categoryCounts = transactions.reduce((acc, t) => {
-            const category = t.personalFinanceCategoryPrimary || 'Uncategorized'
-            acc[category] = (acc[category] || 0) + 1
-            return acc
-        }, {} as Record<string, number>)
+        const categoryCounts = transactions.reduce(
+            (acc, t) => {
+                const category = t.personalFinanceCategoryPrimary || 'Uncategorized'
+                acc[category] = (acc[category] || 0) + 1
+                return acc
+            },
+            {} as Record<string, number>
+        )
         const total = Object.values(categoryCounts).reduce((sum, count) => sum + count, 0)
         return Object.fromEntries(
             Object.entries(categoryCounts).map(([category, count]) => [category, Number((total ? (count / total) * 100 : 0).toFixed(2))])

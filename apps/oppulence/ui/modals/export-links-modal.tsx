@@ -151,7 +151,7 @@ function ExportLinksModal({
                     : undefined
                 }
                 presetId={
-                  !field.value.from || !field.value.to ? field.value.interval ?? 'all' : undefined
+                  !field.value.from || !field.value.to ? (field.value.interval ?? 'all') : undefined
                 }
                 onChange={(dateRange, preset) => {
                   field.onChange(preset ? { interval: preset.id } : dateRange)

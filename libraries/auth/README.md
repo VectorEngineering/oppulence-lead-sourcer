@@ -4,13 +4,13 @@ A comprehensive authentication package built on top of Clerk.js, providing seaml
 
 ## Features
 
--   🔐 **Secure Authentication**: Built on Clerk's robust authentication system
--   🎨 **Theme Integration**: Seamless integration with your app's theme system
--   🎯 **Type-safe**: Full TypeScript support
--   🎭 **Customizable**: Extensive styling and behavior customization options
--   🌓 **Dark Mode**: Automatic dark mode support
--   🚀 **Next.js 13+ App Router support**: Seamless integration with Next.js App Router
--   📋 **Server-side and client-side authentication**: Robust authentication capabilities
+- 🔐 **Secure Authentication**: Built on Clerk's robust authentication system
+- 🎨 **Theme Integration**: Seamless integration with your app's theme system
+- 🎯 **Type-safe**: Full TypeScript support
+- 🎭 **Customizable**: Extensive styling and behavior customization options
+- 🌓 **Dark Mode**: Automatic dark mode support
+- 🚀 **Next.js 13+ App Router support**: Seamless integration with Next.js App Router
+- 📋 **Server-side and client-side authentication**: Robust authentication capabilities
 
 ## Installation
 
@@ -24,12 +24,12 @@ pnpm add @playbookmedia/auth
 
 ## Features
 
--   Pre-built authentication components
--   Middleware for route protection
--   Customizable UI elements
--   TypeScript support
--   Next.js 13+ App Router support
--   Server-side and client-side authentication
+- Pre-built authentication components
+- Middleware for route protection
+- Customizable UI elements
+- TypeScript support
+- Next.js 13+ App Router support
+- Server-side and client-side authentication
 
 ## Usage
 
@@ -170,10 +170,10 @@ export default authMiddleware({
 
 The package includes comprehensive TypeScript definitions for:
 
--   Component props
--   Hook return types
--   Middleware configurations
--   User and session types
+- Component props
+- Hook return types
+- Middleware configurations
+- User and session types
 
 ## Contributing
 
@@ -185,6 +185,6 @@ MIT © [Playbook Media](https://github.com/playbookmedia)
 
 ## Related
 
--   [Clerk](https://clerk.com)
--   [Next.js](https://nextjs.org)
--   [next-themes](https://github.com/pacocoursey/next-themes)
+- [Clerk](https://clerk.com)
+- [Next.js](https://nextjs.org)
+- [next-themes](https://github.com/pacocoursey/next-themes)

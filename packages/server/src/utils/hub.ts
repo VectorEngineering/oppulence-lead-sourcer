@@ -6,17 +6,17 @@ export function parsePrompt(prompt: string): any[] {
             let messageType = message.id.includes('SystemMessagePromptTemplate')
                 ? 'systemMessagePrompt'
                 : message.id.includes('HumanMessagePromptTemplate')
-                ? 'humanMessagePrompt'
-                : message.id.includes('AIMessagePromptTemplate')
-                ? 'aiMessagePrompt'
-                : 'template'
+                  ? 'humanMessagePrompt'
+                  : message.id.includes('AIMessagePromptTemplate')
+                    ? 'aiMessagePrompt'
+                    : 'template'
             let messageTypeDisplay = message.id.includes('SystemMessagePromptTemplate')
                 ? 'System Message'
                 : message.id.includes('HumanMessagePromptTemplate')
-                ? 'Human Message'
-                : message.id.includes('AIMessagePromptTemplate')
-                ? 'AI Message'
-                : 'Message'
+                  ? 'Human Message'
+                  : message.id.includes('AIMessagePromptTemplate')
+                    ? 'AI Message'
+                    : 'Message'
             let template = message.kwargs.prompt.kwargs.template
             response.push({
                 type: messageType,

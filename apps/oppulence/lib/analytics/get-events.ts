@@ -168,10 +168,13 @@ const getLinksMap = async (linkIds: string[]) => {
     },
   })
 
-  return links.reduce((acc, link) => {
-    acc[link.id] = link
-    return acc
-  }, {} as Record<string, Link>)
+  return links.reduce(
+    (acc, link) => {
+      acc[link.id] = link
+      return acc
+    },
+    {} as Record<string, Link>
+  )
 }
 
 const getCustomersMap = async (customerIds: string[]) => {
@@ -187,18 +190,22 @@ const getCustomersMap = async (customerIds: string[]) => {
     },
   })
 
-  return customers.reduce((acc, customer) => {
-    // TODO:
-    // Can we do CustomerSchema.parse(customer) instead?
-    acc[customer.id] = CustomerSchema.parse({
-      id: customer.id,
-      externalId: customer.externalId,
-      name: customer.name || '',
-      email: customer.email || '',
-      avatar: customer.avatar || `https://api.dicebear.com/9.x/notionists/png?seed=${customer.id}`,
-      country: customer.country || '',
-      createdAt: customer.createdAt,
-    })
-    return acc
-  }, {} as Record<string, z.infer<typeof CustomerSchema>>)
+  return customers.reduce(
+    (acc, customer) => {
+      // TODO:
+      // Can we do CustomerSchema.parse(customer) instead?
+      acc[customer.id] = CustomerSchema.parse({
+        id: customer.id,
+        externalId: customer.externalId,
+        name: customer.name || '',
+        email: customer.email || '',
+        avatar:
+          customer.avatar || `https://api.dicebear.com/9.x/notionists/png?seed=${customer.id}`,
+        country: customer.country || '',
+        createdAt: customer.createdAt,
+      })
+      return acc
+    },
+    {} as Record<string, z.infer<typeof CustomerSchema>>
+  )
 }

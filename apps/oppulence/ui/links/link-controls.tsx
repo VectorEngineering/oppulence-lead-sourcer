@@ -242,8 +242,8 @@ export function LinkControls({ link }: { link: ResponseLink }) {
                   isRootLink
                     ? "You can't delete a custom domain link. You can delete the domain instead."
                     : isProgramLink
-                    ? "You can't delete a link that's part of a program."
-                    : undefined
+                      ? "You can't delete a link that's part of a program."
+                      : undefined
                 }
               />
 

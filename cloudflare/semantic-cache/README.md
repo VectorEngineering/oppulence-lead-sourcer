@@ -12,56 +12,56 @@ Built with [TypeScript](https://www.typescriptlang.org/) and integrating with cu
 
 ## Table of Contents
 
--   [Key Features](#key-features)
--   [Architecture](#architecture)
--   [How It Works](#how-it-works)
--   [Getting Started](#getting-started)
-    -   [Prerequisites](#prerequisites)
-    -   [Installation](#installation)
-    -   [Configuration](#configuration)
--   [Usage](#usage)
-    -   [Request Format](#request-format)
-    -   [Response Handling](#response-handling)
--   [API Reference](#api-reference)
-    -   [Authentication](#authentication)
-    -   [Endpoints](#endpoints)
-        -   [Main Endpoint](#main-endpoint)
-    -   [Headers](#headers)
-    -   [Error Responses](#error-responses)
--   [Development](#development)
-    -   [Project Structure](#project-structure)
-    -   [Local Development](#local-development)
-    -   [Testing](#testing)
-    -   [Deployment](#deployment)
--   [Analytics and Logging](#analytics-and-logging)
-    -   [Integration with Tinybird](#integration-with-tinybird)
-    -   [Logging Mechanisms](#logging-mechanisms)
--   [Security](#security)
-    -   [Authentication and Authorization](#authentication-and-authorization)
-    -   [Rate Limiting](#rate-limiting)
-    -   [CORS Policy](#cors-policy)
-    -   [Data Privacy](#data-privacy)
--   [Contributing](#contributing)
--   [License](#license)
--   [Support](#support)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [How It Works](#how-it-works)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+- [Usage](#usage)
+    - [Request Format](#request-format)
+    - [Response Handling](#response-handling)
+- [API Reference](#api-reference)
+    - [Authentication](#authentication)
+    - [Endpoints](#endpoints)
+        - [Main Endpoint](#main-endpoint)
+    - [Headers](#headers)
+    - [Error Responses](#error-responses)
+- [Development](#development)
+    - [Project Structure](#project-structure)
+    - [Local Development](#local-development)
+    - [Testing](#testing)
+    - [Deployment](#deployment)
+- [Analytics and Logging](#analytics-and-logging)
+    - [Integration with Tinybird](#integration-with-tinybird)
+    - [Logging Mechanisms](#logging-mechanisms)
+- [Security](#security)
+    - [Authentication and Authorization](#authentication-and-authorization)
+    - [Rate Limiting](#rate-limiting)
+    - [CORS Policy](#cors-policy)
+    - [Data Privacy](#data-privacy)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
 ## Key Features
 
--   **Semantic Caching for Faster Response Times**: Utilizes vector embeddings to cache and retrieve semantically similar responses, drastically reducing latency.
+- **Semantic Caching for Faster Response Times**: Utilizes vector embeddings to cache and retrieve semantically similar responses, drastically reducing latency.
 
--   **Cost Efficiency**: Reduces API costs by minimizing redundant requests to the LLM API through effective caching strategies.
+- **Cost Efficiency**: Reduces API costs by minimizing redundant requests to the LLM API through effective caching strategies.
 
--   **Edge Computing with Cloudflare Workers**: Deployed on Cloudflare's global edge network for low-latency processing and high availability.
+- **Edge Computing with Cloudflare Workers**: Deployed on Cloudflare's global edge network for low-latency processing and high availability.
 
--   **Support for Streaming and Non-Streaming Requests**: Handles both streaming (Server-Sent Events) and standard HTTP responses.
+- **Support for Streaming and Non-Streaming Requests**: Handles both streaming (Server-Sent Events) and standard HTTP responses.
 
--   **Advanced Vector Search using Cloudflare Vectorize**: Employs high-performance vector databases for efficient similarity searches.
+- **Advanced Vector Search using Cloudflare Vectorize**: Employs high-performance vector databases for efficient similarity searches.
 
--   **Built-in Authentication and Rate Limiting**: Ensures secure access and prevents abuse through API key authentication and configurable rate limits.
+- **Built-in Authentication and Rate Limiting**: Ensures secure access and prevents abuse through API key authentication and configurable rate limits.
 
--   **Comprehensive Analytics and Logging with Tinybird**: Provides real-time analytics and monitoring for insights into service performance and usage patterns.
+- **Comprehensive Analytics and Logging with Tinybird**: Provides real-time analytics and monitoring for insights into service performance and usage patterns.
 
--   **Customizable Configurations**: Allows fine-tuning of API base URLs, similarity thresholds, and other operational parameters.
+- **Customizable Configurations**: Allows fine-tuning of API base URLs, similarity thresholds, and other operational parameters.
 
 ## Architecture
 
@@ -71,17 +71,17 @@ The service is architected as a serverless application utilizing Cloudflare Work
 
 **Components:**
 
--   **Client Applications**: Send requests intended for OpenAI-compatible APIs.
+- **Client Applications**: Send requests intended for OpenAI-compatible APIs.
 
--   **Semantic Cache Service**: Intercepts requests, performs semantic analysis, and handles caching logic.
+- **Semantic Cache Service**: Intercepts requests, performs semantic analysis, and handles caching logic.
 
--   **Cloudflare Workers**: Provides the execution environment at the edge.
+- **Cloudflare Workers**: Provides the execution environment at the edge.
 
--   **Cloudflare Vectorize**: Manages vector embeddings and similarity searches.
+- **Cloudflare Vectorize**: Manages vector embeddings and similarity searches.
 
--   **LLM APIs**: Actual Large Language Model APIs (e.g., OpenAI GPT-3.5 Turbo).
+- **LLM APIs**: Actual Large Language Model APIs (e.g., OpenAI GPT-3.5 Turbo).
 
--   **Tinybird**: Collects analytics data for monitoring and optimization.
+- **Tinybird**: Collects analytics data for monitoring and optimization.
 
 **Data Flow:**
 
@@ -129,11 +129,11 @@ The service is architected as a serverless application utilizing Cloudflare Work
 
 ### Prerequisites
 
--   **Cloudflare Account**: With Workers and Vectorize enabled.
--   **Access to Cloudflare AI Models**: For vector embedding generation.
--   **Tinybird Account**: For analytics data ingestion and visualization.
--   **Node.js**: Version 14 or later.
--   **pnpm**: For package management (can be installed via `npm install -g pnpm`).
+- **Cloudflare Account**: With Workers and Vectorize enabled.
+- **Access to Cloudflare AI Models**: For vector embedding generation.
+- **Tinybird Account**: For analytics data ingestion and visualization.
+- **Node.js**: Version 14 or later.
+- **pnpm**: For package management (can be installed via `npm install -g pnpm`).
 
 ### Installation
 
@@ -171,7 +171,7 @@ The service is architected as a serverless application utilizing Cloudflare Work
 
 Edit `wrangler.toml` to configure:
 
--   **Account Details**:
+- **Account Details**:
 
     ```toml
     account_id = "your-cloudflare-account-id"
@@ -180,7 +180,7 @@ Edit `wrangler.toml` to configure:
     compatibility_date = "2023-10-25"
     ```
 
--   **KV Namespaces**:
+- **KV Namespaces**:
 
     ```toml
     [[kv_namespaces]]
@@ -188,7 +188,7 @@ Edit `wrangler.toml` to configure:
     id = "your-kv-namespace-id"
     ```
 
--   **Durable Objects**:
+- **Durable Objects**:
 
     ```toml
     [[durable_objects]]
@@ -196,7 +196,7 @@ Edit `wrangler.toml` to configure:
     class_name = "CacheManager"
     ```
 
--   **Environment Variables**:
+- **Environment Variables**:
 
     ```toml
     [vars]
@@ -204,7 +204,7 @@ Edit `wrangler.toml` to configure:
     MIN_SIMILARITY = "0.9"
     ```
 
--   **Bindings for Vectorize**:
+- **Bindings for Vectorize**:
 
     ```toml
     [ai]
@@ -220,13 +220,13 @@ Edit `wrangler.toml` to configure:
 
 To use the service as a drop-in replacement for OpenAI API calls:
 
--   **Endpoint**: Replace `https://api.openai.com` with your service URL (e.g., `https://semantic-cache.yourdomain.com`).
--   **Headers**:
-    -   `Authorization`: Bearer `<YOUR_API_KEY>` (required).
-    -   `Content-Type`: `application/json`.
-    -   `X-Base-Url`: (Optional) Custom base URL for the LLM API.
-    -   `X-Min-Similarity`: (Optional) Similarity threshold for cache hits.
--   **Body**: JSON payload matching OpenAI's Chat Completion API.
+- **Endpoint**: Replace `https://api.openai.com` with your service URL (e.g., `https://semantic-cache.yourdomain.com`).
+- **Headers**:
+    - `Authorization`: Bearer `<YOUR_API_KEY>` (required).
+    - `Content-Type`: `application/json`.
+    - `X-Base-Url`: (Optional) Custom base URL for the LLM API.
+    - `X-Min-Similarity`: (Optional) Similarity threshold for cache hits.
+- **Body**: JSON payload matching OpenAI's Chat Completion API.
 
 **Example Request**:
 
@@ -243,13 +243,13 @@ curl -X POST https://semantic-cache.yourdomain.com/v1/chat/completions \
 
 ### Response Handling
 
--   **Streaming Responses**:
+- **Streaming Responses**:
 
-    -   If the request includes `"stream": true`, the service will handle streaming via Server-Sent Events (SSE).
-    -   The cached response will be streamed if available; otherwise, the stream from the LLM API will be forwarded.
+    - If the request includes `"stream": true`, the service will handle streaming via Server-Sent Events (SSE).
+    - The cached response will be streamed if available; otherwise, the stream from the LLM API will be forwarded.
 
--   **Non-Streaming Responses**:
-    -   Standard JSON responses will be returned, matching the OpenAI API format.
+- **Non-Streaming Responses**:
+    - Standard JSON responses will be returned, matching the OpenAI API format.
 
 ## API Reference
 
@@ -265,28 +265,28 @@ Authorization: Bearer YOUR_API_KEY
 
 #### Main Endpoint
 
--   **Method**: `POST`
--   **Path**: `/v1/chat/completions` (and any other OpenAI-compatible paths)
--   **Description**: Handles OpenAI Chat Completion requests with semantic caching.
+- **Method**: `POST`
+- **Path**: `/v1/chat/completions` (and any other OpenAI-compatible paths)
+- **Description**: Handles OpenAI Chat Completion requests with semantic caching.
 
 ### Headers
 
--   **Required**:
+- **Required**:
 
-    -   `Authorization`: Bearer `<YOUR_API_KEY>`
-    -   `Content-Type`: `application/json`
+    - `Authorization`: Bearer `<YOUR_API_KEY>`
+    - `Content-Type`: `application/json`
 
--   **Optional**:
+- **Optional**:
 
-    -   `X-Base-Url`: Override the default LLM API base URL.
-    -   `X-Min-Similarity`: Override the default similarity threshold for cache hits.
+    - `X-Base-Url`: Override the default LLM API base URL.
+    - `X-Min-Similarity`: Override the default similarity threshold for cache hits.
 
 ### Error Responses
 
--   **401 Unauthorized**: Missing or invalid API key.
--   **404 Not Found**: Invalid endpoint.
--   **429 Too Many Requests**: Rate limit exceeded.
--   **500 Internal Server Error**: Unexpected server error.
+- **401 Unauthorized**: Missing or invalid API key.
+- **404 Not Found**: Invalid endpoint.
+- **429 Too Many Requests**: Rate limit exceeded.
+- **500 Internal Server Error**: Unexpected server error.
 
 **Error Response Format**:
 
@@ -351,8 +351,8 @@ Use the provided test script to simulate requests:
 tsx scripts/openai.ts
 ```
 
--   Ensure that `tsx` is installed globally (`npm install -g tsx`).
--   The script sends test requests to the local service and logs responses.
+- Ensure that `tsx` is installed globally (`npm install -g tsx`).
+- The script sends test requests to the local service and logs responses.
 
 ### Deployment
 
@@ -374,15 +374,15 @@ Ensure that the `wrangler.toml` file is correctly configured for each environmen
 
 ### Integration with Tinybird
 
--   **Purpose**: Collects and analyzes metrics such as request counts, cache hits/misses, response times, and token usage.
--   **Data Ingestion**: Analytics events are sent to Tinybird via their ingestion API.
--   **Visualization**: Use Tinybird's dashboards to monitor service performance.
+- **Purpose**: Collects and analyzes metrics such as request counts, cache hits/misses, response times, and token usage.
+- **Data Ingestion**: Analytics events are sent to Tinybird via their ingestion API.
+- **Visualization**: Use Tinybird's dashboards to monitor service performance.
 
 ### Logging Mechanisms
 
--   **Structured Logging**: Logs are formatted in JSON for easy parsing and analysis.
--   **Levels**: Supports different log levels (`info`, `warn`, `error`, `debug`).
--   **Error Tracking**: Errors are logged with stack traces and contextual information.
+- **Structured Logging**: Logs are formatted in JSON for easy parsing and analysis.
+- **Levels**: Supports different log levels (`info`, `warn`, `error`, `debug`).
+- **Error Tracking**: Errors are logged with stack traces and contextual information.
 
 **Example Log Entry**:
 
@@ -402,24 +402,24 @@ Ensure that the `wrangler.toml` file is correctly configured for each environmen
 
 ### Authentication and Authorization
 
--   **API Key Management**: API keys are required for all requests and should be securely stored and transmitted.
--   **Key Validation**: The service validates API keys against a secure store (e.g., Cloudflare KV or Durable Objects).
+- **API Key Management**: API keys are required for all requests and should be securely stored and transmitted.
+- **Key Validation**: The service validates API keys against a secure store (e.g., Cloudflare KV or Durable Objects).
 
 ### Rate Limiting
 
--   **Configuration**: Rate limits are configurable per API key.
--   **Enforcement**: Exceeded limits result in `429 Too Many Requests` responses.
+- **Configuration**: Rate limits are configurable per API key.
+- **Enforcement**: Exceeded limits result in `429 Too Many Requests` responses.
 
 ### CORS Policy
 
--   **Default Policy**: Cross-origin requests are allowed (`Access-Control-Allow-Origin: *`).
--   **Customization**: CORS settings can be modified based on security requirements.
+- **Default Policy**: Cross-origin requests are allowed (`Access-Control-Allow-Origin: *`).
+- **Customization**: CORS settings can be modified based on security requirements.
 
 ### Data Privacy
 
--   **Sensitive Data Handling**: No sensitive user data is stored permanently.
--   **Encryption**: Data in transit is encrypted via HTTPS.
--   **Compliance**: Adheres to data protection regulations and best practices.
+- **Sensitive Data Handling**: No sensitive user data is stored permanently.
+- **Encryption**: Data in transit is encrypted via HTTPS.
+- **Compliance**: Adheres to data protection regulations and best practices.
 
 ## Contributing
 
@@ -461,10 +461,10 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
 For support:
 
--   **Issue Tracker**: Use the GitHub [Issues](https://github.com/SolomonAIEngineering/semantic-cache-service/issues) for bug reports and feature requests.
--   **Email**: Contact us at [support@solomon-ai.co](mailto:support@solomon-ai.co)
--   **Documentation**: Refer to the project [Wiki](https://github.com/SolomonAIEngineering/semantic-cache-service/wiki) for detailed guides and FAQs.
--   **Community Discussions**: Join our [Slack Channel](https://join.slack.com/t/solomon-ai/shared_invite/).
+- **Issue Tracker**: Use the GitHub [Issues](https://github.com/SolomonAIEngineering/semantic-cache-service/issues) for bug reports and feature requests.
+- **Email**: Contact us at [support@solomon-ai.co](mailto:support@solomon-ai.co)
+- **Documentation**: Refer to the project [Wiki](https://github.com/SolomonAIEngineering/semantic-cache-service/wiki) for detailed guides and FAQs.
+- **Community Discussions**: Join our [Slack Channel](https://join.slack.com/t/solomon-ai/shared_invite/).
 
 ---
 

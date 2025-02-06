@@ -458,7 +458,7 @@ export default function EventsTable({
     columns,
     pagination,
     onPaginationChange: setPagination,
-    rowCount: requiresUpgrade ? 0 : totalEvents?.[tab] ?? 0,
+    rowCount: requiresUpgrade ? 0 : (totalEvents?.[tab] ?? 0),
     columnVisibility: columnVisibility[tab],
     onColumnVisibilityChange: args => setColumnVisibility(tab, args),
     sortableColumns: ['timestamp'],
@@ -513,7 +513,7 @@ export default function EventsTable({
       {customerDetailsSheet.customer && (
         <CustomerDetailsSheet
           isOpen={customerDetailsSheet.open}
-          setIsOpen={open => setCustomerDetailsSheet(s => ({ ...s, open } as any))}
+          setIsOpen={open => setCustomerDetailsSheet(s => ({ ...s, open }) as any)}
           customer={customerDetailsSheet.customer}
         />
       )}

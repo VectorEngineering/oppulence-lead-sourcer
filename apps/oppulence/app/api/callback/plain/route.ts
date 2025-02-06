@@ -165,10 +165,10 @@ export async function POST(req: NextRequest) {
                       plan === 'enterprise'
                         ? 'RED'
                         : plan.startsWith('business')
-                        ? 'GREEN'
-                        : plan === 'pro'
-                        ? 'BLUE'
-                        : 'GREY',
+                          ? 'GREEN'
+                          : plan === 'pro'
+                            ? 'BLUE'
+                            : 'GREY',
                   },
                 },
               ],

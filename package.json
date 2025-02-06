@@ -45,6 +45,7 @@
         "start:dev": "pnpm check-docker && cd apps/web && docker-compose up -d && cd ../.. && pnpm check-services && pnpm install && pnpm -r --filter \"./packages/**\" build && cd apps/web && pnpm run prisma:generate && pnpm run prisma:push && cd ../.. && pnpm dev",
         "precommit": "pnpm install --no-frozen-lockfile && pnpm format && pnpm i && pnpm build",
         "build-oppulence": "turbo build --filter=@playbookmedia/oppulence",
+        "build-thinkthank": "turbo build --filter=@playbookmedia/thinkthank",
         "version": "changeset version",
         "prepare": "husky install",
         "lint-staged": "lint-staged",

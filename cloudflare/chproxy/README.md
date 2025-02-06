@@ -8,10 +8,10 @@ Read more: [Architecture Documentation](https://engineering.unkey.com/docs/archi
 
 ## Features
 
--   Implements ClickHouse HTTP interface
--   Buffers rows in memory
--   Periodic flushing (time-based or buffer-full)
--   Optional usage in development
+- Implements ClickHouse HTTP interface
+- Buffers rows in memory
+- Periodic flushing (time-based or buffer-full)
+- Optional usage in development
 
 ## Configuration
 
@@ -46,7 +46,7 @@ go build -o chproxy .
 
 Using Docker:
 
--   Refer to the docker-compose reference for container setup
+- Refer to the docker-compose reference for container setup
 
 ## Infrastructure
 

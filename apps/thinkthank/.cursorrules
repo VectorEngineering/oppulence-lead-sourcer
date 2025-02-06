@@ -1,0 +1,727 @@
+{
+  "typescript": {
+    "style": {
+      "preferFunctional": true,
+      "preferNamedExports": true,
+      "avoidEnums": true,
+      "useInterfaces": true,
+      "preferConst": true,
+      "preferArrowFunctions": true,
+      "notes": [
+        "Use arrow functions for all callbacks to maintain lexical scope and consistency.",
+        "Favor small, pure functions for easier testing and reuse.",
+        "Leverage TypeScript’s advanced utility types (Partial, Pick, Omit, etc.) to keep interfaces concise and robust."
+      ]
+    },
+    "formatting": {
+      "indentSize": 2,
+      "maxLineLength": 80,
+      "useSemicolons": true,
+      "quoteStyle": "double",
+      "trailingComma": "all",
+      "notes": [
+        "Use trailing commas to reduce diff noise and make reordering easier.",
+        "Wrap long lines that exceed 80 characters for better readability.",
+        "Consistently place semicolons to avoid automatic semicolon insertion pitfalls."
+      ]
+    },
+    "imports": {
+      "preferTypeImports": true,
+      "noDefaultExports": true,
+      "grouping": [
+        "^react",
+        "^next",
+        "^@dub/",
+        "^@/",
+        "^[./]"
+      ],
+      "notes": [
+        "Organize imports by external libraries, internal aliases, and local modules.",
+        "Use type-only imports for dependencies not required at runtime."
+      ]
+    }
+  },
+  "naming": {
+    "directories": {
+      "pattern": "kebab-case",
+      "examples": [
+        "auth-wizard",
+        "user-settings"
+      ],
+      "specialDirs": {
+        "app": "Next.js app router directory",
+        "lib": "Shared utilities and helpers",
+        "ui": "Reusable UI components",
+        "emails": "Email templates",
+        "public": "Static assets",
+        "styles": "Global styles",
+        "tests": "Test files"
+      },
+      "notes": [
+        "Directory names should be short, descriptive, and consistent.",
+        "Avoid unnecessary abbreviations or acronyms that may confuse new contributors."
+      ]
+    },
+    "components": {
+      "pattern": "PascalCase",
+      "examples": [
+        "AuthWizard",
+        "UserSettings"
+      ],
+      "clientSuffix": "-client",
+      "serverSuffix": "-server",
+      "layoutFile": "layout.tsx",
+      "pageFile": "page.tsx",
+      "loadingFile": "loading.tsx",
+      "errorFile": "error.tsx",
+      "notes": [
+        "Use descriptive component names that reflect their purpose or functionality.",
+        "If a component is meant only for server-side rendering, add the server suffix to avoid confusion."
+      ]
+    },
+    "variables": {
+      "pattern": "camelCase",
+      "prefixes": {
+        "boolean": [
+          "is",
+          "has",
+          "should",
+          "can",
+          "will"
+        ],
+        "event": [
+          "on",
+          "handle"
+        ],
+        "ref": [
+          "ref",
+          "elementRef"
+        ],
+        "count": [
+          "num",
+          "count",
+          "total"
+        ],
+        "callback": [
+          "cb",
+          "fn"
+        ]
+      },
+      "notes": [
+        "Boolean variables should read naturally (e.g., isOpen, hasError).",
+        "Use prefixes that make the variable’s intent clear at a glance."
+      ]
+    },
+    "constants": {
+      "pattern": "UPPER_SNAKE_CASE",
+      "location": "lib/constants",
+      "notes": [
+        "Group related constants together in the same file for easier discovery.",
+        "Use descriptive constant names to avoid confusion (e.g., MAX_LOGIN_ATTEMPTS)."
+      ]
+    }
+  },
+  "fileStructure": {
+    "app": {
+      "layout": [
+        "imports",
+        "metadata",
+        "layout component"
+      ],
+      "page": [
+        "imports",
+        "metadata",
+        "page component"
+      ],
+      "route": [
+        "imports",
+        "validation",
+        "middleware",
+        "handlers"
+      ],
+      "components": [
+        "imports",
+        "types",
+        "component",
+        "helpers"
+      ]
+    },
+    "lib": {
+      "pattern": [
+        "types",
+        "constants",
+        "helpers",
+        "hooks"
+      ],
+      "utils": "shared utility functions",
+      "api": "API-related utilities",
+      "auth": "Authentication utilities",
+      "zod": "Schema validation"
+    },
+    "ui": {
+      "pattern": [
+        "component",
+        "types",
+        "styles"
+      ],
+      "location": "ui/",
+      "shared": "shared UI components",
+      "layout": "layout components"
+    },
+    "notes": [
+      "Keep each directory’s purpose clear by following the naming conventions.",
+      "Add a brief TSDoc or comment block at the top of each file to describe its functionality."
+    ]
+  },
+  "api": {
+    "patterns": {
+      "validation": {
+        "library": "zod",
+        "location": "lib/zod/schemas",
+        "naming": "{resource}.schema.ts"
+      },
+      "middleware": {
+        "auth": [
+          "withSession",
+          "withWorkspace",
+          "withAdmin"
+        ],
+        "error": [
+          "handleAndReturnErrorResponse"
+        ],
+        "cache": [
+          "linkCache"
+        ]
+      },
+      "errorHandling": {
+        "class": "DubApiError",
+        "codes": [
+          "not_found",
+          "unauthorized",
+          "forbidden",
+          "internal_server_error"
+        ]
+      },
+      "responseType": {
+        "success": "NextResponse.json(data)",
+        "error": "handleAndReturnErrorResponse(error)"
+      },
+      "categories": {
+        "auth": [
+          "login",
+          "callback",
+          "providers"
+        ],
+        "workspaces": [
+          "domains",
+          "links",
+          "analytics"
+        ],
+        "users": [
+          "me",
+          "settings",
+          "billing"
+        ],
+        "integrations": [
+          "slack",
+          "shopify",
+          "stripe"
+        ],
+        "features": [
+          "ai",
+          "analytics",
+          "qr"
+        ],
+        "admin": [
+          "impersonate",
+          "ban",
+          "refresh-domain"
+        ]
+      },
+      "edgeRuntime": {
+        "enabled": true,
+        "routes": [
+          "analytics",
+          "links",
+          "domains"
+        ]
+      },
+      "notes": [
+        "Keep validation schemas close to their respective routes or handlers for clarity.",
+        "Wrap error handling in specialized functions (e.g., handleAndReturnErrorResponse) to keep routes clean."
+      ]
+    },
+    "structure": {
+      "route": "app/api/[resource]/route.ts",
+      "handlers": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ],
+      "middleware": "lib/auth/*.ts",
+      "folders": {
+        "auth": "Authentication endpoints",
+        "workspaces": "Workspace management",
+        "links": "Link management",
+        "analytics": "Analytics endpoints",
+        "webhooks": "External service webhooks",
+        "ai": "AI features endpoints",
+        "metatags": "Meta tags management",
+        "categories": "Category management",
+        "events": "Event tracking",
+        "financial-settings": "Billing and subscriptions",
+        "oauth": "OAuth integrations",
+        "scim": "SCIM provisioning",
+        "customers": "Customer management"
+      },
+      "notes": [
+        "Organize routes based on related functionalities to make them easier to find and maintain.",
+        "Leverage standard HTTP verbs (GET, POST, etc.) for clarity and RESTful best practices."
+      ]
+    }
+  },
+  "database": {
+    "orm": "prisma",
+    "clients": {
+      "edge": {
+        "import": "@dub/prisma-thinkthank/edge",
+        "usage": "prismaEdge",
+        "location": "packages/prisma/edge.ts",
+        "features": [
+          "edge runtime",
+          "connection pooling"
+        ]
+      },
+      "standard": {
+        "import": "@dub/prisma-thinkthank",
+        "usage": "prisma",
+        "location": "packages/prisma/client.ts",
+        "features": [
+          "full API support"
+        ]
+      }
+    },
+    "schema": {
+      "location": "packages/prisma/schema",
+      "files": {
+        "main": "schema.prisma",
+        "workspace": "workspace.prisma",
+        "user": "user.prisma",
+        "link": "link.prisma",
+        "tag": "tag.prisma",
+        "domain": "domain.prisma",
+        "notification": "notification.prisma",
+        "ai": "ai.prisma",
+        "analytics": "analytics.prisma",
+        "auth": "auth.prisma",
+        "billing": "billing.prisma",
+        "category": "category.prisma",
+        "customer": "customer.prisma",
+        "event": "event.prisma",
+        "integration": "integration.prisma",
+        "metatag": "metatag.prisma",
+        "oauth": "oauth.prisma",
+        "partner": "partner.prisma",
+        "program": "program.prisma",
+        "qr": "qr.prisma",
+        "scim": "scim.prisma",
+        "support": "support.prisma",
+        "webhook": "webhook.prisma"
+      },
+      "conventions": {
+        "models": {
+          "naming": "PascalCase",
+          "idField": {
+            "type": "String",
+            "default": "@default(cuid())"
+          },
+          "timestamps": {
+            "createdAt": "DateTime @default(now())",
+            "updatedAt": "DateTime @updatedAt"
+          },
+          "relations": {
+            "oneToOne": "@relation(fields: [fieldId], references: [id])",
+            "oneToMany": "@relation(\"RelationName\")",
+            "manyToMany": "implicit through join table"
+          },
+          "cascading": {
+            "delete": "onDelete: Cascade",
+            "update": "onUpdate: Cascade"
+          }
+        },
+        "fields": {
+          "naming": "camelCase",
+          "types": {
+            "id": "String @id @default(cuid())",
+            "foreignKey": "String",
+            "enum": "defined in schema",
+            "json": "Json",
+            "boolean": "Boolean @default(false)",
+            "number": "Int @default(0)",
+            "date": "DateTime",
+            "text": "String"
+          },
+          "attributes": {
+            "required": "@required",
+            "unique": "@unique",
+            "default": "@default(value)",
+            "map": "@map(\"column_name\")"
+          }
+        },
+        "enums": {
+          "naming": "PascalCase",
+          "values": "UPPER_SNAKE_CASE"
+        }
+      },
+      "notes": [
+        "Follow consistent naming across all Prisma models and fields for clarity.",
+        "Leverage Prisma’s relation capabilities to make data retrieval straightforward."
+      ]
+    },
+    "migrations": {
+      "location": "packages/prisma/migrations",
+      "naming": "YYYYMMDDHHMMSS_descriptive_name",
+      "commands": {
+        "generate": "prisma generate",
+        "migrate": "prisma migrate dev",
+        "deploy": "prisma migrate deploy",
+        "reset": "prisma migrate reset"
+      },
+      "notes": [
+        "Use descriptive naming for migrations to make rollbacks and history inspection easier.",
+        "Always run 'prisma migrate dev' locally before pushing changes to production."
+      ]
+    },
+    "packages": {
+      "structure": {
+        "client": "client.ts - Standard Prisma client",
+        "edge": "edge.ts - Edge runtime client",
+        "index": "index.ts - Package exports",
+        "tsconfig": "TypeScript configuration",
+        "package": "Package dependencies and scripts"
+      },
+      "dependencies": {
+        "required": [
+          "@prisma/client",
+          "prisma"
+        ],
+        "devDependencies": [
+          "typescript"
+        ]
+      },
+      "notes": [
+        "Keep the Prisma client version in sync with the CLI (prisma) for compatibility.",
+        "Organize scripts in package.json to clearly separate development vs. production commands."
+      ]
+    },
+    "queries": {
+      "patterns": {
+        "find": {
+          "single": "findUnique",
+          "many": "findMany",
+          "first": "findFirst"
+        },
+        "create": {
+          "single": "create",
+          "many": "createMany"
+        },
+        "update": {
+          "single": "update",
+          "many": "updateMany"
+        },
+        "delete": {
+          "single": "delete",
+          "many": "deleteMany"
+        },
+        "upsert": "upsert"
+      },
+      "includes": {
+        "syntax": "include: { relation: true }",
+        "select": "select: { field: true }",
+        "nested": "include: { relation: { select: { field: true } } }"
+      },
+      "transactions": {
+        "syntax": "prisma.$transaction",
+        "usage": "atomic operations"
+      },
+      "notes": [
+        "When querying related data, prefer using 'include' for clarity unless you only need specific fields.",
+        "Use transactions when performing multiple database operations that need to succeed or fail together."
+      ]
+    },
+    "errorHandling": {
+      "types": [
+        "PrismaClientKnownRequestError",
+        "PrismaClientUnknownRequestError",
+        "PrismaClientRustPanicError",
+        "PrismaClientInitializationError"
+      ],
+      "patterns": {
+        "try": "try/catch with specific error types",
+        "codes": {
+          "P2002": "Unique constraint violation",
+          "P2025": "Record not found"
+        }
+      },
+      "notes": [
+        "Check error codes in catch blocks for more granular error handling.",
+        "Always log detailed error information in development; sanitize logs in production."
+      ]
+    }
+  },
+  "components": {
+    "ui": {
+      "preferred": [
+        "shadcn/ui",
+        "radix-ui"
+      ],
+      "styling": "tailwind",
+      "location": "ui/",
+      "patterns": {
+        "props": "interface {Component}Props",
+        "client": "'use client'",
+        "server": "default RSC"
+      },
+      "notes": [
+        "Leverage a consistent design system to ensure UI consistency and maintainability.",
+        "When using Tailwind, keep utility classes organized and consider extracting repeated patterns into components."
+      ]
+    },
+    "patterns": {
+      "responsive": true,
+      "mobileFirst": true,
+      "accessibility": {
+        "required": true,
+        "aria": true,
+        "semantics": true
+      },
+      "notes": [
+        "Implement responsive layouts that scale from mobile to desktop (mobile-first approach).",
+        "Always ensure accessible markup by using ARIA attributes and semantic HTML elements where appropriate."
+      ]
+    }
+  },
+  "testing": {
+    "framework": "vitest",
+    "patterns": {
+      "filePattern": "**/*.test.ts",
+      "naming": "{name}.test.ts",
+      "location": "tests/"
+    },
+    "coverage": {
+      "statements": 80,
+      "branches": 80,
+      "functions": 80,
+      "lines": 80
+    },
+    "notes": [
+      "Group tests in a parallel folder structure mirroring your main source code for easy navigation.",
+      "Aim for high coverage but prioritize meaningful tests that validate core functionality."
+    ]
+  },
+  "documentation": {
+    "required": true,
+    "format": "TSDoc",
+    "scope": [
+      "components",
+      "hooks",
+      "utils",
+      "api"
+    ],
+    "api": {
+      "format": "swagger",
+      "location": "app/api/**/route.ts"
+    },
+    "notes": [
+      "Use TSDoc tags (e.g., @param, @returns) to clarify function intent and usage.",
+      "Generate Swagger documentation for APIs to ensure consistent and discoverable endpoints."
+    ]
+  },
+  "environment": {
+    "files": [
+      ".env",
+      ".env.example"
+    ],
+    "required": [
+      "NEXT_PUBLIC_APP_NAME",
+      "NEXT_PUBLIC_APP_DOMAIN",
+      "DATABASE_URL",
+      "NEXTAUTH_SECRET"
+    ],
+    "validation": "lib/env.ts",
+    "notes": [
+      "Always provide a .env.example file to help new contributors understand required environment variables.",
+      "Validate all environment variables at startup to fail fast if any are missing or invalid."
+    ]
+  },
+  "appRouter": {
+    "structure": {
+      "rootFiles": {
+        "layout": "Root layout with providers",
+        "not-found": "Global 404 page",
+        "providers": "Global providers wrapper",
+        "manifest": "Web app manifest",
+        "sitemap": "SEO sitemap",
+        "robots": "Robots.txt configuration"
+      },
+      "subdomains": {
+        "app.dub.co": "Main application routes",
+        "admin.dub.co": "Admin panel routes",
+        "partners.dub.co": "Partners portal routes"
+      },
+      "dynamicRoutes": {
+        "[domain]": "Custom domain handling",
+        "proxy": "Proxy routes",
+        "inspect": "Link inspection",
+        "password": "Password protection"
+      },
+      "specialRoutes": {
+        "expired": "Expired links handling",
+        "deeplink": "Mobile deep linking",
+        "banned": "Banned links handling",
+        "cloaked": "Cloaked links"
+      }
+    },
+    "conventions": {
+      "metadata": {
+        "required": true,
+        "location": "layout.tsx or page.tsx",
+        "function": "constructMetadata"
+      },
+      "loading": {
+        "required": true,
+        "implementation": "loading.tsx",
+        "fallback": "LayoutLoader"
+      },
+      "error": {
+        "required": true,
+        "implementation": "error.tsx",
+        "handling": "DubApiError"
+      },
+      "layout": {
+        "structure": [
+          "imports",
+          "metadata export",
+          "interface Props",
+          "layout component"
+        ],
+        "components": [
+          "MaxWidthWrapper",
+          "Nav",
+          "Footer"
+        ]
+      },
+      "notes": [
+        "Keep the root layout file minimal, delegating complex logic to separate components or providers.",
+        "Use loading.tsx to give users immediate feedback while data is being fetched or processed."
+      ]
+    }
+  },
+  "routing": {
+    "patterns": {
+      "authentication": {
+        "public": [
+          "/",
+          "/login",
+          "/register"
+        ],
+        "protected": [
+          "/app",
+          "/admin",
+          "/partners"
+        ],
+        "middleware": "middleware.ts"
+      },
+      "redirects": {
+        "auth": "/login",
+        "workspace": "/app/[slug]",
+        "notFound": "/404"
+      },
+      "parameters": {
+        "workspace": "[slug]",
+        "domain": "[domain]",
+        "link": "[key]"
+      }
+    },
+    "notes": [
+      "Use middleware.ts for authentication checks and route protection logic.",
+      "Define clear redirect rules to ensure a consistent user experience across protected routes."
+    ]
+  },
+  "security": {
+    "middleware": {
+      "required": true,
+      "location": "middleware.ts",
+      "features": [
+        "authentication",
+        "authorization",
+        "rateLimit",
+        "cors"
+      ]
+    },
+    "headers": {
+      "security": true,
+      "cors": true,
+      "csp": true
+    },
+    "notes": [
+      "Implement rate limiting to prevent abuse and DDoS attacks.",
+      "Use Content Security Policy (CSP) to mitigate XSS risks, and configure CORS carefully."
+    ]
+  },
+  "features": {
+    "analytics": {
+      "tracking": [
+        "clicks",
+        "locations",
+        "devices"
+      ],
+      "storage": "tinybird",
+      "realtime": true
+    },
+    "ai": {
+      "provider": "anthropic",
+      "features": [
+        "completion",
+        "analysis"
+      ]
+    },
+    "auth": {
+      "providers": [
+        "email",
+        "google",
+        "github"
+      ],
+      "session": "nextauth"
+    },
+    "links": {
+      "features": [
+        "custom-domains",
+        "qr-codes",
+        "password-protection",
+        "expiration"
+      ]
+    },
+    "notes": [
+      "Track user interactions (clicks, location, devices) in real time to optimize user experiences.",
+      "Use AI features responsibly, ensuring data privacy and compliance with relevant regulations."
+    ]
+  },
+  "deployment": {
+    "platform": "vercel",
+    "regions": [
+      "all"
+    ],
+    "runtime": "edge",
+    "configuration": {
+      "location": "vercel.json",
+      "required": true
+    },
+    "notes": [
+      "Deploy to regions close to your user base to reduce latency.",
+      "Keep vercel.json up to date with all necessary rewrites, redirects, and environment configuration."
+    ]
+  }
+}

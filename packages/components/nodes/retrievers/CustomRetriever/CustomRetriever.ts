@@ -91,7 +91,7 @@ class CustomRetriever_Retrievers implements INode {
 
         const retriever = CustomRetriever.fromVectorStore(vectorStore, {
             resultFormat,
-            topK: topK ? parseInt(topK, 10) : (vectorStore as any)?.k ?? 4
+            topK: topK ? parseInt(topK, 10) : ((vectorStore as any)?.k ?? 4)
         })
 
         if (output === 'retriever') return retriever

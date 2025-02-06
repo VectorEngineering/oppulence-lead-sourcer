@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const LinkTagOrderByRelevanceFieldEnumSchema = z.enum(['id', 'linkId', 'tagId'])
+export const LinkTagOrderByRelevanceFieldEnumSchema = z.enum(['id','linkId','tagId']);
 
-export default LinkTagOrderByRelevanceFieldEnumSchema
+export default LinkTagOrderByRelevanceFieldEnumSchema;

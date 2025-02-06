@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const SentEmailScalarFieldEnumSchema = z.enum(['id', 'type', 'createdAt', 'projectId'])
+export const SentEmailScalarFieldEnumSchema = z.enum(['id','type','createdAt','projectId']);
 
-export default SentEmailScalarFieldEnumSchema
+export default SentEmailScalarFieldEnumSchema;

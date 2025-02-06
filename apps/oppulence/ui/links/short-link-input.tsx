@@ -204,8 +204,8 @@ export const ShortLinkInput = forwardRef<HTMLInputElement, ShortLinkInputProps>(
                   content: exceededAI
                     ? "You've exceeded your AI usage limit."
                     : !data.url
-                    ? 'Enter a URL to generate a key using AI.'
-                    : 'Generate a key using AI.',
+                      ? 'Enter a URL to generate a key using AI.'
+                      : 'Generate a key using AI.',
                 }}
                 onClick={generateAIKey}
                 disabled={generatingRandomKey || generatingAIKey || exceededAI || !data.url}

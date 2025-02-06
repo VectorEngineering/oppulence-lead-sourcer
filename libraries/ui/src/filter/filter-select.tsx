@@ -231,7 +231,7 @@ export function FilterSelect({
                       </Fragment>
                     ))
                   : // Filter options
-                    selectedFilter.options
+                    (selectedFilter.options
                       ?.filter((option) => !search || !option.hideDuringSearch)
                       ?.map((option) => {
                         const isSelected = isOptionSelected(option.value)
@@ -261,15 +261,15 @@ export function FilterSelect({
                           <LoadingSpinner />
                         </div>
                       </Command.Loading>
-                    )}
+                    ))}
 
                 {/* Only render CommandEmpty if not loading */}
                 {(!selectedFilter || selectedFilter.options) && (
                   <CommandEmpty search={search} askAI={askAI}>
                     {emptyState
                       ? isEmptyStateObject(emptyState)
-                        ? emptyState?.[selectedFilterKey ?? 'default'] ??
-                          'No matches'
+                        ? (emptyState?.[selectedFilterKey ?? 'default'] ??
+                          'No matches')
                         : emptyState
                       : 'No matches'}
                   </CommandEmpty>
@@ -380,14 +380,14 @@ function FilterButton({
   const { isMobile } = useMediaQuery()
 
   const Icon = option
-    ? option.icon ??
+    ? (option.icon ??
       filter.getOptionIcon?.(option.value, { key: filter.key, option }) ??
-      filter.icon
+      filter.icon)
     : filter.icon
 
   const label = option
-    ? option.label ??
-      filter.getOptionLabel?.(option.value, { key: filter.key, option })
+    ? (option.label ??
+      filter.getOptionLabel?.(option.value, { key: filter.key, option }))
     : filter.label
 
   return (

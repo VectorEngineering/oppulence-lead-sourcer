@@ -246,8 +246,8 @@ const UserCard = ({
                       session?.user?.email === email
                         ? 'Leave workspace'
                         : currentTab === 'Members'
-                        ? 'Remove teammate'
-                        : 'Revoke invite'
+                          ? 'Remove teammate'
+                          : 'Revoke invite'
                     }
                     icon={<UserMinus className="h-4 w-4" />}
                   />

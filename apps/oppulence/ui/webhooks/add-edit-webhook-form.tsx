@@ -105,8 +105,8 @@ export default function AddEditWebhookForm({
     webhook && webhook?.installationId
       ? `This webhook is managed by an integration.`
       : permissionsError
-      ? permissionsError
-      : undefined
+        ? permissionsError
+        : undefined
 
   const enableLinkSelection = LINK_LEVEL_WEBHOOK_TRIGGERS.some(trigger =>
     triggers.includes(trigger)

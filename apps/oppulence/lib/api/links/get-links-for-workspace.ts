@@ -59,18 +59,18 @@ export async function getLinksForWorkspace({
             tags: { some: { tagId: { in: combinedTagIds } } },
           }
         : tagNames
-        ? {
-            tags: {
-              some: {
-                tag: {
-                  name: {
-                    in: tagNames,
+          ? {
+              tags: {
+                some: {
+                  tag: {
+                    name: {
+                      in: tagNames,
+                    },
                   },
                 },
               },
-            },
-          }
-        : {}),
+            }
+          : {}),
       ...(tenantId && { tenantId }),
       ...(userId && { userId }),
       ...(linkIds && { id: { in: linkIds } }),

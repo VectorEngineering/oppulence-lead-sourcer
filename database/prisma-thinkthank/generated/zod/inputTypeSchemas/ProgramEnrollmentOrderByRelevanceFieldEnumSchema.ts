@@ -1,12 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ProgramEnrollmentOrderByRelevanceFieldEnumSchema = z.enum([
-    'id',
-    'partnerId',
-    'programId',
-    'linkId',
-    'discountId',
-    'applicationId'
-])
+export const ProgramEnrollmentOrderByRelevanceFieldEnumSchema = z.enum(['id','partnerId','programId','linkId','discountId','applicationId']);
 
-export default ProgramEnrollmentOrderByRelevanceFieldEnumSchema
+export default ProgramEnrollmentOrderByRelevanceFieldEnumSchema;

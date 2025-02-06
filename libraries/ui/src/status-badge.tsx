@@ -54,8 +54,8 @@ function StatusBadge({
 }: BadgeProps) {
   const Icon =
     icon !== null
-      ? icon ??
-        defaultIcons[variant ?? ('neutral' as keyof typeof defaultIcons)]
+      ? (icon ??
+        defaultIcons[variant ?? ('neutral' as keyof typeof defaultIcons)])
       : null
   return (
     <span

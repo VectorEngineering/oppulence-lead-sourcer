@@ -63,14 +63,17 @@ export const POST = withAdmin(async ({ req }) => {
   const data = {
     email: response.email,
     // object with domain slugs as keys and the count of links as values
-    defaultDomainLinks: response.links.reduce((acc, { domain }) => {
-      if (acc[domain]) {
-        acc[domain]++
-      } else {
-        acc[domain] = 1
-      }
-      return acc
-    }, {} as Record<string, number>),
+    defaultDomainLinks: response.links.reduce(
+      (acc, { domain }) => {
+        if (acc[domain]) {
+          acc[domain]++
+        } else {
+          acc[domain] = 1
+        }
+        return acc
+      },
+      {} as Record<string, number>
+    ),
     workspaces: response.projects.map(({ project }) => ({
       ...project,
       id: `ws_${project.id}`,

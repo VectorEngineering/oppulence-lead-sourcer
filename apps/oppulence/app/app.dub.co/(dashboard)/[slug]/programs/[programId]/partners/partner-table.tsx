@@ -203,7 +203,7 @@ export function PartnerTable() {
       {detailsSheetState.partner && (
         <PartnerDetailsSheet
           isOpen={detailsSheetState.open}
-          setIsOpen={open => setDetailsSheetState(s => ({ ...s, open } as any))}
+          setIsOpen={open => setDetailsSheetState(s => ({ ...s, open }) as any)}
           partner={detailsSheetState.partner}
         />
       )}

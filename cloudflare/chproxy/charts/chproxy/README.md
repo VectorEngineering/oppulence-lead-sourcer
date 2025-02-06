@@ -17,9 +17,9 @@ This chart bootstraps a ClickHouse Proxy deployment on a Kubernetes cluster usin
 
 ## Prerequisites
 
--   Kubernetes 1.19+
--   Helm 3.2.0+
--   ClickHouse instance
+- Kubernetes 1.19+
+- Helm 3.2.0+
+- ClickHouse instance
 
 ## Installing the Chart
 

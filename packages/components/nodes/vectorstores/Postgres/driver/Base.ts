@@ -5,7 +5,10 @@ import { Embeddings } from '@langchain/core/embeddings'
 import { getDatabase, getHost, getPort, getTableName } from '../utils'
 
 export abstract class VectorStoreDriver {
-    constructor(protected nodeData: INodeData, protected options: ICommonObject) {}
+    constructor(
+        protected nodeData: INodeData,
+        protected options: ICommonObject
+    ) {}
 
     abstract instanciate(metaDataFilters?: any): Promise<VectorStore>
 

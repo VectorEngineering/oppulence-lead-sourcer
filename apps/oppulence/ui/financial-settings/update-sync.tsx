@@ -115,8 +115,8 @@ export default function UpdateSync({
               syncStatus === 'SUCCESS'
                 ? 'border-green-200 bg-green-50'
                 : syncStatus === 'FAILED'
-                ? 'border-red-200 bg-red-50'
-                : 'border-yellow-200 bg-yellow-50'
+                  ? 'border-red-200 bg-red-50'
+                  : 'border-yellow-200 bg-yellow-50'
             }`}
           >
             <div className="space-y-1">
@@ -126,15 +126,15 @@ export default function UpdateSync({
                   syncStatus === 'SUCCESS'
                     ? 'text-green-600'
                     : syncStatus === 'FAILED'
-                    ? 'text-red-600'
-                    : 'text-yellow-600'
+                      ? 'text-red-600'
+                      : 'text-yellow-600'
                 }`}
               >
                 {syncStatus === 'SUCCESS'
                   ? 'Last sync completed successfully'
                   : syncStatus === 'FAILED'
-                  ? 'Last sync failed'
-                  : 'Sync in progress'}
+                    ? 'Last sync failed'
+                    : 'Sync in progress'}
               </p>
             </div>
           </div>

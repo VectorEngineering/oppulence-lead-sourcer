@@ -37,9 +37,7 @@ export function PartnersDashboardPageClient() {
             Array.from({ length: 3 }).map((_, idx) => <ProgramCardSkeleton key={idx} />)
           ) : (
             <>
-              {programInvites?.map(invite => (
-                <ProgramInviteCard key={invite.id} invite={invite} />
-              ))}
+              {programInvites?.map(invite => <ProgramInviteCard key={invite.id} invite={invite} />)}
               {programEnrollments?.map((programEnrollment, idx) => (
                 <ProgramCard key={idx} programEnrollment={programEnrollment} />
               ))}

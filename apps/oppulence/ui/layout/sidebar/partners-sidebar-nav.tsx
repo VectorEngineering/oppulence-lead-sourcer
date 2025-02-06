@@ -161,10 +161,10 @@ export function PartnersSidebarNav({
     return pathname.startsWith('/account/settings')
       ? 'userSettings'
       : pathname.startsWith('/settings')
-      ? 'partnerSettings'
-      : pathname.startsWith(`/programs/${programSlug}`)
-      ? 'program'
-      : 'default'
+        ? 'partnerSettings'
+        : pathname.startsWith(`/programs/${programSlug}`)
+          ? 'program'
+          : 'default'
   }, [pathname, programSlug])
 
   return (

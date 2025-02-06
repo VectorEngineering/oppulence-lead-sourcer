@@ -4,11 +4,11 @@ A modern, type-safe AI chat components and utilities library for Next.js applica
 
 ## Features
 
--   🎯 **Type-safe**: Built with TypeScript for robust type checking and better developer experience
--   🎨 **Customizable**: Flexible components that can be styled with Tailwind CSS
--   🔒 **Secure**: Safe handling of API keys and environment variables
--   ⚡ **Performant**: Optimized for Next.js applications
--   🧩 **Modular**: Use only what you need with tree-shakeable exports
+- 🎯 **Type-safe**: Built with TypeScript for robust type checking and better developer experience
+- 🎨 **Customizable**: Flexible components that can be styled with Tailwind CSS
+- 🔒 **Secure**: Safe handling of API keys and environment variables
+- ⚡ **Performant**: Optimized for Next.js applications
+- 🧩 **Modular**: Use only what you need with tree-shakeable exports
 
 ## Installation
 
@@ -66,9 +66,9 @@ import { Thread } from '@playbookmedia/ai'
 
 #### Props
 
--   `children`: React nodes to render within the thread
--   `className`: Optional custom CSS classes (merged with default styles)
--   `...props`: All standard HTML div props are supported
+- `children`: React nodes to render within the thread
+- `className`: Optional custom CSS classes (merged with default styles)
+- `...props`: All standard HTML div props are supported
 
 ### Message
 
@@ -98,12 +98,12 @@ const message: MessageType = {
 
 #### Props
 
--   `data`: Message object containing:
-    -   `id`: Unique identifier
-    -   `role`: 'user' | 'assistant'
-    -   `content`: Message content (supports Markdown)
--   `markdown`: Optional configuration for react-markdown
-    -   `components`: Custom components for rendering Markdown elements
+- `data`: Message object containing:
+    - `id`: Unique identifier
+    - `role`: 'user' | 'assistant'
+    - `content`: Message content (supports Markdown)
+- `markdown`: Optional configuration for react-markdown
+    - `components`: Custom components for rendering Markdown elements
 
 ## Utilities
 
@@ -124,8 +124,8 @@ const completion = await provider.chat({
 
 The components use Tailwind CSS for styling and can be customized using the `className` prop. Default styles include:
 
--   Thread: Flexbox container with vertical layout and scrolling
--   Message: Role-based styling (user/assistant) with rounded corners and appropriate colors
+- Thread: Flexbox container with vertical layout and scrolling
+- Message: Role-based styling (user/assistant) with rounded corners and appropriate colors
 
 ## TypeScript Support
 
@@ -152,6 +152,6 @@ MIT © [Playbook Media](https://github.com/playbookmedia)
 
 ## Related
 
--   [Vercel AI SDK](https://github.com/vercel/ai)
--   [OpenAI API](https://platform.openai.com/docs/api-reference)
--   [React Markdown](https://github.com/remarkjs/react-markdown)
+- [Vercel AI SDK](https://github.com/vercel/ai)
+- [OpenAI API](https://platform.openai.com/docs/api-reference)
+- [React Markdown](https://github.com/remarkjs/react-markdown)

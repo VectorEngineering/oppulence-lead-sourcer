@@ -23,12 +23,15 @@ export default function useSalesCount(opts?: z.infer<typeof getSalesCountQuerySc
         payoutId: opts?.payoutId,
         start: opts?.start?.toISOString(),
         end: opts?.end?.toISOString(),
-      }).reduce((acc, [key, value]) => {
-        if (value !== undefined) {
-          acc[key] = value
-        }
-        return acc
-      }, {} as Record<string, string | number | boolean>)
+      }).reduce(
+        (acc, [key, value]) => {
+          if (value !== undefined) {
+            acc[key] = value
+          }
+          return acc
+        },
+        {} as Record<string, string | number | boolean>
+      )
     )}`,
     fetcher
   )

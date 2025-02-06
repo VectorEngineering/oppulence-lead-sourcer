@@ -35,10 +35,13 @@ export const GET = withWorkspace(async ({ workspace, params, searchParams }) => 
     _count: true,
   })
 
-  const counts = salesCount.reduce((acc, p) => {
-    acc[p.status] = p._count
-    return acc
-  }, {} as Record<SaleStatus | 'all', number>)
+  const counts = salesCount.reduce(
+    (acc, p) => {
+      acc[p.status] = p._count
+      return acc
+    },
+    {} as Record<SaleStatus | 'all', number>
+  )
 
   // fill in missing statuses with 0
   Object.values(SaleStatus).forEach(status => {

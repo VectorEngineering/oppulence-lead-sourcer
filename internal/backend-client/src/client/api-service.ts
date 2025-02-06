@@ -26,7 +26,10 @@ export class ApiService implements IApiService {
      * @param {ApiConfig} config - The API configuration.
      * @param {Middleware[]} middlewares - An array of middlewares to be applied.
      */
-    constructor(private config: ApiConfig, private middlewares: Middleware[]) {
+    constructor(
+        private config: ApiConfig,
+        private middlewares: Middleware[]
+    ) {
         this.token = config.token
         this.configuration = this.createConfiguration()
         Logger.info('ApiService instance created', { apiUrl: this.config.apiUrl })

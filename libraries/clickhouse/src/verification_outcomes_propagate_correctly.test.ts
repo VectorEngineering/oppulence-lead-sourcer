@@ -83,14 +83,17 @@ describe.each([10, 100, 1_000, 10_000, 100_000])('with %i verifications', (n) =>
 
             for (const buckets of [hourly.val!, daily.val!, monthly.val!]) {
                 let total = 0
-                const sumByOutcome = buckets.reduce((acc, bucket) => {
-                    total += bucket.count
-                    if (!acc[bucket.outcome]) {
-                        acc[bucket.outcome] = 0
-                    }
-                    acc[bucket.outcome] += bucket.count
-                    return acc
-                }, {} as Record<keyof typeof outcomes, number>)
+                const sumByOutcome = buckets.reduce(
+                    (acc, bucket) => {
+                        total += bucket.count
+                        if (!acc[bucket.outcome]) {
+                            acc[bucket.outcome] = 0
+                        }
+                        acc[bucket.outcome] += bucket.count
+                        return acc
+                    },
+                    {} as Record<keyof typeof outcomes, number>
+                )
 
                 expect(total).toBe(n)
 

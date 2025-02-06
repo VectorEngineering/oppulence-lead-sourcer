@@ -67,25 +67,21 @@ export const DraftControls = forwardRef<DraftControlsHandle, DraftControlsProps>
       return () => unsubscribe()
     }, [watch, isDirty])
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          onSubmitSuccessful() {
-            // Remove the current draft when it's submitted
-            removeDraft(sessionId)
-          },
-          onClose() {
-            // Save draft instantly when the link builder is closed
-            const [url, key] = getValues(['url', 'key'])
-            if ((url || key) && isDirty) {
-              saveDraft(sessionId, getValues())
-            }
-          },
-        }
-      },
-      [sessionId, isDirty]
-    )
+    useImperativeHandle(ref, () => {
+      return {
+        onSubmitSuccessful() {
+          // Remove the current draft when it's submitted
+          removeDraft(sessionId)
+        },
+        onClose() {
+          // Save draft instantly when the link builder is closed
+          const [url, key] = getValues(['url', 'key'])
+          if ((url || key) && isDirty) {
+            saveDraft(sessionId, getValues())
+          }
+        },
+      }
+    }, [sessionId, isDirty])
 
     return (isDirty && hasSaved) || drafts.length > 0 ? (
       <Popover

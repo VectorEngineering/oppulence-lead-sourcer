@@ -248,7 +248,7 @@ class BufferMemoryExtended extends FlowiseMemory implements MemoryMethods {
         }
 
         const response = await this.dynamodbClient.send(new GetItemCommand(params))
-        const items = response.Item ? response.Item[messageAttributeName]?.L ?? [] : []
+        const items = response.Item ? (response.Item[messageAttributeName]?.L ?? []) : []
         const messages = items
             .map((item) => ({
                 type: item.M?.type.S,

@@ -1,31 +1,17 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { LinkCreateWithoutUserInputSchema } from './LinkCreateWithoutUserInputSchema'
-import { LinkUncheckedCreateWithoutUserInputSchema } from './LinkUncheckedCreateWithoutUserInputSchema'
-import { LinkCreateOrConnectWithoutUserInputSchema } from './LinkCreateOrConnectWithoutUserInputSchema'
-import { LinkCreateManyUserInputEnvelopeSchema } from './LinkCreateManyUserInputEnvelopeSchema'
-import { LinkWhereUniqueInputSchema } from './LinkWhereUniqueInputSchema'
+import { z } from 'zod';
+import { LinkCreateWithoutUserInputSchema } from './LinkCreateWithoutUserInputSchema';
+import { LinkUncheckedCreateWithoutUserInputSchema } from './LinkUncheckedCreateWithoutUserInputSchema';
+import { LinkCreateOrConnectWithoutUserInputSchema } from './LinkCreateOrConnectWithoutUserInputSchema';
+import { LinkCreateManyUserInputEnvelopeSchema } from './LinkCreateManyUserInputEnvelopeSchema';
+import { LinkWhereUniqueInputSchema } from './LinkWhereUniqueInputSchema';
 
-export const LinkUncheckedCreateNestedManyWithoutUserInputSchema: z.ZodType<Prisma.LinkUncheckedCreateNestedManyWithoutUserInput> = z
-    .object({
-        create: z
-            .union([
-                z.lazy(() => LinkCreateWithoutUserInputSchema),
-                z.lazy(() => LinkCreateWithoutUserInputSchema).array(),
-                z.lazy(() => LinkUncheckedCreateWithoutUserInputSchema),
-                z.lazy(() => LinkUncheckedCreateWithoutUserInputSchema).array()
-            ])
-            .optional(),
-        connectOrCreate: z
-            .union([
-                z.lazy(() => LinkCreateOrConnectWithoutUserInputSchema),
-                z.lazy(() => LinkCreateOrConnectWithoutUserInputSchema).array()
-            ])
-            .optional(),
-        createMany: z.lazy(() => LinkCreateManyUserInputEnvelopeSchema).optional(),
-        connect: z.union([z.lazy(() => LinkWhereUniqueInputSchema), z.lazy(() => LinkWhereUniqueInputSchema).array()]).optional()
-    })
-    .strict()
+export const LinkUncheckedCreateNestedManyWithoutUserInputSchema: z.ZodType<Prisma.LinkUncheckedCreateNestedManyWithoutUserInput> = z.object({
+  create: z.union([ z.lazy(() => LinkCreateWithoutUserInputSchema),z.lazy(() => LinkCreateWithoutUserInputSchema).array(),z.lazy(() => LinkUncheckedCreateWithoutUserInputSchema),z.lazy(() => LinkUncheckedCreateWithoutUserInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => LinkCreateOrConnectWithoutUserInputSchema),z.lazy(() => LinkCreateOrConnectWithoutUserInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => LinkCreateManyUserInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => LinkWhereUniqueInputSchema),z.lazy(() => LinkWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
 
-export default LinkUncheckedCreateNestedManyWithoutUserInputSchema
+export default LinkUncheckedCreateNestedManyWithoutUserInputSchema;

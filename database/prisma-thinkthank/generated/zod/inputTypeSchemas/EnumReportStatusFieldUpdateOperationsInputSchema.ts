@@ -1,12 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { ReportStatusSchema } from './ReportStatusSchema'
+import { z } from 'zod';
+import { ReportStatusSchema } from './ReportStatusSchema';
 
-export const EnumReportStatusFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumReportStatusFieldUpdateOperationsInput> = z
-    .object({
-        set: z.lazy(() => ReportStatusSchema).optional()
-    })
-    .strict()
+export const EnumReportStatusFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumReportStatusFieldUpdateOperationsInput> = z.object({
+  set: z.lazy(() => ReportStatusSchema).optional()
+}).strict();
 
-export default EnumReportStatusFieldUpdateOperationsInputSchema
+export default EnumReportStatusFieldUpdateOperationsInputSchema;

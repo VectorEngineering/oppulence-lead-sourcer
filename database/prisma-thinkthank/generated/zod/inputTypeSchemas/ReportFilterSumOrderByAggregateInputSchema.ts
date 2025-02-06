@@ -1,12 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortOrderSchema } from './SortOrderSchema'
+import { z } from 'zod';
+import { SortOrderSchema } from './SortOrderSchema';
 
-export const ReportFilterSumOrderByAggregateInputSchema: z.ZodType<Prisma.ReportFilterSumOrderByAggregateInput> = z
-    .object({
-        position: z.lazy(() => SortOrderSchema).optional()
-    })
-    .strict()
+export const ReportFilterSumOrderByAggregateInputSchema: z.ZodType<Prisma.ReportFilterSumOrderByAggregateInput> = z.object({
+  position: z.lazy(() => SortOrderSchema).optional()
+}).strict();
 
-export default ReportFilterSumOrderByAggregateInputSchema
+export default ReportFilterSumOrderByAggregateInputSchema;

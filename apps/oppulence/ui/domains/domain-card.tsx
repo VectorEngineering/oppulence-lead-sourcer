@@ -136,18 +136,18 @@ export default function DomainCard({ props }: { props: DomainProps }) {
                     verificationData.status === 'Valid Configuration'
                       ? 'success'
                       : verificationData.status === 'Pending Verification' || isDubProvisioned
-                      ? 'pending'
-                      : 'error'
+                        ? 'pending'
+                        : 'error'
                   }
                   onClick={isDubProvisioned ? undefined : () => setShowDetails(s => !s)}
                 >
                   {verificationData.status === 'Valid Configuration'
                     ? 'Active'
                     : verificationData.status === 'Pending Verification'
-                    ? 'Pending'
-                    : isDubProvisioned
-                    ? 'Provisioning'
-                    : 'Invalid'}
+                      ? 'Pending'
+                      : isDubProvisioned
+                        ? 'Provisioning'
+                        : 'Invalid'}
                 </StatusBadge>
               ) : (
                 <div className="h-6 w-16 animate-pulse rounded-md bg-gray-200" />

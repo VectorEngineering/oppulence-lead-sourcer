@@ -107,7 +107,7 @@ class RRFRetriever_Retrievers implements INode {
         const queryCount = nodeData.inputs?.queryCount as string
         const q = queryCount ? parseFloat(queryCount) : 4
         const topK = nodeData.inputs?.topK as string
-        const k = topK ? parseFloat(topK) : (baseRetriever as VectorStoreRetriever).k ?? 4
+        const k = topK ? parseFloat(topK) : ((baseRetriever as VectorStoreRetriever).k ?? 4)
         const constantC = nodeData.inputs?.c as string
         const c = topK ? parseFloat(constantC) : 60
         const output = nodeData.outputs?.output as string

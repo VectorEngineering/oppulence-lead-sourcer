@@ -6,8 +6,8 @@ function getDevice(): 'mobile' | 'tablet' | 'desktop' | null {
   return window.matchMedia('(min-width: 1024px)').matches
     ? 'desktop'
     : window.matchMedia('(min-width: 640px)').matches
-    ? 'tablet'
-    : 'mobile'
+      ? 'tablet'
+      : 'mobile'
 }
 
 function getDimensions() {

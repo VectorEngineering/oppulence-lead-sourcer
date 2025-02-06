@@ -1,14 +1,12 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortOrderSchema } from './SortOrderSchema'
+import { z } from 'zod';
+import { SortOrderSchema } from './SortOrderSchema';
 
-export const EmailVerificationTokenMinOrderByAggregateInputSchema: z.ZodType<Prisma.EmailVerificationTokenMinOrderByAggregateInput> = z
-    .object({
-        identifier: z.lazy(() => SortOrderSchema).optional(),
-        token: z.lazy(() => SortOrderSchema).optional(),
-        expires: z.lazy(() => SortOrderSchema).optional()
-    })
-    .strict()
+export const EmailVerificationTokenMinOrderByAggregateInputSchema: z.ZodType<Prisma.EmailVerificationTokenMinOrderByAggregateInput> = z.object({
+  identifier: z.lazy(() => SortOrderSchema).optional(),
+  token: z.lazy(() => SortOrderSchema).optional(),
+  expires: z.lazy(() => SortOrderSchema).optional()
+}).strict();
 
-export default EmailVerificationTokenMinOrderByAggregateInputSchema
+export default EmailVerificationTokenMinOrderByAggregateInputSchema;

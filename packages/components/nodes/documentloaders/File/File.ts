@@ -306,7 +306,10 @@ interface LoadersMapping {
 }
 
 class MultiFileLoader extends BaseDocumentLoader {
-    constructor(public fileBlobs: { blob: Blob; ext: string }[], public loaders: LoadersMapping) {
+    constructor(
+        public fileBlobs: { blob: Blob; ext: string }[],
+        public loaders: LoadersMapping
+    ) {
         super()
 
         if (Object.keys(loaders).length === 0) {

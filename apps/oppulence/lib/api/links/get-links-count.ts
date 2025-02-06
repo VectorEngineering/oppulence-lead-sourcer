@@ -67,18 +67,18 @@ export async function getLinksCount({
             tags: { some: { tagId: { in: combinedTagIds } } },
           }
         : tagNames
-        ? {
-            tags: {
-              some: {
-                tag: {
-                  name: {
-                    in: tagNames,
+          ? {
+              tags: {
+                some: {
+                  tag: {
+                    name: {
+                      in: tagNames,
+                    },
                   },
                 },
               },
-            },
-          }
-        : {}),
+            }
+          : {}),
     }
 
     if (groupBy === 'domain' || groupBy === 'userId') {

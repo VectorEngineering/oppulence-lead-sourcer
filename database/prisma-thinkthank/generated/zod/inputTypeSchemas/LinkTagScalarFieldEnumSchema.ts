@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const LinkTagScalarFieldEnumSchema = z.enum(['id', 'createdAt', 'updatedAt', 'linkId', 'tagId'])
+export const LinkTagScalarFieldEnumSchema = z.enum(['id','createdAt','updatedAt','linkId','tagId']);
 
-export default LinkTagScalarFieldEnumSchema
+export default LinkTagScalarFieldEnumSchema;

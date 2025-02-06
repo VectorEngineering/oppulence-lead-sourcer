@@ -133,7 +133,7 @@ export default function AnalyticsProvider({
   const defaultInterval = partnerPage ? '1y' : '24h'
 
   // Only set interval if start and end are not provided
-  const interval = start || end ? undefined : searchParams?.get('interval') ?? defaultInterval
+  const interval = start || end ? undefined : (searchParams?.get('interval') ?? defaultInterval)
 
   const selectedTab: EventType = useMemo(() => {
     if (!showConversions) return 'clicks'
@@ -240,8 +240,8 @@ export default function AnalyticsProvider({
   const root = searchParams.get('root')
     ? searchParams.get('root') === 'true'
     : (domain && key) || (domains && domains?.length > 50) || adminPage
-    ? undefined
-    : 'false'
+      ? undefined
+      : 'false'
 
   const queryString = useMemo(() => {
     const availableFilterParams = VALID_ANALYTICS_FILTERS.reduce(

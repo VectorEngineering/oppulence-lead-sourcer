@@ -12,52 +12,52 @@ Leveraging integration with [Axiom](https://axiom.co/), Logdrain provides advanc
 
 ## Table of Contents
 
--   [Features](#features)
--   [Architecture](#architecture)
--   [Quick Start](#quick-start)
--   [Getting Started](#getting-started)
-    -   [Prerequisites](#prerequisites)
-    -   [Installation](#installation)
-    -   [Configuration](#configuration)
--   [Usage](#usage)
-    -   [Running Locally](#running-locally)
-    -   [Deployment](#deployment)
--   [API Reference](#api-reference)
-    -   [Authentication](#authentication)
-    -   [Endpoints](#endpoints)
-        -   [POST /ingest](#post-ingest)
-    -   [Data Models](#data-models)
-    -   [Request Validation](#request-validation)
-    -   [Response Format](#response-format)
-    -   [Error Handling](#error-handling)
--   [Integration with Axiom](#integration-with-axiom)
--   [Development](#development)
-    -   [Project Structure](#project-structure)
-    -   [Adding New Features](#adding-new-features)
-    -   [Coding Standards](#coding-standards)
-    -   [Logging and Monitoring](#logging-and-monitoring)
--   [Contributing](#contributing)
--   [Security Policy](#security-policy)
--   [License](#license)
--   [Support](#support)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+- [Usage](#usage)
+    - [Running Locally](#running-locally)
+    - [Deployment](#deployment)
+- [API Reference](#api-reference)
+    - [Authentication](#authentication)
+    - [Endpoints](#endpoints)
+        - [POST /ingest](#post-ingest)
+    - [Data Models](#data-models)
+    - [Request Validation](#request-validation)
+    - [Response Format](#response-format)
+    - [Error Handling](#error-handling)
+- [Integration with Axiom](#integration-with-axiom)
+- [Development](#development)
+    - [Project Structure](#project-structure)
+    - [Adding New Features](#adding-new-features)
+    - [Coding Standards](#coding-standards)
+    - [Logging and Monitoring](#logging-and-monitoring)
+- [Contributing](#contributing)
+- [Security Policy](#security-policy)
+- [License](#license)
+- [Support](#support)
 
 ## Features
 
--   **Edge Computing with Cloudflare Workers**: Utilize serverless functions at the edge for minimal latency and high scalability, enabling real-time log ingestion globally.
+- **Edge Computing with Cloudflare Workers**: Utilize serverless functions at the edge for minimal latency and high scalability, enabling real-time log ingestion globally.
 
--   **Advanced Data Ingestion with Axiom**: Stream logs to Axiom for powerful querying, visualization, and analytics capabilities.
+- **Advanced Data Ingestion with Axiom**: Stream logs to Axiom for powerful querying, visualization, and analytics capabilities.
 
--   **TypeScript and Zod Validation**: Ensure type safety and robust log payload validation using TypeScript interfaces and Zod schemas.
+- **TypeScript and Zod Validation**: Ensure type safety and robust log payload validation using TypeScript interfaces and Zod schemas.
 
--   **Flexible Log Processing**: Supports various log types, including application logs, system logs, and custom metrics.
+- **Flexible Log Processing**: Supports various log types, including application logs, system logs, and custom metrics.
 
--   **Secure and Authorized Access**: Built-in authorization mechanisms to ensure that only authorized sources can send logs, enhancing security.
+- **Secure and Authorized Access**: Built-in authorization mechanisms to ensure that only authorized sources can send logs, enhancing security.
 
--   **Comprehensive Error Handling**: Detailed exception handling with standardized error responses for seamless debugging.
+- **Comprehensive Error Handling**: Detailed exception handling with standardized error responses for seamless debugging.
 
--   **Scalable and Extensible Architecture**: Modular codebase designed for easy extension and integration with other services.
+- **Scalable and Extensible Architecture**: Modular codebase designed for easy extension and integration with other services.
 
--   **Compliance and Data Integrity**: Ensures data integrity through strict validation and supports compliance requirements by integrating with secure storage and processing standards.
+- **Compliance and Data Integrity**: Ensures data integrity through strict validation and supports compliance requirements by integrating with secure storage and processing standards.
 
 ## Architecture
 
@@ -67,27 +67,27 @@ Logdrain is architected as a serverless application deployed on Cloudflare Worke
 
 **Key Components:**
 
--   **Cloudflare Workers**: Executes log ingestion functions at the edge, providing scalable and distributed processing.
+- **Cloudflare Workers**: Executes log ingestion functions at the edge, providing scalable and distributed processing.
 
--   **Axiom Integration**: Logs are streamed to Axiom for storage, indexing, and analysis.
+- **Axiom Integration**: Logs are streamed to Axiom for storage, indexing, and analysis.
 
--   **API Gateway**: Routes incoming HTTP requests to the appropriate handlers, performing authentication and authorization checks.
+- **API Gateway**: Routes incoming HTTP requests to the appropriate handlers, performing authentication and authorization checks.
 
--   **Zod Validation Layer**: Validates incoming log payloads against defined schemas to ensure data integrity.
+- **Zod Validation Layer**: Validates incoming log payloads against defined schemas to ensure data integrity.
 
--   **Error Handling Middleware**: Captures and formats errors before sending responses, ensuring consistent error reporting.
+- **Error Handling Middleware**: Captures and formats errors before sending responses, ensuring consistent error reporting.
 
 **Design Principles:**
 
--   **Event-Driven Architecture**: Utilizes non-blocking I/O models facilitated by the V8 JavaScript engine for high concurrency.
+- **Event-Driven Architecture**: Utilizes non-blocking I/O models facilitated by the V8 JavaScript engine for high concurrency.
 
--   **Modularity**: Components are designed as independent modules that communicate over well-defined interfaces.
+- **Modularity**: Components are designed as independent modules that communicate over well-defined interfaces.
 
--   **Security**: Implements authentication and authorization mechanisms to secure log ingestion endpoints.
+- **Security**: Implements authentication and authorization mechanisms to secure log ingestion endpoints.
 
--   **Scalability**: Leverages serverless architecture for automatic scaling based on demand.
+- **Scalability**: Leverages serverless architecture for automatic scaling based on demand.
 
--   **Reliability**: Employs retry mechanisms and fallback strategies to ensure log delivery.
+- **Reliability**: Employs retry mechanisms and fallback strategies to ensure log delivery.
 
 ## Quick Start
 
@@ -121,11 +121,11 @@ To quickly get started with Logdrain:
 
 ### Prerequisites
 
--   **Node.js**: Version 14.x or later
--   **npm**: Version 6.x or later
--   **Wrangler CLI**: Install globally via `npm install -g wrangler`
--   **Axiom Account and API Token**
--   **Git**: For version control
+- **Node.js**: Version 14.x or later
+- **npm**: Version 6.x or later
+- **Wrangler CLI**: Install globally via `npm install -g wrangler`
+- **Axiom Account and API Token**
+- **Git**: For version control
 
 ### Installation
 
@@ -154,11 +154,11 @@ To quickly get started with Logdrain:
 
 Logdrain uses environment variables for configuration. Key variables include:
 
--   **AXIOM_TOKEN**: Your Axiom API token.
--   **AXIOM_ORG_ID**: Your Axiom organization ID.
--   **AXIOM_DATASET**: (Optional) Axiom dataset name, defaults to `logdrain-logs`.
--   **AUTHORIZATION**: Authorization token for secure log ingestion.
--   **ENVIRONMENT**: Set to `development`, `staging`, or `production`.
+- **AXIOM_TOKEN**: Your Axiom API token.
+- **AXIOM_ORG_ID**: Your Axiom organization ID.
+- **AXIOM_DATASET**: (Optional) Axiom dataset name, defaults to `logdrain-logs`.
+- **AUTHORIZATION**: Authorization token for secure log ingestion.
+- **ENVIRONMENT**: Set to `development`, `staging`, or `production`.
 
 **Example `.dev.vars` File:**
 
@@ -229,11 +229,11 @@ Authorization: Bearer YOUR_AUTHORIZATION_TOKEN
 
 Ingest logs into Logdrain.
 
--   **URL:** `/ingest`
--   **Method:** `POST`
--   **Headers:**
-    -   `Content-Type: application/json`
-    -   `Authorization: Bearer YOUR_AUTHORIZATION_TOKEN`
+- **URL:** `/ingest`
+- **Method:** `POST`
+- **Headers:**
+    - `Content-Type: application/json`
+    - `Authorization: Bearer YOUR_AUTHORIZATION_TOKEN`
 
 ##### Request Body Schema
 
@@ -266,11 +266,11 @@ The request body should be a JSON object or array of log entries.
 ]
 ```
 
--   **timestamp** (string): ISO 8601 formatted timestamp.
--   **level** (string): Log level (`info`, `warn`, `error`, etc.).
--   **message** (string): Log message.
--   **service** (string): Name of the service or application.
--   **context** (object, optional): Additional contextual information.
+- **timestamp** (string): ISO 8601 formatted timestamp.
+- **level** (string): Log level (`info`, `warn`, `error`, etc.).
+- **message** (string): Log message.
+- **service** (string): Name of the service or application.
+- **context** (object, optional): Additional contextual information.
 
 ##### Response
 
@@ -278,9 +278,9 @@ A successful ingestion returns a `204 No Content` status code with no body.
 
 ##### Error Responses
 
--   **400 Bad Request**: Invalid request payload.
--   **401 Unauthorized**: Missing or invalid authorization token.
--   **500 Internal Server Error**: Server encountered an unexpected condition.
+- **400 Bad Request**: Invalid request payload.
+- **401 Unauthorized**: Missing or invalid authorization token.
+- **500 Internal Server Error**: Server encountered an unexpected condition.
 
 ### Data Models
 
@@ -322,8 +322,8 @@ Validation errors will result in a `400 Bad Request` response with details about
 
 ### Response Format
 
--   **Successful Ingestion**: `204 No Content`
--   **Error Responses**: JSON object with error details.
+- **Successful Ingestion**: `204 No Content`
+- **Error Responses**: JSON object with error details.
 
 **Error Response Example:**
 
@@ -346,10 +346,10 @@ Validation errors will result in a `400 Bad Request` response with details about
 
 Errors are handled gracefully and returned in a standardized format.
 
--   **Error Codes**:
-    -   `INVALID_REQUEST` (400)
-    -   `UNAUTHORIZED` (401)
-    -   `INTERNAL_SERVER_ERROR` (500)
+- **Error Codes**:
+    - `INVALID_REQUEST` (400)
+    - `UNAUTHORIZED` (401)
+    - `INTERNAL_SERVER_ERROR` (500)
 
 ## Integration with Axiom
 
@@ -359,9 +359,9 @@ All logs are streamed to Axiom for storage and analysis.
 
 Set the following environment variables:
 
--   **AXIOM_TOKEN**: Your Axiom API token.
--   **AXIOM_ORG_ID**: Your Axiom organization ID.
--   **AXIOM_DATASET**: (Optional) The dataset to which logs will be sent. Defaults to `logdrain-logs`.
+- **AXIOM_TOKEN**: Your Axiom API token.
+- **AXIOM_ORG_ID**: Your Axiom organization ID.
+- **AXIOM_DATASET**: (Optional) The dataset to which logs will be sent. Defaults to `logdrain-logs`.
 
 ### Data Ingestion
 
@@ -387,17 +387,17 @@ Logs are sent to Axiom using their HTTP ingest API. Each log entry is structured
 
 Use Axiom's query language to perform analyses, such as:
 
--   Filtering logs by service or level.
--   Aggregating logs over time.
--   Searching for specific error messages.
+- Filtering logs by service or level.
+- Aggregating logs over time.
+- Searching for specific error messages.
 
 ### Visualization
 
 Create dashboards in Axiom to visualize:
 
--   Log levels over time.
--   Service performance metrics.
--   Error rates and alerts.
+- Log levels over time.
+- Service performance metrics.
+- Error rates and alerts.
 
 ## Development
 
@@ -461,43 +461,43 @@ logdrain/
 
 ### Coding Standards
 
--   **TypeScript Best Practices:**
+- **TypeScript Best Practices:**
 
-    -   Use strict typing (`strict` mode in `tsconfig.json`).
-    -   Prefer `const` and `let` over `var`.
-    -   Use arrow functions and async/await syntax.
+    - Use strict typing (`strict` mode in `tsconfig.json`).
+    - Prefer `const` and `let` over `var`.
+    - Use arrow functions and async/await syntax.
 
--   **ESLint Configuration:**
+- **ESLint Configuration:**
 
-    -   The project uses ESLint with TypeScript support.
-    -   Run `npm run lint` to check for linting errors.
-    -   Auto-fixable issues can be fixed with `npm run lint:fix`.
+    - The project uses ESLint with TypeScript support.
+    - Run `npm run lint` to check for linting errors.
+    - Auto-fixable issues can be fixed with `npm run lint:fix`.
 
--   **Naming Conventions:**
+- **Naming Conventions:**
 
-    -   Use `PascalCase` for types and classes.
-    -   Use `camelCase` for variables and functions.
-    -   Use `UPPER_CASE` for constants.
+    - Use `PascalCase` for types and classes.
+    - Use `camelCase` for variables and functions.
+    - Use `UPPER_CASE` for constants.
 
--   **Documentation:**
+- **Documentation:**
 
-    -   Use JSDoc comments for functions, interfaces, and classes.
-    -   Provide clear descriptions and parameter explanations.
+    - Use JSDoc comments for functions, interfaces, and classes.
+    - Provide clear descriptions and parameter explanations.
 
--   **Error Handling:**
+- **Error Handling:**
 
-    -   Use `try/catch` blocks for asynchronous operations.
-    -   Throw custom errors with meaningful messages.
+    - Use `try/catch` blocks for asynchronous operations.
+    - Throw custom errors with meaningful messages.
 
 ### Logging and Monitoring
 
--   **Structured Logging:**
+- **Structured Logging:**
 
-    -   Use consistent log formats for easier parsing and analysis.
+    - Use consistent log formats for easier parsing and analysis.
 
--   **Monitoring:**
+- **Monitoring:**
 
-    -   Integrate with monitoring tools to track performance and error rates.
+    - Integrate with monitoring tools to track performance and error rates.
 
 ## Contributing
 
@@ -539,8 +539,8 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
 Security is a top priority for Logdrain. If you discover a security vulnerability, please report it privately.
 
--   **Contact:** security@solomon-ai.co
--   **PGP Key:** Available upon request.
+- **Contact:** security@solomon-ai.co
+- **PGP Key:** Available upon request.
 
 All security vulnerabilities will be addressed promptly in accordance with our [Security Policy](SECURITY.md).
 
@@ -550,10 +550,10 @@ All security vulnerabilities will be addressed promptly in accordance with our [
 
 For support:
 
--   **Issue Tracker:** Use the GitHub [Issues](https://github.com/SolomonAIEngineering/logdrain/issues) for bug reports and feature requests.
--   **Email:** Contact us at support@solomon-ai.co
--   **Documentation:** Refer to the project [Wiki](https://github.com/SolomonAIEngineering/logdrain/wiki) for detailed guides and FAQs.
--   **Community Discussions:** Join our [Slack Channel](https://join.slack.com/t/solomon-ai/shared_invite/).
+- **Issue Tracker:** Use the GitHub [Issues](https://github.com/SolomonAIEngineering/logdrain/issues) for bug reports and feature requests.
+- **Email:** Contact us at support@solomon-ai.co
+- **Documentation:** Refer to the project [Wiki](https://github.com/SolomonAIEngineering/logdrain/wiki) for detailed guides and FAQs.
+- **Community Discussions:** Join our [Slack Channel](https://join.slack.com/t/solomon-ai/shared_invite/).
 
 ---
 

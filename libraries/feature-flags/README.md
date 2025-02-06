@@ -14,12 +14,12 @@ pnpm add @playbookmedia/feature-flags
 
 ## Features
 
--   Integration with Vercel Flags
--   PostHog analytics-based feature targeting
--   User-based feature targeting
--   Type-safe feature flag creation
--   Default value fallbacks
--   Server-side feature flag evaluation
+- Integration with Vercel Flags
+- PostHog analytics-based feature targeting
+- User-based feature targeting
+- Type-safe feature flag creation
+- Default value fallbacks
+- Server-side feature flag evaluation
 
 ## Usage
 
@@ -109,9 +109,9 @@ async function evaluateFlag() {
 
 The package includes TypeScript definitions for:
 
--   Flag creation functions
--   Configuration options
--   Return types
+- Flag creation functions
+- Configuration options
+- Return types
 
 ```typescript
 import { createFlag } from '@playbookmedia/feature-flags/lib/create-flag'
@@ -125,17 +125,17 @@ const myFlag = createFlag('myFlag')
 
 Feature flags are tightly integrated with PostHog for:
 
--   User targeting
--   A/B testing
--   Gradual rollouts
--   Analytics tracking
+- User targeting
+- A/B testing
+- Gradual rollouts
+- Analytics tracking
 
 Configure feature flags in PostHog to:
 
--   Target specific users or groups
--   Set percentage-based rollouts
--   Define complex targeting rules
--   Track feature usage
+- Target specific users or groups
+- Set percentage-based rollouts
+- Define complex targeting rules
+- Track feature usage
 
 ## Error Handling
 

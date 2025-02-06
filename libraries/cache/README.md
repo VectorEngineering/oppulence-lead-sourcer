@@ -7,18 +7,18 @@
 
 ## Features
 
--   Tiered caching
--   Memory Cache
--   Cloudflare Cache
--   Cloudflare KV (todo)
--   Cloudflare R2 (todo)
--   Emit metrics
--   **Typescript**: Fully typesafe
--   **Tiered Cache**: Multiple caches in series to fall back on
--   **Metrics**: Middleware for collecting metrics
--   **Stale-While-Revalidate**: Async loading of data from your origin
--   **Encryption**: Middleware for automatic encryption of cache values
--   **Composable**: Mix and match primitives to build what you need
+- Tiered caching
+- Memory Cache
+- Cloudflare Cache
+- Cloudflare KV (todo)
+- Cloudflare R2 (todo)
+- Emit metrics
+- **Typescript**: Fully typesafe
+- **Tiered Cache**: Multiple caches in series to fall back on
+- **Metrics**: Middleware for collecting metrics
+- **Stale-While-Revalidate**: Async loading of data from your origin
+- **Encryption**: Middleware for automatic encryption of cache values
+- **Composable**: Mix and match primitives to build what you need
 
 ## Quickstart
 
@@ -112,9 +112,9 @@ if (!user){
 
 There are a few annoying things about this code:
 
--   Manual type casting
--   No support for stale-while-revalidate
--   Only checks a single cache
+- Manual type casting
+- No support for stale-while-revalidate
+- Only checks a single cache
 
 Most people would build a small wrapper around this to make it easier to use and so did we: This library is the result of a rewrite of our own caching layer after some developers were starting to replicate it. It’s used in production by Solomon AI and others.
 
@@ -194,7 +194,7 @@ Each namespace requires a type parameter and is instantiated with a set of store
 new Namespace<TValue>(ctx, opts)
 ```
 
--   **TValue**: The type of data stored in this namespace.
+- **TValue**: The type of data stored in this namespace.
 
     ```ts
     type User = {
@@ -202,7 +202,7 @@ new Namespace<TValue>(ctx, opts)
     }
     ```
 
--   **ctx**: An execution context, such as a request or a worker instance.
+- **ctx**: An execution context, such as a request or a worker instance.
 
     ```ts
     interface Context {
@@ -217,19 +217,19 @@ new Namespace<TValue>(ctx, opts)
     const ctx = new DefaultStatefulContext()
     ```
 
--   **opts**: NamespaceOptions
+- **opts**: NamespaceOptions
 
-    -   **stores**: `Store[]` (required)
+    - **stores**: `Store[]` (required)
 
         An array of stores to use for this namespace. When providing multiple stores, the cache will be checked in order of the array until a value is found or all stores have been checked.
 
         You should order the stores from fastest to slowest, so that the fastest store is checked first.
 
-    -   **fresh**: `number`
+    - **fresh**: `number`
 
         The time in milliseconds that a value is considered fresh. Cache hits within this time will return the cached value. Must be less than `stale`.
 
-    -   **stale**: `number`
+    - **stale**: `number`
 
         The time in milliseconds that a value is considered stale. Cache hits within this time will return the cached value and trigger a background refresh. Must be greater than `fresh`.
 
@@ -333,11 +333,11 @@ const user = await cache.user.swr('userId', async (userId) => {
 
 **Parameters:**
 
--   **key**: `string`  
-    The cache key to fetch, just like when using `.get(key)`
+- **key**: `string`  
+  The cache key to fetch, just like when using `.get(key)`
 
--   **loadFromOrigin**: `(key: string) => Promise<TValue | undefined>`  
-    A callback function that will be called to fetch the data from the origin if it’s stale or not in the cache.
+- **loadFromOrigin**: `(key: string) => Promise<TValue | undefined>`  
+  A callback function that will be called to fetch the data from the origin if it’s stale or not in the cache.
 
 **Example**
 
@@ -409,9 +409,9 @@ const ctx = new DefaultStatefulContext()
 
 **Vendor-specific documentation:**
 
--   [Cloudflare Workers](https://developers.cloudflare.com/workers/runtime-apis/context/)
--   [Vercel Serverless](https://vercel.com/docs/functions/functions-api-reference#waituntil)
--   [Vercel Edge and Middleware](https://vercel.com/docs/functions/edge-middleware/middleware-api#waituntil)
+- [Cloudflare Workers](https://developers.cloudflare.com/workers/runtime-apis/context/)
+- [Vercel Serverless](https://vercel.com/docs/functions/functions-api-reference#waituntil)
+- [Vercel Edge and Middleware](https://vercel.com/docs/functions/edge-middleware/middleware-api#waituntil)
 
 ## Primitives
 
@@ -454,20 +454,20 @@ const cloudflare = new CloudflareStore({
 
 **Parameters:**
 
--   **cloudflareApiKey**: `string`  
-    The Cloudflare API key to use for cache purge operations. The API key must have the `Cache Purge` permission. You can create a new API token with this permission in the [Cloudflare dashboard](https://dash.cloudflare.com/profile/api-tokens).
+- **cloudflareApiKey**: `string`  
+  The Cloudflare API key to use for cache purge operations. The API key must have the `Cache Purge` permission. You can create a new API token with this permission in the [Cloudflare dashboard](https://dash.cloudflare.com/profile/api-tokens).
 
--   **zoneId**: `string`  
-    The Cloudflare zone ID where the cache is stored. You can find this in the Cloudflare dashboard.
+- **zoneId**: `string`  
+  The Cloudflare zone ID where the cache is stored. You can find this in the Cloudflare dashboard.
 
--   **domain**: `string`  
-    The domain to use for the cache. This must be a valid domain within the zone specified by `zoneId`. If the domain is not valid in the specified zone, the cache will not work and Cloudflare does not provide an error message. You will just get cache misses.
+- **domain**: `string`  
+  The domain to use for the cache. This must be a valid domain within the zone specified by `zoneId`. If the domain is not valid in the specified zone, the cache will not work and Cloudflare does not provide an error message. You will just get cache misses.
 
     For example, we use `domain: "cache.repo.dev"` in our API.
 
--   **cacheBuster**: `string`  
-    **Default:** `"v1"`  
-    As your data changes, it is important to keep backwards compatibility in mind. If your cached values are no longer backwards compatible, it can cause problems. For example, when a value changes from optional to required. In these cases, you should purge the entire cache by setting a new `cacheBuster` value. The `cacheBuster` is used as part of the cache key and changes ensure you are not reading old data anymore.
+- **cacheBuster**: `string`  
+  **Default:** `"v1"`  
+  As your data changes, it is important to keep backwards compatibility in mind. If your cached values are no longer backwards compatible, it can cause problems. For example, when a value changes from optional to required. In these cases, you should purge the entire cache by setting a new `cacheBuster` value. The `cacheBuster` is used as part of the cache key and changes ensure you are not reading old data anymore.
 
 #### Upstash Redis
 
@@ -489,8 +489,8 @@ const redisStore = new UpstashRedisStore({
 
 **Parameters:**
 
--   **redis**: `Redis`  
-    The Upstash Redis client to use for cache operations.
+- **redis**: `Redis`  
+  The Upstash Redis client to use for cache operations.
 
 #### libSQL (Turso)
 
@@ -509,12 +509,12 @@ CREATE TABLE IF NOT EXISTS cache (
 
 **Parameters:**
 
--   **client**: `Client` (required)  
-    The [libSQL client](https://docs.turso.tech/sdk/ts) to use for cache operations.
+- **client**: `Client` (required)  
+  The [libSQL client](https://docs.turso.tech/sdk/ts) to use for cache operations.
 
--   **tableName**: `string`  
-    **Default:** `"cache"`  
-    The name of the database table to use for cache operations.
+- **tableName**: `string`  
+  **Default:** `"cache"`  
+  The name of the database table to use for cache operations.
 
 ### Middlewares
 
@@ -625,25 +625,25 @@ A SHA256 hash of the encryption key is used in the cache key to allow for rotati
 
 ### On this page
 
--   [Motivation](#motivation)
--   [Features](#features)
--   [Quickstart](#quickstart)
--   [Concepts](#concepts)
--   [Namespaces](#namespaces)
--   [Tiered Cache](#tiered-cache)
--   [Reading from the Cache](#reading-from-the-cache)
--   [Writing to the Cache](#writing-to-the-cache)
--   [Example](#example)
--   [Stale-While-Revalidate](#stale-while-revalidate)
--   [Example](#example-2)
--   [Context](#context)
--   [Primitives](#primitives)
--   [Stores](#stores)
--   [Memory](#memory)
--   [Cloudflare](#cloudflare)
--   [Upstash Redis](#upstash-redis)
--   [libSQL (Turso)](#libsql-turso)
--   [Middlewares](#middlewares)
--   [Metrics](#metrics)
--   [Encryption](#encryption)
--   [Contributing](#contributing)
+- [Motivation](#motivation)
+- [Features](#features)
+- [Quickstart](#quickstart)
+- [Concepts](#concepts)
+- [Namespaces](#namespaces)
+- [Tiered Cache](#tiered-cache)
+- [Reading from the Cache](#reading-from-the-cache)
+- [Writing to the Cache](#writing-to-the-cache)
+- [Example](#example)
+- [Stale-While-Revalidate](#stale-while-revalidate)
+- [Example](#example-2)
+- [Context](#context)
+- [Primitives](#primitives)
+- [Stores](#stores)
+- [Memory](#memory)
+- [Cloudflare](#cloudflare)
+- [Upstash Redis](#upstash-redis)
+- [libSQL (Turso)](#libsql-turso)
+- [Middlewares](#middlewares)
+- [Metrics](#metrics)
+- [Encryption](#encryption)
+- [Contributing](#contributing)

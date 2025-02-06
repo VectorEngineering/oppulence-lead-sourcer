@@ -27,10 +27,10 @@ Starts Flowise from [DockerHub Image](https://hub.docker.com/r/flowiseai/flowise
 
 If you like to persist your data (flows, logs, apikeys, credentials), set these variables in the `.env` file inside `docker` folder:
 
--   DATABASE_PATH=/root/.flowise
--   APIKEY_PATH=/root/.flowise
--   LOG_PATH=/root/.flowise/logs
--   SECRETKEY_PATH=/root/.flowise
--   BLOB_STORAGE_PATH=/root/.flowise/storage
+- DATABASE_PATH=/root/.flowise
+- APIKEY_PATH=/root/.flowise
+- LOG_PATH=/root/.flowise/logs
+- SECRETKEY_PATH=/root/.flowise
+- BLOB_STORAGE_PATH=/root/.flowise/storage
 
 Flowise also support different environment variables to configure your instance. Read [more](https://docs.flowiseai.com/environment-variables)

@@ -338,7 +338,7 @@ test('creates 100 keys', async (t) => {
                 },
                 apiId: h.resources.userApi.id,
                 enabled: Math.random() > 0.5
-            } as const)
+            }) as const
     )
 
     const res = await h.post<V1MigrationsCreateKeysRequest, V1MigrationsCreateKeysResponse>({
@@ -379,7 +379,7 @@ test('an error rolls back and does not create any keys', async (t) => {
                 },
                 apiId: h.resources.userApi.id,
                 enabled: Math.random() > 0.5
-            } as const)
+            }) as const
     )
     // add a duplicate
     req.push(req[0])

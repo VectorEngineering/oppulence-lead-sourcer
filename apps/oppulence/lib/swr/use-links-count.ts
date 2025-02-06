@@ -41,37 +41,43 @@ export default function useLinksCount<T = any>(
                   showArchived: opts.showArchived,
                   withTags: opts.withTags,
                   groupBy: opts.groupBy,
-                }).reduce((acc, [key, value]) => {
-                  if (value !== undefined) {
-                    acc[key] = value
-                  }
-                  return acc
-                }, {} as Record<string, string | number | boolean>),
+                }).reduce(
+                  (acc, [key, value]) => {
+                    if (value !== undefined) {
+                      acc[key] = value
+                    }
+                    return acc
+                  },
+                  {} as Record<string, string | number | boolean>
+                ),
                 {
                   ignore: ['import', 'upgrade', 'newLink'],
                 }
               )
         }`
       : admin
-      ? `/api/admin/links/count${getQueryString(
-          Object.entries({
-            domain: opts.domain,
-            tagId: opts.tagId,
-            tagIds: opts.tagIds?.join(','),
-            tagNames: opts.tagNames?.join(','),
-            search: opts.search,
-            userId: opts.userId,
-            showArchived: opts.showArchived,
-            withTags: opts.withTags,
-            groupBy: opts.groupBy,
-          }).reduce((acc, [key, value]) => {
-            if (value !== undefined) {
-              acc[key] = value
-            }
-            return acc
-          }, {} as Record<string, string | number | boolean>)
-        )}`
-      : null,
+        ? `/api/admin/links/count${getQueryString(
+            Object.entries({
+              domain: opts.domain,
+              tagId: opts.tagId,
+              tagIds: opts.tagIds?.join(','),
+              tagNames: opts.tagNames?.join(','),
+              search: opts.search,
+              userId: opts.userId,
+              showArchived: opts.showArchived,
+              withTags: opts.withTags,
+              groupBy: opts.groupBy,
+            }).reduce(
+              (acc, [key, value]) => {
+                if (value !== undefined) {
+                  acc[key] = value
+                }
+                return acc
+              },
+              {} as Record<string, string | number | boolean>
+            )
+          )}`
+        : null,
     fetcher,
     {
       dedupingInterval: 60000,

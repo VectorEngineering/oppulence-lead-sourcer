@@ -56,10 +56,10 @@ export default function Locations() {
                       tab === 'continents'
                         ? CONTINENTS[d.continent]
                         : tab === 'countries'
-                        ? COUNTRIES[d.country]
-                        : tab === 'regions'
-                        ? REGIONS[d.region] || d.region.split('-')[1]
-                        : d.city,
+                          ? COUNTRIES[d.country]
+                          : tab === 'regions'
+                            ? REGIONS[d.region] || d.region.split('-')[1]
+                            : d.city,
                     href: queryParams({
                       ...(searchParams.has(singularTabName)
                         ? { del: singularTabName }

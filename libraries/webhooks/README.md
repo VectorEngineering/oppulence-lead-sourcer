@@ -14,12 +14,12 @@ pnpm add @playbookmedia/webhooks
 
 ## Features
 
--   Secure webhook delivery
--   Organization-based webhook management
--   App portal access for webhook configuration
--   TypeScript support
--   Server-side implementation
--   Automatic organization context handling
+- Secure webhook delivery
+- Organization-based webhook management
+- App portal access for webhook configuration
+- TypeScript support
+- Server-side implementation
+- Automatic organization context handling
 
 ## Usage
 
@@ -156,10 +156,10 @@ try {
 
 The package includes TypeScript definitions for:
 
--   Event types
--   Payload structures
--   Configuration options
--   Function parameters and return types
+- Event types
+- Payload structures
+- Configuration options
+- Function parameters and return types
 
 ## Contributing
 

@@ -69,13 +69,13 @@
 
 Flowise는 단일 리포지토리에 3개의 서로 다른 모듈이 있습니다.
 
--   `server`: API 로직을 제공하는 노드 백엔드
--   `ui`: 리액트 프론트엔드
--   `components`: 서드파티 노드 통합을 위한 컴포넌트
+- `server`: API 로직을 제공하는 노드 백엔드
+- `ui`: 리액트 프론트엔드
+- `components`: 서드파티 노드 통합을 위한 컴포넌트
 
 ### 사전 설치 요건
 
--   [PNPM](https://pnpm.io/installation) 설치하기
+- [PNPM](https://pnpm.io/installation) 설치하기
     ```bash
     npm i -g pnpm
     ```
@@ -147,34 +147,34 @@ Flowise는 인스턴스 구성을 위한 다양한 환경 변수를 지원합니
 
 기존 인프라 환경에서 Flowise를 자체 호스팅으로 배포하세요. 다양한 배포 [deployments](https://docs.flowiseai.com/configuration/deployment) 방법을 지원합니다.
 
--   [AWS](https://docs.flowiseai.com/deployment/aws)
--   [Azure](https://docs.flowiseai.com/deployment/azure)
--   [Digital Ocean](https://docs.flowiseai.com/deployment/digital-ocean)
--   [GCP](https://docs.flowiseai.com/deployment/gcp)
--   <details>
-      <summary>그 외</summary>
+- [AWS](https://docs.flowiseai.com/deployment/aws)
+- [Azure](https://docs.flowiseai.com/deployment/azure)
+- [Digital Ocean](https://docs.flowiseai.com/deployment/digital-ocean)
+- [GCP](https://docs.flowiseai.com/deployment/gcp)
+- <details>
+    <summary>그 외</summary>
 
-    -   [Railway](https://docs.flowiseai.com/deployment/railway)
+    - [Railway](https://docs.flowiseai.com/deployment/railway)
 
         [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/pn4G8S?referralCode=WVNPD9)
 
-    -   [Render](https://docs.flowiseai.com/deployment/render)
+    - [Render](https://docs.flowiseai.com/deployment/render)
 
         [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.flowiseai.com/deployment/render)
 
-    -   [HuggingFace Spaces](https://docs.flowiseai.com/deployment/hugging-face)
+    - [HuggingFace Spaces](https://docs.flowiseai.com/deployment/hugging-face)
 
         <a href="https://huggingface.co/spaces/FlowiseAI/Flowise"><img src="https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm.svg" alt="HuggingFace Spaces"></a>
 
-    -   [Elestio](https://elest.io/open-source/flowiseai)
+    - [Elestio](https://elest.io/open-source/flowiseai)
 
         [![Deploy](https://pub-da36157c854648669813f3f76c526c2b.r2.dev/deploy-on-elestio-black.png)](https://elest.io/open-source/flowiseai)
 
-    -   [Sealos](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
+    - [Sealos](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
 
         [![](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
 
-    -   [RepoCloud](https://repocloud.io/details/?app_id=29)
+    - [RepoCloud](https://repocloud.io/details/?app_id=29)
 
         [![Deploy on RepoCloud](https://d16t0pc4846x52.cloudfront.net/deploy.png)](https://repocloud.io/details/?app_id=29)
 

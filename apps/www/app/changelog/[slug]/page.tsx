@@ -50,7 +50,6 @@ export default async function ChangelogEntry({ params }: Props) {
 
   return (
     <div className="space-y-8">
-
       <Link
         href="/changelog"
         className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700"
@@ -61,7 +60,6 @@ export default async function ChangelogEntry({ params }: Props) {
       <article className="space-y-8">
         {update.screenshot ? (
           <div className="overflow-hidden rounded-2xl border bg-gray-50 shadow-lg">
-
             <Image
               src={update.screenshot.src}
               alt={update.screenshot.alt}
@@ -111,7 +109,6 @@ export default async function ChangelogEntry({ params }: Props) {
         <div className="flex items-center gap-6 border-t pt-6">
           <div className="flex items-center gap-4">
             <div className="flex -space-x-2">
-
               <Image
                 src="/team/yoan.jpg"
                 alt="Yoan Yomba"
@@ -127,7 +124,6 @@ export default async function ChangelogEntry({ params }: Props) {
           </div>
 
           <div className="ml-auto flex gap-4">
-
             <Link
               href="https://twitter.com/share"
               target="_blank"

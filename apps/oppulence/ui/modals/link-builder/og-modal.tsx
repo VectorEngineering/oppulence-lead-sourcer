@@ -328,8 +328,8 @@ function OGModalInner({
                       content: exceededAI
                         ? "You've exceeded your AI usage limit"
                         : !title
-                        ? 'Enter a title to generate a preview'
-                        : 'Generate an optimized title using AI.',
+                          ? 'Enter a title to generate a preview'
+                          : 'Generate an optimized title using AI.',
                     }}
                     onClick={generateTitle}
                     disabled={generatingTitle || exceededAI || !title}
@@ -372,8 +372,8 @@ function OGModalInner({
                       content: exceededAI
                         ? "You've exceeded your AI usage limit"
                         : !description
-                        ? 'Enter a description to generate a preview'
-                        : 'Generate an optimized description using AI.',
+                          ? 'Enter a description to generate a preview'
+                          : 'Generate an optimized description using AI.',
                     }}
                     onClick={generateDescription}
                     disabled={generatingDescription || exceededAI || !description}

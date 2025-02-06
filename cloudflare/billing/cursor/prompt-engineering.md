@@ -16,17 +16,17 @@ By mastering these concepts and techniques, you can significantly improve the qu
 
 ## Understanding Large Language Models (LLMs)
 
--   LLMs are prediction engines that take a sequence of words as input and predict the most likely sequence to follow.
--   They assign probabilities to potential next sequences and select one.
--   Their knowledge comes from training on massive text corpora, which influences their strengths and limitations.
--   While LLM responses often seem plausible, they may sometimes be random or not grounded in reality. This is a problem, always write prompts that are specific and avoid ambiguity or hallucinations.
--   When tasking the AI to write prompts, consider these characteristics to craft effective instructions.
+- LLMs are prediction engines that take a sequence of words as input and predict the most likely sequence to follow.
+- They assign probabilities to potential next sequences and select one.
+- Their knowledge comes from training on massive text corpora, which influences their strengths and limitations.
+- While LLM responses often seem plausible, they may sometimes be random or not grounded in reality. This is a problem, always write prompts that are specific and avoid ambiguity or hallucinations.
+- When tasking the AI to write prompts, consider these characteristics to craft effective instructions.
 
 ## The Importance of Prompts
 
--   Prompts are the starting points for your text generation.
--   Crafting your prompt is the means by which you "instruct" or "program" the model.
--   They shape your responses and guide you towards the desired output.
+- Prompts are the starting points for your text generation.
+- Crafting your prompt is the means by which you "instruct" or "program" the model.
+- They shape your responses and guide you towards the desired output.
 
 ## Key Principles of Prompt Engineering
 
@@ -85,7 +85,7 @@ By mastering these concepts and techniques, you can significantly improve the qu
 
         - Incorporating examples of expected output for a certain input prompted the model to generate the kind of names we aimed for.
 
--   When including examples, comment above that you want me to review the examples and potentially provide placeholders for me to fill in
+- When including examples, comment above that you want me to review the examples and potentially provide placeholders for me to fill in
 
 3. Consider Temperature Settings:
 

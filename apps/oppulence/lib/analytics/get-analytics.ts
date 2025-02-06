@@ -42,8 +42,8 @@ export const getAnalytics = async (params: AnalyticsFilters) => {
       event === 'composite'
         ? `clicks, leads, sales, saleAmount`
         : event === 'sales'
-        ? `sales, saleAmount`
-        : `${event}`
+          ? `sales, saleAmount`
+          : `${event}`
 
     let response = await conn.execute(`SELECT ${columns} FROM Link WHERE id = ?`, [linkId])
 

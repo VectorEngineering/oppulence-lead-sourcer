@@ -1,16 +1,14 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortOrderSchema } from './SortOrderSchema'
+import { z } from 'zod';
+import { SortOrderSchema } from './SortOrderSchema';
 
-export const PartnerInviteMinOrderByAggregateInputSchema: z.ZodType<Prisma.PartnerInviteMinOrderByAggregateInput> = z
-    .object({
-        email: z.lazy(() => SortOrderSchema).optional(),
-        expires: z.lazy(() => SortOrderSchema).optional(),
-        partnerId: z.lazy(() => SortOrderSchema).optional(),
-        role: z.lazy(() => SortOrderSchema).optional(),
-        createdAt: z.lazy(() => SortOrderSchema).optional()
-    })
-    .strict()
+export const PartnerInviteMinOrderByAggregateInputSchema: z.ZodType<Prisma.PartnerInviteMinOrderByAggregateInput> = z.object({
+  email: z.lazy(() => SortOrderSchema).optional(),
+  expires: z.lazy(() => SortOrderSchema).optional(),
+  partnerId: z.lazy(() => SortOrderSchema).optional(),
+  role: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional()
+}).strict();
 
-export default PartnerInviteMinOrderByAggregateInputSchema
+export default PartnerInviteMinOrderByAggregateInputSchema;

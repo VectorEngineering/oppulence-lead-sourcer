@@ -213,8 +213,8 @@ class Puppeteer_DocumentLoaders implements INode {
                 selectedLinks && selectedLinks.length > 0
                     ? selectedLinks.slice(0, limit === 0 ? undefined : limit)
                     : relativeLinksMethod === 'webCrawl'
-                    ? await webCrawl(url, limit)
-                    : await xmlScrape(url, limit)
+                      ? await webCrawl(url, limit)
+                      : await xmlScrape(url, limit)
             if (process.env.DEBUG === 'true') options.logger.info(`pages: ${JSON.stringify(pages)}, length: ${pages.length}`)
             if (!pages || pages.length === 0) throw new Error('No relative links found')
             for (const page of pages) {

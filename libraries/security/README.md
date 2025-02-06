@@ -14,10 +14,10 @@ pnpm add @playbookmedia/security
 
 ## Features
 
--   Bot detection and filtering
--   Rate limiting protection
--   Shield against common attacks
--   IP-based request characteristics
+- Bot detection and filtering
+- Rate limiting protection
+- Shield against common attacks
+- IP-based request characteristics
 
 ## Usage
 
@@ -73,19 +73,19 @@ ARCJET_KEY=your_arcjet_key_here
 
 Supported bot categories include:
 
--   SEARCH_ENGINE
--   SOCIAL_MEDIA
--   GOOGLE
--   BING
--   YAHOO
--   DUCKDUCKGO
--   And more...
+- SEARCH_ENGINE
+- SOCIAL_MEDIA
+- GOOGLE
+- BING
+- YAHOO
+- DUCKDUCKGO
+- And more...
 
 ## Error Messages
 
--   `No bots allowed`: Thrown when an unauthorized bot is detected
--   `Rate limit exceeded`: Thrown when rate limits are exceeded
--   `Access denied`: Thrown for other security violations
+- `No bots allowed`: Thrown when an unauthorized bot is detected
+- `Rate limit exceeded`: Thrown when rate limits are exceeded
+- `Access denied`: Thrown for other security violations
 
 ## Best Practices
 

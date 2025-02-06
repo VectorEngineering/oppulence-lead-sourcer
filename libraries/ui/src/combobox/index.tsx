@@ -34,7 +34,7 @@ export type ComboboxOption<TMeta = any> = {
 
 export type ComboboxProps<
   TMultiple extends boolean | undefined,
-  TMeta extends any
+  TMeta extends any,
 > = PropsWithChildren<{
   multiple?: TMultiple
   selected: TMultiple extends true
@@ -102,8 +102,8 @@ export function Combobox({
   const selected = Array.isArray(selectedProp)
     ? selectedProp
     : selectedProp
-    ? [selectedProp]
-    : []
+      ? [selectedProp]
+      : []
 
   const { isMobile } = useMediaQuery()
 

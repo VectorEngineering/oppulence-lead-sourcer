@@ -228,8 +228,8 @@ export function Table<T>({
                                     sortBy !== header.column.id
                                       ? 'desc'
                                       : sortOrder === 'asc'
-                                      ? 'desc'
-                                      : 'asc',
+                                        ? 'desc'
+                                        : 'asc',
                                 }),
                             })}
                           >

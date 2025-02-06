@@ -6,10 +6,10 @@ export const PayoutTypeBadge = ({ type }: { type: 'clicks' | 'leads' | 'sales' |
     type === 'clicks'
       ? CursorRays
       : type === 'leads'
-      ? UserCheck
-      : type === 'sales'
-      ? InvoiceDollar
-      : MoneyBill2
+        ? UserCheck
+        : type === 'sales'
+          ? InvoiceDollar
+          : MoneyBill2
   return (
     <div className="flex items-center gap-1.5">
       <Icon className="size-4" />

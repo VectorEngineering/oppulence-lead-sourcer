@@ -228,7 +228,11 @@ export function createMiddleware<TRequest extends GenericRequest = GenericReques
  * Error class for rate limit errors
  */
 export class RateLimitError extends Error {
-    constructor(message: string, public readonly status: number = 429, public readonly headers?: Record<string, string>) {
+    constructor(
+        message: string,
+        public readonly status: number = 429,
+        public readonly headers?: Record<string, string>
+    ) {
         super(message)
         this.name = 'RateLimitError'
     }

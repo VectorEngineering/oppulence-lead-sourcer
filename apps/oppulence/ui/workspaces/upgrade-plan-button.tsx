@@ -41,8 +41,8 @@ export function UpgradePlanButton({
         isCurrentPlan
           ? 'Your current plan'
           : currentPlan === 'free'
-          ? `Get started with ${selectedPlan.name} ${capitalize(period)}`
-          : `Switch to ${selectedPlan.name} ${capitalize(period)}`
+            ? `Get started with ${selectedPlan.name} ${capitalize(period)}`
+            : `Switch to ${selectedPlan.name} ${capitalize(period)}`
       }
       loading={clicked}
       disabled={!workspaceSlug || isCurrentPlan}

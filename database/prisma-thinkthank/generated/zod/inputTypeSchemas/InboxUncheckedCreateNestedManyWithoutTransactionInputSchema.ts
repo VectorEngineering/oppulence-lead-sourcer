@@ -1,32 +1,17 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { InboxCreateWithoutTransactionInputSchema } from './InboxCreateWithoutTransactionInputSchema'
-import { InboxUncheckedCreateWithoutTransactionInputSchema } from './InboxUncheckedCreateWithoutTransactionInputSchema'
-import { InboxCreateOrConnectWithoutTransactionInputSchema } from './InboxCreateOrConnectWithoutTransactionInputSchema'
-import { InboxCreateManyTransactionInputEnvelopeSchema } from './InboxCreateManyTransactionInputEnvelopeSchema'
-import { InboxWhereUniqueInputSchema } from './InboxWhereUniqueInputSchema'
+import { z } from 'zod';
+import { InboxCreateWithoutTransactionInputSchema } from './InboxCreateWithoutTransactionInputSchema';
+import { InboxUncheckedCreateWithoutTransactionInputSchema } from './InboxUncheckedCreateWithoutTransactionInputSchema';
+import { InboxCreateOrConnectWithoutTransactionInputSchema } from './InboxCreateOrConnectWithoutTransactionInputSchema';
+import { InboxCreateManyTransactionInputEnvelopeSchema } from './InboxCreateManyTransactionInputEnvelopeSchema';
+import { InboxWhereUniqueInputSchema } from './InboxWhereUniqueInputSchema';
 
-export const InboxUncheckedCreateNestedManyWithoutTransactionInputSchema: z.ZodType<Prisma.InboxUncheckedCreateNestedManyWithoutTransactionInput> =
-    z
-        .object({
-            create: z
-                .union([
-                    z.lazy(() => InboxCreateWithoutTransactionInputSchema),
-                    z.lazy(() => InboxCreateWithoutTransactionInputSchema).array(),
-                    z.lazy(() => InboxUncheckedCreateWithoutTransactionInputSchema),
-                    z.lazy(() => InboxUncheckedCreateWithoutTransactionInputSchema).array()
-                ])
-                .optional(),
-            connectOrCreate: z
-                .union([
-                    z.lazy(() => InboxCreateOrConnectWithoutTransactionInputSchema),
-                    z.lazy(() => InboxCreateOrConnectWithoutTransactionInputSchema).array()
-                ])
-                .optional(),
-            createMany: z.lazy(() => InboxCreateManyTransactionInputEnvelopeSchema).optional(),
-            connect: z.union([z.lazy(() => InboxWhereUniqueInputSchema), z.lazy(() => InboxWhereUniqueInputSchema).array()]).optional()
-        })
-        .strict()
+export const InboxUncheckedCreateNestedManyWithoutTransactionInputSchema: z.ZodType<Prisma.InboxUncheckedCreateNestedManyWithoutTransactionInput> = z.object({
+  create: z.union([ z.lazy(() => InboxCreateWithoutTransactionInputSchema),z.lazy(() => InboxCreateWithoutTransactionInputSchema).array(),z.lazy(() => InboxUncheckedCreateWithoutTransactionInputSchema),z.lazy(() => InboxUncheckedCreateWithoutTransactionInputSchema).array() ]).optional(),
+  connectOrCreate: z.union([ z.lazy(() => InboxCreateOrConnectWithoutTransactionInputSchema),z.lazy(() => InboxCreateOrConnectWithoutTransactionInputSchema).array() ]).optional(),
+  createMany: z.lazy(() => InboxCreateManyTransactionInputEnvelopeSchema).optional(),
+  connect: z.union([ z.lazy(() => InboxWhereUniqueInputSchema),z.lazy(() => InboxWhereUniqueInputSchema).array() ]).optional(),
+}).strict();
 
-export default InboxUncheckedCreateNestedManyWithoutTransactionInputSchema
+export default InboxUncheckedCreateNestedManyWithoutTransactionInputSchema;

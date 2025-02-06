@@ -90,8 +90,8 @@ export function MoreDropdown() {
                             ? ''
                             : 'Add '
                           : enabled
-                          ? 'Remove '
-                          : 'Add '}
+                            ? 'Remove '
+                            : 'Add '}
                         {option.label}
                         <ProBadgeTooltip
                           content={

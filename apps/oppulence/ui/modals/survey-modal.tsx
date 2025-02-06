@@ -210,7 +210,7 @@ function SurveyModal({
 
             setSubmitting(true)
             try {
-              await onSubmit(source === 'other' ? otherSource ?? source : source)
+              await onSubmit(source === 'other' ? (otherSource ?? source) : source)
               toast.success('Thanks for your feedback!', {
                 description: 'Your response has been recorded successfully.',
               })

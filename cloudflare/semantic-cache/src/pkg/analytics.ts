@@ -17,8 +17,8 @@ export class Analytics {
                   baseUrl: opts.tinybirdProxy.url
               })
             : opts.tinybirdToken
-            ? new Tinybird({ token: opts.tinybirdToken })
-            : new NoopTinybird()
+              ? new Tinybird({ token: opts.tinybirdToken })
+              : new NoopTinybird()
     }
 
     public get ingestLogs() {

@@ -16,15 +16,15 @@ export const APP_DOMAIN =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
         ? `https://app.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
         : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-        ? `https://preview.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
-        : 'http://localhost:8888'
+          ? `https://preview.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
+          : 'http://localhost:8888'
 
 export const APP_DOMAIN_WITH_NGROK =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
         ? `https://app.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
         : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-        ? `https://preview.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
-        : process.env.NEXT_PUBLIC_NGROK_URL || 'http://localhost:8888'
+          ? `https://preview.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
+          : process.env.NEXT_PUBLIC_NGROK_URL || 'http://localhost:8888'
 
 export const API_HOSTNAMES = new Set([
     `api.${process.env.NEXT_PUBLIC_APP_DOMAIN}`,
@@ -37,8 +37,8 @@ export const API_DOMAIN =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
         ? `https://api.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
         : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-        ? `https://api-staging.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
-        : 'http://api.localhost:8888'
+          ? `https://api-staging.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
+          : 'http://api.localhost:8888'
 
 export const ADMIN_HOSTNAMES = new Set([`admin.${process.env.NEXT_PUBLIC_APP_DOMAIN}`, 'admin.localhost:8888'])
 
@@ -46,8 +46,8 @@ export const PARTNERS_DOMAIN =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
         ? `https://partners.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
         : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-        ? `https://partners-staging.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
-        : 'http://partners.localhost:8888'
+          ? `https://partners-staging.${process.env.NEXT_PUBLIC_APP_DOMAIN}`
+          : 'http://partners.localhost:8888'
 
 export const PARTNERS_HOSTNAMES = new Set([
     `partners.${process.env.NEXT_PUBLIC_APP_DOMAIN}`,

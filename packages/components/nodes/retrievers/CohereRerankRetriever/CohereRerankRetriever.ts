@@ -116,7 +116,7 @@ class CohereRerankRetriever_Retrievers implements INode {
         const credentialData = await getCredentialData(nodeData.credential ?? '', options)
         const cohereApiKey = getCredentialParam('cohereApiKey', credentialData, nodeData)
         const topK = nodeData.inputs?.topK as string
-        const k = topK ? parseFloat(topK) : (baseRetriever as VectorStoreRetriever).k ?? 4
+        const k = topK ? parseFloat(topK) : ((baseRetriever as VectorStoreRetriever).k ?? 4)
         const maxChunksPerDoc = nodeData.inputs?.maxChunksPerDoc as string
         const max_chunks_per_doc = maxChunksPerDoc ? parseFloat(maxChunksPerDoc) : 10
         const output = nodeData.outputs?.output as string

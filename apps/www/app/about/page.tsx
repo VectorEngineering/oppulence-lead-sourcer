@@ -11,7 +11,6 @@ export const metadata: Metadata = constructMetadata({
 export default function About() {
   return (
     <div className="py-[5%]">
-
       <AboutComponent />
     </div>
   );

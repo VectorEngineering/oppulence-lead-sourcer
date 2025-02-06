@@ -55,7 +55,6 @@ export function FAQContent() {
 
       <div className="mx-auto max-w-3xl space-y-8">
         <div className="relative">
-
           <Input
             type="text"
             placeholder="Search FAQs..."

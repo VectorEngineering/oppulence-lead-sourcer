@@ -66,7 +66,7 @@ export default function SurveyForm({ onSubmit }: { onSubmit: (source: string) =>
       <form
         onSubmit={e => {
           e.preventDefault()
-          if (source) onSubmit(source === 'other' ? otherSource ?? source : source)
+          if (source) onSubmit(source === 'other' ? (otherSource ?? source) : source)
         }}
       >
         <RadioGroup

@@ -212,7 +212,7 @@ function useTagFilterOptions(search: string) {
       (tagIds?.length &&
         tagIds.some(id => ![...(selectedTags ?? []), ...(tags ?? [])].some(t => t.id === id)))
       ? null
-      : (
+      : ((
           [
             ...(tags ?? []),
             // Add selected tag to list if not already in tags
@@ -225,7 +225,7 @@ function useTagFilterOptions(search: string) {
             ...tag,
             count: tagLinksCount?.find(({ tagId }) => tagId === tag.id)?._count || 0,
           }))
-          .sort((a, b) => b.count - a.count) ?? null
+          .sort((a, b) => b.count - a.count) ?? null)
   }, [loadingTags, tags, selectedTags, tagLinksCount, tagIds])
 
   return { tags: tagsResult, tagsAsync }
@@ -255,12 +255,12 @@ function useUserFilterOptions() {
             }))
             .sort((a, b) => b.count - a.count)
         : usersCount
-        ? usersCount.map(({ userId, _count }) => ({
-            id: userId,
-            name: userId,
-            count: _count,
-          }))
-        : null,
+          ? usersCount.map(({ userId, _count }) => ({
+              id: userId,
+              name: userId,
+              count: _count,
+            }))
+          : null,
     [users, usersCount]
   )
 }

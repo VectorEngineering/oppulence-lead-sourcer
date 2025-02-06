@@ -96,7 +96,7 @@ export const GET = withWorkspace(
             ? [
                 ['link', linkConstructor({ domain: link.domain, key: link.key })] as [
                   string,
-                  string
+                  string,
                 ],
               ]
             : []),

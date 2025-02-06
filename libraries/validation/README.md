@@ -14,12 +14,12 @@ pnpm add @playbookmedia/validation
 
 ## Features
 
--   Pre-built validation schemas
--   Type-safe validation
--   Reusable validation rules
--   Consistent validation across the application
--   TypeScript support
--   Built on Zod for robust type inference
+- Pre-built validation schemas
+- Type-safe validation
+- Reusable validation rules
+- Consistent validation across the application
+- TypeScript support
+- Built on Zod for robust type inference
 
 ## Usage
 
@@ -116,31 +116,31 @@ validation.solomonAiId.parse('abc_123$%^') // ❌ Invalid ID characters
 
 ### Identifier Rules
 
--   Minimum length: 3 characters
--   Maximum length: 256 characters
--   Allowed characters: alphanumeric, underscores, periods, colons, and hyphens
--   URL-safe format
+- Minimum length: 3 characters
+- Maximum length: 256 characters
+- Allowed characters: alphanumeric, underscores, periods, colons, and hyphens
+- URL-safe format
 
 ### Name Rules
 
--   Minimum length: 3 characters
--   Maximum length: 256 characters
--   Any characters allowed
--   Not intended for URL usage
+- Minimum length: 3 characters
+- Maximum length: 256 characters
+- Any characters allowed
+- Not intended for URL usage
 
 ### Description Rules
 
--   Minimum length: 3 characters
--   Maximum length: 256 characters
--   Any characters allowed
--   Not intended for URL usage
+- Minimum length: 3 characters
+- Maximum length: 256 characters
+- Any characters allowed
+- Not intended for URL usage
 
 ### Solomon AI ID Rules
 
--   Format: `prefix_id`
--   Prefix must be exactly 3 lowercase letters
--   ID part must be at least 8 alphanumeric characters
--   No special characters in ID part
+- Format: `prefix_id`
+- Prefix must be exactly 3 lowercase letters
+- ID part must be at least 8 alphanumeric characters
+- No special characters in ID part
 
 ## Type Safety
 

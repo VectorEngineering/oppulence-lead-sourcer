@@ -43,23 +43,23 @@ function RemoveTeammateModal({
           {invite
             ? 'Revoke Invitation'
             : session?.user?.email === email
-            ? 'Leave Workspace'
-            : 'Remove Teammate'}
+              ? 'Leave Workspace'
+              : 'Remove Teammate'}
         </h3>
         <p className="text-center text-sm text-gray-500">
           {invite
             ? 'This will revoke '
             : session?.user?.email === email
-            ? "You're about to leave "
-            : 'This will remove '}
+              ? "You're about to leave "
+              : 'This will remove '}
           <span className="font-semibold text-black">
             {session?.user?.email === email ? workspaceName : name || email}
           </span>
           {invite
             ? "'s invitation to join your workspace. "
             : session?.user?.email === email
-            ? '. You will lose all access to this workspace. '
-            : ' from your workspace. '}
+              ? '. You will lose all access to this workspace. '
+              : ' from your workspace. '}
           Are you sure you want to continue?
         </p>
       </div>
@@ -100,8 +100,8 @@ function RemoveTeammateModal({
                   session?.user?.email === email
                     ? 'You have left the workspace!'
                     : invite
-                    ? 'Successfully revoked invitation!'
-                    : 'Successfully removed teammate!'
+                      ? 'Successfully revoked invitation!'
+                      : 'Successfully removed teammate!'
                 )
               } else {
                 const { error } = await res.json()

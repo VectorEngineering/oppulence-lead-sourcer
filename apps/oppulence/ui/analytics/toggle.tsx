@@ -571,12 +571,12 @@ export default function Toggle({ page = 'analytics' }: { page?: 'analytics' | 'e
                     key: new URL(`https://${value}`).pathname.slice(1) || '_root',
                   }
                 : key === 'tagIds'
-                ? {
-                    tagIds: selectedTagIds.concat(value).join(','),
-                  }
-                : {
-                    [key]: value,
-                  },
+                  ? {
+                      tagIds: selectedTagIds.concat(value).join(','),
+                    }
+                  : {
+                      [key]: value,
+                    },
             del: 'page',
             scroll: false,
           })
@@ -614,7 +614,7 @@ export default function Toggle({ page = 'analytics' }: { page?: 'analytics' | 'e
             }
           : undefined
       }
-      presetId={!start || !end ? interval ?? '24h' : undefined}
+      presetId={!start || !end ? (interval ?? '24h') : undefined}
       onChange={(range, preset) => {
         if (preset) {
           queryParams({

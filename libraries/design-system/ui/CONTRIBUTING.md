@@ -14,9 +14,9 @@ If you, as a community contributor, wish to work on more extensive features, ple
 
 ## Prerequisites
 
--   **You're familiar with GitHub Issues and Pull Requests**
--   **You've read the [docs](https://docs.medusajs.com).**
--   **You've setup a test project with `medusa new`**
+- **You're familiar with GitHub Issues and Pull Requests**
+- **You've read the [docs](https://docs.medusajs.com).**
+- **You've setup a test project with `medusa new`**
 
 ## Issues before PRs
 
@@ -32,9 +32,9 @@ If you, as a community contributor, wish to work on more extensive features, ple
 
 All changes should be part of a branch and submitted as a pull request - your branches should be prefixed with one of:
 
--   `fix/` for bug fixes
--   `feat/` for features
--   `docs/` for documentation changes
+- `fix/` for bug fixes
+- `feat/` for features
+- `docs/` for documentation changes
 
 ### Commits
 
@@ -46,10 +46,10 @@ Once your changes are ready you must submit your branch as a pull request. Your 
 
 In your PR's description you should follow the structure:
 
--   **What** - what changes are in this PR
--   **Why** - why are these changes relevant
--   **How** - how have the changes been implemented
--   **Testing** - how has the changes been tested or how can the reviewer test the feature
+- **What** - what changes are in this PR
+- **Why** - why are these changes relevant
+- **How** - how have the changes been implemented
+- **Testing** - how has the changes been tested or how can the reviewer test the feature
 
 We highly encourage that you do a self-review prior to requesting a review. To do a self review click the review button in the top right corner, go through your code and annotate your changes. This makes it easier for the reviewer to process your PR.
 

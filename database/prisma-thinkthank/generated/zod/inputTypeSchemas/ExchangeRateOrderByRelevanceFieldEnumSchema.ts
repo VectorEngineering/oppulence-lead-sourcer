@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ExchangeRateOrderByRelevanceFieldEnumSchema = z.enum(['id', 'baseCurrency', 'targetCurrency'])
+export const ExchangeRateOrderByRelevanceFieldEnumSchema = z.enum(['id','baseCurrency','targetCurrency']);
 
-export default ExchangeRateOrderByRelevanceFieldEnumSchema
+export default ExchangeRateOrderByRelevanceFieldEnumSchema;

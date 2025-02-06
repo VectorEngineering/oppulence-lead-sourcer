@@ -1,15 +1,13 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortDirectionSchema } from './SortDirectionSchema'
+import { z } from 'zod';
+import { SortDirectionSchema } from './SortDirectionSchema';
 
-export const ReportSortingCreateWithoutReportInputSchema: z.ZodType<Prisma.ReportSortingCreateWithoutReportInput> = z
-    .object({
-        id: z.string().cuid().optional(),
-        field: z.string(),
-        direction: z.lazy(() => SortDirectionSchema),
-        position: z.number().int()
-    })
-    .strict()
+export const ReportSortingCreateWithoutReportInputSchema: z.ZodType<Prisma.ReportSortingCreateWithoutReportInput> = z.object({
+  id: z.string().cuid().optional(),
+  field: z.string(),
+  direction: z.lazy(() => SortDirectionSchema),
+  position: z.number().int()
+}).strict();
 
-export default ReportSortingCreateWithoutReportInputSchema
+export default ReportSortingCreateWithoutReportInputSchema;

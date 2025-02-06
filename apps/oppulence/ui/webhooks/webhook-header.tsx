@@ -72,8 +72,8 @@ export default function WebhookHeader({ webhookId }: { webhookId: string }) {
   const disabledTooltip = webhook?.installationId
     ? `This webhook is managed by an integration.`
     : permissionsError
-    ? permissionsError
-    : undefined
+      ? permissionsError
+      : undefined
 
   return (
     <>

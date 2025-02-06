@@ -14,12 +14,12 @@ pnpm add @playbookmedia/seo
 
 ## Features
 
--   JSON-LD structured data implementation
--   Type-safe schema definitions
--   React components for SEO
--   Schema.org type support
--   TypeScript support
--   Easy integration with Next.js
+- JSON-LD structured data implementation
+- Type-safe schema definitions
+- React components for SEO
+- Schema.org type support
+- TypeScript support
+- Easy integration with Next.js
 
 ## Usage
 
@@ -158,8 +158,8 @@ import type {
 
 You can validate your JSON-LD implementation using:
 
--   [Google's Rich Results Test](https://search.google.com/test/rich-results)
--   [Schema.org Validator](https://validator.schema.org/)
+- [Google's Rich Results Test](https://search.google.com/test/rich-results)
+- [Schema.org Validator](https://validator.schema.org/)
 
 ## Common Schema Properties
 

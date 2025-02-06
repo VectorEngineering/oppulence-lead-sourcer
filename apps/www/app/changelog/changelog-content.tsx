@@ -26,7 +26,6 @@ export default function ChangelogContent() {
                 {update.title}
               </h1>
               <div className="prose prose-gray max-w-none">
-
                 {update.description}
               </div>
             </div>

@@ -1,13 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { TransactionPrioritySchema } from './TransactionPrioritySchema'
+import { z } from 'zod';
+import { TransactionPrioritySchema } from './TransactionPrioritySchema';
 
-export const EnumTransactionPriorityFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumTransactionPriorityFieldUpdateOperationsInput> =
-    z
-        .object({
-            set: z.lazy(() => TransactionPrioritySchema).optional()
-        })
-        .strict()
+export const EnumTransactionPriorityFieldUpdateOperationsInputSchema: z.ZodType<Prisma.EnumTransactionPriorityFieldUpdateOperationsInput> = z.object({
+  set: z.lazy(() => TransactionPrioritySchema).optional()
+}).strict();
 
-export default EnumTransactionPriorityFieldUpdateOperationsInputSchema
+export default EnumTransactionPriorityFieldUpdateOperationsInputSchema;

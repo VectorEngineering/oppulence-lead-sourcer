@@ -2,18 +2,18 @@
 
 ## Table of Contents
 
--   [Prerequisites](#prerequisites)
--   [Initial Setup](#initial-setup)
--   [Environment Configuration](#environment-configuration)
--   [Database Configuration](#database-configuration)
--   [Development Workflow](#development-workflow)
--   [Database Management](#database-management)
--   [Testing Environment](#testing-environment)
--   [External Services](#external-services)
--   [Architecture Overview](#architecture-overview)
--   [Security Considerations](#security-considerations)
--   [Performance Optimization](#performance-optimization)
--   [Debugging Guide](#debugging-guide)
+- [Prerequisites](#prerequisites)
+- [Initial Setup](#initial-setup)
+- [Environment Configuration](#environment-configuration)
+- [Database Configuration](#database-configuration)
+- [Development Workflow](#development-workflow)
+- [Database Management](#database-management)
+- [Testing Environment](#testing-environment)
+- [External Services](#external-services)
+- [Architecture Overview](#architecture-overview)
+- [Security Considerations](#security-considerations)
+- [Performance Optimization](#performance-optimization)
+- [Debugging Guide](#debugging-guide)
 
 ## Prerequisites
 
@@ -21,10 +21,10 @@ Before you begin, ensure you have the following installed:
 
 ### Required Software
 
--   **Node.js** (v18 or later)
+- **Node.js** (v18 or later)
 
-    -   Recommended to use nvm for Node.js version management
-    -   Required for running the Next.js application and build tools
+    - Recommended to use nvm for Node.js version management
+    - Required for running the Next.js application and build tools
 
     ```bash
     # Using nvm to install Node.js
@@ -32,27 +32,27 @@ Before you begin, ensure you have the following installed:
     nvm use 18
     ```
 
--   **pnpm** (v9.15.3 or later)
+- **pnpm** (v9.15.3 or later)
 
-    -   Used for package management and workspace organization
-    -   Provides better dependency deduplication and disk space usage
+    - Used for package management and workspace organization
+    - Provides better dependency deduplication and disk space usage
 
     ```bash
     # Install pnpm globally
     npm install -g pnpm@9.15.3
     ```
 
--   **Docker** and **Docker Compose**
+- **Docker** and **Docker Compose**
 
-    -   Required for running PostgreSQL and other services
-    -   Ensures consistent development environment
-    -   Minimum versions:
-        -   Docker Engine: 20.10.0+
-        -   Docker Compose: 2.0.0+
+    - Required for running PostgreSQL and other services
+    - Ensures consistent development environment
+    - Minimum versions:
+        - Docker Engine: 20.10.0+
+        - Docker Compose: 2.0.0+
 
--   **Git** (2.30.0 or later)
-    -   Required for version control
-    -   Configure Git with your credentials:
+- **Git** (2.30.0 or later)
+    - Required for version control
+    - Configure Git with your credentials:
     ```bash
     git config --global user.name "Your Name"
     git config --global user.email "your.email@example.com"
@@ -60,10 +60,10 @@ Before you begin, ensure you have the following installed:
 
 ### System Requirements
 
--   Minimum 8GB RAM recommended
--   20GB free disk space
--   Unix-based OS recommended (macOS or Linux)
--   For Windows users, WSL2 is recommended
+- Minimum 8GB RAM recommended
+- 20GB free disk space
+- Unix-based OS recommended (macOS or Linux)
+- For Windows users, WSL2 is recommended
 
 ## Initial Setup
 
@@ -139,23 +139,23 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 The application supports different environments:
 
--   **Development** (`NODE_ENV=development`)
+- **Development** (`NODE_ENV=development`)
 
-    -   Hot reloading enabled
-    -   Detailed error messages
-    -   Debug logging
-    -   Swagger documentation available
+    - Hot reloading enabled
+    - Detailed error messages
+    - Debug logging
+    - Swagger documentation available
 
--   **Testing** (`NODE_ENV=test`)
+- **Testing** (`NODE_ENV=test`)
 
-    -   Separate test database
-    -   Mocked external services
-    -   Test-specific logging
+    - Separate test database
+    - Mocked external services
+    - Test-specific logging
 
--   **Production** (`NODE_ENV=production`)
-    -   Optimized builds
-    -   Error tracking enabled
-    -   Production logging levels
+- **Production** (`NODE_ENV=production`)
+    - Optimized builds
+    - Error tracking enabled
+    - Production logging levels
 
 ## Database Configuration
 
@@ -408,33 +408,33 @@ environment:
 
 ### Access Points
 
--   **Web Application**: http://localhost:3000
+- **Web Application**: http://localhost:3000
 
-    -   Main application interface
-    -   Hot reloading enabled
-    -   Development tools available
+    - Main application interface
+    - Hot reloading enabled
+    - Development tools available
 
--   **Database**: localhost:5434
+- **Database**: localhost:5434
 
-    -   Direct PostgreSQL access
-    -   Use with any PostgreSQL client
+    - Direct PostgreSQL access
+    - Use with any PostgreSQL client
 
--   **Drizzle Studio**: http://localhost:4983
+- **Drizzle Studio**: http://localhost:4983
     ```bash
     pnpm db:studio
     ```
-    -   Database visualization
-    -   Schema browser
-    -   Data explorer
+    - Database visualization
+    - Schema browser
+    - Data explorer
 
 ### Hot Reload Behavior
 
 The development environment supports:
 
--   Hot Module Replacement (HMR)
--   Fast Refresh for React components
--   CSS/SCSS hot reloading
--   TypeScript type checking in watch mode
+- Hot Module Replacement (HMR)
+- Fast Refresh for React components
+- CSS/SCSS hot reloading
+- TypeScript type checking in watch mode
 
 ## Testing Environment
 
@@ -505,10 +505,10 @@ pnpm ngrok
 
 2. **Use Cases**
 
--   Testing webhooks from external services
--   Mobile device testing
--   Sharing development instance
--   Testing on different networks
+- Testing webhooks from external services
+- Mobile device testing
+- Sharing development instance
+- Testing on different networks
 
 3. **Webhook Testing**
 
@@ -539,11 +539,11 @@ CLERK_WEBHOOK_SECRET=whsec_...
 
 2. **Features**
 
--   User authentication
--   Social login providers
--   Email verification
--   Two-factor authentication
--   Session management
+- User authentication
+- Social login providers
+- Email verification
+- Two-factor authentication
+- Session management
 
 3. **Webhook Handling**
 
@@ -574,10 +574,10 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
 
 2. **Features**
 
--   Payment processing
--   Subscription management
--   Usage-based billing
--   Invoice generation
+- Payment processing
+- Subscription management
+- Usage-based billing
+- Invoice generation
 
 3. **Webhook Handling**
 
@@ -627,29 +627,29 @@ lead-management/
 
 1. **Frontend**
 
--   Next.js 14 (App Router)
--   React 19
--   TypeScript
--   Tailwind CSS
+- Next.js 14 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS
 
 2. **Backend**
 
--   Node.js
--   PostgreSQL
--   Drizzle ORM
--   tRPC (optional)
+- Node.js
+- PostgreSQL
+- Drizzle ORM
+- tRPC (optional)
 
 3. **Testing**
 
--   Vitest
--   Testing Library
--   Playwright (e2e)
+- Vitest
+- Testing Library
+- Playwright (e2e)
 
 4. **Infrastructure**
 
--   Docker
--   Docker Compose
--   GitHub Actions
+- Docker
+- Docker Compose
+- GitHub Actions
 
 ### Data Flow
 
@@ -704,9 +704,9 @@ export function middleware(request: NextRequest) {
 
 1. **Connection Security**
 
--   TLS encryption
--   Connection pooling
--   Prepared statements
+- TLS encryption
+- Connection pooling
+- Prepared statements
 
 2. **Access Control**
 
@@ -923,32 +923,32 @@ pnpm test:unit
 
 2. **Deployment Checklist**
 
--   [ ] All tests passing
--   [ ] Documentation updated
--   [ ] Change log updated
--   [ ] Version bumped
--   [ ] Dependencies updated
--   [ ] Database migrations tested
--   [ ] Environment variables documented
+- [ ] All tests passing
+- [ ] Documentation updated
+- [ ] Change log updated
+- [ ] Version bumped
+- [ ] Dependencies updated
+- [ ] Database migrations tested
+- [ ] Environment variables documented
 
 ## Additional Resources
 
 ### Documentation
 
--   [Drizzle ORM Documentation](https://orm.drizzle.team)
--   [Next.js Documentation](https://nextjs.org/docs)
--   [Clerk Documentation](https://clerk.dev/docs)
--   [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Drizzle ORM Documentation](https://orm.drizzle.team)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Clerk Documentation](https://clerk.dev/docs)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 
 ### Tools
 
--   [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview)
--   [Ngrok Dashboard](https://dashboard.ngrok.com)
--   [Clerk Dashboard](https://dashboard.clerk.dev)
--   [Stripe Dashboard](https://dashboard.stripe.com)
+- [Drizzle Studio](https://orm.drizzle.team/drizzle-studio/overview)
+- [Ngrok Dashboard](https://dashboard.ngrok.com)
+- [Clerk Dashboard](https://dashboard.clerk.dev)
+- [Stripe Dashboard](https://dashboard.stripe.com)
 
 ### Community
 
--   [GitHub Discussions](https://github.com/your-repo/discussions)
--   [Discord Community](https://discord.gg/your-community)
--   [Stack Overflow](https://stackoverflow.com/questions/tagged/your-project)
+- [GitHub Discussions](https://github.com/your-repo/discussions)
+- [Discord Community](https://discord.gg/your-community)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/your-project)

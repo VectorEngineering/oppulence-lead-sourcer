@@ -80,8 +80,8 @@ export function CreateWorkspace({ onComplete }: CreateWorkspaceProps) {
                             ? 'Updating...'
                             : 'Creating...'
                         : isUpdating
-                        ? 'Update Workspace'
-                        : 'Create Workspace'}
+                          ? 'Update Workspace'
+                          : 'Create Workspace'}
                 </Button>
             </form>
         </div>

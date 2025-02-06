@@ -14,12 +14,12 @@ pnpm add @playbookmedia/storage
 
 ## Features
 
--   Seamless integration with Vercel Blob
--   Client-side and server-side storage capabilities
--   Type-safe API
--   Secure file uploads and downloads
--   URL generation for stored files
--   Automatic content type detection
+- Seamless integration with Vercel Blob
+- Client-side and server-side storage capabilities
+- Type-safe API
+- Secure file uploads and downloads
+- URL generation for stored files
+- Automatic content type detection
 
 ## Usage
 
@@ -180,10 +180,10 @@ await Promise.all([del('file1.txt'), del('file2.txt')])
 
 The package includes TypeScript definitions for:
 
--   Upload functions and options
--   List operations and responses
--   URL generation options
--   Error types
+- Upload functions and options
+- List operations and responses
+- URL generation options
+- Error types
 
 ```typescript
 import type { PutOptions, ListResponse, GetUrlOptions } from '@playbookmedia/storage'

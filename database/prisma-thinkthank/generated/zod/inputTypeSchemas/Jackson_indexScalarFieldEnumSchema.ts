@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const Jackson_indexScalarFieldEnumSchema = z.enum(['id', 'key', 'storeKey'])
+export const Jackson_indexScalarFieldEnumSchema = z.enum(['id','key','storeKey']);
 
-export default Jackson_indexScalarFieldEnumSchema
+export default Jackson_indexScalarFieldEnumSchema;
