@@ -63,6 +63,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   check-latest: false
                   cache: 'pnpm'
+                  cache-dependency-path: '**/pnpm-lock.yaml'
             - run: npm i -g pnpm
             - run: pnpm install
             - run: ./node_modules/.bin/cypress install
