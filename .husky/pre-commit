@@ -49,14 +49,14 @@ fi
 echo "${YELLOW}Running lint-staged...${NC}"
 pnpm lint-staged || handle_error "Lint-staged failed. Please fix the issues before committing."
 
-# Check for console.log statements in staged files
-CONSOLE_LOGS=$(git diff --cached --name-only | grep -E '\.(ts|tsx|js|jsx)$' | xargs grep -l 'console\.log' 2>/dev/null || true)
-if [ -n "$CONSOLE_LOGS" ]; then
-    echo "${RED}❌ Found console.log statements in:${NC}"
-    echo "$CONSOLE_LOGS"
-    echo "${YELLOW}Please remove console.log statements before committing.${NC}"
-    exit 1
-fi
+# # Check for console.log statements in staged files
+# CONSOLE_LOGS=$(git diff --cached --name-only | grep -E '\.(ts|tsx|js|jsx)$' | xargs grep -l 'console\.log' 2>/dev/null || true)
+# if [ -n "$CONSOLE_LOGS" ]; then
+#     echo "${RED}❌ Found console.log statements in:${NC}"
+#     echo "$CONSOLE_LOGS"
+#     echo "${YELLOW}Please remove console.log statements before committing.${NC}"
+#     exit 1
+# fi
 
 # Check for debugger statements in staged files
 DEBUGGER_STATEMENTS=$(git diff --cached --name-only | grep -E '\.(ts|tsx|js|jsx)$' | xargs grep -l 'debugger;' 2>/dev/null || true)

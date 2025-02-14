@@ -51,7 +51,7 @@ jobs:
                       logdrain: cloudflare/logdrain/**
                       workflows: cloudflare/workflows/**
                       semantic-cache: cloudflare/semantic-cache/**
-                      chproxy: cloudflare/chproxy/**
+                      financial-service: cloudflare/financial-service/**
 
     deploy-api:
         needs: changes
@@ -107,6 +107,21 @@ jobs:
         uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
             worker_name: semantic-cache
+            environment: ${{ github.event.inputs.environment || 'production' }}
+        secrets:
+            CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+            CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    deploy-financial-service:
+        needs: changes
+        if: |
+            needs.changes.outputs.workers.financial-service == 'true' ||
+            (github.event_name == 'workflow_dispatch' && 
+             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'financial-service'))
+        uses: ./.github/workflows/deploy-cloudflare-worker.yml
+        with:
+            worker_name: financial-service
             environment: ${{ github.event.inputs.environment || 'production' }}
         secrets:
             CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
