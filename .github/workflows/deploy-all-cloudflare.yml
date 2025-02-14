@@ -55,10 +55,6 @@ jobs:
 
     deploy-api:
         needs: changes
-        if: |
-            needs.changes.outputs.workers.api == 'true' ||
-            (github.event_name == 'workflow_dispatch' && 
-             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'api'))
         uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
             worker_name: api
@@ -70,10 +66,6 @@ jobs:
 
     deploy-logdrain:
         needs: changes
-        if: |
-            needs.changes.outputs.workers.logdrain == 'true' ||
-            (github.event_name == 'workflow_dispatch' && 
-             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'logdrain'))
         uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
             worker_name: logdrain
@@ -85,10 +77,6 @@ jobs:
 
     deploy-workflows:
         needs: changes
-        if: |
-            needs.changes.outputs.workers.workflows == 'true' ||
-            (github.event_name == 'workflow_dispatch' && 
-             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'workflows'))
         uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
             worker_name: workflows
@@ -100,10 +88,6 @@ jobs:
 
     deploy-semantic-cache:
         needs: changes
-        if: |
-            needs.changes.outputs.workers.semantic-cache == 'true' ||
-            (github.event_name == 'workflow_dispatch' && 
-             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'semantic-cache'))
         uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
             worker_name: semantic-cache
@@ -115,10 +99,6 @@ jobs:
 
     deploy-financial-service:
         needs: changes
-        if: |
-            needs.changes.outputs.workers.financial-service == 'true' ||
-            (github.event_name == 'workflow_dispatch' && 
-             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'financial-service'))
         uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
             worker_name: financial-service
