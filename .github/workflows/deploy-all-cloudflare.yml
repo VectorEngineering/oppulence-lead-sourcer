@@ -1,144 +1,114 @@
 name: Deploy All Cloudflare Workers
 
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        type: choice
-        options:
-          - production
-          - staging
-        default: 'production'
-      specific_worker:
-        description: 'Deploy specific worker (select all for deploying all workers)'
-        required: false
-        type: choice
-        options:
-          - all
-          - api
-          - billing
-          - logdrain
-          - workflows
-          - semantic-cache
-          - chproxy
-  push:
-    branches:
-      - main
-    paths:
-      - 'cloudflare/**'
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: 'Environment to deploy to'
+                type: choice
+                options:
+                    - production
+                    - staging
+                default: 'production'
+            specific_worker:
+                description: 'Deploy specific worker (select all for deploying all workers)'
+                required: false
+                type: choice
+                options:
+                    - all
+                    - api
+                    - billing
+                    - logdrain
+                    - workflows
+                    - semantic-cache
+                    - chproxy
+    push:
+        branches:
+            - main
+        paths:
+            - 'cloudflare/**'
 
 # Ensure only one deployment workflow runs at a time per environment
 concurrency:
-  group: cloudflare-deploy-${{ github.event.inputs.environment || 'production' }}
-  cancel-in-progress: false
+    group: cloudflare-deploy-${{ github.event.inputs.environment || 'production' }}
+    cancel-in-progress: false
 
 jobs:
-  # Check which workers need deployment
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      workers: ${{ steps.filter.outputs.changes }}
-    steps:
-      - uses: actions/checkout@v4
-      
-      - uses: dorny/paths-filter@v3
-        id: filter
+    # Check which workers need deployment
+    changes:
+        runs-on: ubuntu-latest
+        outputs:
+            workers: ${{ steps.filter.outputs.changes }}
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: dorny/paths-filter@v3
+              id: filter
+              with:
+                  filters: |
+                      api: cloudflare/api/**
+                      billing: cloudflare/billing/**
+                      logdrain: cloudflare/logdrain/**
+                      workflows: cloudflare/workflows/**
+                      semantic-cache: cloudflare/semantic-cache/**
+                      chproxy: cloudflare/chproxy/**
+
+    deploy-api:
+        needs: changes
+        if: |
+            needs.changes.outputs.workers.api == 'true' ||
+            (github.event_name == 'workflow_dispatch' && 
+             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'api'))
+        uses: ./.github/workflows/deploy-cloudflare-worker.yml
         with:
-          filters: |
-            api: cloudflare/api/**
-            billing: cloudflare/billing/**
-            logdrain: cloudflare/logdrain/**
-            workflows: cloudflare/workflows/**
-            semantic-cache: cloudflare/semantic-cache/**
-            chproxy: cloudflare/chproxy/**
+            worker_name: api
+            environment: ${{ github.event.inputs.environment || 'production' }}
+        secrets:
+            CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+            CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-  deploy-api:
-    needs: changes
-    if: |
-      needs.changes.outputs.workers.api == 'true' ||
-      (github.event_name == 'workflow_dispatch' && 
-       (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'api'))
-    uses: ./.github/workflows/deploy-cloudflare-worker.yml
-    with:
-      worker_name: api
-      environment: ${{ github.event.inputs.environment || 'production' }}
-    secrets:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    deploy-logdrain:
+        needs: changes
+        if: |
+            needs.changes.outputs.workers.logdrain == 'true' ||
+            (github.event_name == 'workflow_dispatch' && 
+             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'logdrain'))
+        uses: ./.github/workflows/deploy-cloudflare-worker.yml
+        with:
+            worker_name: logdrain
+            environment: ${{ github.event.inputs.environment || 'production' }}
+        secrets:
+            CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+            CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-  deploy-billing:
-    needs: changes
-    if: |
-      needs.changes.outputs.workers.billing == 'true' ||
-      (github.event_name == 'workflow_dispatch' && 
-       (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'billing'))
-    uses: ./.github/workflows/deploy-cloudflare-worker.yml
-    with:
-      worker_name: billing
-      environment: ${{ github.event.inputs.environment || 'production' }}
-    secrets:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    deploy-workflows:
+        needs: changes
+        if: |
+            needs.changes.outputs.workers.workflows == 'true' ||
+            (github.event_name == 'workflow_dispatch' && 
+             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'workflows'))
+        uses: ./.github/workflows/deploy-cloudflare-worker.yml
+        with:
+            worker_name: workflows
+            environment: ${{ github.event.inputs.environment || 'production' }}
+        secrets:
+            CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+            CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-  deploy-logdrain:
-    needs: changes
-    if: |
-      needs.changes.outputs.workers.logdrain == 'true' ||
-      (github.event_name == 'workflow_dispatch' && 
-       (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'logdrain'))
-    uses: ./.github/workflows/deploy-cloudflare-worker.yml
-    with:
-      worker_name: logdrain
-      environment: ${{ github.event.inputs.environment || 'production' }}
-    secrets:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  deploy-workflows:
-    needs: changes
-    if: |
-      needs.changes.outputs.workers.workflows == 'true' ||
-      (github.event_name == 'workflow_dispatch' && 
-       (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'workflows'))
-    uses: ./.github/workflows/deploy-cloudflare-worker.yml
-    with:
-      worker_name: workflows
-      environment: ${{ github.event.inputs.environment || 'production' }}
-    secrets:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  deploy-semantic-cache:
-    needs: changes
-    if: |
-      needs.changes.outputs.workers.semantic-cache == 'true' ||
-      (github.event_name == 'workflow_dispatch' && 
-       (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'semantic-cache'))
-    uses: ./.github/workflows/deploy-cloudflare-worker.yml
-    with:
-      worker_name: semantic-cache
-      environment: ${{ github.event.inputs.environment || 'production' }}
-    secrets:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-  deploy-chproxy:
-    needs: changes
-    if: |
-      needs.changes.outputs.workers.chproxy == 'true' ||
-      (github.event_name == 'workflow_dispatch' && 
-       (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'chproxy'))
-    uses: ./.github/workflows/deploy-cloudflare-worker.yml
-    with:
-      worker_name: chproxy
-      environment: ${{ github.event.inputs.environment || 'production' }}
-    secrets:
-      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+    deploy-semantic-cache:
+        needs: changes
+        if: |
+            needs.changes.outputs.workers.semantic-cache == 'true' ||
+            (github.event_name == 'workflow_dispatch' && 
+             (github.event.inputs.specific_worker == 'all' || github.event.inputs.specific_worker == 'semantic-cache'))
+        uses: ./.github/workflows/deploy-cloudflare-worker.yml
+        with:
+            worker_name: semantic-cache
+            environment: ${{ github.event.inputs.environment || 'production' }}
+        secrets:
+            CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+            CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
