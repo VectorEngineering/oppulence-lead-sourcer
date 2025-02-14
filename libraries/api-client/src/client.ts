@@ -153,6 +153,19 @@ export class SolomonAI {
         return headers
     }
 
+    private isErrorResponse(data: unknown): data is ErrorResponse {
+        return (
+            typeof data === 'object' &&
+            data !== null &&
+            'error' in data &&
+            typeof data.error === 'object' &&
+            data.error !== null &&
+            'code' in data.error &&
+            'message' in data.error &&
+            'docs' in data.error
+        )
+    }
+
     private async fetch<TResult>(req: ApiRequest): Promise<Result<TResult>> {
         let res: Response | null = null
         let err: Error | null = null
@@ -184,7 +197,7 @@ export class SolomonAI {
                 // Handle error responses
                 try {
                     const errorData = await res.json()
-                    if (errorData.error) {
+                    if (this.isErrorResponse(errorData)) {
                         return {
                             error: {
                                 code: errorData.error.code,
@@ -192,6 +205,15 @@ export class SolomonAI {
                                 docs: errorData.error.docs,
                                 requestId: errorData.error.requestId || res.headers.get('unkey-request-id') || 'N/A'
                             }
+                        }
+                    }
+                    // If the error response doesn't match our expected format
+                    return {
+                        error: {
+                            code: 'INTERNAL_SERVER_ERROR',
+                            message: 'Unexpected error response format',
+                            docs: 'https://developer.mozilla.org/en-US/docs/Web/API/fetch',
+                            requestId: res.headers.get('unkey-request-id') || 'N/A'
                         }
                     }
                 } catch (jsonError) {
@@ -203,16 +225,6 @@ export class SolomonAI {
                             docs: 'https://developer.mozilla.org/en-US/docs/Web/API/fetch',
                             requestId: res.headers.get('unkey-request-id') || 'N/A'
                         }
-                    }
-                }
-
-                // Handle empty error responses
-                return {
-                    error: {
-                        code: 'INTERNAL_SERVER_ERROR',
-                        message: 'Empty error response',
-                        docs: 'https://developer.mozilla.org/en-US/docs/Web/API/fetch',
-                        requestId: res.headers.get('unkey-request-id') || 'N/A'
                     }
                 }
             } catch (fetchError) {

@@ -1,5 +1,5 @@
-import { z } from 'zod'
 import { errorSchemaFactory } from './http'
+import { z } from 'zod'
 
 export const openApiErrorResponses = {
     400: {

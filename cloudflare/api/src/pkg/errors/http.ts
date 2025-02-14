@@ -1,10 +1,11 @@
-import { z } from '@hono/zod-openapi'
+import type { ContentfulStatusCode, StatusCode } from 'hono/utils/http-status'
+
 import type { Context } from 'hono'
 import { HTTPException } from 'hono/http-exception'
-import type { StatusCode } from 'hono/utils/http-status'
-import type { ZodError } from 'zod'
 import type { HonoEnv } from '../hono/env'
+import type { ZodError } from 'zod'
 import { parseZodErrorMessage } from '../util/zod-error'
+import { z } from '@hono/zod-openapi'
 
 const ErrorCode = z.enum([
     'BAD_REQUEST',
@@ -115,7 +116,7 @@ export class UnkeyApiError extends HTTPException {
     public readonly code: z.infer<typeof ErrorCode>
 
     constructor({ code, message }: { code: z.infer<typeof ErrorCode>; message: string }) {
-        super(codeToStatus(code), { message })
+        super(codeToStatus(code) as ContentfulStatusCode, { message })
         this.code = code
     }
 }
@@ -234,6 +235,6 @@ export function errorResponse(c: Context, code: z.infer<typeof ErrorCode>, messa
                 requestId: c.get('requestId')
             }
         },
-        { status: codeToStatus(code) }
+        { status: codeToStatus(code) as ContentfulStatusCode }
     )
 }

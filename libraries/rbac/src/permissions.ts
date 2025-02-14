@@ -1,3 +1,4 @@
+import type { Flatten } from './types'
 /**
  * The database takes care of isolating roles between workspaces.
  * That's why we can assume the highest scope of a role is an `api` or later `gateway`
@@ -8,7 +9,6 @@
  *
  */
 import { z } from 'zod'
-import type { Flatten } from './types'
 export function buildIdSchema(prefix: string) {
     return z.string().refine((s) => {
         if (s === '*') {
@@ -74,7 +74,7 @@ export type UnkeyPermission = Flatten<Resources> | '*'
 /**
  * Validation for roles used for our root keys
  */
-export const solomonAIPermissionValidation = z.custom<UnkeyPermission>().refine((s) => {
+export const unkeyPermissionValidation = z.custom<UnkeyPermission>().refine((s) => {
     z.string().parse(s)
     if (s === '*') {
         /**

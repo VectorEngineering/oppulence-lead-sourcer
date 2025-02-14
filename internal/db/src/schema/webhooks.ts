@@ -2,7 +2,7 @@ import { relations } from 'drizzle-orm'
 import { bigint, boolean, index, int, json, mysqlEnum, mysqlTable, varchar } from 'drizzle-orm/mysql-core'
 import { embeddedEncrypted } from './util/embedded_encrypted'
 
-import { type Event, eventTypesArr } from '@playbookmedia/events'
+import { type Event, eventTypesArr } from '@playbookmedia/api-events'
 import { lifecycleDates } from './util/lifecycle_dates'
 import { workspaces } from './workspaces'
 

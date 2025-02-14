@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import type { solomonAIPermissionValidation } from './permissions'
+import type { unkeyPermissionValidation } from './permissions'
 
 type Rule = 'and' | 'or'
 
@@ -53,4 +53,4 @@ export function buildQuery<R extends string = string>(
 /**
  * buildUnkeyQuery is preloaded with out available roles and ensures typesafety for root key validation
  */
-export const buildUnkeyQuery = buildQuery<z.infer<typeof solomonAIPermissionValidation>>
+export const buildUnkeyQuery = buildQuery<z.infer<typeof unkeyPermissionValidation>>

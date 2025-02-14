@@ -1,12 +1,11 @@
-import { test } from 'vitest'
-
-import { loadTest } from '@/pkg/testutil/load'
-import { schema } from '@playbookmedia/db'
-import { newId } from '@playbookmedia/id'
-import { IntegrationHarness } from 'src/pkg/testutil/integration-harness'
-
-import { randomUUID } from 'node:crypto'
 import type { V1KeysVerifyKeyRequest, V1KeysVerifyKeyResponse } from './v1_keys_verifyKey'
+
+import { IntegrationHarness } from 'src/pkg/testutil/integration-harness'
+import { loadTest } from '@/pkg/testutil/load'
+import { newId } from '@playbookmedia/id'
+import { randomUUID } from 'node:crypto'
+import { schema } from '@playbookmedia/db'
+import { test } from 'vitest'
 
 /**
  * As a rule of thumb, the test duration (seconds) should be at least 10x the duration of the rate limit window
@@ -57,7 +56,7 @@ const testCases: {
 
 for (const { limit, duration, rps, seconds } of testCases) {
     const name = `[${limit} / ${duration / 1000}s], attacked with ${rps} rps for ${seconds}s`
-    test(name, { skip: process.env.TEST_LOCAL, retry: 3, timeout: 600_000 }, async (t) => {
+    test(name, { skip: process.env.TEST_LOCAL === 'true', retry: 3, timeout: 600_000 }, async (t) => {
         const h = await IntegrationHarness.init(t)
 
         const { key, keyId } = await h.createKey()

@@ -33,7 +33,7 @@ const solomonAiId = z
     .refine((value) => {
         const parts = value.split('_')
         if (parts.length !== 2) return false
-        const [prefix, id] = parts
+        const [prefix, _] = parts
         return prefix.length === 3
     }, 'Prefix must be exactly 3 characters long')
     .refine((value) => /^[a-z]+$/.test(value.split('_')[0]), 'Prefix must contain only lowercase letters')

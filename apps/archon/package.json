@@ -34,7 +34,7 @@
         "@auth/core": "^0.34.2",
         "@auth/drizzle-adapter": "^0.8.2",
         "@clerk/nextjs": "^6.9.6",
-        "@playbookmedia/events": "workspace:*",
+        "@playbookmedia/api-events": "workspace:*",
         "@dub/kv": "workspace:*",
         "@dub/platform-config": "workspace:*",
         "@dub/prisma-archon": "workspace:*",
