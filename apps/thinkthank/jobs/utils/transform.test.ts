@@ -13,7 +13,12 @@ test('transformTransaction should correctly transform transaction data', () => {
         method: 'card',
         category: 'meals',
         balance: 100.5,
-        status: 'posted' as 'posted' | 'pending'
+        status: 'posted' as 'posted' | 'pending',
+        account_id: 'acc123',
+        bank_account_id: 'bank123',
+        currency_rate: 1,
+        currency_source: 'USD',
+        internal_id: 'internal123'
     }
 
     const workspaceId = 'team123'
@@ -52,7 +57,12 @@ test('transformTransaction should handle null values correctly', () => {
         method: null,
         category: null,
         balance: null,
-        status: 'pending' as 'posted' | 'pending'
+        status: 'pending' as 'posted' | 'pending',
+        account_id: 'acc456',
+        bank_account_id: 'bank456',
+        currency_rate: 1.1,
+        currency_source: 'EUR',
+        internal_id: 'internal456'
     }
 
     const workspaceId = 'team456'
