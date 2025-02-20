@@ -1,17 +1,15 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ReportColumnUncheckedCreateWithoutReportInputSchema: z.ZodType<Prisma.ReportColumnUncheckedCreateWithoutReportInput> = z
-    .object({
-        id: z.string().cuid().optional(),
-        field: z.string(),
-        label: z.string().optional().nullable(),
-        width: z.number().int().optional().nullable(),
-        position: z.number().int(),
-        isVisible: z.boolean().optional(),
-        format: z.string().optional().nullable()
-    })
-    .strict()
+export const ReportColumnUncheckedCreateWithoutReportInputSchema: z.ZodType<Prisma.ReportColumnUncheckedCreateWithoutReportInput> = z.object({
+  id: z.string().cuid().optional(),
+  field: z.string(),
+  label: z.string().optional().nullable(),
+  width: z.number().int().optional().nullable(),
+  position: z.number().int(),
+  isVisible: z.boolean().optional(),
+  format: z.string().optional().nullable()
+}).strict();
 
-export default ReportColumnUncheckedCreateWithoutReportInputSchema
+export default ReportColumnUncheckedCreateWithoutReportInputSchema;

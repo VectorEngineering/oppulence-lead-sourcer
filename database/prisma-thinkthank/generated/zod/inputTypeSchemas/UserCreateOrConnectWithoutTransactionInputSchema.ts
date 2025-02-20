@@ -1,18 +1,13 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { UserWhereUniqueInputSchema } from './UserWhereUniqueInputSchema'
-import { UserCreateWithoutTransactionInputSchema } from './UserCreateWithoutTransactionInputSchema'
-import { UserUncheckedCreateWithoutTransactionInputSchema } from './UserUncheckedCreateWithoutTransactionInputSchema'
+import { z } from 'zod';
+import { UserWhereUniqueInputSchema } from './UserWhereUniqueInputSchema';
+import { UserCreateWithoutTransactionInputSchema } from './UserCreateWithoutTransactionInputSchema';
+import { UserUncheckedCreateWithoutTransactionInputSchema } from './UserUncheckedCreateWithoutTransactionInputSchema';
 
-export const UserCreateOrConnectWithoutTransactionInputSchema: z.ZodType<Prisma.UserCreateOrConnectWithoutTransactionInput> = z
-    .object({
-        where: z.lazy(() => UserWhereUniqueInputSchema),
-        create: z.union([
-            z.lazy(() => UserCreateWithoutTransactionInputSchema),
-            z.lazy(() => UserUncheckedCreateWithoutTransactionInputSchema)
-        ])
-    })
-    .strict()
+export const UserCreateOrConnectWithoutTransactionInputSchema: z.ZodType<Prisma.UserCreateOrConnectWithoutTransactionInput> = z.object({
+  where: z.lazy(() => UserWhereUniqueInputSchema),
+  create: z.union([ z.lazy(() => UserCreateWithoutTransactionInputSchema),z.lazy(() => UserUncheckedCreateWithoutTransactionInputSchema) ]),
+}).strict();
 
-export default UserCreateOrConnectWithoutTransactionInputSchema
+export default UserCreateOrConnectWithoutTransactionInputSchema;

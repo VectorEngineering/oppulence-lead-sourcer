@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const PartnerInviteScalarFieldEnumSchema = z.enum(['email', 'expires', 'partnerId', 'role', 'createdAt'])
+export const PartnerInviteScalarFieldEnumSchema = z.enum(['email','expires','partnerId','role','createdAt']);
 
-export default PartnerInviteScalarFieldEnumSchema
+export default PartnerInviteScalarFieldEnumSchema;

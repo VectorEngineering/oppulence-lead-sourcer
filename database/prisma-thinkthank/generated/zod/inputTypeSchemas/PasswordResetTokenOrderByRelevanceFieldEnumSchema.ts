@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const PasswordResetTokenOrderByRelevanceFieldEnumSchema = z.enum(['identifier', 'token'])
+export const PasswordResetTokenOrderByRelevanceFieldEnumSchema = z.enum(['identifier','token']);
 
-export default PasswordResetTokenOrderByRelevanceFieldEnumSchema
+export default PasswordResetTokenOrderByRelevanceFieldEnumSchema;

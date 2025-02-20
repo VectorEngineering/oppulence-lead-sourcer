@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const NotificationPreferenceOrderByRelevanceFieldEnumSchema = z.enum(['id', 'projectUserId'])
+export const NotificationPreferenceOrderByRelevanceFieldEnumSchema = z.enum(['id','projectUserId']);
 
-export default NotificationPreferenceOrderByRelevanceFieldEnumSchema
+export default NotificationPreferenceOrderByRelevanceFieldEnumSchema;

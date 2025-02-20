@@ -1,7 +1,7 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const CommissionTypeSchema = z.enum(['percentage', 'flat'])
+export const CommissionTypeSchema = z.enum(['percentage','flat']);
 
 export type CommissionTypeType = `${z.infer<typeof CommissionTypeSchema>}`
 
-export default CommissionTypeSchema
+export default CommissionTypeSchema;

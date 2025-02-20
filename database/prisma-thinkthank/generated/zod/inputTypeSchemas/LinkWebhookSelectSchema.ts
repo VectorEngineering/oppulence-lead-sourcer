@@ -1,16 +1,14 @@
-import { z } from 'zod'
-import type { Prisma } from '@prisma/client'
-import { LinkArgsSchema } from '../outputTypeSchemas/LinkArgsSchema'
-import { WebhookArgsSchema } from '../outputTypeSchemas/WebhookArgsSchema'
+import { z } from 'zod';
+import type { Prisma } from '@prisma/client';
+import { LinkArgsSchema } from "../outputTypeSchemas/LinkArgsSchema"
+import { WebhookArgsSchema } from "../outputTypeSchemas/WebhookArgsSchema"
 
-export const LinkWebhookSelectSchema: z.ZodType<Prisma.LinkWebhookSelect> = z
-    .object({
-        id: z.boolean().optional(),
-        linkId: z.boolean().optional(),
-        webhookId: z.boolean().optional(),
-        link: z.union([z.boolean(), z.lazy(() => LinkArgsSchema)]).optional(),
-        webhook: z.union([z.boolean(), z.lazy(() => WebhookArgsSchema)]).optional()
-    })
-    .strict()
+export const LinkWebhookSelectSchema: z.ZodType<Prisma.LinkWebhookSelect> = z.object({
+  id: z.boolean().optional(),
+  linkId: z.boolean().optional(),
+  webhookId: z.boolean().optional(),
+  link: z.union([z.boolean(),z.lazy(() => LinkArgsSchema)]).optional(),
+  webhook: z.union([z.boolean(),z.lazy(() => WebhookArgsSchema)]).optional(),
+}).strict()
 
-export default LinkWebhookSelectSchema
+export default LinkWebhookSelectSchema;

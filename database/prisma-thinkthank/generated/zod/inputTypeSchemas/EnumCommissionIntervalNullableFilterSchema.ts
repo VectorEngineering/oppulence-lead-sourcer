@@ -1,30 +1,14 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { CommissionIntervalSchema } from './CommissionIntervalSchema'
-import { NestedEnumCommissionIntervalNullableFilterSchema } from './NestedEnumCommissionIntervalNullableFilterSchema'
+import { z } from 'zod';
+import { CommissionIntervalSchema } from './CommissionIntervalSchema';
+import { NestedEnumCommissionIntervalNullableFilterSchema } from './NestedEnumCommissionIntervalNullableFilterSchema';
 
-export const EnumCommissionIntervalNullableFilterSchema: z.ZodType<Prisma.EnumCommissionIntervalNullableFilter> = z
-    .object({
-        equals: z
-            .lazy(() => CommissionIntervalSchema)
-            .optional()
-            .nullable(),
-        in: z
-            .lazy(() => CommissionIntervalSchema)
-            .array()
-            .optional()
-            .nullable(),
-        notIn: z
-            .lazy(() => CommissionIntervalSchema)
-            .array()
-            .optional()
-            .nullable(),
-        not: z
-            .union([z.lazy(() => CommissionIntervalSchema), z.lazy(() => NestedEnumCommissionIntervalNullableFilterSchema)])
-            .optional()
-            .nullable()
-    })
-    .strict()
+export const EnumCommissionIntervalNullableFilterSchema: z.ZodType<Prisma.EnumCommissionIntervalNullableFilter> = z.object({
+  equals: z.lazy(() => CommissionIntervalSchema).optional().nullable(),
+  in: z.lazy(() => CommissionIntervalSchema).array().optional().nullable(),
+  notIn: z.lazy(() => CommissionIntervalSchema).array().optional().nullable(),
+  not: z.union([ z.lazy(() => CommissionIntervalSchema),z.lazy(() => NestedEnumCommissionIntervalNullableFilterSchema) ]).optional().nullable(),
+}).strict();
 
-export default EnumCommissionIntervalNullableFilterSchema
+export default EnumCommissionIntervalNullableFilterSchema;

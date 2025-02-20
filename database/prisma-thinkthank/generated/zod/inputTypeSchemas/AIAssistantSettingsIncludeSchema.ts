@@ -1,11 +1,9 @@
-import { z } from 'zod'
-import type { Prisma } from '@prisma/client'
-import { UserArgsSchema } from '../outputTypeSchemas/UserArgsSchema'
+import { z } from 'zod';
+import type { Prisma } from '@prisma/client';
+import { UserArgsSchema } from "../outputTypeSchemas/UserArgsSchema"
 
-export const AIAssistantSettingsIncludeSchema: z.ZodType<Prisma.AIAssistantSettingsInclude> = z
-    .object({
-        user: z.union([z.boolean(), z.lazy(() => UserArgsSchema)]).optional()
-    })
-    .strict()
+export const AIAssistantSettingsIncludeSchema: z.ZodType<Prisma.AIAssistantSettingsInclude> = z.object({
+  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
+}).strict()
 
-export default AIAssistantSettingsIncludeSchema
+export default AIAssistantSettingsIncludeSchema;

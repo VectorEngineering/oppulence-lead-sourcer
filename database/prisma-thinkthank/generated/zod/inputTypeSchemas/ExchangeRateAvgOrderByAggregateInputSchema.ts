@@ -1,12 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortOrderSchema } from './SortOrderSchema'
+import { z } from 'zod';
+import { SortOrderSchema } from './SortOrderSchema';
 
-export const ExchangeRateAvgOrderByAggregateInputSchema: z.ZodType<Prisma.ExchangeRateAvgOrderByAggregateInput> = z
-    .object({
-        rate: z.lazy(() => SortOrderSchema).optional()
-    })
-    .strict()
+export const ExchangeRateAvgOrderByAggregateInputSchema: z.ZodType<Prisma.ExchangeRateAvgOrderByAggregateInput> = z.object({
+  rate: z.lazy(() => SortOrderSchema).optional()
+}).strict();
 
-export default ExchangeRateAvgOrderByAggregateInputSchema
+export default ExchangeRateAvgOrderByAggregateInputSchema;

@@ -1,17 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const DiscountScalarFieldEnumSchema = z.enum([
-    'id',
-    'amount',
-    'type',
-    'duration',
-    'interval',
-    'couponId',
-    'couponTestId',
-    'workspaceId',
-    'programId',
-    'createdAt',
-    'updatedAt'
-])
+export const DiscountScalarFieldEnumSchema = z.enum(['id','amount','type','duration','interval','couponId','couponTestId','workspaceId','programId','createdAt','updatedAt']);
 
-export default DiscountScalarFieldEnumSchema
+export default DiscountScalarFieldEnumSchema;

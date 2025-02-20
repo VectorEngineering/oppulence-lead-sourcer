@@ -1,12 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const OAuthRefreshTokenScalarFieldEnumSchema = z.enum([
-    'id',
-    'installationId',
-    'accessTokenId',
-    'hashedRefreshToken',
-    'expiresAt',
-    'createdAt'
-])
+export const OAuthRefreshTokenScalarFieldEnumSchema = z.enum(['id','installationId','accessTokenId','hashedRefreshToken','expiresAt','createdAt']);
 
-export default OAuthRefreshTokenScalarFieldEnumSchema
+export default OAuthRefreshTokenScalarFieldEnumSchema;

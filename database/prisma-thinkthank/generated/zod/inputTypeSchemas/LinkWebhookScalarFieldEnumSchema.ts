@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const LinkWebhookScalarFieldEnumSchema = z.enum(['id', 'linkId', 'webhookId'])
+export const LinkWebhookScalarFieldEnumSchema = z.enum(['id','linkId','webhookId']);
 
-export default LinkWebhookScalarFieldEnumSchema
+export default LinkWebhookScalarFieldEnumSchema;

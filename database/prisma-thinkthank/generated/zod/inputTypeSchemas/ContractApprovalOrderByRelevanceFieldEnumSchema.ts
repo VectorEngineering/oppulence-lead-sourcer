@@ -1,13 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ContractApprovalOrderByRelevanceFieldEnumSchema = z.enum([
-    'id',
-    'contractId',
-    'stage',
-    'status',
-    'approverRole',
-    'approverId',
-    'comments'
-])
+export const ContractApprovalOrderByRelevanceFieldEnumSchema = z.enum(['id','contractId','stage','status','approverRole','approverId','comments']);
 
-export default ContractApprovalOrderByRelevanceFieldEnumSchema
+export default ContractApprovalOrderByRelevanceFieldEnumSchema;

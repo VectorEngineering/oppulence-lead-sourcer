@@ -1,22 +1,16 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { StringFieldUpdateOperationsInputSchema } from './StringFieldUpdateOperationsInputSchema'
-import { NullableStringFieldUpdateOperationsInputSchema } from './NullableStringFieldUpdateOperationsInputSchema'
-import { BoolFieldUpdateOperationsInputSchema } from './BoolFieldUpdateOperationsInputSchema'
+import { z } from 'zod';
+import { StringFieldUpdateOperationsInputSchema } from './StringFieldUpdateOperationsInputSchema';
+import { NullableStringFieldUpdateOperationsInputSchema } from './NullableStringFieldUpdateOperationsInputSchema';
+import { BoolFieldUpdateOperationsInputSchema } from './BoolFieldUpdateOperationsInputSchema';
 
-export const ReportRecipientUncheckedUpdateManyWithoutReportInputSchema: z.ZodType<Prisma.ReportRecipientUncheckedUpdateManyWithoutReportInput> =
-    z
-        .object({
-            id: z.union([z.string().cuid(), z.lazy(() => StringFieldUpdateOperationsInputSchema)]).optional(),
-            email: z.union([z.string(), z.lazy(() => StringFieldUpdateOperationsInputSchema)]).optional(),
-            name: z
-                .union([z.string(), z.lazy(() => NullableStringFieldUpdateOperationsInputSchema)])
-                .optional()
-                .nullable(),
-            type: z.union([z.string(), z.lazy(() => StringFieldUpdateOperationsInputSchema)]).optional(),
-            isActive: z.union([z.boolean(), z.lazy(() => BoolFieldUpdateOperationsInputSchema)]).optional()
-        })
-        .strict()
+export const ReportRecipientUncheckedUpdateManyWithoutReportInputSchema: z.ZodType<Prisma.ReportRecipientUncheckedUpdateManyWithoutReportInput> = z.object({
+  id: z.union([ z.string().cuid(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  email: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  name: z.union([ z.string(),z.lazy(() => NullableStringFieldUpdateOperationsInputSchema) ]).optional().nullable(),
+  type: z.union([ z.string(),z.lazy(() => StringFieldUpdateOperationsInputSchema) ]).optional(),
+  isActive: z.union([ z.boolean(),z.lazy(() => BoolFieldUpdateOperationsInputSchema) ]).optional(),
+}).strict();
 
-export default ReportRecipientUncheckedUpdateManyWithoutReportInputSchema
+export default ReportRecipientUncheckedUpdateManyWithoutReportInputSchema;

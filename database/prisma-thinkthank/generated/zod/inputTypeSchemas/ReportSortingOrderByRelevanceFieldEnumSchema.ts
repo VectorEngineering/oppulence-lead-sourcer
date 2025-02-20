@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ReportSortingOrderByRelevanceFieldEnumSchema = z.enum(['id', 'reportId', 'field'])
+export const ReportSortingOrderByRelevanceFieldEnumSchema = z.enum(['id','reportId','field']);
 
-export default ReportSortingOrderByRelevanceFieldEnumSchema
+export default ReportSortingOrderByRelevanceFieldEnumSchema;

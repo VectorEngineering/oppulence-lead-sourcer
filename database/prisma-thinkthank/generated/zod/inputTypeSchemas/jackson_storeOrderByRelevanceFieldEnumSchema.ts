@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const jackson_storeOrderByRelevanceFieldEnumSchema = z.enum(['key', 'value', 'iv', 'tag', 'namespace'])
+export const jackson_storeOrderByRelevanceFieldEnumSchema = z.enum(['key','value','iv','tag','namespace']);
 
-export default jackson_storeOrderByRelevanceFieldEnumSchema
+export default jackson_storeOrderByRelevanceFieldEnumSchema;

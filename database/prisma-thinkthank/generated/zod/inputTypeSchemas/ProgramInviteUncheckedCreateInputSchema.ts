@@ -1,15 +1,13 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ProgramInviteUncheckedCreateInputSchema: z.ZodType<Prisma.ProgramInviteUncheckedCreateInput> = z
-    .object({
-        id: z.string().cuid().optional(),
-        programId: z.string(),
-        email: z.string(),
-        linkId: z.string(),
-        createdAt: z.coerce.date().optional()
-    })
-    .strict()
+export const ProgramInviteUncheckedCreateInputSchema: z.ZodType<Prisma.ProgramInviteUncheckedCreateInput> = z.object({
+  id: z.string().cuid().optional(),
+  programId: z.string(),
+  email: z.string(),
+  linkId: z.string(),
+  createdAt: z.coerce.date().optional()
+}).strict();
 
-export default ProgramInviteUncheckedCreateInputSchema
+export default ProgramInviteUncheckedCreateInputSchema;

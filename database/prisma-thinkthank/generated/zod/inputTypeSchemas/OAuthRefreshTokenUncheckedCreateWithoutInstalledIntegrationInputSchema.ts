@@ -1,16 +1,13 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const OAuthRefreshTokenUncheckedCreateWithoutInstalledIntegrationInputSchema: z.ZodType<Prisma.OAuthRefreshTokenUncheckedCreateWithoutInstalledIntegrationInput> =
-    z
-        .object({
-            id: z.string().cuid().optional(),
-            accessTokenId: z.string(),
-            hashedRefreshToken: z.string(),
-            expiresAt: z.coerce.date(),
-            createdAt: z.coerce.date().optional()
-        })
-        .strict()
+export const OAuthRefreshTokenUncheckedCreateWithoutInstalledIntegrationInputSchema: z.ZodType<Prisma.OAuthRefreshTokenUncheckedCreateWithoutInstalledIntegrationInput> = z.object({
+  id: z.string().cuid().optional(),
+  accessTokenId: z.string(),
+  hashedRefreshToken: z.string(),
+  expiresAt: z.coerce.date(),
+  createdAt: z.coerce.date().optional()
+}).strict();
 
-export default OAuthRefreshTokenUncheckedCreateWithoutInstalledIntegrationInputSchema
+export default OAuthRefreshTokenUncheckedCreateWithoutInstalledIntegrationInputSchema;

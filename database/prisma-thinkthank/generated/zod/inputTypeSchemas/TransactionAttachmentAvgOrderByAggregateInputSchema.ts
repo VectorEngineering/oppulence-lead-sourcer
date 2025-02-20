@@ -1,12 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
-import { SortOrderSchema } from './SortOrderSchema'
+import { z } from 'zod';
+import { SortOrderSchema } from './SortOrderSchema';
 
-export const TransactionAttachmentAvgOrderByAggregateInputSchema: z.ZodType<Prisma.TransactionAttachmentAvgOrderByAggregateInput> = z
-    .object({
-        size: z.lazy(() => SortOrderSchema).optional()
-    })
-    .strict()
+export const TransactionAttachmentAvgOrderByAggregateInputSchema: z.ZodType<Prisma.TransactionAttachmentAvgOrderByAggregateInput> = z.object({
+  size: z.lazy(() => SortOrderSchema).optional()
+}).strict();
 
-export default TransactionAttachmentAvgOrderByAggregateInputSchema
+export default TransactionAttachmentAvgOrderByAggregateInputSchema;

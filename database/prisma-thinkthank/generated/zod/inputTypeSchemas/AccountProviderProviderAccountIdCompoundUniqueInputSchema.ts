@@ -1,13 +1,10 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const AccountProviderProviderAccountIdCompoundUniqueInputSchema: z.ZodType<Prisma.AccountProviderProviderAccountIdCompoundUniqueInput> =
-    z
-        .object({
-            provider: z.string(),
-            providerAccountId: z.string()
-        })
-        .strict()
+export const AccountProviderProviderAccountIdCompoundUniqueInputSchema: z.ZodType<Prisma.AccountProviderProviderAccountIdCompoundUniqueInput> = z.object({
+  provider: z.string(),
+  providerAccountId: z.string()
+}).strict();
 
-export default AccountProviderProviderAccountIdCompoundUniqueInputSchema
+export default AccountProviderProviderAccountIdCompoundUniqueInputSchema;

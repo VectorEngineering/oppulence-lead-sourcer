@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const ProgramResourceOrderByRelevanceFieldEnumSchema = z.enum(['id', 'programId', 'name', 'url'])
+export const ProgramResourceOrderByRelevanceFieldEnumSchema = z.enum(['id','programId','name','url']);
 
-export default ProgramResourceOrderByRelevanceFieldEnumSchema
+export default ProgramResourceOrderByRelevanceFieldEnumSchema;

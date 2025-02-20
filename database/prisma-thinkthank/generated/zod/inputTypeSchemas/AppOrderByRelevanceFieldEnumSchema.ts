@@ -1,5 +1,5 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const AppOrderByRelevanceFieldEnumSchema = z.enum(['id', 'appId', 'createdBy', 'userId', 'projectId'])
+export const AppOrderByRelevanceFieldEnumSchema = z.enum(['id','appId','createdBy','userId','projectId']);
 
-export default AppOrderByRelevanceFieldEnumSchema
+export default AppOrderByRelevanceFieldEnumSchema;
