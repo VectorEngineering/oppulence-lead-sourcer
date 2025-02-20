@@ -1,5 +1,17 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const SaleOrderByRelevanceFieldEnumSchema = z.enum(['id','programId','partnerId','payoutId','customerId','linkId','clickId','invoiceId','eventId','currency','paymentProcessor']);
+export const SaleOrderByRelevanceFieldEnumSchema = z.enum([
+    'id',
+    'programId',
+    'partnerId',
+    'payoutId',
+    'customerId',
+    'linkId',
+    'clickId',
+    'invoiceId',
+    'eventId',
+    'currency',
+    'paymentProcessor'
+])
 
-export default SaleOrderByRelevanceFieldEnumSchema;
+export default SaleOrderByRelevanceFieldEnumSchema

@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const PartnerOrderByRelevanceFieldEnumSchema = z.enum(['id','name','email','image','bio','country','stripeConnectId']);
+export const PartnerOrderByRelevanceFieldEnumSchema = z.enum(['id', 'name', 'email', 'image', 'bio', 'country', 'stripeConnectId'])
 
-export default PartnerOrderByRelevanceFieldEnumSchema;
+export default PartnerOrderByRelevanceFieldEnumSchema

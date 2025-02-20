@@ -1,12 +1,14 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { DomainWhereInputSchema } from './DomainWhereInputSchema';
+import { z } from 'zod'
+import { DomainWhereInputSchema } from './DomainWhereInputSchema'
 
-export const DomainListRelationFilterSchema: z.ZodType<Prisma.DomainListRelationFilter> = z.object({
-  every: z.lazy(() => DomainWhereInputSchema).optional(),
-  some: z.lazy(() => DomainWhereInputSchema).optional(),
-  none: z.lazy(() => DomainWhereInputSchema).optional()
-}).strict();
+export const DomainListRelationFilterSchema: z.ZodType<Prisma.DomainListRelationFilter> = z
+    .object({
+        every: z.lazy(() => DomainWhereInputSchema).optional(),
+        some: z.lazy(() => DomainWhereInputSchema).optional(),
+        none: z.lazy(() => DomainWhereInputSchema).optional()
+    })
+    .strict()
 
-export default DomainListRelationFilterSchema;
+export default DomainListRelationFilterSchema

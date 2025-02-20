@@ -1,5 +1,15 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const DashboardScalarFieldEnumSchema = z.enum(['id','linkId','projectId','userId','doIndex','password','showConversions','createdAt','updatedAt']);
+export const DashboardScalarFieldEnumSchema = z.enum([
+    'id',
+    'linkId',
+    'projectId',
+    'userId',
+    'doIndex',
+    'password',
+    'showConversions',
+    'createdAt',
+    'updatedAt'
+])
 
-export default DashboardScalarFieldEnumSchema;
+export default DashboardScalarFieldEnumSchema

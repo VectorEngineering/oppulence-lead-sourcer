@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const DiscountOrderByRelevanceFieldEnumSchema = z.enum(['id','couponId','couponTestId','workspaceId','programId']);
+export const DiscountOrderByRelevanceFieldEnumSchema = z.enum(['id', 'couponId', 'couponTestId', 'workspaceId', 'programId'])
 
-export default DiscountOrderByRelevanceFieldEnumSchema;
+export default DiscountOrderByRelevanceFieldEnumSchema

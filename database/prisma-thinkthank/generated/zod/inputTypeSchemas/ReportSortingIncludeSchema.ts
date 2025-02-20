@@ -1,9 +1,11 @@
-import { z } from 'zod';
-import type { Prisma } from '@prisma/client';
-import { ReportArgsSchema } from "../outputTypeSchemas/ReportArgsSchema"
+import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
+import { ReportArgsSchema } from '../outputTypeSchemas/ReportArgsSchema'
 
-export const ReportSortingIncludeSchema: z.ZodType<Prisma.ReportSortingInclude> = z.object({
-  report: z.union([z.boolean(),z.lazy(() => ReportArgsSchema)]).optional(),
-}).strict()
+export const ReportSortingIncludeSchema: z.ZodType<Prisma.ReportSortingInclude> = z
+    .object({
+        report: z.union([z.boolean(), z.lazy(() => ReportArgsSchema)]).optional()
+    })
+    .strict()
 
-export default ReportSortingIncludeSchema;
+export default ReportSortingIncludeSchema

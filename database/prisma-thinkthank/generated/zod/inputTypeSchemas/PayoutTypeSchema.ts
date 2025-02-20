@@ -1,7 +1,7 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const PayoutTypeSchema = z.enum(['clicks','leads','sales','custom']);
+export const PayoutTypeSchema = z.enum(['clicks', 'leads', 'sales', 'custom'])
 
 export type PayoutTypeType = `${z.infer<typeof PayoutTypeSchema>}`
 
-export default PayoutTypeSchema;
+export default PayoutTypeSchema

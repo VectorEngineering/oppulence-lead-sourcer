@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const CustomerTagScalarFieldEnumSchema = z.enum(['id','createdAt','customerId','tagId','projectId']);
+export const CustomerTagScalarFieldEnumSchema = z.enum(['id', 'createdAt', 'customerId', 'tagId', 'projectId'])
 
-export default CustomerTagScalarFieldEnumSchema;
+export default CustomerTagScalarFieldEnumSchema

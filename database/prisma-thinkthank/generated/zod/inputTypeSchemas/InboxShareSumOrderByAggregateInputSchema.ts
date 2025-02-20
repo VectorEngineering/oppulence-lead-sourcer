@@ -1,12 +1,14 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const InboxShareSumOrderByAggregateInputSchema: z.ZodType<Prisma.InboxShareSumOrderByAggregateInput> = z.object({
-  accessCount: z.lazy(() => SortOrderSchema).optional(),
-  maxAccesses: z.lazy(() => SortOrderSchema).optional(),
-  deviceLimit: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const InboxShareSumOrderByAggregateInputSchema: z.ZodType<Prisma.InboxShareSumOrderByAggregateInput> = z
+    .object({
+        accessCount: z.lazy(() => SortOrderSchema).optional(),
+        maxAccesses: z.lazy(() => SortOrderSchema).optional(),
+        deviceLimit: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default InboxShareSumOrderByAggregateInputSchema;
+export default InboxShareSumOrderByAggregateInputSchema

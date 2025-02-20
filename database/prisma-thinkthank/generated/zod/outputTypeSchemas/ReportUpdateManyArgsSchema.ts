@@ -1,12 +1,14 @@
-import { z } from 'zod';
-import type { Prisma } from '@prisma/client';
+import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
 import { ReportUpdateManyMutationInputSchema } from '../inputTypeSchemas/ReportUpdateManyMutationInputSchema'
 import { ReportUncheckedUpdateManyInputSchema } from '../inputTypeSchemas/ReportUncheckedUpdateManyInputSchema'
 import { ReportWhereInputSchema } from '../inputTypeSchemas/ReportWhereInputSchema'
 
-export const ReportUpdateManyArgsSchema: z.ZodType<Prisma.ReportUpdateManyArgs> = z.object({
-  data: z.union([ ReportUpdateManyMutationInputSchema,ReportUncheckedUpdateManyInputSchema ]),
-  where: ReportWhereInputSchema.optional(),
-}).strict() ;
+export const ReportUpdateManyArgsSchema: z.ZodType<Prisma.ReportUpdateManyArgs> = z
+    .object({
+        data: z.union([ReportUpdateManyMutationInputSchema, ReportUncheckedUpdateManyInputSchema]),
+        where: ReportWhereInputSchema.optional()
+    })
+    .strict()
 
-export default ReportUpdateManyArgsSchema;
+export default ReportUpdateManyArgsSchema

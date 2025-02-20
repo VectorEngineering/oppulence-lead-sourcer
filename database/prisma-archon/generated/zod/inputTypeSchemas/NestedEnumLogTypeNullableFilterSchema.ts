@@ -1,13 +1,29 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { LogTypeSchema } from './LogTypeSchema';
+import { z } from 'zod'
+import { LogTypeSchema } from './LogTypeSchema'
 
-export const NestedEnumLogTypeNullableFilterSchema: z.ZodType<Prisma.NestedEnumLogTypeNullableFilter> = z.object({
-  equals: z.lazy(() => LogTypeSchema).optional().nullable(),
-  in: z.lazy(() => LogTypeSchema).array().optional().nullable(),
-  notIn: z.lazy(() => LogTypeSchema).array().optional().nullable(),
-  not: z.union([ z.lazy(() => LogTypeSchema),z.lazy(() => NestedEnumLogTypeNullableFilterSchema) ]).optional().nullable(),
-}).strict();
+export const NestedEnumLogTypeNullableFilterSchema: z.ZodType<Prisma.NestedEnumLogTypeNullableFilter> = z
+    .object({
+        equals: z
+            .lazy(() => LogTypeSchema)
+            .optional()
+            .nullable(),
+        in: z
+            .lazy(() => LogTypeSchema)
+            .array()
+            .optional()
+            .nullable(),
+        notIn: z
+            .lazy(() => LogTypeSchema)
+            .array()
+            .optional()
+            .nullable(),
+        not: z
+            .union([z.lazy(() => LogTypeSchema), z.lazy(() => NestedEnumLogTypeNullableFilterSchema)])
+            .optional()
+            .nullable()
+    })
+    .strict()
 
-export default NestedEnumLogTypeNullableFilterSchema;
+export default NestedEnumLogTypeNullableFilterSchema

@@ -1,10 +1,12 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const InvoiceCommentAvgOrderByAggregateInputSchema: z.ZodType<Prisma.InvoiceCommentAvgOrderByAggregateInput> = z.object({
-  replyCount: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const InvoiceCommentAvgOrderByAggregateInputSchema: z.ZodType<Prisma.InvoiceCommentAvgOrderByAggregateInput> = z
+    .object({
+        replyCount: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default InvoiceCommentAvgOrderByAggregateInputSchema;
+export default InvoiceCommentAvgOrderByAggregateInputSchema

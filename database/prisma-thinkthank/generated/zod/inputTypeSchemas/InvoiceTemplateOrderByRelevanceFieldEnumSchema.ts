@@ -1,5 +1,30 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const InvoiceTemplateOrderByRelevanceFieldEnumSchema = z.enum(['id','currency','customerLabel','dateFormat','descriptionLabel','discountLabel','dueDateLabel','fromLabel','invoiceNoLabel','issueDateLabel','logoUrl','noteLabel','paymentLabel','priceLabel','quantityLabel','taxLabel','projectId','title','totalLabel','totalSummaryLabel','vatLabel','language','description','timezone']);
+export const InvoiceTemplateOrderByRelevanceFieldEnumSchema = z.enum([
+    'id',
+    'currency',
+    'customerLabel',
+    'dateFormat',
+    'descriptionLabel',
+    'discountLabel',
+    'dueDateLabel',
+    'fromLabel',
+    'invoiceNoLabel',
+    'issueDateLabel',
+    'logoUrl',
+    'noteLabel',
+    'paymentLabel',
+    'priceLabel',
+    'quantityLabel',
+    'taxLabel',
+    'projectId',
+    'title',
+    'totalLabel',
+    'totalSummaryLabel',
+    'vatLabel',
+    'language',
+    'description',
+    'timezone'
+])
 
-export default InvoiceTemplateOrderByRelevanceFieldEnumSchema;
+export default InvoiceTemplateOrderByRelevanceFieldEnumSchema

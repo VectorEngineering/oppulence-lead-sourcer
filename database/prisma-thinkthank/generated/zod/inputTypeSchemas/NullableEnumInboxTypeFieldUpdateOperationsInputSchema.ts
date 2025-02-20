@@ -1,10 +1,15 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { InboxTypeSchema } from './InboxTypeSchema';
+import { z } from 'zod'
+import { InboxTypeSchema } from './InboxTypeSchema'
 
-export const NullableEnumInboxTypeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableEnumInboxTypeFieldUpdateOperationsInput> = z.object({
-  set: z.lazy(() => InboxTypeSchema).optional().nullable()
-}).strict();
+export const NullableEnumInboxTypeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableEnumInboxTypeFieldUpdateOperationsInput> = z
+    .object({
+        set: z
+            .lazy(() => InboxTypeSchema)
+            .optional()
+            .nullable()
+    })
+    .strict()
 
-export default NullableEnumInboxTypeFieldUpdateOperationsInputSchema;
+export default NullableEnumInboxTypeFieldUpdateOperationsInputSchema

@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const BankConnectionSettingsOrderByRelevanceFieldEnumSchema = z.enum(['id','syncStartTime','bankConnectionId','createdBy']);
+export const BankConnectionSettingsOrderByRelevanceFieldEnumSchema = z.enum(['id', 'syncStartTime', 'bankConnectionId', 'createdBy'])
 
-export default BankConnectionSettingsOrderByRelevanceFieldEnumSchema;
+export default BankConnectionSettingsOrderByRelevanceFieldEnumSchema

@@ -1,10 +1,12 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const InvoiceAttachmentSumOrderByAggregateInputSchema: z.ZodType<Prisma.InvoiceAttachmentSumOrderByAggregateInput> = z.object({
-  size: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const InvoiceAttachmentSumOrderByAggregateInputSchema: z.ZodType<Prisma.InvoiceAttachmentSumOrderByAggregateInput> = z
+    .object({
+        size: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default InvoiceAttachmentSumOrderByAggregateInputSchema;
+export default InvoiceAttachmentSumOrderByAggregateInputSchema

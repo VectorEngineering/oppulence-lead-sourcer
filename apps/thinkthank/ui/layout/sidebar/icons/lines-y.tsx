@@ -11,7 +11,6 @@ export function LinesY({ 'data-hovered': hovered, className, ...rest }: { 'data-
 
     useEffect(() => {
         if (!hovered) return
-
         ;[line1Ref, line2Ref, line3Ref, line4Ref].forEach((ref, idx) => {
             if (!ref.current) return
 

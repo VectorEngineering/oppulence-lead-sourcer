@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const LogOrderByRelevanceFieldEnumSchema = z.enum(['id','endpointId']);
+export const LogOrderByRelevanceFieldEnumSchema = z.enum(['id', 'endpointId'])
 
-export default LogOrderByRelevanceFieldEnumSchema;
+export default LogOrderByRelevanceFieldEnumSchema

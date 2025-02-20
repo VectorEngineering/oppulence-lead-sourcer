@@ -1,7 +1,7 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const SyncFrequencySchema = z.enum(['REALTIME','DAILY','WEEKLY']);
+export const SyncFrequencySchema = z.enum(['REALTIME', 'DAILY', 'WEEKLY'])
 
 export type SyncFrequencyType = `${z.infer<typeof SyncFrequencySchema>}`
 
-export default SyncFrequencySchema;
+export default SyncFrequencySchema

@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const ProjectInviteScalarFieldEnumSchema = z.enum(['email','expires','projectId','role','createdAt']);
+export const ProjectInviteScalarFieldEnumSchema = z.enum(['email', 'expires', 'projectId', 'role', 'createdAt'])
 
-export default ProjectInviteScalarFieldEnumSchema;
+export default ProjectInviteScalarFieldEnumSchema

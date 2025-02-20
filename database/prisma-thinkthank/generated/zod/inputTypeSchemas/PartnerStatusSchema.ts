@@ -1,7 +1,7 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const PartnerStatusSchema = z.enum(['default','verified','featured']);
+export const PartnerStatusSchema = z.enum(['default', 'verified', 'featured'])
 
 export type PartnerStatusType = `${z.infer<typeof PartnerStatusSchema>}`
 
-export default PartnerStatusSchema;
+export default PartnerStatusSchema

@@ -1,19 +1,21 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { ReportCreateNestedOneWithoutSchedulesInputSchema } from './ReportCreateNestedOneWithoutSchedulesInputSchema';
+import { z } from 'zod'
+import { ReportCreateNestedOneWithoutSchedulesInputSchema } from './ReportCreateNestedOneWithoutSchedulesInputSchema'
 
-export const ReportScheduleCreateInputSchema: z.ZodType<Prisma.ReportScheduleCreateInput> = z.object({
-  id: z.string().cuid().optional(),
-  frequency: z.string(),
-  dayOfWeek: z.number().int().optional().nullable(),
-  dayOfMonth: z.number().int().optional().nullable(),
-  hour: z.number().int(),
-  minute: z.number().int(),
-  isActive: z.boolean().optional(),
-  lastRun: z.coerce.date().optional().nullable(),
-  nextRun: z.coerce.date().optional().nullable(),
-  report: z.lazy(() => ReportCreateNestedOneWithoutSchedulesInputSchema)
-}).strict();
+export const ReportScheduleCreateInputSchema: z.ZodType<Prisma.ReportScheduleCreateInput> = z
+    .object({
+        id: z.string().cuid().optional(),
+        frequency: z.string(),
+        dayOfWeek: z.number().int().optional().nullable(),
+        dayOfMonth: z.number().int().optional().nullable(),
+        hour: z.number().int(),
+        minute: z.number().int(),
+        isActive: z.boolean().optional(),
+        lastRun: z.coerce.date().optional().nullable(),
+        nextRun: z.coerce.date().optional().nullable(),
+        report: z.lazy(() => ReportCreateNestedOneWithoutSchedulesInputSchema)
+    })
+    .strict()
 
-export default ReportScheduleCreateInputSchema;
+export default ReportScheduleCreateInputSchema

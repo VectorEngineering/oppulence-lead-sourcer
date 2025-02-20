@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const LeadScalarFieldEnumSchema = z.enum(['id','endpointId','data','createdAt','updatedAt']);
+export const LeadScalarFieldEnumSchema = z.enum(['id', 'endpointId', 'data', 'createdAt', 'updatedAt'])
 
-export default LeadScalarFieldEnumSchema;
+export default LeadScalarFieldEnumSchema

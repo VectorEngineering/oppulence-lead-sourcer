@@ -1,10 +1,16 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { AccountPurposeSchema } from './AccountPurposeSchema';
+import { z } from 'zod'
+import { AccountPurposeSchema } from './AccountPurposeSchema'
 
-export const NullableEnumAccountPurposeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableEnumAccountPurposeFieldUpdateOperationsInput> = z.object({
-  set: z.lazy(() => AccountPurposeSchema).optional().nullable()
-}).strict();
+export const NullableEnumAccountPurposeFieldUpdateOperationsInputSchema: z.ZodType<Prisma.NullableEnumAccountPurposeFieldUpdateOperationsInput> =
+    z
+        .object({
+            set: z
+                .lazy(() => AccountPurposeSchema)
+                .optional()
+                .nullable()
+        })
+        .strict()
 
-export default NullableEnumAccountPurposeFieldUpdateOperationsInputSchema;
+export default NullableEnumAccountPurposeFieldUpdateOperationsInputSchema

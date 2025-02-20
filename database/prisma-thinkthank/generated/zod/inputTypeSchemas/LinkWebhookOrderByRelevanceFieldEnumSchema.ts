@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const LinkWebhookOrderByRelevanceFieldEnumSchema = z.enum(['id','linkId','webhookId']);
+export const LinkWebhookOrderByRelevanceFieldEnumSchema = z.enum(['id', 'linkId', 'webhookId'])
 
-export default LinkWebhookOrderByRelevanceFieldEnumSchema;
+export default LinkWebhookOrderByRelevanceFieldEnumSchema

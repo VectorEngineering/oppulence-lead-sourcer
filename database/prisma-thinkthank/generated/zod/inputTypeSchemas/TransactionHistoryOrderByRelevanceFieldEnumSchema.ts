@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const TransactionHistoryOrderByRelevanceFieldEnumSchema = z.enum(['id','transactionId','action','description','createdBy']);
+export const TransactionHistoryOrderByRelevanceFieldEnumSchema = z.enum(['id', 'transactionId', 'action', 'description', 'createdBy'])
 
-export default TransactionHistoryOrderByRelevanceFieldEnumSchema;
+export default TransactionHistoryOrderByRelevanceFieldEnumSchema

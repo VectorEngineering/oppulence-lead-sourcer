@@ -1,5 +1,13 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const PayoutOrderByRelevanceFieldEnumSchema = z.enum(['id','programId','partnerId','invoiceId','currency','description','stripeTransferId']);
+export const PayoutOrderByRelevanceFieldEnumSchema = z.enum([
+    'id',
+    'programId',
+    'partnerId',
+    'invoiceId',
+    'currency',
+    'description',
+    'stripeTransferId'
+])
 
-export default PayoutOrderByRelevanceFieldEnumSchema;
+export default PayoutOrderByRelevanceFieldEnumSchema

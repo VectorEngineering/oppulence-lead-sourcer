@@ -1,10 +1,12 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const DocumentAnnotationSumOrderByAggregateInputSchema: z.ZodType<Prisma.DocumentAnnotationSumOrderByAggregateInput> = z.object({
-  pageNumber: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const DocumentAnnotationSumOrderByAggregateInputSchema: z.ZodType<Prisma.DocumentAnnotationSumOrderByAggregateInput> = z
+    .object({
+        pageNumber: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default DocumentAnnotationSumOrderByAggregateInputSchema;
+export default DocumentAnnotationSumOrderByAggregateInputSchema

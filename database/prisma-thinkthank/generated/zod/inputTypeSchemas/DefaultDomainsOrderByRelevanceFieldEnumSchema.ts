@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const DefaultDomainsOrderByRelevanceFieldEnumSchema = z.enum(['id','projectId']);
+export const DefaultDomainsOrderByRelevanceFieldEnumSchema = z.enum(['id', 'projectId'])
 
-export default DefaultDomainsOrderByRelevanceFieldEnumSchema;
+export default DefaultDomainsOrderByRelevanceFieldEnumSchema

@@ -1,40 +1,44 @@
-import { z } from 'zod';
-import type { Prisma } from '@prisma/client';
+import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
 import { OAuthCodeIncludeSchema } from '../inputTypeSchemas/OAuthCodeIncludeSchema'
 import { OAuthCodeWhereUniqueInputSchema } from '../inputTypeSchemas/OAuthCodeWhereUniqueInputSchema'
 import { OAuthCodeCreateInputSchema } from '../inputTypeSchemas/OAuthCodeCreateInputSchema'
 import { OAuthCodeUncheckedCreateInputSchema } from '../inputTypeSchemas/OAuthCodeUncheckedCreateInputSchema'
 import { OAuthCodeUpdateInputSchema } from '../inputTypeSchemas/OAuthCodeUpdateInputSchema'
 import { OAuthCodeUncheckedUpdateInputSchema } from '../inputTypeSchemas/OAuthCodeUncheckedUpdateInputSchema'
-import { OAuthAppArgsSchema } from "../outputTypeSchemas/OAuthAppArgsSchema"
-import { UserArgsSchema } from "../outputTypeSchemas/UserArgsSchema"
-import { ProjectArgsSchema } from "../outputTypeSchemas/ProjectArgsSchema"
+import { OAuthAppArgsSchema } from '../outputTypeSchemas/OAuthAppArgsSchema'
+import { UserArgsSchema } from '../outputTypeSchemas/UserArgsSchema'
+import { ProjectArgsSchema } from '../outputTypeSchemas/ProjectArgsSchema'
 // Select schema needs to be in file to prevent circular imports
 //------------------------------------------------------
 
-export const OAuthCodeSelectSchema: z.ZodType<Prisma.OAuthCodeSelect> = z.object({
-  id: z.boolean().optional(),
-  clientId: z.boolean().optional(),
-  userId: z.boolean().optional(),
-  projectId: z.boolean().optional(),
-  code: z.boolean().optional(),
-  scopes: z.boolean().optional(),
-  redirectUri: z.boolean().optional(),
-  codeChallenge: z.boolean().optional(),
-  codeChallengeMethod: z.boolean().optional(),
-  expiresAt: z.boolean().optional(),
-  createdAt: z.boolean().optional(),
-  oAuthApp: z.union([z.boolean(),z.lazy(() => OAuthAppArgsSchema)]).optional(),
-  user: z.union([z.boolean(),z.lazy(() => UserArgsSchema)]).optional(),
-  project: z.union([z.boolean(),z.lazy(() => ProjectArgsSchema)]).optional(),
-}).strict()
+export const OAuthCodeSelectSchema: z.ZodType<Prisma.OAuthCodeSelect> = z
+    .object({
+        id: z.boolean().optional(),
+        clientId: z.boolean().optional(),
+        userId: z.boolean().optional(),
+        projectId: z.boolean().optional(),
+        code: z.boolean().optional(),
+        scopes: z.boolean().optional(),
+        redirectUri: z.boolean().optional(),
+        codeChallenge: z.boolean().optional(),
+        codeChallengeMethod: z.boolean().optional(),
+        expiresAt: z.boolean().optional(),
+        createdAt: z.boolean().optional(),
+        oAuthApp: z.union([z.boolean(), z.lazy(() => OAuthAppArgsSchema)]).optional(),
+        user: z.union([z.boolean(), z.lazy(() => UserArgsSchema)]).optional(),
+        project: z.union([z.boolean(), z.lazy(() => ProjectArgsSchema)]).optional()
+    })
+    .strict()
 
-export const OAuthCodeUpsertArgsSchema: z.ZodType<Prisma.OAuthCodeUpsertArgs> = z.object({
-  select: OAuthCodeSelectSchema.optional(),
-  include: OAuthCodeIncludeSchema.optional(),
-  where: OAuthCodeWhereUniqueInputSchema,
-  create: z.union([ OAuthCodeCreateInputSchema,OAuthCodeUncheckedCreateInputSchema ]),
-  update: z.union([ OAuthCodeUpdateInputSchema,OAuthCodeUncheckedUpdateInputSchema ]),
-}).strict() ;
+export const OAuthCodeUpsertArgsSchema: z.ZodType<Prisma.OAuthCodeUpsertArgs> = z
+    .object({
+        select: OAuthCodeSelectSchema.optional(),
+        include: OAuthCodeIncludeSchema.optional(),
+        where: OAuthCodeWhereUniqueInputSchema,
+        create: z.union([OAuthCodeCreateInputSchema, OAuthCodeUncheckedCreateInputSchema]),
+        update: z.union([OAuthCodeUpdateInputSchema, OAuthCodeUncheckedUpdateInputSchema])
+    })
+    .strict()
 
-export default OAuthCodeUpsertArgsSchema;
+export default OAuthCodeUpsertArgsSchema

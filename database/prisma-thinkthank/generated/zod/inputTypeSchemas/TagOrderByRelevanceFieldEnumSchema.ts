@@ -1,5 +1,5 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const TagOrderByRelevanceFieldEnumSchema = z.enum(['id','name','color','projectId','context']);
+export const TagOrderByRelevanceFieldEnumSchema = z.enum(['id', 'name', 'color', 'projectId', 'context'])
 
-export default TagOrderByRelevanceFieldEnumSchema;
+export default TagOrderByRelevanceFieldEnumSchema

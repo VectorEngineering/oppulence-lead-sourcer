@@ -1,19 +1,27 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SaleStatusSchema } from './SaleStatusSchema';
-import { NestedEnumSaleStatusWithAggregatesFilterSchema } from './NestedEnumSaleStatusWithAggregatesFilterSchema';
-import { NestedIntFilterSchema } from './NestedIntFilterSchema';
-import { NestedEnumSaleStatusFilterSchema } from './NestedEnumSaleStatusFilterSchema';
+import { z } from 'zod'
+import { SaleStatusSchema } from './SaleStatusSchema'
+import { NestedEnumSaleStatusWithAggregatesFilterSchema } from './NestedEnumSaleStatusWithAggregatesFilterSchema'
+import { NestedIntFilterSchema } from './NestedIntFilterSchema'
+import { NestedEnumSaleStatusFilterSchema } from './NestedEnumSaleStatusFilterSchema'
 
-export const EnumSaleStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumSaleStatusWithAggregatesFilter> = z.object({
-  equals: z.lazy(() => SaleStatusSchema).optional(),
-  in: z.lazy(() => SaleStatusSchema).array().optional(),
-  notIn: z.lazy(() => SaleStatusSchema).array().optional(),
-  not: z.union([ z.lazy(() => SaleStatusSchema),z.lazy(() => NestedEnumSaleStatusWithAggregatesFilterSchema) ]).optional(),
-  _count: z.lazy(() => NestedIntFilterSchema).optional(),
-  _min: z.lazy(() => NestedEnumSaleStatusFilterSchema).optional(),
-  _max: z.lazy(() => NestedEnumSaleStatusFilterSchema).optional()
-}).strict();
+export const EnumSaleStatusWithAggregatesFilterSchema: z.ZodType<Prisma.EnumSaleStatusWithAggregatesFilter> = z
+    .object({
+        equals: z.lazy(() => SaleStatusSchema).optional(),
+        in: z
+            .lazy(() => SaleStatusSchema)
+            .array()
+            .optional(),
+        notIn: z
+            .lazy(() => SaleStatusSchema)
+            .array()
+            .optional(),
+        not: z.union([z.lazy(() => SaleStatusSchema), z.lazy(() => NestedEnumSaleStatusWithAggregatesFilterSchema)]).optional(),
+        _count: z.lazy(() => NestedIntFilterSchema).optional(),
+        _min: z.lazy(() => NestedEnumSaleStatusFilterSchema).optional(),
+        _max: z.lazy(() => NestedEnumSaleStatusFilterSchema).optional()
+    })
+    .strict()
 
-export default EnumSaleStatusWithAggregatesFilterSchema;
+export default EnumSaleStatusWithAggregatesFilterSchema

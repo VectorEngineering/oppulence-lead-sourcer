@@ -1,20 +1,22 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { NullableJsonNullValueInputSchema } from './NullableJsonNullValueInputSchema';
-import { InputJsonValueSchema } from './InputJsonValueSchema';
+import { z } from 'zod'
+import { NullableJsonNullValueInputSchema } from './NullableJsonNullValueInputSchema'
+import { InputJsonValueSchema } from './InputJsonValueSchema'
 
-export const DocumentAnnotationUncheckedCreateInputSchema: z.ZodType<Prisma.DocumentAnnotationUncheckedCreateInput> = z.object({
-  id: z.string().cuid().optional(),
-  documentId: z.string(),
-  type: z.string(),
-  content: z.string(),
-  pageNumber: z.number().int().optional().nullable(),
-  coordinates: z.union([ z.lazy(() => NullableJsonNullValueInputSchema),InputJsonValueSchema ]).optional(),
-  color: z.string().optional().nullable(),
-  createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  createdBy: z.string().optional().nullable()
-}).strict();
+export const DocumentAnnotationUncheckedCreateInputSchema: z.ZodType<Prisma.DocumentAnnotationUncheckedCreateInput> = z
+    .object({
+        id: z.string().cuid().optional(),
+        documentId: z.string(),
+        type: z.string(),
+        content: z.string(),
+        pageNumber: z.number().int().optional().nullable(),
+        coordinates: z.union([z.lazy(() => NullableJsonNullValueInputSchema), InputJsonValueSchema]).optional(),
+        color: z.string().optional().nullable(),
+        createdAt: z.coerce.date().optional(),
+        updatedAt: z.coerce.date().optional(),
+        createdBy: z.string().optional().nullable()
+    })
+    .strict()
 
-export default DocumentAnnotationUncheckedCreateInputSchema;
+export default DocumentAnnotationUncheckedCreateInputSchema

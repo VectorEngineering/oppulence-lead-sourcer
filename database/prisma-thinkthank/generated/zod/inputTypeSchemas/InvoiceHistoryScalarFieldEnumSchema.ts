@@ -1,5 +1,14 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const InvoiceHistoryScalarFieldEnumSchema = z.enum(['id','invoiceId','action','description','changes','metadata','createdAt','createdBy']);
+export const InvoiceHistoryScalarFieldEnumSchema = z.enum([
+    'id',
+    'invoiceId',
+    'action',
+    'description',
+    'changes',
+    'metadata',
+    'createdAt',
+    'createdBy'
+])
 
-export default InvoiceHistoryScalarFieldEnumSchema;
+export default InvoiceHistoryScalarFieldEnumSchema

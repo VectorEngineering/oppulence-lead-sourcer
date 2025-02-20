@@ -1,7 +1,7 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const WebhookMethodSchema = z.enum(['POST']);
+export const WebhookMethodSchema = z.enum(['POST'])
 
 export type WebhookMethodType = `${z.infer<typeof WebhookMethodSchema>}`
 
-export default WebhookMethodSchema;
+export default WebhookMethodSchema

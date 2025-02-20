@@ -1,10 +1,12 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
+import { z } from 'zod'
 
-export const TagNameProjectIdCompoundUniqueInputSchema: z.ZodType<Prisma.TagNameProjectIdCompoundUniqueInput> = z.object({
-  name: z.string(),
-  projectId: z.string()
-}).strict();
+export const TagNameProjectIdCompoundUniqueInputSchema: z.ZodType<Prisma.TagNameProjectIdCompoundUniqueInput> = z
+    .object({
+        name: z.string(),
+        projectId: z.string()
+    })
+    .strict()
 
-export default TagNameProjectIdCompoundUniqueInputSchema;
+export default TagNameProjectIdCompoundUniqueInputSchema

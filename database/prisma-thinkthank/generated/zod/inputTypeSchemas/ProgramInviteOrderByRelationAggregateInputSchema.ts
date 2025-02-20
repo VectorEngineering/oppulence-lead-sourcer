@@ -1,10 +1,12 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const ProgramInviteOrderByRelationAggregateInputSchema: z.ZodType<Prisma.ProgramInviteOrderByRelationAggregateInput> = z.object({
-  _count: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const ProgramInviteOrderByRelationAggregateInputSchema: z.ZodType<Prisma.ProgramInviteOrderByRelationAggregateInput> = z
+    .object({
+        _count: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default ProgramInviteOrderByRelationAggregateInputSchema;
+export default ProgramInviteOrderByRelationAggregateInputSchema

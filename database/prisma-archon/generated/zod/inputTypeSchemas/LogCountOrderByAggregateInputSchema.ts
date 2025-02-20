@@ -1,15 +1,17 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const LogCountOrderByAggregateInputSchema: z.ZodType<Prisma.LogCountOrderByAggregateInput> = z.object({
-  id: z.lazy(() => SortOrderSchema).optional(),
-  endpointId: z.lazy(() => SortOrderSchema).optional(),
-  type: z.lazy(() => SortOrderSchema).optional(),
-  postType: z.lazy(() => SortOrderSchema).optional(),
-  message: z.lazy(() => SortOrderSchema).optional(),
-  createdAt: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const LogCountOrderByAggregateInputSchema: z.ZodType<Prisma.LogCountOrderByAggregateInput> = z
+    .object({
+        id: z.lazy(() => SortOrderSchema).optional(),
+        endpointId: z.lazy(() => SortOrderSchema).optional(),
+        type: z.lazy(() => SortOrderSchema).optional(),
+        postType: z.lazy(() => SortOrderSchema).optional(),
+        message: z.lazy(() => SortOrderSchema).optional(),
+        createdAt: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default LogCountOrderByAggregateInputSchema;
+export default LogCountOrderByAggregateInputSchema

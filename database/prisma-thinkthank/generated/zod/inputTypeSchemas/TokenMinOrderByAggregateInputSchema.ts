@@ -1,18 +1,20 @@
-import type { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client'
 
-import { z } from 'zod';
-import { SortOrderSchema } from './SortOrderSchema';
+import { z } from 'zod'
+import { SortOrderSchema } from './SortOrderSchema'
 
-export const TokenMinOrderByAggregateInputSchema: z.ZodType<Prisma.TokenMinOrderByAggregateInput> = z.object({
-  id: z.lazy(() => SortOrderSchema).optional(),
-  name: z.lazy(() => SortOrderSchema).optional(),
-  hashedKey: z.lazy(() => SortOrderSchema).optional(),
-  partialKey: z.lazy(() => SortOrderSchema).optional(),
-  expires: z.lazy(() => SortOrderSchema).optional(),
-  lastUsed: z.lazy(() => SortOrderSchema).optional(),
-  createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional()
-}).strict();
+export const TokenMinOrderByAggregateInputSchema: z.ZodType<Prisma.TokenMinOrderByAggregateInput> = z
+    .object({
+        id: z.lazy(() => SortOrderSchema).optional(),
+        name: z.lazy(() => SortOrderSchema).optional(),
+        hashedKey: z.lazy(() => SortOrderSchema).optional(),
+        partialKey: z.lazy(() => SortOrderSchema).optional(),
+        expires: z.lazy(() => SortOrderSchema).optional(),
+        lastUsed: z.lazy(() => SortOrderSchema).optional(),
+        createdAt: z.lazy(() => SortOrderSchema).optional(),
+        updatedAt: z.lazy(() => SortOrderSchema).optional(),
+        userId: z.lazy(() => SortOrderSchema).optional()
+    })
+    .strict()
 
-export default TokenMinOrderByAggregateInputSchema;
+export default TokenMinOrderByAggregateInputSchema
