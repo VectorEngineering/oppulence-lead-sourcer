@@ -9,3 +9,4 @@ packages:
     - 'cloudflare/*'
     - 'database/*'
     - 'apps/web/.react-email'
+    - 'docs/*'
