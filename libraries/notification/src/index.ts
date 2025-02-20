@@ -220,8 +220,8 @@ export async function trigger(data: TriggerPayload) {
             tenant: data.tenant,
             overrides: {
                 email: {
-                    replyTo: data.replyTo,
                     // @ts-ignore
+                    replyTo: data.replyTo,
                     headers: {
                         'X-Entity-Ref-ID': nanoid()
                     }
