@@ -9,9 +9,6 @@ function Logo({ fontSize = 'text-lg', iconSize = 10 }: { fontSize?: string; icon
             <div className='rounded-xl bg-primary p-2'>
                 <SquareDashedMousePointer size={iconSize} className='stroke-white' />
             </div>
-            <div>
-                <span className='bg-primary bg-clip-text text-transparent text-md font-semibold'>Vector</span>
-            </div>
         </Link>
     )
 }
