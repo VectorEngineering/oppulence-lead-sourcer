@@ -12,10 +12,10 @@
     ],
     "scripts": {
         "build-all": "turbo run build",
-        "build": "turbo run build --filter=!./apps/**",
+        "build": "turbo run build",
         "build-archon": "turbo run build --filter=@playbookmedia/archon",
-        "build-oppulence": "turbo run build --filter=@playbookmedia/oppulence",
-        "build-thinkthank": "turbo run build --filter=@playbookmedia/thinkthank",
+        "build-prospector": "turbo run build --filter=@playbookmedia/prospector",
+        "build-www": "turbo run build --filter=@playbookmedia/www",
         "build-force": "pnpm clean && turbo run build --force",
         "build-no-cache": "turbo run build --no-cache",
         "dev": "turbo run dev --parallel",
