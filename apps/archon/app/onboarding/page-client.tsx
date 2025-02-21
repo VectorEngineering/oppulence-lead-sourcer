@@ -1,22 +1,22 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
-import { completeOnboarding } from '@/app/actions/users/complete-onboarding-action'
-import { updateUserMetadata } from '@/app/actions/users/update-user-metadata-action'
-import { Progress } from '@/components/ui/progress'
-import { useAction } from 'next-safe-action/hooks'
-import { toast } from 'sonner'
 import { CreateAccount } from './_components/create-account'
 import { CreateWorkspace } from './_components/create-workspace'
 import { InviteMembers } from './_components/invite-members'
+import { Progress } from '@/components/ui/progress'
 import { WelcomeScreen } from './_components/welcome-screen'
+import { completeOnboarding } from '@/app/actions/users/complete-onboarding-action'
+import { toast } from 'sonner'
+import { updateUserMetadata } from '@/app/actions/users/update-user-metadata-action'
+import { useAction } from 'next-safe-action/hooks'
 
 const STEPS = [
     {
         title: 'Welcome',
-        description: 'Welcome to Vector Lead Management',
+        description: 'Welcome to Oppulence (Lead Sourcing)',
         param: 'welcome'
     },
     {

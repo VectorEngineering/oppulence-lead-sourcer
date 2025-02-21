@@ -58,7 +58,7 @@ install:
 	@echo "$(GREEN)Dependencies installed successfully$(NC)"
 
 # Start development server
-dev:
+dev: install
 	@echo "$(YELLOW)Starting development server...$(NC)"
 	$(NODE) run dev
 
