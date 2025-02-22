@@ -7,7 +7,7 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import Header from "@/components/ui/header";
 import { PHProvider } from "./providers";
-import PostHogPageViewWrapper from "../components/PostHogPageViewWrapper";
+import PostHogPageViewWrapper from "../components/posthog-page-view-wrapper";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";

@@ -4,7 +4,7 @@ import { format, parseISO } from "date-fns";
 import { BlogPost } from "@/lib/blog/types";
 import Image from "next/image";
 import type { Metadata } from "next";
-import ReadingProgress from "@/components/ReadingProgress";
+import ReadingProgress from "@/components/reading-progress";
 import { notFound } from "next/navigation";
 import { posts } from "@/lib/blog/posts";
 
