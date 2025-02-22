@@ -134,7 +134,7 @@ export default function MobileMenu({
                       >
                         <Button
                           variant="outline"
-                          className="w-full justify-start"
+                          className="w-full justify-start rounded-2xl"
                         >
                           <LogIn className="mr-2 h-4 w-4" />
                           Sign in
@@ -146,7 +146,7 @@ export default function MobileMenu({
                       >
                         <Button
                           variant="outline"
-                          className="mt-4 w-full justify-start"
+                          className="mt-4 w-full justify-start rounded-2xl"
                         >
                           <SquareArrowRight className="mr-2 h-4 w-4" />
                           Try Oppulence

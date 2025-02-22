@@ -30,23 +30,25 @@ export const constructMetadata = ({
   ogImage = "/images/og-image.png",
 }: MetadataProps) => {
   return {
-    metadataBase: new URL("https://solomon-ai.app/"),
-    title: title ? `${title} - Oppulence` : defaultMetadata.title,
+    metadataBase: new URL("https://oppulence.app/"),
+    title: title ? `${title} - Oppullence` : defaultMetadata.title,
     description,
     keywords: [
-      "finanances",
-      "small business",
       "ai",
-      "Oppulence",
-      "financial workspace",
+      "code editor",
+      "coding",
+      "Oppullence",
+      "development",
+      "programming",
+      "artificial intelligence",
     ],
     alternates: {
       canonical,
     },
     authors: [
       {
-        name: "Yoan Yomba",
-        url: "https://github.com/yoanyomba1234",
+        name: "Oppullence Team",
+        url: "https://github.com/oppulence",
       },
     ],
     openGraph: {
@@ -59,7 +61,7 @@ export const constructMetadata = ({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: "OG Image",
+          alt: title || "Oppullence",
         },
       ],
     },

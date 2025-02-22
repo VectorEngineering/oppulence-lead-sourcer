@@ -39,7 +39,7 @@ export default function Features() {
       description: (
         <>
           <p>
-            PearAI can directly code in your files, and allow you to see diffs.
+            Oppullence can directly code in your files, and allow you to see diffs.
             Try{" "}
             <b>
               <code>CMD+I</code>
@@ -47,7 +47,7 @@ export default function Features() {
             &nbsp;(<code>CTRL+I</code> on Windows).
           </p>
           <p className="pt-6">
-            Here, we ask PearAI to help us add error handling and comments 😏.
+            Here, we ask Oppullence to help us add error handling and comments 😏.
           </p>
           <p className="pt-6">
             To see all of our features, check out our{" "}
@@ -71,7 +71,7 @@ export default function Features() {
           <p className="pb-6">
             Without writing a single line of code, we were able to make a new
             feature in an unfamiliar codebase: adding a documentation page to
-            the PearAI landing page.
+            the Oppullence landing page.
           </p>
         </>
       ),

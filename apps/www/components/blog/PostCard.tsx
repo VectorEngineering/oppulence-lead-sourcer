@@ -1,7 +1,9 @@
+import { Card, CardContent } from "@/components/ui/card";
 import { format, parseISO } from "date-fns";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { normalizeDate } from "@/lib/utils";
 
 interface PostCardProps {
@@ -10,17 +12,31 @@ interface PostCardProps {
   excerpt: string;
   thumbnail: string;
   url: string;
+  slug: string;
+  className?: string;
 }
 
-const PostCard = ({ title, date, excerpt, thumbnail, url }: PostCardProps) => (
-  <Card className="flex h-full flex-col overflow-hidden hover:bg-secondary-300/10">
-    <Link href={url}>
+const PostCard = ({
+  title,
+  date,
+  excerpt,
+  thumbnail,
+  slug,
+  className,
+}: PostCardProps) => (
+  <Card
+    className={cn(
+      "flex h-full flex-col overflow-hidden hover:bg-secondary-300/10",
+      className,
+    )}
+  >
+    <Link href={`/blog/${slug}`}>
       <div className="relative aspect-video w-full">
         <Image
           fill
           src={thumbnail}
           alt={title}
-          className="h-full w-full rounded-md"
+          className="h-full w-full rounded-md object-cover"
         />
       </div>
       <CardContent className="flex-grow p-4">

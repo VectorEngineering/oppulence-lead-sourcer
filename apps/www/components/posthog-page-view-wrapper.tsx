@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const PostHogPageView = dynamic(() => import("../PostHogPageView"), {
+const PostHogPageView = dynamic(() => import("../app/PostHogPageView"), {
   ssr: false,
 });
 
