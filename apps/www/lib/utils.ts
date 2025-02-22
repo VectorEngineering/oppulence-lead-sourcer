@@ -30,14 +30,14 @@ export const constructMetadata = ({
   ogImage = "/images/og-image.png",
 }: MetadataProps) => {
   return {
-    metadataBase: new URL("https://pearai.com/"),
-    title: title ? `${title} - PearAI` : defaultMetadata.title,
+    metadataBase: new URL("https://oppulence.app/"),
+    title: title ? `${title} - Oppullence` : defaultMetadata.title,
     description,
     keywords: [
       "ai",
       "code editor",
       "coding",
-      "PearAI",
+      "Oppullence",
       "development",
       "programming",
       "artificial intelligence",
@@ -47,8 +47,8 @@ export const constructMetadata = ({
     },
     authors: [
       {
-        name: "PearAI Team",
-        url: "https://github.com/trypear",
+        name: "Oppullence Team",
+        url: "https://github.com/oppulence",
       },
     ],
     openGraph: {
@@ -61,7 +61,7 @@ export const constructMetadata = ({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: title || "PearAI",
+          alt: title || "Oppullence",
         },
       ],
     },

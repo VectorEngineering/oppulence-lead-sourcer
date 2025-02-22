@@ -195,7 +195,7 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
               Stay in the Loop
             </h2>
             <p className="mb-8 text-gray-600 dark:text-gray-400">
-              Get the latest PearAI updates, tutorials, and insights delivered
+              Get the latest Oppullence updates, tutorials, and insights delivered
               directly to your inbox. No spam, unsubscribe at any time.
             </p>
             <form className="flex flex-col gap-4 sm:flex-row">
