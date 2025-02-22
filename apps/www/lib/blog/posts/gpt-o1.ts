@@ -8,7 +8,9 @@ export const post = blogPostSchema.parse({
   date: "2024-09-15T00:00:00Z",
   author: "Duke Pan",
   readingTime: "3 min",
-  thumbnail: "https://pearai.com/images/blog/o1-doc-thumbnail.webp",
+  slug: "gpt-o1",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: [
     "guide",
     "tutorial",

@@ -8,8 +8,10 @@ export const post = blogPostSchema.parse({
   date: "2024-09-26T00:00:00Z",
   author: "Duke Pan",
   readingTime: "3 minutes",
-  thumbnail: "https://pearai.com/images/og-image.png",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: ["featured", "guide", "Open Source"],
+  slug: "why-open-source",
   content: `<article class="mx-auto max-w-4xl space-y-8 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8">
   <section class="space-y-6">
     <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400 sm:text-2xl">The True Differentiators For The Future Of AI Code Editors</h2>

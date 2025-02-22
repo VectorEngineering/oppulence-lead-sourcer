@@ -5,10 +5,12 @@ export const post = blogPostSchema.parse({
   date: "2024-08-31T00:00:00Z",
   excerpt:
     "PearAI supports tab autocomplete, and this is how to set this up. Tab autocomplete predicts / suggests what you would type next as you're coding!",
-  thumbnail: "https://pearai.com/images/blog/codestral.jpg",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: ["tutorial", "autocomplete", "suggestions"],
   url: "https://pearai.com/blog/setting-up-auto-complete-on-pearai",
   author: "Nang",
+  slug: "setting-up-auto-complete-on-pearai",
   content: `<div
   class="mx-auto max-w-4xl space-y-8 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8"
 >

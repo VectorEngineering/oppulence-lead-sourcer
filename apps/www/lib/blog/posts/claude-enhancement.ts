@@ -8,7 +8,9 @@ export const post = blogPostSchema.parse({
   date: "2024-08-20T00:00:00Z",
   author: "Conor Quinlan",
   readingTime: "3 min",
-  thumbnail: "https://pearai.com/images/blog/claude.png",
+  slug: "enhancing-pearai-with-anthropic-claude-3-5",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: ["announcement", "AI", "Claude 3.5", "PearAI", "Code Editor"],
   content: `<article class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8">
   <p class="text-base font-semibold leading-relaxed sm:text-lg md:text-xl">

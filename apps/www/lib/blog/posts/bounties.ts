@@ -8,7 +8,9 @@ export const post = blogPostSchema.parse({
   date: "2024-09-28T00:00:00Z",
   author: "PearAI Team",
   readingTime: "2 min",
-  thumbnail: "https://pearai.com/images/og-image.png",
+  slug: "open-source-bounties",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: [
     "announcement",
     "featured",

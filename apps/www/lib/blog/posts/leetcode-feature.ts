@@ -9,7 +9,9 @@ export const post = blogPostSchema.parse({
   date: "2024-09-15T00:00:00Z",
   author: "Nang, IcePrey",
   readingTime: "4 min",
-  thumbnail: "https://pearai.com/images/leetcode.png",
+  slug: "introducing-leetcode-feature",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: [
     "announcement",
     "featured",

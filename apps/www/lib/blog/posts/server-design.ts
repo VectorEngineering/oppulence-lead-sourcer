@@ -6,9 +6,11 @@ export const post = blogPostSchema.parse({
   date: "2024-09-01T00:00:00Z",
   excerpt:
     "I spent the last 2 months working on PearAI, an Open-Sourced AI-Powered Code Editor. It is like having an expert on your codebase right next to you. We achieve this with Retrieval Augmented Generation. This is my new startup after finishing my B.S. & M.S from Carnegie Mellon and working for 1.5 years in High Frequency Trading as a Software Engineer. This is exactly how we designed our server.",
-  thumbnail: "https://pearai.com/images/blog/pearai-server-option.png",
+  thumbnail:
+    "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: ["guide", "server", "server design", "pearai server"],
   url: "https://pearai.com/blog/how-we-designed-our-servers-end-to-end-for-pearai",
+  slug: "how-we-designed-our-servers-end-to-end-for-pearai",
   content: `<div
   class="mx-auto max-w-4xl space-y-8 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8"
 >
