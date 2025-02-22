@@ -28,6 +28,7 @@ export const blogPostSchema = z.object({
     ),
   url: z.string().url(),
   content: z.string().min(1),
+  summary: z.string().min(1),
   readingTime: z.string().min(1).optional(),
   slug: z.string().min(1),
 });

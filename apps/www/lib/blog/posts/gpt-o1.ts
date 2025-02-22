@@ -20,6 +20,8 @@ export const post = blogPostSchema.parse({
     "o1-mini",
     "o1-preview",
   ],
+  summary:
+    "Learn how to integrate and effectively use GPT o1-mini and o1-preview models in PearAI, along with important considerations for optimal usage.",
   content: `<article class="mx-auto max-w-4xl space-y-8 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8">
   <section class="space-y-6">
     <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400 sm:text-2xl">Adding GPT o1-mini and o1-preview to PearAI</h2>

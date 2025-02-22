@@ -11,6 +11,8 @@ export const post = blogPostSchema.parse({
   thumbnail:
     "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: ["guide", "tutorial", "WSL", "Linux", "Windows Subsystem for Linux"],
+  summary:
+    "Easy step by step guide to setup WSL in PearAI, and get started with AI-powered coding in WSL.",
   slug: "wsl-setup",
   content: `<article class="mx-auto max-w-4xl space-y-8 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8">
   <section class="space-y-6">

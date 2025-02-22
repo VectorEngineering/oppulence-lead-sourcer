@@ -12,6 +12,8 @@ export const post = blogPostSchema.parse({
   thumbnail:
     "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   tags: ["announcement", "AI", "Claude 3.5", "PearAI", "Code Editor"],
+  summary:
+    "How we leveraged Claude 3.5 to improve code syntax and logic in our open-source AI code editor, and the unique challenges we faced in implementation.",
   content: `<article class="mx-auto max-w-4xl space-y-6 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8">
   <p class="text-base font-semibold leading-relaxed sm:text-lg md:text-xl">
     At PearAI, we're constantly striving to improve our open-source AI code editor. Our latest advancement involves integrating Anthropic's Claude 3.5 model to enhance code syntax and logic understanding when providing AI context to a user's codebase. This integration presented unique challenges and opportunities that we're excited to share with you.

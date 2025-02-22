@@ -12,6 +12,8 @@ export const post = blogPostSchema.parse({
     "https://cdn.dribbble.com/userupload/34720834/file/original-2a2836a5823274482f261d8e8d22414a.png?resize=1024x768&vertical=center",
   slug: "download-pearai-on-linux",
   tags: ["guide", "help", "PearAI", "Linux"],
+  summary:
+    "An easy-to-follow guide for downloading and installing PearAI on a wide range of Linux distributions, ensuring a smooth setup for both beginners and experienced users.",
   content: `<article class="mx-auto max-w-4xl space-y-8 px-4 py-8 text-gray-800 dark:text-gray-200 sm:px-6 lg:px-8">
   <section class="space-y-6">
     <h2 class="text-xl font-bold text-primary-600 dark:text-primary-400 sm:text-2xl">Step 1 - Install Microsft WSL extension</h2>
