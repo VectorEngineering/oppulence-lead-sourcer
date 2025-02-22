@@ -1,22 +1,11 @@
 import { cn, constructMetadata, normalizeDate } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
 
+import { BlogPost } from "@/lib/blog/types";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { posts } from "@/lib/blog/postData";
-
-interface BlogPost {
-  url: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  thumbnail?: string;
-  author?: string;
-  readingTime?: string;
-  tags?: string[];
-}
+import { posts } from "@/lib/blog/posts";
 
 export const generateStaticParams = async () =>
   (posts as BlogPost[]).map((post) => ({

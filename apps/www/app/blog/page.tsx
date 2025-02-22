@@ -1,21 +1,9 @@
+import { BlogPost } from "@/lib/blog/types";
 import { Metadata } from "next";
 import PostCard from "@/components/blog/PostCard";
 import { compareDesc } from "date-fns";
 import { constructMetadata } from "@/lib/utils";
-import { posts } from "@/lib/blog/postData";
-
-// Define the BlogPost interface
-interface BlogPost {
-  url: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  thumbnail?: string;
-  author?: string;
-  readingTime?: string;
-  tags?: string[];
-}
+import { posts } from "@/lib/blog/posts";
 
 export const metadata: Metadata = constructMetadata({
   title: "Blog",
