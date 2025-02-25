@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-export default function ReadingProgress() {
+import { cn } from "@/lib/utils";
+
+interface ReadingProgressProps {
+  className?: string;
+}
+
+export default function ReadingProgress({ className }: ReadingProgressProps) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -26,9 +32,14 @@ export default function ReadingProgress() {
   }, []);
 
   return (
-    <div className="fixed left-0 top-0 z-50 h-1 w-full bg-gray-200">
+    <div
+      className={cn(
+        "fixed left-0 top-0 z-50 h-1 w-full bg-gray-200",
+        className,
+      )}
+    >
       <div
-        className="h-full bg-primary-600 text-black transition-all duration-150"
+        className="dark:bg-white h-full bg-black transition-all duration-150"
         style={{ width: `${progress}%` }}
       />
     </div>

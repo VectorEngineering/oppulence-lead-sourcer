@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Check, ChevronDown, Info } from "lucide-react";
+import { Check, ChevronDown, Info, Sparkles } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,6 +25,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Badge } from "./ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,10 +35,10 @@ import Spinner from "./ui/spinner";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useCheckout } from "@/hooks/useCheckout";
-import { useRouter } from "next/navigation";
 
 interface ExtendedPricingTierProps extends PricingTierProps {
   disabled?: boolean;
+  isPopular?: boolean;
 }
 
 type VersionInfo = {
@@ -57,6 +58,7 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
   user,
   index,
   disabled,
+  isPopular = false,
   priceUnit = "/month",
 }) => {
   const { handleCheckout, isSubmitting } = useCheckout(user);
@@ -70,6 +72,7 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 
   // used to ensure animations run after mount client-side
   const [mounted, setMounted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -174,19 +177,39 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 
   return (
     <Card
-      className={`flex h-full w-full flex-col ${index === 1 && "from-primary-600/5 ring-primary-900/40 dark:from-primary-600/5 dark:ring-primary-600/20"}`}
+      className={cn(
+        "group relative flex h-full w-full flex-col transition-all duration-300 ease-in-out",
+        isPopular && "scale-[1.02] shadow-lg",
+        isHovered && "translate-y-[-4px] shadow-xl",
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
+      {isPopular && (
+        <Badge
+          className="text-secondary absolute -top-3 left-1/2 -translate-x-1/2 bg-background px-4 py-1 text-sm font-medium shadow-md"
+          variant="default"
+        >
+          <Sparkles className="mr-1 h-3.5 w-3.5" /> Most Popular
+        </Badge>
+      )}
       <div className="flex h-full w-full flex-col">
         <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-          <CardTitle className="text-2xl leading-6 text-foreground">
+          <CardTitle className="text-2xl font-bold leading-6 text-foreground">
             {title}
-            &nbsp;
-            {index === 1 && title === "Junior Engineer" && "(Monthly)"}
-            {index === 2 && title === "10x Engineer" && "(Yearly)"}
+            {index === 1 && title === "Junior Engineer" && (
+              <span className="ml-1 text-sm font-normal text-muted-foreground">
+                (Monthly)
+              </span>
+            )}
+            {index === 2 && title === "10x Engineer" && (
+              <span className="ml-1 text-sm font-normal text-muted-foreground">
+                (Yearly)
+              </span>
+            )}
           </CardTitle>
-          <p className="text-base font-normal text-gray-600 sm:text-base md:text-sm">
+          <p className="mt-2 text-base font-normal text-muted-foreground">
             {index === 0 && isFree && (
-              // biome-ignore lint/complexity/noUselessFragments: <explanation>
               <>You can download Oppulence directly 🤓</>
             )}
             {!isFree && description}
@@ -195,21 +218,22 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
         <CardContent className="mt-5 flex flex-grow flex-col px-6">
           {!isFree ? (
             <div className="flex flex-col items-start justify-center">
-              <p
-                className="text-2xl text-gray-900 sm:text-3xl"
-                aria-label={`Price: $${price} per month`}
-              >
-                ${price}
-                <small className="text-base text-gray-400 sm:text-lg">
+              <div className="flex items-baseline">
+                <p
+                  className="text-3xl font-bold text-foreground"
+                  aria-label={`Price: $${price} per month`}
+                >
+                  ${price}
+                </p>
+                <small className="ml-1 text-base text-muted-foreground">
                   {priceUnit}
                 </small>
-                &nbsp;
-                <small className="text-base text-foreground sm:text-lg">
-                  &#40;Early Bird&#41;
-                </small>
-              </p>
+                <div className="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                  Early Bird
+                </div>
+              </div>
               <p
-                className="text-base text-gray-400 sm:text-lg"
+                className="mt-1 text-sm text-muted-foreground"
                 aria-label={`Original price: $${prevPrice} per month`}
               >
                 <del>${prevPrice}</del>
@@ -219,13 +243,13 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
           ) : (
             <div className="flex flex-col items-start justify-center">
               <p
-                className="text-2xl text-gray-900 sm:text-3xl"
+                className="text-3xl font-bold text-foreground"
                 aria-label="Price: Free"
               >
                 Free
               </p>
               <p
-                className="sm text-base text-gray-400"
+                className="mt-1 text-sm text-muted-foreground"
                 aria-label="Tagline: Start coding"
               >
                 Free requests out of the box, no credit card required.
@@ -234,136 +258,39 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
           )}
           {features && (
             <ul
-              className="mt-5 w-full"
+              className="mt-6 space-y-3 text-sm"
               aria-label={`Features of ${title} plan`}
             >
-              {features.map((feature, index) => (
+              {features.map((feature, idx) => (
                 <li
-                  key={`${index}-${feature}-${Math.random()}`}
-                  className="flex items-center py-2 text-gray-600"
+                  key={`${idx}-${feature}`}
+                  className="flex items-start text-muted-foreground"
                 >
                   <Check
-                    className="mr-3 h-6 w-6 flex-shrink-0 text-foreground"
+                    className="mr-3 mt-0.5 h-4 w-4 flex-shrink-0 text-primary"
                     aria-hidden="true"
                   />
-                  {featureRowDescription(feature)}
+                  <span>{featureRowDescription(feature)}</span>
                 </li>
               ))}
             </ul>
           )}
         </CardContent>
-        <CardFooter>
+        <CardFooter className="px-6 pb-6">
           {isFree ? (
-            <span>
+            <span className="text-sm text-muted-foreground">
               Sorry but downloads are temporarily disabled for the week! Please
               check back later. If you have concerns or questions, please
               contact{" "}
               <Link
                 href="mailto:engineering@solomon-ai.co"
-                className="font-medium text-gray-900 underline"
+                className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
               >
                 engineering@solomon-ai.co
               </Link>
               .
             </span>
           ) : (
-            ""
-          )}
-          {/* {isDownloading ? (
-            <Spinner className="mb-4 ml-4 border" />
-          ) : (
-            isFree &&
-            (downloadLink !== undefined ? (
-              <p className="text-gray-400">
-                Thanks for trying out Oppulence! Your download should have started,
-                if it hasn&apos;t, click{" "}
-                <a
-                  className="transition-colors cursor-pointer text-foreground hover:text-primary-800"
-                  href={downloadLink}
-                >
-                  here
-                </a>
-                .
-              </p>
-            ) : (
-              <div className="flex flex-col items-center w-full gap-2">
-                {versionInfo && (
-                  <div className="ml-2 mr-auto text-sm text-gray-500">
-                    version {versionInfo?.version}
-                    <div>
-                      last release{" "}
-                      {new Date(
-                        versionInfo?.lastReleaseDate,
-                      ).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </div>
-                  </div>
-                )}
-                <div className="flex w-full max-w-md gap-2">
-                  <Button
-                    className={cn("rainbow-gradient", "font-bold", "flex-1")}
-                    onClick={() => handleDownload("windows")}
-                  >
-                    <WindowsLogo className="h-[18px] w-[18px] fill-white-main" />
-                    Windows
-                  </Button>
-
-                  <Button
-                    className={cn("rainbow-gradient", "font-bold", "flex-1")}
-                    onClick={() =>
-                      (window.location.href = "/blog/download-pearai-on-linux")
-                    }
-                  >
-                    <LinuxLogo className="h-[18px] w-[18px] fill-white-main" />
-                    Linux x64
-                  </Button>
-                </div>
-                <div className="flex w-full max-w-md">
-                  <DropdownMenu modal={false}>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        ref={buttonRef}
-                        style={gradientStyle}
-                        className="relative flex items-center justify-center w-full px-4 py-2 transition-opacity hover:opacity-90"
-                      >
-                        <div className="flex items-center">
-                          <AppleLogo className="mr-2 h-[18px] w-[18px] fill-current" />
-                          <span>MacOS</span>
-                        </div>
-                        <ChevronDown size="20" className="absolute right-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      side="bottom"
-                      align="center"
-                      style={{
-                        width:
-                          buttonWidth !== null ? `${buttonWidth}px` : "auto",
-                      }}
-                      className="flex flex-col items-center justify-center p-1 border border-border/50 bg-background"
-                    >
-                      <DropdownMenuItem
-                        className="flex w-full justify-center rounded px-2 py-1.5 text-sm focus:bg-secondary-300/10"
-                        onSelect={() => handleDownload("darwin-arm64")}
-                      >
-                        Silicon (M chip)
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        className="flex w-full justify-center rounded px-2 py-1.5 text-sm focus:bg-secondary-300/10"
-                        onSelect={() => handleDownload("intel-x64")}
-                      >
-                        Intel chip
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </div>
-            ))
-          )} */}
-          {!isFree && (
             <>
               {disabled ? (
                 <Button className="w-full" disabled>
@@ -371,6 +298,10 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
                 </Button>
               ) : (
                 <Button
+                  className={cn(
+                    "w-full transition-all duration-300",
+                    isPopular && "bg-primary hover:bg-primary/90",
+                  )}
                   onClick={() => {
                     window.location.href = "https://app.oppulence.app/signup";
                   }}
@@ -381,9 +312,6 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
               )}
             </>
           )}
-          {/* <button className="w-full px-4 py-2 text-sm font-medium rounded-full bg-primary-800 hover:bg-primary-800"> */}
-          {/* Get Started */}
-          {/* </button> */}
         </CardFooter>
       </div>
     </Card>
@@ -391,671 +319,422 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 };
 
 const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
+  const searchParams = useSearchParams();
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
+    searchParams?.get("billing") === "yearly" ? "yearly" : "monthly",
+  );
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    searchParams?.get("category") || "lead-management",
+  );
+  const router = useRouter();
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  const discount = billingCycle === "yearly" ? 20 : 0;
+
+  // Update URL when state changes without scrolling
+  const updateQueryParams = (params: Record<string, string>) => {
+    const url = new URL(window.location.href);
+    Object.entries(params).forEach(([key, value]) => {
+      url.searchParams.set(key, value);
+    });
+
+    // Use replaceState to update URL without scrolling
+    window.history.replaceState({}, "", url.pathname + url.search);
+  };
+
+  const handleBillingCycleChange = (cycle: "monthly" | "yearly") => {
+    setBillingCycle(cycle);
+    updateQueryParams({ billing: cycle });
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    updateQueryParams({ category });
+  };
+
   return (
     <section
-      className="relative pt-8 sm:pt-12 md:pt-16 lg:pt-24"
+      className="relative pt-4 sm:pt-8 md:pt-12 lg:pt-16"
       aria-labelledby="pricing-heading"
     >
       <div className="absolute top-0 z-[-1] mt-[-35px] h-[140px] w-full bg-primary-800/30 blur-3xl" />
-      <div className="mx-auto max-w-7xl px-8 sm:px-6 lg:px-20">
-        <div className="flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-6 lg:space-y-6">
-          <header className="mx-auto mt-16 max-w-6xl space-y-4 text-center sm:mt-0 sm:space-y-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center space-y-4 sm:space-y-6 md:space-y-6 lg:space-y-6">
+          <header className="mx-auto max-w-3xl space-y-3 text-center">
             <h1
               id="pricing-heading"
-              className="mt-8 text-4xl font-medium leading-tight sm:text-5xl md:text-5xl lg:text-5xl"
+              className="bg-gradient-to-r from-primary to-primary-800 bg-clip-text text-4xl font-bold leading-tight text-foreground sm:text-5xl md:text-5xl lg:text-5xl"
             >
               🚀 Scale Your Business
               <br />
               With Our Suite of Tools
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-muted-foreground">
               Choose the perfect combination of tools to supercharge your
               business growth
             </p>
           </header>
 
-          <Tabs
-            defaultValue="lead-management"
-            className="mt-[20px] flex w-full flex-col items-center"
-          >
-            <TabsList className="grid h-full grid-cols-4 rounded-full bg-gray-300/20 px-2 py-2 ring-1 ring-gray-300/60 dark:bg-gray-100/10 dark:ring-gray-100/40">
-              <TabsTrigger
-                value="lead-management"
-                className="rounded-full bg-background px-4 py-2 text-foreground data-[state=active]:bg-primary-800"
-              >
-                🎯 Lead Management
-              </TabsTrigger>
-              <TabsTrigger
-                value="financial"
-                className="rounded-full bg-background px-4 py-2 text-foreground data-[state=active]:bg-primary-800"
-              >
-                💰 Financial
-              </TabsTrigger>
-              <TabsTrigger
-                value="prospecting"
-                className="rounded-full bg-background px-4 py-2 text-foreground data-[state=active]:bg-primary-800"
-              >
-                🔍 Prospecting
-              </TabsTrigger>
-              <TabsTrigger
-                value="contract"
-                className="rounded-full bg-background px-4 py-2 text-foreground data-[state=active]:bg-primary-800"
-              >
-                📝 Contracts
-              </TabsTrigger>
-            </TabsList>
+          <div className="mt-6 flex w-full max-w-xs items-center justify-center rounded-full bg-foreground p-1">
+            <button
+              onClick={() => handleBillingCycleChange("monthly")}
+              className={cn(
+                "w-1/2 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                billingCycle === "monthly"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => handleBillingCycleChange("yearly")}
+              className={cn(
+                "w-1/2 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                billingCycle === "yearly"
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Yearly
+              {discount > 0 && (
+                <span className="ml-1.5 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                  Save {discount}%
+                </span>
+              )}
+            </button>
+          </div>
 
-            <div className="mt-[20px] flex w-full items-center justify-center rounded-md bg-gray-300/20 bg-gradient-to-l from-primary-800/[0.15] via-gray-100/10 to-transparent to-60% px-6 py-3.5 ring-1 ring-gray-300/60 dark:bg-gray-100/10 dark:ring-gray-100/40">
-              <div className="flex w-full items-center justify-between rounded-md">
-                <p className="block w-max items-center justify-start md:flex">
-                  <span className="text-foreground dark:text-primary-800">
-                    🎁 Bundle & Save: Get 30% off when you combine 3 or more
-                    products
-                  </span>
-                </p>
-                <p className="block w-max items-center justify-end text-right md:flex">
-                  <strong className="text-lg text-primary-900 dark:text-gray-900">
-                    Save up to $897/year
-                  </strong>
-                  &nbsp;
-                  <span className="font-normal text-foreground dark:text-primary-300">
-                    with annual billing
-                  </span>
-                </p>
-              </div>
+          <div className="mt-4 flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-primary/10 to-transparent p-4 backdrop-blur-sm">
+            <div className="flex w-full flex-col items-center justify-between gap-2 md:flex-row">
+              <p className="text-center text-sm font-medium text-foreground md:text-left">
+                🎁 Bundle & Save: Get 30% off when you combine 3 or more
+                products
+              </p>
+              <p className="flex flex-col items-center text-center md:flex-row md:text-right">
+                <strong className="text-lg font-bold text-primary">
+                  Save up to $897/year
+                </strong>
+                <span className="ml-1 text-sm text-muted-foreground">
+                  with annual billing
+                </span>
+              </p>
             </div>
+          </div>
 
-            <TabsContent value="lead-management" className="mt-8 w-full">
-              <div className="mt-[20px] grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Starter</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Perfect for small sales teams getting started with lead
-                      management
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$49</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 30% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">Lead Management</h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Up to 2,500 leads</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Basic AI lead scoring</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Lead capture forms</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Email tracking & notifications</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+          <div ref={tabsRef} className="w-full">
+            <Tabs
+              value={selectedCategory}
+              onValueChange={handleCategoryChange}
+              className="mt-4 flex w-full flex-col items-center"
+            >
+              <TabsList className="grid h-full w-full max-w-2xl grid-cols-2 gap-1 rounded-lg bg-foreground p-1 md:grid-cols-4">
+                <TabsTrigger
+                  value="lead-management"
+                  className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                >
+                  🎯 Lead Management
+                </TabsTrigger>
+                <TabsTrigger
+                  value="financial"
+                  className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                >
+                  💰 Financial
+                </TabsTrigger>
+                <TabsTrigger
+                  value="prospecting"
+                  className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                >
+                  🔍 Prospecting
+                </TabsTrigger>
+                <TabsTrigger
+                  value="contract"
+                  className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                >
+                  📝 Contracts
+                </TabsTrigger>
+              </TabsList>
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <Badge
-                    className="text-white absolute -top-4 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-sm"
-                    variant={"outline"}
-                  >
-                    Most Popular
-                  </Badge>
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Professional</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      For growing teams needing advanced features
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$99</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 30% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Starter, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Unlimited leads</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced AI lead scoring & predictions</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom lead capture forms</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Lead enrichment & company data</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced email tracking & analytics</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+              <TabsContent value="lead-management" className="mt-6 w-full">
+                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+                  <PricingTier
+                    title="Starter"
+                    price={billingCycle === "yearly" ? "39" : "49"}
+                    prevPrice={billingCycle === "yearly" ? "49" : "59"}
+                    description="Perfect for small sales teams getting started with lead management"
+                    features={[
+                      "Up to 2,500 leads",
+                      "Basic AI lead scoring",
+                      "Lead capture forms",
+                      "Email tracking & notifications",
+                      "Basic reporting",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={0}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Enterprise</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Custom solutions for large organizations
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">Custom</p>
-                      <p className="text-sm text-gray-500">
-                        Contact for pricing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Professional, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom AI model training</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced security features</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom integrations</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Dedicated success manager</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Contact Sales</Button>
-                  </CardFooter>
-                </Card>
-              </div>
-            </TabsContent>
+                  <PricingTier
+                    title="Professional"
+                    price={billingCycle === "yearly" ? "79" : "99"}
+                    prevPrice={billingCycle === "yearly" ? "99" : "119"}
+                    description="For growing teams needing advanced features"
+                    features={[
+                      "Unlimited leads",
+                      "Advanced AI lead scoring & predictions",
+                      "Custom lead capture forms",
+                      "Lead enrichment & company data",
+                      "Advanced email tracking & analytics",
+                      "Team collaboration tools",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={1}
+                    isPopular={true}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-            <TabsContent value="financial" className="mt-8 w-full">
-              <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Essential</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Perfect for freelancers and solopreneurs
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$29</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 20% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">Core Features</h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Income & expense tracking</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Basic financial reports</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Invoice generation</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Bank account integration</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Basic tax calculations</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+                  <PricingTier
+                    title="Enterprise"
+                    price="Custom"
+                    description="Custom solutions for large organizations"
+                    features={[
+                      "Custom AI model training",
+                      "Advanced security features",
+                      "Custom integrations",
+                      "Dedicated success manager",
+                      "Priority support",
+                      "Custom reporting",
+                    ]}
+                    buttonText="Contact Sales"
+                    user={user}
+                    index={2}
+                    priceUnit=""
+                  />
+                </div>
+              </TabsContent>
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <div className="text-white absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-sm">
-                    Most Popular
-                  </div>
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Growth</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      For growing businesses needing advanced features
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$79</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 20% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Essential, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced financial reporting</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Recurring invoices</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Multi-currency support</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Expense categorization</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Cash flow forecasting</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+              <TabsContent value="financial" className="mt-6 w-full">
+                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+                  <PricingTier
+                    title="Essential"
+                    price={billingCycle === "yearly" ? "23" : "29"}
+                    prevPrice={billingCycle === "yearly" ? "29" : "39"}
+                    description="Perfect for freelancers and solopreneurs"
+                    features={[
+                      "Income & expense tracking",
+                      "Basic financial reports",
+                      "Invoice generation",
+                      "Bank account integration",
+                      "Basic tax calculations",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={0}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Enterprise</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Custom solutions for large organizations
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">Custom</p>
-                      <p className="text-sm text-gray-500">
-                        Contact for pricing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Growth, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom integrations</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced security features</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Dedicated account manager</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom reporting</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Contact Sales</Button>
-                  </CardFooter>
-                </Card>
-              </div>
-            </TabsContent>
+                  <PricingTier
+                    title="Growth"
+                    price={billingCycle === "yearly" ? "63" : "79"}
+                    prevPrice={billingCycle === "yearly" ? "79" : "99"}
+                    description="For growing businesses needing advanced features"
+                    features={[
+                      "Advanced financial reporting",
+                      "Recurring invoices",
+                      "Multi-currency support",
+                      "Expense categorization",
+                      "Cash flow forecasting",
+                      "Team access controls",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={1}
+                    isPopular={true}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-            <TabsContent value="prospecting" className="mt-8 w-full">
-              <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Basic</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Get started with prospecting
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$39</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 20% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">Core Features</h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>100 leads/month</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Basic lead search</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Email verification</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Company information</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+                  <PricingTier
+                    title="Enterprise"
+                    price="Custom"
+                    description="Custom solutions for large organizations"
+                    features={[
+                      "Custom integrations",
+                      "Advanced security features",
+                      "Dedicated account manager",
+                      "Custom reporting",
+                      "API access",
+                      "Advanced compliance tools",
+                    ]}
+                    buttonText="Contact Sales"
+                    user={user}
+                    index={2}
+                    priceUnit=""
+                  />
+                </div>
+              </TabsContent>
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <div className="text-white absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-sm">
-                    Most Popular
-                  </div>
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Pro</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Advanced prospecting features
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$89</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 20% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Basic, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>500 leads/month</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced search filters</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Lead scoring</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Chrome extension</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+              <TabsContent value="prospecting" className="mt-6 w-full">
+                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+                  <PricingTier
+                    title="Basic"
+                    price={billingCycle === "yearly" ? "31" : "39"}
+                    prevPrice={billingCycle === "yearly" ? "39" : "49"}
+                    description="Get started with prospecting"
+                    features={[
+                      "100 leads/month",
+                      "Basic lead search",
+                      "Email verification",
+                      "Company information",
+                      "Export to CSV",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={0}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Enterprise</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Custom solutions for large teams
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">Custom</p>
-                      <p className="text-sm text-gray-500">
-                        Contact for pricing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Pro, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Unlimited leads</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>API access</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom integrations</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Dedicated support</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Contact Sales</Button>
-                  </CardFooter>
-                </Card>
-              </div>
-            </TabsContent>
+                  <PricingTier
+                    title="Pro"
+                    price={billingCycle === "yearly" ? "71" : "89"}
+                    prevPrice={billingCycle === "yearly" ? "89" : "109"}
+                    description="Advanced prospecting features"
+                    features={[
+                      "500 leads/month",
+                      "Advanced search filters",
+                      "Lead scoring",
+                      "Chrome extension",
+                      "Team collaboration",
+                      "CRM integration",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={1}
+                    isPopular={true}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-            <TabsContent value="contract" className="mt-8 w-full">
-              <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Starter</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Basic contract management
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$19</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 20% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">Core Features</h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>10 contracts/month</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Basic templates</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>E-signatures</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Contract storage</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button variant={"outline"}>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+                  <PricingTier
+                    title="Enterprise"
+                    price="Custom"
+                    description="Custom solutions for large teams"
+                    features={[
+                      "Unlimited leads",
+                      "API access",
+                      "Custom integrations",
+                      "Dedicated support",
+                      "Advanced analytics",
+                      "Custom workflows",
+                    ]}
+                    buttonText="Contact Sales"
+                    user={user}
+                    index={2}
+                    priceUnit=""
+                  />
+                </div>
+              </TabsContent>
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <div className="text-white absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-sm">
-                    Most Popular
-                  </div>
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Business</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Advanced contract features
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">$49</p>
-                      <p className="text-sm text-gray-500">per month</p>
-                      <p className="text-secondary mt-2 text-sm">
-                        Save 20% with annual billing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Starter, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>50 contracts/month</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom templates</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Contract analytics</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Team collaboration</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Start Free Trial</Button>
-                  </CardFooter>
-                </Card>
+              <TabsContent value="contract" className="mt-6 w-full">
+                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+                  <PricingTier
+                    title="Starter"
+                    price={billingCycle === "yearly" ? "15" : "19"}
+                    prevPrice={billingCycle === "yearly" ? "19" : "29"}
+                    description="Basic contract management"
+                    features={[
+                      "10 contracts/month",
+                      "Basic templates",
+                      "E-signatures",
+                      "Contract storage",
+                      "Email notifications",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={0}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
 
-                <Card className="flex h-full w-full flex-col rounded-2xl border-primary">
-                  <CardHeader className="flex-grow-0 px-6 py-6 pb-0">
-                    <CardTitle className="text-2xl">Enterprise</CardTitle>
-                    <p className="text-sm text-gray-600">
-                      Custom contract solutions
-                    </p>
-                  </CardHeader>
-                  <CardContent className="mt-5 flex flex-grow flex-col px-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold">Custom</p>
-                      <p className="text-sm text-gray-500">
-                        Contact for pricing
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="mb-2 font-medium">
-                          Everything in Business, plus:
-                        </h4>
-                        <ul className="space-y-3">
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Unlimited contracts</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Advanced workflow automation</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Custom integrations</span>
-                          </li>
-                          <li className="flex items-center gap-2">
-                            <Check className="text-secondary h-5 w-5" />
-                            <span>Dedicated support</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter>
-                    <Button>Contact Sales</Button>
-                  </CardFooter>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
+                  <PricingTier
+                    title="Business"
+                    price={billingCycle === "yearly" ? "39" : "49"}
+                    prevPrice={billingCycle === "yearly" ? "49" : "69"}
+                    description="Advanced contract features"
+                    features={[
+                      "50 contracts/month",
+                      "Custom templates",
+                      "Contract analytics",
+                      "Team collaboration",
+                      "Approval workflows",
+                      "Contract reminders",
+                    ]}
+                    buttonText="Start Free Trial"
+                    user={user}
+                    index={1}
+                    isPopular={true}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
+                  />
+
+                  <PricingTier
+                    title="Enterprise"
+                    price="Custom"
+                    description="Custom contract solutions"
+                    features={[
+                      "Unlimited contracts",
+                      "Advanced workflow automation",
+                      "Custom integrations",
+                      "Dedicated support",
+                      "Advanced security",
+                      "Compliance features",
+                    ]}
+                    buttonText="Contact Sales"
+                    user={user}
+                    index={2}
+                    priceUnit=""
+                  />
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
 
           <div className="mt-8 text-center">
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="text-sm text-muted-foreground">
               Questions? Contact our sales team at{" "}
               <Link
                 href="mailto:sales@oppulence.app"
-                className="text-primary hover:underline"
+                className="font-medium text-primary hover:underline"
               >
                 sales@oppulence.app
               </Link>
@@ -1108,7 +787,6 @@ export const PearCreditsTooltip = ({ type }: { type: string }) => {
                 Afraid of running out of credits? You can always contact{" "}
                 <a
                   className="cursor-pointer text-foreground transition-colors hover:text-primary-800"
-                  // biome-ignore lint/a11y/useValidAnchor: <explanation>
                   onClick={(e) => {
                     e.stopPropagation();
                     navigator.clipboard.writeText(CONTACT_EMAIL);

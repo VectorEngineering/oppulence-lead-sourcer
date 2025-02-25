@@ -28,12 +28,12 @@ export default async function AuthButton() {
     <div className="flex items-center space-x-4">
       {error || !data?.user ? (
         <>
-          <Link href="https://app-business.solomon-ai.app/login">
+          <Link href="https://app.thinkthank.app/login">
             <Button variant="outline" className="hidden md:inline-flex">
               Sign in
             </Button>
           </Link>
-          <Link href="https://app-business.solomon-ai.app/login">
+          <Link href="https:/app.thinkthank.app/login">
             <Button variant="outline">
               Try Oppulence
               <SquareArrowRight className="mr-2 h-4 w-4" />
@@ -42,7 +42,7 @@ export default async function AuthButton() {
         </>
       ) : (
         <>
-          <Link href="https://app-business.solomon-ai.app/login">
+          <Link href="https:/app.thinkthank.app/login">
             <Button variant="outline">Dashboard</Button>
           </Link>
           <DropdownMenu modal={false}>

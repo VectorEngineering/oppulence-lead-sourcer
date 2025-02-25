@@ -15,17 +15,30 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  format,
+  isAfter,
+  isBefore,
+  isWithinInterval,
+  parseISO,
+  startOfMonth,
+  startOfQuarter,
+  startOfYear,
+  subDays,
+} from "date-fns";
 
 import { Badge } from "@/components/ui/badge";
 import { RoadmapItem } from "./types";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 
 // Status to emoji mapping
 const statusEmoji = {
   planned: "🎯",
   "in-progress": "🚀",
   completed: "✅",
+  cancelled: "❌",
 };
 
 // Product to emoji mapping
@@ -48,91 +61,63 @@ function RoadmapDetailSheet({ item }: { item: RoadmapItem }) {
           <span className="text-3xl" role="img" aria-label={item.status}>
             {statusEmoji[item.status as keyof typeof statusEmoji]}
           </span>
-          <div>
-            <SheetTitle className="text-2xl font-bold">{item.title}</SheetTitle>
-            <div className="mt-1 flex items-center gap-2">
-              <span className="text-xl" role="img" aria-label={item.product}>
-                {productEmoji[item.product as keyof typeof productEmoji]}
-              </span>
-              <span className="text-sm text-gray-500">{item.product}</span>
-            </div>
-          </div>
+          <SheetTitle className="text-xl">{item.title}</SheetTitle>
         </div>
-        <Badge
-          variant={
-            item.status === "completed"
-              ? "default"
-              : item.status === "in-progress"
-                ? "secondary"
-                : "outline"
-          }
-          className="w-fit capitalize"
-        >
-          {item.status}
-        </Badge>
+        <SheetDescription className="text-base">
+          {item.description}
+        </SheetDescription>
       </SheetHeader>
-
-      <div className="mt-8 space-y-6">
-        <div>
-          <h3 className="mb-3 text-base font-semibold">Context:</h3>
-          <p className="text-sm leading-relaxed text-gray-600">
-            {item.description}
-          </p>
+      <div className="mt-6 space-y-6">
+        <div className="flex flex-wrap gap-3">
+          <Badge variant="outline" className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-blue-500"></span>
+            {item.product}
+          </Badge>
+          <Badge
+            variant="outline"
+            className={cn(
+              "flex items-center gap-1.5",
+              item.status === "planned" && "border-yellow-500 text-yellow-500",
+              item.status === "in-progress" && "border-blue-500 text-blue-500",
+              item.status === "completed" && "border-green-500 text-green-500",
+              item.status === "cancelled" && "border-red-500 text-red-500",
+            )}
+          >
+            <span
+              className={cn(
+                "h-2 w-2 rounded-full",
+                item.status === "planned" && "bg-yellow-500",
+                item.status === "in-progress" && "bg-blue-500",
+                item.status === "completed" && "bg-green-500",
+                item.status === "cancelled" && "bg-red-500",
+              )}
+            ></span>
+            {item.status === "in-progress"
+              ? "In Progress"
+              : item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+          </Badge>
+          <Badge variant="outline" className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-purple-500"></span>
+            {format(new Date(item.date), "MMM d, yyyy")}
+          </Badge>
         </div>
 
-        <div>
-          <h3 className="mb-3 text-base font-semibold">Feature Description:</h3>
-          <div className="space-y-4">
-            <p className="text-sm leading-relaxed text-gray-600">
-              The {item.product} platform will offer {item.title.toLowerCase()}{" "}
-              capabilities that enable teams to:
-            </p>
-            <ul className="space-y-3">
-              {item.features?.map((feature, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="mt-1 text-blue-500">•</span>
-                  <span className="text-sm leading-relaxed text-gray-600">
-                    {feature}
-                  </span>
+        {item.features && item.features.length > 0 && (
+          <div className="space-y-3">
+            <h3 className="text-sm font-medium">Key Features</h3>
+            <ul className="space-y-2">
+              {item.features.map((feature, index) => (
+                <li
+                  key={index}
+                  className="flex items-start gap-2 text-sm text-muted-foreground"
+                >
+                  <span className="mt-0.5 text-xs">•</span>
+                  <span>{feature}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-
-        <div>
-          <h3 className="mb-3 text-base font-semibold">Timeline:</h3>
-          <div className="text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <span className="font-medium">Target Completion:</span>
-              {format(new Date(item.date), "MMMM d, yyyy")}
-            </div>
-            {item.status === "completed" && (
-              <div className="mt-2 flex items-center gap-2">
-                <span className="font-medium">Status:</span>
-                <span className="flex items-center gap-1 text-green-600">
-                  <span className="text-lg">✓</span> Completed
-                </span>
-              </div>
-            )}
-            {item.status === "in-progress" && (
-              <div className="mt-2 flex items-center gap-2">
-                <span className="font-medium">Status:</span>
-                <span className="flex items-center gap-1 text-blue-600">
-                  <span className="text-lg">🚀</span> In Development
-                </span>
-              </div>
-            )}
-            {item.status === "planned" && (
-              <div className="mt-2 flex items-center gap-2">
-                <span className="font-medium">Status:</span>
-                <span className="flex items-center gap-1 text-orange-600">
-                  <span className="text-lg">📅</span> Planned
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
+        )}
       </div>
     </SheetContent>
   );
@@ -141,65 +126,84 @@ function RoadmapDetailSheet({ item }: { item: RoadmapItem }) {
 function RoadmapCard({ item }: { item: RoadmapItem }) {
   return (
     <Sheet>
-      <SheetTrigger className="w-full">
-        <Card className="bg-white space-y-4 p-6 text-left shadow-md transition-shadow hover:shadow-lg">
-          <div className="flex items-start justify-between">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl" role="img" aria-label={item.status}>
-                  {statusEmoji[item.status as keyof typeof statusEmoji]}
-                </span>
-                <h3 className="text-lg font-semibold">{item.title}</h3>
+      <SheetTrigger className="w-full text-left">
+        <Card
+          className={cn(
+            "w-full cursor-pointer transition-all hover:shadow-md",
+            item.status === "cancelled" && "opacity-60",
+          )}
+        >
+          <CardHeader className="p-4 pb-2">
+            <div className="flex items-start justify-between">
+              <div className="space-y-1">
+                <CardTitle className="line-clamp-2 text-base">
+                  {item.title}
+                </CardTitle>
+                <CardDescription className="line-clamp-2 text-xs">
+                  {item.description}
+                </CardDescription>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl" role="img" aria-label={item.product}>
-                  {productEmoji[item.product as keyof typeof productEmoji]}
-                </span>
-                <span className="text-sm text-gray-500">{item.product}</span>
-              </div>
+              <span
+                className="text-xl"
+                role="img"
+                aria-label={item.product}
+                title={item.product}
+              >
+                {productEmoji[item.product as keyof typeof productEmoji] ||
+                  "📦"}
+              </span>
             </div>
-            <Badge
-              variant={
-                item.status === "completed"
-                  ? "default"
-                  : item.status === "in-progress"
-                    ? "secondary"
-                    : "outline"
-              }
-              className="capitalize"
-            >
-              {item.status}
-            </Badge>
-          </div>
-
-          <p className="line-clamp-2 text-sm text-gray-600">
-            {item.description}
-          </p>
-
-          <div className="space-y-3">
-            <div className="text-sm text-gray-500">
-              <span className="font-medium">Target Date:</span>{" "}
-              {format(new Date(item.date), "MMMM d, yyyy")}
+          </CardHeader>
+          <CardContent className="p-4 pt-0">
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <Badge
+                variant="outline"
+                className={cn(
+                  "text-[10px]",
+                  item.status === "planned" &&
+                    "border-yellow-500 text-yellow-500",
+                  item.status === "in-progress" &&
+                    "border-blue-500 text-blue-500",
+                  item.status === "completed" &&
+                    "border-green-500 text-green-500",
+                  item.status === "cancelled" && "border-red-500 text-red-500",
+                )}
+              >
+                {item.status === "in-progress"
+                  ? "In Progress"
+                  : item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+              </Badge>
+              <span className="text-xs text-muted-foreground">
+                {format(new Date(item.date), "MMM d, yyyy")}
+              </span>
             </div>
-
             {item.features && item.features.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="text-sm font-medium">Key Features:</h4>
-                <ul className="list-inside list-disc space-y-1">
+              <div className="mt-3 space-y-2">
+                <div className="flex items-center gap-1">
+                  <span className="text-xs font-medium">Key Features:</span>
+                  <span className="text-xs text-muted-foreground">
+                    ({item.features.length})
+                  </span>
+                </div>
+                <ul className="space-y-1">
                   {item.features.slice(0, 2).map((feature, index) => (
-                    <li key={index} className="truncate text-sm text-gray-600">
-                      {feature}
+                    <li
+                      key={index}
+                      className="flex items-start gap-1.5 text-xs text-muted-foreground"
+                    >
+                      <span className="mt-0.5 text-[10px]">•</span>
+                      <span className="line-clamp-1">{feature}</span>
                     </li>
                   ))}
                   {item.features.length > 2 && (
-                    <li className="text-sm text-blue-600">
-                      +{item.features.length - 2} more features...
+                    <li className="pl-3 text-xs italic text-muted-foreground">
+                      +{item.features.length - 2} more...
                     </li>
                   )}
                 </ul>
               </div>
             )}
-          </div>
+          </CardContent>
         </Card>
       </SheetTrigger>
       <RoadmapDetailSheet item={item} />
@@ -208,31 +212,120 @@ function RoadmapCard({ item }: { item: RoadmapItem }) {
 }
 
 export function RoadmapKanban({ items }: RoadmapKanbanProps) {
+  const searchParams = useSearchParams();
+
+  // Get filter values from URL or use defaults
+  const searchTerm = searchParams?.get("search") ?? "";
+  const statusFilter = searchParams?.get("status") ?? "all";
+  const dateFilter = searchParams?.get("date") ?? "all";
+
+  const filteredItems = useMemo(() => {
+    let filtered = [...items];
+
+    // Apply search filter
+    if (searchTerm) {
+      const search = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        (item) =>
+          item.title.toLowerCase().includes(search) ||
+          item.description.toLowerCase().includes(search) ||
+          item.product.toLowerCase().includes(search) ||
+          item.features?.some((feature) =>
+            feature.toLowerCase().includes(search),
+          ),
+      );
+    }
+
+    // Apply status filter
+    if (statusFilter && statusFilter !== "all") {
+      filtered = filtered.filter((item) => item.status === statusFilter);
+    }
+
+    // Apply date filter
+    if (dateFilter && dateFilter !== "all") {
+      const now = new Date();
+
+      filtered = filtered.filter((item) => {
+        const itemDate = parseISO(item.date);
+
+        switch (dateFilter) {
+          case "upcoming":
+            return isAfter(itemDate, now);
+          case "past":
+            return isBefore(itemDate, now);
+          case "this-month":
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfMonth(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
+          case "this-quarter":
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfQuarter(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
+          case "this-year":
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfYear(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
+          default:
+            return true;
+        }
+      });
+    }
+
+    return filtered;
+  }, [items, searchTerm, statusFilter, dateFilter]);
+
   const columns = [
     { title: "Planned", status: "planned" },
     { title: "In Progress", status: "in-progress" },
     { title: "Completed", status: "completed" },
   ];
 
+  // Only show cancelled column if there are cancelled items and no status filter is applied
+  const showCancelledColumn =
+    !statusFilter && filteredItems.some((item) => item.status === "cancelled");
+
+  if (showCancelledColumn) {
+    columns.push({ title: "Cancelled", status: "cancelled" });
+  }
+
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {columns.map((column) => (
-        <div key={column.status} className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">{column.title}</h2>
-            <Badge variant="secondary" className="text-sm">
-              {items.filter((item) => item.status === column.status).length}
-            </Badge>
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+      {columns.map((column) => {
+        const columnItems = filteredItems.filter(
+          (item) => item.status === column.status,
+        );
+
+        return (
+          <div key={column.status} className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold">{column.title}</h2>
+              <Badge variant="secondary" className="text-sm">
+                {columnItems.length}
+              </Badge>
+            </div>
+            <div className="space-y-4">
+              {columnItems.length > 0 ? (
+                columnItems.map((item, index) => (
+                  <RoadmapCard key={`${item.title}-${index}`} item={item} />
+                ))
+              ) : (
+                <div className="flex h-24 items-center justify-center rounded-lg border border-dashed p-4">
+                  <p className="text-sm text-muted-foreground">No items</p>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="space-y-4">
-            {items
-              .filter((item, index) => item.status === column.status)
-              .map((item, index) => (
-                <RoadmapCard key={`${item.title}-${index}`} item={item} />
-              ))}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
