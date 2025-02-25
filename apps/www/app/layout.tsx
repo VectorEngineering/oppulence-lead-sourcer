@@ -40,7 +40,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <PostHogPageViewWrapper />
-            <div className="flex min-h-screen flex-col overflow-hidden">
+            <div className="flex min-h-screen flex-col overflow-hidden no-scrollbar hide-scrollbar">
               <Header />
               {children}
               <Footer />
