@@ -89,10 +89,29 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
               </div>
               <p className="text-sm text-muted-foreground">{item.description}</p>
               {item.features && item.features.length > 0 && (
-                <div className="mt-2">
-                  <span className="text-xs text-muted-foreground">
-                    {item.features.length} feature{item.features.length !== 1 && "s"}
-                  </span>
+                <div className="mt-2 space-y-2">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium">Key Features:</span>
+                    <span className="text-xs text-muted-foreground">
+                      ({item.features.length})
+                    </span>
+                  </div>
+                  <ul className="space-y-1">
+                    {item.features.slice(0, 2).map((feature, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start gap-1.5 text-xs text-muted-foreground"
+                      >
+                        <span className="mt-0.5 text-[10px]">•</span>
+                        <span className="line-clamp-1">{feature}</span>
+                      </li>
+                    ))}
+                    {item.features.length > 2 && (
+                      <li className="text-xs text-muted-foreground italic pl-3">
+                        +{item.features.length - 2} more...
+                      </li>
+                    )}
+                  </ul>
                 </div>
               )}
             </div>
@@ -171,8 +190,8 @@ export function RoadmapTimeline({ items }: RoadmapTimelineProps) {
 
   // Get filter values from URL or use defaults
   const searchTerm = searchParams?.get("search") ?? "";
-  const statusFilter = searchParams?.get("status") ?? "";
-  const dateFilter = searchParams?.get("date") ?? "";
+  const statusFilter = searchParams?.get("status") ?? "all";
+  const dateFilter = searchParams?.get("date") ?? "all";
 
   const filteredItems = useMemo(() => {
     let filtered = [...items];
@@ -190,12 +209,12 @@ export function RoadmapTimeline({ items }: RoadmapTimelineProps) {
     }
 
     // Apply status filter
-    if (statusFilter) {
+    if (statusFilter && statusFilter !== "all") {
       filtered = filtered.filter(item => item.status === statusFilter);
     }
 
     // Apply date filter
-    if (dateFilter) {
+    if (dateFilter && dateFilter !== "all") {
       const now = new Date();
 
       filtered = filtered.filter(item => {

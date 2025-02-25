@@ -37,8 +37,8 @@ export function RoadmapFilters() {
 
     // Get filter values from URL
     const searchTerm = searchParams?.get("search") ?? "";
-    const statusFilter = searchParams?.get("status") ?? "";
-    const dateFilter = searchParams?.get("date") ?? "";
+    const statusFilter = searchParams?.get("status") ?? "all";
+    const dateFilter = searchParams?.get("date") ?? "all";
 
     // Update URL with new filter values
     const setSearchTerm = (value: string) => {
@@ -53,7 +53,7 @@ export function RoadmapFilters() {
 
     const setStatusFilter = (value: string) => {
         const params = new URLSearchParams(searchParams?.toString() ?? "");
-        if (value) {
+        if (value && value !== "all") {
             params.set("status", value);
         } else {
             params.delete("status");
@@ -63,7 +63,7 @@ export function RoadmapFilters() {
 
     const setDateFilter = (value: string) => {
         const params = new URLSearchParams(searchParams?.toString() ?? "");
-        if (value) {
+        if (value && value !== "all") {
             params.set("date", value);
         } else {
             params.delete("date");
@@ -71,7 +71,7 @@ export function RoadmapFilters() {
         router.push(`${pathname}?${params.toString()}`);
     };
 
-    const hasActiveFilters = searchTerm || statusFilter || dateFilter;
+    const hasActiveFilters = searchTerm || (statusFilter && statusFilter !== "all") || (dateFilter && dateFilter !== "all");
 
     function clearFilters() {
         const params = new URLSearchParams();
@@ -112,7 +112,7 @@ export function RoadmapFilters() {
                                         variant="secondary"
                                         className="ml-1 rounded-full px-1 py-0"
                                     >
-                                        {[statusFilter, dateFilter].filter(Boolean).length + (searchTerm ? 1 : 0)}
+                                        {[(statusFilter !== "all" ? statusFilter : ""), (dateFilter !== "all" ? dateFilter : "")].filter(Boolean).length + (searchTerm ? 1 : 0)}
                                     </Badge>
                                 )}
                             </Button>
@@ -138,7 +138,7 @@ export function RoadmapFilters() {
                                                 <SelectValue placeholder="Any status" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="">Any status</SelectItem>
+                                                <SelectItem value="all">Any status</SelectItem>
                                                 {statusOptions.map((status) => (
                                                     <SelectItem key={status.value} value={status.value}>
                                                         {status.label}
@@ -159,7 +159,7 @@ export function RoadmapFilters() {
                                                 <SelectValue placeholder="Any time" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="">Any time</SelectItem>
+                                                <SelectItem value="all">Any time</SelectItem>
                                                 <SelectItem value="upcoming">Upcoming</SelectItem>
                                                 <SelectItem value="past">Past</SelectItem>
                                                 <SelectItem value="this-month">This month</SelectItem>
@@ -219,28 +219,28 @@ export function RoadmapFilters() {
                         </Badge>
                     )}
 
-                    {statusFilter && (
+                    {statusFilter && statusFilter !== "all" && (
                         <Badge variant="secondary" className="gap-1">
                             Status: {statusOptions.find(s => s.value === statusFilter)?.label}
                             <Button
                                 variant="ghost"
                                 size="icon"
                                 className="h-4 w-4 p-0 ml-1"
-                                onClick={() => setStatusFilter("")}
+                                onClick={() => setStatusFilter("all")}
                             >
                                 <X className="h-3 w-3" />
                             </Button>
                         </Badge>
                     )}
 
-                    {dateFilter && (
+                    {dateFilter && dateFilter !== "all" && (
                         <Badge variant="secondary" className="gap-1">
                             Date: {dateFilter.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
                             <Button
                                 variant="ghost"
                                 size="icon"
                                 className="h-4 w-4 p-0 ml-1"
-                                onClick={() => setDateFilter("")}
+                                onClick={() => setDateFilter("all")}
                             >
                                 <X className="h-3 w-3" />
                             </Button>

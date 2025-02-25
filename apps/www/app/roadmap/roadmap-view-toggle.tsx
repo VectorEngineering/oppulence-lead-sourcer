@@ -39,6 +39,8 @@ function RoadmapViewToggle({ defaultView = "kanban" }: RoadmapViewToggleProps) {
     const setViewMode = (mode: ViewMode) => {
         const params = new URLSearchParams(searchParams?.toString() ?? "");
         params.set("view", mode);
+
+        // Ensure we preserve all other parameters
         router.push(`${pathname}?${params.toString()}`);
     };
 

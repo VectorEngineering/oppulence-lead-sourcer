@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FAQItem } from "@/types/faqItems";
 import { Search, X, ChevronRight, Filter } from "lucide-react";
 import { faqData } from "./faq-data";
-import { useQueryState } from "nuqs";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,16 +26,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function FAQContent() {
-  // URL query state management
-  const [searchQuery, setSearchQuery] = useQueryState("q");
-  const [activeCategory, setActiveCategory] = useQueryState("category", {
-    defaultValue: "all"
-  });
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Get query parameters
+  const searchQuery = searchParams?.get("q") ?? "";
+  const activeCategory = searchParams?.get("category") ?? "all";
 
   // Local state for UI
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedItem, setExpandedItem] = useState<string | undefined>(undefined);
+
+  // Function to update URL search params
+  const updateSearchParams = (name: string, value: string | null) => {
+    const params = new URLSearchParams(searchParams?.toString());
+
+    if (value === null || value === "") {
+      params.delete(name);
+    } else {
+      params.set(name, value);
+    }
+
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
   // Extract unique categories from FAQ data
   const categories = useMemo(() => {
@@ -104,12 +119,12 @@ export function FAQContent() {
   // Handle search input changes
   const handleSearchChange = (value: string) => {
     setIsSearching(!!value);
-    setSearchQuery(value || null);
+    updateSearchParams("q", value || null);
   };
 
   // Handle category changes
   const handleCategoryChange = (category: string) => {
-    setActiveCategory(category === "all" ? null : category);
+    updateSearchParams("category", category === "all" ? null : category);
     setExpandedItem(undefined); // Reset expanded item when changing category
   };
 
