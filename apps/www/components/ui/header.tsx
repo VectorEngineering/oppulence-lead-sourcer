@@ -148,6 +148,13 @@ export default async function Header() {
                             Streamline contract workflows for your one-person
                             business
                           </ListItem>
+                          <ListItem
+                            href="https://docs.oppulence.app"
+                            title="💻 Developers"
+                            className="p-4 hover:bg-muted/50"
+                          >
+                            Access the Oppulence API and documentation
+                          </ListItem>
                         </ul>
                       </DropdownNavItem>
                       <DropdownNavItem trigger="📚 Resources">
@@ -185,6 +192,7 @@ export default async function Header() {
                       </DropdownNavItem>
                       <NavItem href="/roadmap">🛠️ Roadmap</NavItem>
                       <NavItem href="/pricing">💎 Pricing</NavItem>
+
                       {/* <NavItem href="/desktop-download">⬇️ Download</NavItem> */}
                       {/* <NavItem href="https://solomon-ai.betteruptime.com/">
                         ⚡️ Uptime{" "}

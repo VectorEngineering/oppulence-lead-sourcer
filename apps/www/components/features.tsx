@@ -39,15 +39,16 @@ export default function Features() {
       description: (
         <>
           <p>
-            Oppullence can directly code in your files, and allow you to see diffs.
-            Try{" "}
+            Oppullence can directly code in your files, and allow you to see
+            diffs. Try{" "}
             <b>
               <code>CMD+I</code>
             </b>
             &nbsp;(<code>CTRL+I</code> on Windows).
           </p>
           <p className="pt-6">
-            Here, we ask Oppullence to help us add error handling and comments 😏.
+            Here, we ask Oppullence to help us add error handling and comments
+            😏.
           </p>
           <p className="pt-6">
             To see all of our features, check out our{" "}
