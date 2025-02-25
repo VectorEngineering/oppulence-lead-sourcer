@@ -6,8 +6,8 @@ import Footer from "@/components/footer";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import Header from "@/components/ui/header";
-import { PHProvider } from "./providers";
 import PostHogPageViewWrapper from "../components/posthog-page-view-wrapper";
+import { Providers } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
@@ -20,7 +20,7 @@ export default function RootLayout({
   const isProd = process.env.NODE_ENV === "production";
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         {!isProd && (
           <script
@@ -29,11 +29,9 @@ export default function RootLayout({
           />
         )}
       </head>
-      <PHProvider>
+      <Providers>
         <body
-          className={
-            "bg-background font-sans tracking-tight text-gray-900 antialiased"
-          }
+          className="bg-background font-sans tracking-tight text-gray-900 antialiased"
         >
           <ThemeProvider
             attribute="class"
@@ -51,9 +49,8 @@ export default function RootLayout({
               <SpeedInsights />
             </div>
           </ThemeProvider>
-          <Analytics />
         </body>
-      </PHProvider>
+      </Providers>
     </html>
   );
 }
