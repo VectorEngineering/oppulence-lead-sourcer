@@ -112,7 +112,7 @@ export default async function Header() {
                   <div className="h6 ml-2 font-bold">Oppulence</div>
                 </Link>
                 <nav className="ml-10 hidden md:block" aria-label="Main menu">
-                  <NavigationMenu>
+                  <NavigationMenu className="rounded-2xl">
                     <NavigationMenuList className="space-x-1">
                       <DropdownNavItem trigger="🛠️ Products">
                         <ul className="grid w-[400px] gap-6 bg-background p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]">

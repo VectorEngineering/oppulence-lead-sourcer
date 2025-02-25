@@ -54,9 +54,9 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
   const allTags = getUniqueTags(sortedPosts);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-9xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Search and Filter Section */}
-      <div className="mb-12 space-y-6">
+      <div className="mb-16 space-y-8">
         {/* Search Bar */}
         <div className="mx-auto max-w-2xl">
           <div className="relative">
@@ -66,7 +66,7 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-white w-full rounded-xl border border-gray-300 py-3 pl-12 pr-4 text-gray-900 placeholder-gray-500 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
+              className="w-full rounded-xl border-2 border-gray-200 bg-white py-3 pl-12 pr-4 text-gray-900 placeholder-gray-500 shadow-md transition-all duration-200 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:border-white dark:focus:ring-white/20"
             />
           </div>
         </div>
@@ -85,10 +85,10 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
                   );
                 }}
                 className={cn(
-                  "rounded-full px-4 py-1.5 text-sm font-medium transition-all",
+                  "rounded-full border-2 px-4 py-1.5 text-sm font-medium transition-all duration-200",
                   selectedTags.includes(tag)
-                    ? "text-white bg-primary-500 dark:bg-primary-600"
-                    : "bg-gray-100 text-gray-700 hover:bg-primary-100 hover:text-primary-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-primary-900/50 dark:hover:text-primary-300",
+                    ? "border-black bg-black text-white dark:border-white dark:bg-white dark:text-black"
+                    : "border-gray-200 bg-white text-gray-700 hover:border-black hover:bg-black/5 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:border-white dark:hover:bg-white/10",
                 )}
               >
                 {tag}
@@ -104,14 +104,14 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
               {selectedTags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-900/50 dark:text-primary-300"
+                  className="inline-flex items-center gap-1 rounded-full border-2 border-black bg-black/5 px-3 py-1 text-sm font-medium text-black dark:border-white dark:bg-white/5 dark:text-white"
                 >
                   {tag}
                   <button
                     onClick={() =>
                       setSelectedTags((prev) => prev.filter((t) => t !== tag))
                     }
-                    className="ml-1 text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200"
+                    className="ml-1 text-black hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
                   >
                     ×
                   </button>
@@ -123,7 +123,7 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
                     setSelectedTags([]);
                     setSearchQuery("");
                   }}
-                  className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="text-sm font-medium text-black underline-offset-4 hover:underline dark:text-white"
                 >
                   Clear all filters
                 </button>
@@ -137,10 +137,10 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
       {featuredPosts.length > 0 && (
         <section className="mb-24">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="text-3xl font-bold text-black dark:text-white">
               Featured Articles
             </h2>
-            <div className="ml-8 h-px flex-1 bg-gradient-to-r from-primary-500/20 to-transparent" />
+            <div className="ml-8 h-px flex-1 bg-gradient-to-r from-black/20 to-transparent dark:from-white/20" />
           </div>
           <div className="grid gap-8 lg:grid-cols-2">
             {featuredPosts.slice(0, 2).map((post) => (
@@ -148,7 +148,8 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
                 key={post.url}
                 {...post}
                 thumbnail={post.thumbnail || ""}
-                className="transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+                tags={post.tags}
+                className="transform transition-all duration-300 hover:scale-[1.02]"
               />
             ))}
           </div>
@@ -158,10 +159,10 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
       {/* Regular Posts Grid */}
       <section>
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+          <h2 className="text-3xl font-bold text-black dark:text-white">
             Latest Articles
           </h2>
-          <div className="ml-8 h-px flex-1 bg-gradient-to-r from-primary-500/20 to-transparent" />
+          <div className="ml-8 h-px flex-1 bg-gradient-to-r from-black/20 to-transparent dark:from-white/20" />
         </div>
         {regularPosts.length > 0 ? (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -170,12 +171,13 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
                 key={post.url}
                 {...post}
                 thumbnail={post.thumbnail || ""}
-                className="transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+                tags={post.tags}
+                className="transform transition-all duration-300 hover:scale-[1.02]"
               />
             ))}
           </div>
         ) : (
-          <div className="py-12 text-center">
+          <div className="rounded-xl border-2 border-gray-200 bg-white p-12 text-center shadow-md dark:border-gray-800 dark:bg-gray-900">
             <p className="text-gray-600 dark:text-gray-400">
               No articles found matching your criteria.
             </p>
@@ -185,13 +187,13 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
 
       {/* Newsletter Section */}
       <section className="relative mt-32">
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary-600/5 to-primary-400/5" />
-        <div className="bg-white/40 relative rounded-3xl p-12 backdrop-blur-sm dark:bg-gray-900/40">
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-black/5 to-black/5 dark:from-white/5 dark:to-white/5" />
+        <div className="relative rounded-3xl border-2 border-gray-200 bg-white/40 p-12 shadow-document backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/40">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-3 inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-800 dark:bg-primary-900/50 dark:text-primary-300">
+            <span className="mb-3 inline-block rounded-full border-2 border-black bg-black/5 px-3 py-1 text-sm font-medium text-black dark:border-white dark:bg-white/5 dark:text-white">
               Newsletter
             </span>
-            <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h2 className="mb-4 text-3xl font-bold text-black dark:text-white">
               Stay in the Loop
             </h2>
             <p className="mb-8 text-gray-600 dark:text-gray-400">
@@ -203,14 +205,14 @@ export default function BlogContent({ initialPosts }: BlogContentProps) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 rounded-xl border border-gray-300 px-6 py-3 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:border-gray-700 dark:bg-gray-800"
+                className="flex-1 rounded-xl border-2 border-gray-200 bg-white px-6 py-3 shadow-md transition-all duration-200 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/20 dark:border-gray-700 dark:bg-gray-800 dark:focus:border-white dark:focus:ring-white/20"
               />
               <button
                 type="submit"
-                className="text-white group relative overflow-hidden rounded-xl bg-primary-600 px-8 py-3 font-semibold transition-all hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500/20 dark:bg-primary-500 dark:hover:bg-primary-400"
+                className="group relative overflow-hidden rounded-xl border-2 border-black bg-black px-8 py-3 font-semibold text-white shadow-md transition-all duration-200 hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black/20 dark:border-white dark:bg-white dark:text-black dark:hover:bg-white/90"
               >
                 <span className="relative z-10">Subscribe</span>
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-primary-400 to-primary-600 transition-transform group-hover:translate-x-0" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-black/80 to-black transition-transform group-hover:translate-x-0 dark:from-white/80 dark:to-white" />
               </button>
             </form>
           </div>

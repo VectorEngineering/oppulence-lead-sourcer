@@ -1,8 +1,10 @@
 // app/providers.tsx
 "use client";
-import posthog from "posthog-js";
-import { PostHogProvider } from "posthog-js/react";
 
+import { PostHogProvider } from "posthog-js/react";
+import posthog from "posthog-js";
+
+// Initialize PostHog
 if (typeof window !== "undefined") {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
