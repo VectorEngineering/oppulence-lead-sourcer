@@ -23,5 +23,15 @@ module.exports = {
         ],
         'no-empty-pattern': 'warn',
         'no-inner-declarations': 'off'
+    },
+    settings: {
+        react: {
+            version: 'detect'
+        },
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx']
+            }
+        }
     }
 }

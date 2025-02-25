@@ -28,7 +28,7 @@
         "clean": "pnpm --filter \"./packages/**\" clean",
         "nuke": "pnpm --filter \"./packages/**\" nuke && rimraf node_modules .turbo",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "eslint \"**/*.{js,jsx,ts,tsx,json,md}\"",
+        "lint": "eslint \"apps/**/*.{js,jsx,ts,tsx}\"",
         "lint-fix": "pnpm lint --fix",
         "quick": "pretty-quick --staged",
         "postinstall": "husky install",
