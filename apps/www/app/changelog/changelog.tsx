@@ -19,7 +19,7 @@ const updates: ChangelogEntry[] = [
     date: "1 December 2024",
     title: "Custom QR Code Logos for Your Domains",
     version: "v1.1.0",
-    documentationUrl: "/docs/qr-codes",
+    documentationUrl: "",
     description: (
       <>
         <p className="mt-2 text-gray-600">
