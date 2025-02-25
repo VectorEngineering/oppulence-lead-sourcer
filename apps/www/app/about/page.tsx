@@ -7,9 +7,10 @@ import { constructMetadata } from "@/lib/utils";
 
 export const metadata: Metadata = constructMetadata({
   title: "About Oppulence | Building Block by Block",
-  description: "Learn how Oppulence is empowering solo entrepreneurs with modular business solutions designed for scalability and efficiency.",
+  description:
+    "Learn how Oppulence is empowering solo entrepreneurs with modular business solutions designed for scalability and efficiency.",
   canonical: "/about",
-  ogImage: "/images/about-og.jpg"
+  ogImage: "/images/about-og.jpg",
 });
 
 export default function AboutPage() {

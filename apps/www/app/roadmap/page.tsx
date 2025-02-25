@@ -38,7 +38,7 @@ export default async function RoadmapPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg p-6 shadow-sm border">
+          <div className="bg-white rounded-lg border p-6 shadow-sm">
             <ClientRoadmap products={products} roadmapItems={roadmapItems} />
           </div>
         </div>

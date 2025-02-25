@@ -52,10 +52,11 @@ export default function ChangelogPage() {
                 />
                 <div className="group relative">
                   <div
-                    className={`h-4 w-4 rounded-full border-2 ${index === 0
-                      ? "bg-white border-blue-500"
-                      : "border-gray-200 bg-gray-50"
-                      }`}
+                    className={`h-4 w-4 rounded-full border-2 ${
+                      index === 0
+                        ? "bg-white border-blue-500"
+                        : "border-gray-200 bg-gray-50"
+                    }`}
                   />
                   <div className="absolute left-full ml-4 hidden whitespace-nowrap group-hover:block">
                     <div className="flex items-center gap-2">
@@ -69,10 +70,11 @@ export default function ChangelogPage() {
                   </div>
                 </div>
                 <div
-                  className={`h-full w-px ${index === updates.length - 1
-                    ? "bg-transparent"
-                    : "bg-gray-200"
-                    }`}
+                  className={`h-full w-px ${
+                    index === updates.length - 1
+                      ? "bg-transparent"
+                      : "bg-gray-200"
+                  }`}
                 />
               </div>
             ))}

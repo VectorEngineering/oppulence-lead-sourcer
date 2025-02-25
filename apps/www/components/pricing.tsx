@@ -80,13 +80,13 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 
   const gradientStyle = mounted
     ? {
-      backgroundImage:
-        "linear-gradient(45deg, #1a237e, #006064, #1b5e20, #006064, #b71c1c)",
-      backgroundSize: "300% 300%",
-      animation: "rainbow-animation 5s ease infinite",
-      color: "white",
-      transition: "all 0.3s ease",
-    }
+        backgroundImage:
+          "linear-gradient(45deg, #1a237e, #006064, #1b5e20, #006064, #b71c1c)",
+        backgroundSize: "300% 300%",
+        animation: "rainbow-animation 5s ease infinite",
+        color: "white",
+        transition: "all 0.3s ease",
+      }
     : {};
 
   const handleDownload = async (os_type: string) => {
@@ -180,14 +180,14 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
       className={cn(
         "group relative flex h-full w-full flex-col transition-all duration-300 ease-in-out",
         isPopular && "scale-[1.02] shadow-lg",
-        isHovered && "shadow-xl translate-y-[-4px]"
+        isHovered && "translate-y-[-4px] shadow-xl",
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {isPopular && (
         <Badge
-          className="absolute -top-3 left-1/2 -translate-x-1/2 bg-background px-4 py-1 text-sm font-medium text-secondary shadow-md"
+          className="text-secondary absolute -top-3 left-1/2 -translate-x-1/2 bg-background px-4 py-1 text-sm font-medium shadow-md"
           variant="default"
         >
           <Sparkles className="mr-1 h-3.5 w-3.5" /> Most Popular
@@ -300,7 +300,7 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
                 <Button
                   className={cn(
                     "w-full transition-all duration-300",
-                    isPopular && "bg-primary hover:bg-primary/90"
+                    isPopular && "bg-primary hover:bg-primary/90",
                   )}
                   onClick={() => {
                     window.location.href = "https://app.oppulence.app/signup";
@@ -321,10 +321,10 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
   const searchParams = useSearchParams();
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
-    searchParams?.get("billing") === "yearly" ? "yearly" : "monthly"
+    searchParams?.get("billing") === "yearly" ? "yearly" : "monthly",
   );
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    searchParams?.get("category") || "lead-management"
+    searchParams?.get("category") || "lead-management",
   );
   const router = useRouter();
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -339,7 +339,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
     });
 
     // Use replaceState to update URL without scrolling
-    window.history.replaceState({}, '', url.pathname + url.search);
+    window.history.replaceState({}, "", url.pathname + url.search);
   };
 
   const handleBillingCycleChange = (cycle: "monthly" | "yearly") => {
@@ -382,7 +382,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                 "w-1/2 rounded-full px-4 py-2 text-sm font-medium transition-all",
                 billingCycle === "monthly"
                   ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               Monthly
@@ -393,7 +393,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                 "w-1/2 rounded-full px-4 py-2 text-sm font-medium transition-all",
                 billingCycle === "yearly"
                   ? "bg-background text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
               )}
             >
               Yearly
@@ -472,7 +472,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     buttonText="Start Free Trial"
                     user={user}
                     index={0}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -492,7 +496,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     user={user}
                     index={1}
                     isPopular={true}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -532,7 +540,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     buttonText="Start Free Trial"
                     user={user}
                     index={0}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -552,7 +564,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     user={user}
                     index={1}
                     isPopular={true}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -592,7 +608,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     buttonText="Start Free Trial"
                     user={user}
                     index={0}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -612,7 +632,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     user={user}
                     index={1}
                     isPopular={true}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -652,7 +676,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     buttonText="Start Free Trial"
                     user={user}
                     index={0}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier
@@ -672,7 +700,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                     user={user}
                     index={1}
                     isPopular={true}
-                    priceUnit={billingCycle === "yearly" ? "/month, billed yearly" : "/month"}
+                    priceUnit={
+                      billingCycle === "yearly"
+                        ? "/month, billed yearly"
+                        : "/month"
+                    }
                   />
 
                   <PricingTier

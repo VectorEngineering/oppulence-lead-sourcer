@@ -15,7 +15,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { format, isAfter, isBefore, isWithinInterval, parseISO, startOfMonth, startOfQuarter, startOfYear, subDays } from "date-fns";
+import {
+  format,
+  isAfter,
+  isBefore,
+  isWithinInterval,
+  parseISO,
+  startOfMonth,
+  startOfQuarter,
+  startOfYear,
+  subDays,
+} from "date-fns";
 
 import { Badge } from "@/components/ui/badge";
 import { RoadmapItem } from "./types";
@@ -70,7 +80,7 @@ function RoadmapDetailSheet({ item }: { item: RoadmapItem }) {
               item.status === "planned" && "border-yellow-500 text-yellow-500",
               item.status === "in-progress" && "border-blue-500 text-blue-500",
               item.status === "completed" && "border-green-500 text-green-500",
-              item.status === "cancelled" && "border-red-500 text-red-500"
+              item.status === "cancelled" && "border-red-500 text-red-500",
             )}
           >
             <span
@@ -79,7 +89,7 @@ function RoadmapDetailSheet({ item }: { item: RoadmapItem }) {
                 item.status === "planned" && "bg-yellow-500",
                 item.status === "in-progress" && "bg-blue-500",
                 item.status === "completed" && "bg-green-500",
-                item.status === "cancelled" && "bg-red-500"
+                item.status === "cancelled" && "bg-red-500",
               )}
             ></span>
             {item.status === "in-progress"
@@ -120,7 +130,7 @@ function RoadmapCard({ item }: { item: RoadmapItem }) {
         <Card
           className={cn(
             "w-full cursor-pointer transition-all hover:shadow-md",
-            item.status === "cancelled" && "opacity-60"
+            item.status === "cancelled" && "opacity-60",
           )}
         >
           <CardHeader className="p-4 pb-2">
@@ -150,10 +160,13 @@ function RoadmapCard({ item }: { item: RoadmapItem }) {
                 variant="outline"
                 className={cn(
                   "text-[10px]",
-                  item.status === "planned" && "border-yellow-500 text-yellow-500",
-                  item.status === "in-progress" && "border-blue-500 text-blue-500",
-                  item.status === "completed" && "border-green-500 text-green-500",
-                  item.status === "cancelled" && "border-red-500 text-red-500"
+                  item.status === "planned" &&
+                    "border-yellow-500 text-yellow-500",
+                  item.status === "in-progress" &&
+                    "border-blue-500 text-blue-500",
+                  item.status === "completed" &&
+                    "border-green-500 text-green-500",
+                  item.status === "cancelled" && "border-red-500 text-red-500",
                 )}
               >
                 {item.status === "in-progress"
@@ -183,7 +196,7 @@ function RoadmapCard({ item }: { item: RoadmapItem }) {
                     </li>
                   ))}
                   {item.features.length > 2 && (
-                    <li className="text-xs text-muted-foreground italic pl-3">
+                    <li className="pl-3 text-xs italic text-muted-foreground">
                       +{item.features.length - 2} more...
                     </li>
                   )}
@@ -213,24 +226,26 @@ export function RoadmapKanban({ items }: RoadmapKanbanProps) {
     if (searchTerm) {
       const search = searchTerm.toLowerCase();
       filtered = filtered.filter(
-        item =>
+        (item) =>
           item.title.toLowerCase().includes(search) ||
           item.description.toLowerCase().includes(search) ||
           item.product.toLowerCase().includes(search) ||
-          item.features?.some(feature => feature.toLowerCase().includes(search))
+          item.features?.some((feature) =>
+            feature.toLowerCase().includes(search),
+          ),
       );
     }
 
     // Apply status filter
     if (statusFilter && statusFilter !== "all") {
-      filtered = filtered.filter(item => item.status === statusFilter);
+      filtered = filtered.filter((item) => item.status === statusFilter);
     }
 
     // Apply date filter
     if (dateFilter && dateFilter !== "all") {
       const now = new Date();
 
-      filtered = filtered.filter(item => {
+      filtered = filtered.filter((item) => {
         const itemDate = parseISO(item.date);
 
         switch (dateFilter) {
@@ -239,20 +254,26 @@ export function RoadmapKanban({ items }: RoadmapKanbanProps) {
           case "past":
             return isBefore(itemDate, now);
           case "this-month":
-            return isWithinInterval(itemDate, {
-              start: startOfMonth(now),
-              end: now
-            }) || isAfter(itemDate, now);
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfMonth(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
           case "this-quarter":
-            return isWithinInterval(itemDate, {
-              start: startOfQuarter(now),
-              end: now
-            }) || isAfter(itemDate, now);
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfQuarter(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
           case "this-year":
-            return isWithinInterval(itemDate, {
-              start: startOfYear(now),
-              end: now
-            }) || isAfter(itemDate, now);
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfYear(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
           default:
             return true;
         }
@@ -269,7 +290,8 @@ export function RoadmapKanban({ items }: RoadmapKanbanProps) {
   ];
 
   // Only show cancelled column if there are cancelled items and no status filter is applied
-  const showCancelledColumn = !statusFilter && filteredItems.some(item => item.status === "cancelled");
+  const showCancelledColumn =
+    !statusFilter && filteredItems.some((item) => item.status === "cancelled");
 
   if (showCancelledColumn) {
     columns.push({ title: "Cancelled", status: "cancelled" });
@@ -278,7 +300,9 @@ export function RoadmapKanban({ items }: RoadmapKanbanProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
       {columns.map((column) => {
-        const columnItems = filteredItems.filter(item => item.status === column.status);
+        const columnItems = filteredItems.filter(
+          (item) => item.status === column.status,
+        );
 
         return (
           <div key={column.status} className="space-y-4">

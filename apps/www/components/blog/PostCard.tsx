@@ -28,13 +28,13 @@ const PostCard = ({
 }: PostCardProps) => (
   <Card
     className={cn(
-      "flex h-full flex-col overflow-hidden border-2 border-gray-200 shadow-md dark:border-gray-800 bg-white dark:bg-gray-900 rounded-xl transition-all duration-300 hover:shadow-document hover:border-black dark:hover:border-white",
+      "bg-white dark:hover:border-white flex h-full flex-col overflow-hidden rounded-xl border-2 border-gray-200 shadow-md transition-all duration-300 hover:border-black hover:shadow-document dark:border-gray-800 dark:bg-gray-900",
       className,
     )}
   >
-    <Link href={`/blog/${slug}`} className="flex flex-col h-full group">
+    <Link href={`/blog/${slug}`} className="group flex h-full flex-col">
       <div className="relative aspect-video w-full overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/0 to-black/20 opacity-0 transition-opacity group-hover:opacity-100" />
         <Image
           fill
           src={thumbnail}
@@ -42,27 +42,40 @@ const PostCard = ({
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
-      <CardContent className="flex-grow p-6 flex flex-col">
-        <div className="flex items-center justify-between mb-3">
-          <time dateTime={date} className="text-xs font-medium text-gray-500 dark:text-gray-400">
+      <CardContent className="flex flex-grow flex-col p-6">
+        <div className="mb-3 flex items-center justify-between">
+          <time
+            dateTime={date}
+            className="text-xs font-medium text-gray-500 dark:text-gray-400"
+          >
             {format(parseISO(normalizeDate(date)), "LLLL d, yyyy")}
           </time>
           {tags.includes("featured") && (
-            <span className="inline-flex items-center rounded-full bg-black/10 dark:bg-white/10 px-2.5 py-0.5 text-xs font-medium text-black dark:text-white">
+            <span className="dark:bg-white/10 dark:text-white inline-flex items-center rounded-full bg-black/10 px-2.5 py-0.5 text-xs font-medium text-black">
               Featured
             </span>
           )}
         </div>
-        <h2 className="mb-3 text-xl font-semibold group-hover:text-black dark:group-hover:text-white transition-colors">{title}</h2>
-        <p className="line-clamp-3 text-sm text-gray-600 dark:text-gray-400 mb-4">{excerpt}</p>
+        <h2 className="dark:group-hover:text-white mb-3 text-xl font-semibold transition-colors group-hover:text-black">
+          {title}
+        </h2>
+        <p className="mb-4 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">
+          {excerpt}
+        </p>
         <div className="mt-auto flex flex-wrap gap-2">
-          {tags.filter(tag => tag !== "featured").slice(0, 3).map(tag => (
-            <span key={tag} className="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200">
-              {tag}
-            </span>
-          ))}
+          {tags
+            .filter((tag) => tag !== "featured")
+            .slice(0, 3)
+            .map((tag) => (
+              <span
+                key={tag}
+                className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+              >
+                {tag}
+              </span>
+            ))}
         </div>
-        <div className="mt-4 text-sm font-medium text-black dark:text-white group-hover:underline">
+        <div className="dark:text-white mt-4 text-sm font-medium text-black group-hover:underline">
           Read article →
         </div>
       </CardContent>

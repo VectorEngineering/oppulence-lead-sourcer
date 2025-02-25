@@ -22,7 +22,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 export function FAQContent() {
@@ -37,7 +37,9 @@ export function FAQContent() {
   // Local state for UI
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [expandedItem, setExpandedItem] = useState<string | undefined>(undefined);
+  const [expandedItem, setExpandedItem] = useState<string | undefined>(
+    undefined,
+  );
 
   // Function to update URL search params
   const updateSearchParams = (name: string, value: string | null) => {
@@ -55,7 +57,7 @@ export function FAQContent() {
   // Extract unique categories from FAQ data
   const categories = useMemo(() => {
     const uniqueCategories = Array.from(
-      new Set(faqData.map((item) => item.category || "uncategorized"))
+      new Set(faqData.map((item) => item.category || "uncategorized")),
     );
     return ["all", ...uniqueCategories];
   }, []);
@@ -180,7 +182,9 @@ export function FAQContent() {
                 <Button variant="outline" className="w-full justify-between">
                   <span className="flex items-center">
                     <Filter className="mr-2 h-4 w-4" />
-                    {activeCategory === "all" ? "All Categories" : activeCategory}
+                    {activeCategory === "all"
+                      ? "All Categories"
+                      : activeCategory}
                   </span>
                   <ChevronRight className="h-4 w-4" />
                 </Button>
@@ -192,7 +196,7 @@ export function FAQContent() {
                     onClick={() => handleCategoryChange(category)}
                     className={cn(
                       "flex justify-between",
-                      activeCategory === category && "bg-muted"
+                      activeCategory === category && "bg-muted",
                     )}
                   >
                     <span className="capitalize">{category}</span>
@@ -302,7 +306,7 @@ export function FAQContent() {
                             {item.category && (
                               <Badge
                                 variant="outline"
-                                className="capitalize text-xs"
+                                className="text-xs capitalize"
                               >
                                 {item.category}
                               </Badge>

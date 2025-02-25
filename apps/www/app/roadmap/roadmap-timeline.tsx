@@ -1,8 +1,23 @@
 "use client";
 
 import { RoadmapItem, RoadmapStatus } from "./types";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { format, isAfter, isBefore, isWithinInterval, parseISO, startOfMonth, startOfQuarter, startOfYear } from "date-fns";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  format,
+  isAfter,
+  isBefore,
+  isWithinInterval,
+  parseISO,
+  startOfMonth,
+  startOfQuarter,
+  startOfYear,
+} from "date-fns";
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -65,7 +80,8 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
                     aria-label={item.product}
                     title={item.product}
                   >
-                    {productEmoji[item.product as keyof typeof productEmoji] || "📦"}
+                    {productEmoji[item.product as keyof typeof productEmoji] ||
+                      "📦"}
                   </span>
                   <h3 className="text-base font-semibold">{item.title}</h3>
                 </div>
@@ -74,10 +90,14 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
                     variant="outline"
                     className={cn(
                       "text-[10px]",
-                      item.status === "planned" && "border-yellow-500 text-yellow-500",
-                      item.status === "in-progress" && "border-blue-500 text-blue-500",
-                      item.status === "completed" && "border-green-500 text-green-500",
-                      item.status === "cancelled" && "border-red-500 text-red-500"
+                      item.status === "planned" &&
+                        "border-yellow-500 text-yellow-500",
+                      item.status === "in-progress" &&
+                        "border-blue-500 text-blue-500",
+                      item.status === "completed" &&
+                        "border-green-500 text-green-500",
+                      item.status === "cancelled" &&
+                        "border-red-500 text-red-500",
                     )}
                   >
                     {statusLabels[item.status]}
@@ -87,7 +107,9 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
                   </time>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground">{item.description}</p>
+              <p className="text-sm text-muted-foreground">
+                {item.description}
+              </p>
               {item.features && item.features.length > 0 && (
                 <div className="mt-2 space-y-2">
                   <div className="flex items-center gap-1">
@@ -107,7 +129,7 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
                       </li>
                     ))}
                     {item.features.length > 2 && (
-                      <li className="text-xs text-muted-foreground italic pl-3">
+                      <li className="pl-3 text-xs italic text-muted-foreground">
                         +{item.features.length - 2} more...
                       </li>
                     )}
@@ -126,9 +148,7 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
             </span>
             <SheetTitle className="text-xl">{item.title}</SheetTitle>
           </div>
-          <p className="text-base text-muted-foreground">
-            {item.description}
-          </p>
+          <p className="text-base text-muted-foreground">{item.description}</p>
         </SheetHeader>
         <div className="mt-6 space-y-6">
           <div className="flex flex-wrap gap-3">
@@ -140,10 +160,13 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
               variant="outline"
               className={cn(
                 "flex items-center gap-1.5",
-                item.status === "planned" && "border-yellow-500 text-yellow-500",
-                item.status === "in-progress" && "border-blue-500 text-blue-500",
-                item.status === "completed" && "border-green-500 text-green-500",
-                item.status === "cancelled" && "border-red-500 text-red-500"
+                item.status === "planned" &&
+                  "border-yellow-500 text-yellow-500",
+                item.status === "in-progress" &&
+                  "border-blue-500 text-blue-500",
+                item.status === "completed" &&
+                  "border-green-500 text-green-500",
+                item.status === "cancelled" && "border-red-500 text-red-500",
               )}
             >
               <span
@@ -152,7 +175,7 @@ function RoadmapTimelineItem({ item }: { item: RoadmapItem }) {
                   item.status === "planned" && "bg-yellow-500",
                   item.status === "in-progress" && "bg-blue-500",
                   item.status === "completed" && "bg-green-500",
-                  item.status === "cancelled" && "bg-red-500"
+                  item.status === "cancelled" && "bg-red-500",
                 )}
               ></span>
               {statusLabels[item.status]}
@@ -200,24 +223,26 @@ export function RoadmapTimeline({ items }: RoadmapTimelineProps) {
     if (searchTerm) {
       const search = searchTerm.toLowerCase();
       filtered = filtered.filter(
-        item =>
+        (item) =>
           item.title.toLowerCase().includes(search) ||
           item.description.toLowerCase().includes(search) ||
           item.product.toLowerCase().includes(search) ||
-          item.features?.some(feature => feature.toLowerCase().includes(search))
+          item.features?.some((feature) =>
+            feature.toLowerCase().includes(search),
+          ),
       );
     }
 
     // Apply status filter
     if (statusFilter && statusFilter !== "all") {
-      filtered = filtered.filter(item => item.status === statusFilter);
+      filtered = filtered.filter((item) => item.status === statusFilter);
     }
 
     // Apply date filter
     if (dateFilter && dateFilter !== "all") {
       const now = new Date();
 
-      filtered = filtered.filter(item => {
+      filtered = filtered.filter((item) => {
         const itemDate = parseISO(item.date);
 
         switch (dateFilter) {
@@ -226,20 +251,26 @@ export function RoadmapTimeline({ items }: RoadmapTimelineProps) {
           case "past":
             return isBefore(itemDate, now);
           case "this-month":
-            return isWithinInterval(itemDate, {
-              start: startOfMonth(now),
-              end: now
-            }) || isAfter(itemDate, now);
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfMonth(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
           case "this-quarter":
-            return isWithinInterval(itemDate, {
-              start: startOfQuarter(now),
-              end: now
-            }) || isAfter(itemDate, now);
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfQuarter(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
           case "this-year":
-            return isWithinInterval(itemDate, {
-              start: startOfYear(now),
-              end: now
-            }) || isAfter(itemDate, now);
+            return (
+              isWithinInterval(itemDate, {
+                start: startOfYear(now),
+                end: now,
+              }) || isAfter(itemDate, now)
+            );
           default:
             return true;
         }

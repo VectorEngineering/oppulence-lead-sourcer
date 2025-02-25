@@ -32,9 +32,14 @@ export default function ReadingProgress({ className }: ReadingProgressProps) {
   }, []);
 
   return (
-    <div className={cn("fixed left-0 top-0 z-50 h-1 w-full bg-gray-200", className)}>
+    <div
+      className={cn(
+        "fixed left-0 top-0 z-50 h-1 w-full bg-gray-200",
+        className,
+      )}
+    >
       <div
-        className="h-full bg-black dark:bg-white transition-all duration-150"
+        className="dark:bg-white h-full bg-black transition-all duration-150"
         style={{ width: `${progress}%` }}
       />
     </div>

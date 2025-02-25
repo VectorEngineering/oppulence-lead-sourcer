@@ -1,7 +1,15 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, ArrowRight, Briefcase, Rocket, Shield, Target, Zap } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowRight,
+  Briefcase,
+  Rocket,
+  Shield,
+  Target,
+  Zap,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -33,7 +41,8 @@ const quotes = [
     author: "Mark Twain",
   },
   {
-    quote: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    quote:
+      "Success is not final, failure is not fatal: it is the courage to continue that counts.",
     author: "Winston Churchill",
   },
   {
@@ -41,7 +50,8 @@ const quotes = [
     author: "Bill Gates",
   },
   {
-    quote: "If you're not embarrassed by the first version of your product, you've launched too late.",
+    quote:
+      "If you're not embarrassed by the first version of your product, you've launched too late.",
     author: "Reid Hoffman",
   },
   {
@@ -49,7 +59,8 @@ const quotes = [
     author: "Steve Jobs",
   },
   {
-    quote: "The best time to plant a tree was 20 years ago. The second best time is now.",
+    quote:
+      "The best time to plant a tree was 20 years ago. The second best time is now.",
     author: "Chinese Proverb",
   },
   {
@@ -61,7 +72,8 @@ const quotes = [
     author: "Steve Jobs",
   },
   {
-    quote: "Chase the vision, not the money. The money will end up following you.",
+    quote:
+      "Chase the vision, not the money. The money will end up following you.",
     author: "Tony Hsieh",
   },
   {
@@ -69,7 +81,8 @@ const quotes = [
     author: "Gary Player",
   },
   {
-    quote: "Success usually comes to those who are too busy to be looking for it.",
+    quote:
+      "Success usually comes to those who are too busy to be looking for it.",
     author: "Henry David Thoreau",
   },
 ];
@@ -88,7 +101,7 @@ const QuoteCard = ({ quote, author }: QuoteCardProps) => (
     className="rounded-lg border border-foreground/5 bg-background/60 p-4 shadow-sm backdrop-blur-lg"
   >
     <p className="mb-2 text-sm font-medium leading-relaxed text-foreground/80">
-      "{quote}"
+      &ldquo;{quote}&ldquo;
     </p>
     <p className="text-xs font-medium text-foreground/60">— {author}</p>
   </motion.div>
@@ -118,8 +131,8 @@ const QuoteCarousel = () => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -213,7 +226,9 @@ const ScrollIndicator = () => (
     animate={{ opacity: 1 }}
     transition={{ delay: 1.5, duration: 0.8 }}
   >
-    <p className="mb-2 text-xs font-medium text-foreground/50">Scroll to explore</p>
+    <p className="mb-2 text-xs font-medium text-foreground/50">
+      Scroll to explore
+    </p>
     <motion.div
       animate={{ y: [0, 8, 0] }}
       transition={{ repeat: Infinity, duration: 1.5 }}
@@ -229,10 +244,10 @@ const HeroContent = () => {
 
   const features = [
     { icon: Shield, text: "Enterprise-Grade Security" },
-    { icon: Rocket, text: "Intelligent Workflow Orchestration" },
-    { icon: Briefcase, text: "Modular Business Architecture" },
-    { icon: Target, text: "Adaptive Growth Analytics" },
-    { icon: Zap, text: "24/7 Operational Efficiency" },
+    { icon: Rocket, text: "AI-Powered Workflow Automation" },
+    { icon: Briefcase, text: "Unified Business Command Center" },
+    { icon: Target, text: "Predictive Growth Analytics" },
+    { icon: Zap, text: "Intelligent Task Orchestration" },
   ];
 
   return (
@@ -244,9 +259,19 @@ const HeroContent = () => {
         className="mb-6"
       >
         {isDark ? (
-          <PearDarkHeroLogo width="48" height="48" alt="Pear Logo" className="mx-auto" />
+          <PearDarkHeroLogo
+            width="48"
+            height="48"
+            alt="Pear Logo"
+            className="mx-auto"
+          />
         ) : (
-          <PearHeroLogo width="48" height="48" alt="Pear Logo" className="mx-auto" />
+          <PearHeroLogo
+            width="48"
+            height="48"
+            alt="Pear Logo"
+            className="mx-auto"
+          />
         )}
       </motion.div>
 
@@ -256,9 +281,9 @@ const HeroContent = () => {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl"
       >
-        <span className="block sm:inline">Empowering Solo Entrepreneurs </span>
+        <span className="block sm:inline">Scale Your Solo Business </span>
         <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-          Block by Block
+          Without The Chaos
         </span>
       </motion.h1>
 
@@ -268,8 +293,9 @@ const HeroContent = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mx-auto mb-8 max-w-2xl text-base text-foreground/70 sm:text-lg"
       >
-        Your operational cornerstone in business management. Our modular architecture unifies essential functions
-        into a cohesive, intelligent system—transforming how you scale while maintaining 24/7 efficiency.
+        Your intelligent business orchestration platform. Streamline operations,
+        convert more leads, and unlock data-driven insights—all while you focus
+        on what truly matters: building your empire.
       </motion.p>
 
       <motion.div
@@ -319,7 +345,7 @@ const HeroContent = () => {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-background no-scrollbar">
+    <section className="no-scrollbar relative min-h-[90vh] overflow-hidden bg-background">
       <GradientBackground />
       <QuoteCarousel />
       <HeroContent />

@@ -20,7 +20,11 @@ export default function RootLayout({
   const isProd = process.env.NODE_ENV === "production";
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {!isProd && (
           <script
@@ -30,9 +34,7 @@ export default function RootLayout({
         )}
       </head>
       <Providers>
-        <body
-          className="bg-background font-sans tracking-tight text-gray-900 antialiased"
-        >
+        <body className="bg-background font-sans tracking-tight text-gray-900 antialiased">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -40,7 +42,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <PostHogPageViewWrapper />
-            <div className="flex min-h-screen flex-col overflow-hidden no-scrollbar hide-scrollbar">
+            <div className="no-scrollbar hide-scrollbar flex min-h-screen flex-col overflow-hidden">
               <Header />
               {children}
               <Footer />

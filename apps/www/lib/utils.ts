@@ -115,23 +115,24 @@ export function capitalizeInital(input: unknown): string | undefined {
  * @returns Processed HTML content with heading IDs
  */
 export function processContentHeadings(content: string): string {
-  if (!content) return '';
+  if (!content) return "";
 
   // Create a temporary div to parse the HTML content
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   div.innerHTML = content;
 
   // Find all heading elements (h1, h2, h3, h4, h5, h6)
-  const headingElements = div.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  const headingElements = div.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
   // Add IDs to headings that don't have them
   headingElements.forEach((el, index) => {
     if (!el.id) {
       // Create a slug from the heading text
-      const slug = el.textContent
-        ?.toLowerCase()
-        .replace(/[^\w\s]/g, '')
-        .replace(/\s+/g, '-') || `heading-${index}`;
+      const slug =
+        el.textContent
+          ?.toLowerCase()
+          .replace(/[^\w\s]/g, "")
+          .replace(/\s+/g, "-") || `heading-${index}`;
 
       // Ensure uniqueness by adding index if needed
       el.id = `${slug}-${index}`;
