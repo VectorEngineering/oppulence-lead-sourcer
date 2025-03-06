@@ -12,12 +12,12 @@ import { post as wslSetupPost } from "./wsl-setup";
 // Export all posts sorted by date (newest first)
 export const posts: BlogPost[] = [
   serverDesignPost,
-  autoCompletePost,
-  claudePost,
-  linuxInstallPost,
-  gptO1Post,
-  leetcodePost,
-  wslSetupPost,
-  openSourcePost,
-  bountiesPost,
+  // autoCompletePost,
+  // claudePost,
+  // linuxInstallPost,
+  // gptO1Post,
+  // leetcodePost,
+  // wslSetupPost,
+  // openSourcePost,
+  // bountiesPost,
 ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

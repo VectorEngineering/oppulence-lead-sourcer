@@ -17,9 +17,10 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { buttonVariants } from "@/components/ui/button";
 import ShareButtons from "./share-buttons";
+import ChangelogContent from "@/components/changelog/changelog-content";
 
 // Helper functions
-function generateSlug(update: ChangelogEntry): string {
+function generateSlug(update: { date: string; title: string }): string {
   return `${update.date.replace(/\s/g, "-").toLowerCase()}-${update.title
     .toLowerCase()
     .replace(/\s+/g, "-")
@@ -81,7 +82,7 @@ export async function generateMetadata({
 
   const description =
     typeof update.description === "string"
-      ? update.description
+      ? update.description.substring(0, 150) + "..."
       : "Read about the latest updates and improvements to Vector Lead Management.";
 
   return {
@@ -94,13 +95,13 @@ export async function generateMetadata({
       publishedTime: update.date,
       images: update.screenshot
         ? [
-            {
-              url: update.screenshot.src,
-              width: update.screenshot.width,
-              height: update.screenshot.height,
-              alt: update.screenshot.alt,
-            },
-          ]
+          {
+            url: update.screenshot.src,
+            width: update.screenshot.width,
+            height: update.screenshot.height,
+            alt: update.screenshot.alt,
+          },
+        ]
         : [],
     },
     twitter: {
@@ -181,15 +182,6 @@ export default async function ChangelogEntry({ params }: PageProps) {
         <Suspense fallback={<ImageSkeleton />}>
           {update.screenshot ? (
             <div className="overflow-hidden rounded-2xl border bg-gray-50 shadow-lg transition-all hover:shadow-xl">
-              {/* <Image
-                src={update.screenshot.src}
-                alt={update.screenshot.alt}
-                width={update.screenshot.width}
-                height={update.screenshot.height}
-                className="w-full"
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              /> */}
               <div className="bg-white relative flex h-[400px] w-full items-center justify-center gap-x-2 overflow-hidden rounded-lg border shadow-lg">
                 <div className="text-3xl font-bold text-black">
                   {update.title}
@@ -208,7 +200,7 @@ export default async function ChangelogEntry({ params }: PageProps) {
         </Suspense>
 
         <div className="prose prose-gray max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-lead:text-gray-700">
-          {update.description}
+          <ChangelogContent entry={update} />
         </div>
 
         {update.documentationUrl && (
@@ -348,13 +340,6 @@ function RelatedUpdateCard({ update }: RelatedUpdateCardProps) {
     >
       {update.screenshot ? (
         <div className="flex aspect-video w-full items-center justify-center overflow-hidden bg-gray-100">
-          {/* <Image
-            src={update.screenshot.src}
-            alt={update.screenshot.alt}
-            width={400}
-            height={225}
-            className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
-          /> */}
           <div className="text-md font-bold text-black">{update.title}</div>
         </div>
       ) : (
@@ -385,4 +370,11 @@ function RelatedUpdateCard({ update }: RelatedUpdateCardProps) {
       </div>
     </Link>
   );
+}
+
+export async function generateStaticParams() {
+  // Pre-generate all changelog pages
+  return updates.map((update) => ({
+    slug: generateSlug(update),
+  }));
 }
