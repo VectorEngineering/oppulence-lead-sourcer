@@ -5,6 +5,7 @@ import {
   LinkedInLogo,
   TikTokLogo,
   TwitterLogo,
+  YouTubeLogo,
 } from "@/components/ui/icons";
 
 import { MdFacebook } from "react-icons/md";
@@ -220,5 +221,9 @@ export const socialMediaLinks = [
   {
     icon: LinkedInLogo,
     link: "https://www.linkedin.com/company/getoppulence/about/?viewAsMember=true",
+  },
+  {
+    icon: YouTubeLogo,
+    link: "https://youtube.com/@getoppulence?si=6dOxvPog76BSFVDk",
   },
 ];
