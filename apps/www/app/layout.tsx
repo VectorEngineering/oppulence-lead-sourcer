@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import Header from "@/components/ui/header";
+import PageIllustration from "@/components/page-illustration";
 import PostHogPageViewWrapper from "../components/posthog-page-view-wrapper";
 import { Providers } from "./providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
