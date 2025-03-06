@@ -80,7 +80,7 @@ npx flowise start --PORT=3000 --DEBUG=true
 
         [![部署到 RepoCloud](https://d16t0pc4846x52.cloudfront.net/deploy.png)](https://repocloud.io/details/?app_id=29)
 
-              </details>
+                </details>
 
 ## ☁️ 云托管
 
