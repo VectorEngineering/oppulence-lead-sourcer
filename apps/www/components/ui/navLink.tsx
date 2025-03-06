@@ -60,12 +60,6 @@ const Navigation: React.FC = () => {
       isExternal: true,
       mobile: false,
     },
-    {
-      label: "For Enterprise",
-      path: "https://enterprise.oppulence.app",
-      isExternal: true,
-      mobile: false,
-    },
 
     // {
     //   label: "Docs",

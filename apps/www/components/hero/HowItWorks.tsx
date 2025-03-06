@@ -217,7 +217,7 @@ const HowItWorks = () => {
     },
     {
       number: "04",
-      title: "Enterprise System Integration",
+      title: "Addons (Integration Marketplace)",
       description:
         "The vast majority of growing businesses utilize CRM platforms as the foundation of their revenue operations.",
       extendedDescription:
@@ -452,7 +452,7 @@ const HowItWorks = () => {
             transition={{ duration: 0.5 }}
             className="dark:text-white mb-4 inline-block rounded-full border border-blue-500/30 bg-background px-4 py-1 text-sm font-medium text-gray-900 backdrop-blur-sm dark:bg-gray-800"
           >
-            Enterprise-Grade Prospect Identification
+            Prospect Identification
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -740,7 +740,7 @@ const HowItWorks = () => {
             intelligent, data-driven prospect identification systems. &quot;
           </blockquote>
           <p className="text-gray-600 dark:text-gray-400">
-            Enterprise Growth Strategy Report, 2025
+            Growth Strategy Report, 2025
           </p>
         </motion.div>
 

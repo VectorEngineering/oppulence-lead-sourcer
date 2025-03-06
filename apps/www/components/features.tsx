@@ -395,9 +395,9 @@ export default function Features() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mx-auto max-w-3xl text-lg leading-relaxed text-foreground/70 md:text-xl"
           >
-            Our AI-powered platform delivers enterprise-grade lead generation
-            capabilities in a package tailored for small business needs — easy
-            to use, seamlessly integrated, and remarkably affordable.
+            Our AI-powered platform delivers lead generation capabilities in a
+            package tailored for small business needs — easy to use, seamlessly
+            integrated, and remarkably affordable.
           </motion.p>
         </div>
 

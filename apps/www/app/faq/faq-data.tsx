@@ -94,9 +94,9 @@ export const faqData: FAQItem[] = [
           </li>
         </ul>
         <p>
-          Our platform delivers enterprise-grade AI lead generation capabilities
-          in a package specifically tailored for small business needs – easy to
-          use, fully integrated, and affordably priced.
+          Our platform delivers AI lead generation capabilities in a package
+          specifically tailored for small business needs – easy to use, fully
+          integrated, and affordably priced.
         </p>
       </div>
     ),
@@ -125,10 +125,7 @@ export const faqData: FAQItem[] = [
     question: "How secure is my business data with Oppulence?",
     answer: (
       <div className="space-y-4">
-        <p>
-          We implement enterprise-grade security measures to protect your
-          business data:
-        </p>
+        <p>We implement security measures to protect your business data:</p>
         <ul className="list-disc space-y-2 pl-5">
           <li>SOC 2 Type II compliant infrastructure</li>
           <li>End-to-end encryption for all data</li>

@@ -517,7 +517,7 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.5 }}
             className="dark:text-white mb-4 inline-block rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-1 text-sm font-medium text-black backdrop-blur-sm dark:border-blue-500/20 dark:bg-blue-500/10"
           >
-            Enterprise-Grade Technology
+            Technology
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -539,9 +539,9 @@ const FeatureShowcase = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="dark:text-white/70 mx-auto max-w-3xl text-lg leading-relaxed text-black/70 md:text-xl"
           >
-            Our platform delivers enterprise-grade AI lead generation
-            capabilities in a package tailored for small business needs — easy
-            to use, seamlessly integrated, and remarkably affordable. By 2025,{" "}
+            Our platform deliver AI lead generation capabilities in a package
+            tailored for small business needs — easy to use, seamlessly
+            integrated, and remarkably affordable. By 2025,{" "}
             <span className="font-semibold text-blue-500">
               72% of businesses will be using AI
             </span>{" "}
@@ -554,7 +554,7 @@ const FeatureShowcase = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="space-y-40"
+          className="space-y-8"
         >
           {featureInfo.map((info, index) => (
             <SingleFeature key={info.title} info={info} index={index} />
@@ -764,7 +764,7 @@ function SingleFeature(props: SingleFeatureProps) {
         >
           {info.videoSource ? (
             <AspectRatio ratio={16 / 9}>
-              <video
+              {/* <video
                 autoPlay
                 loop
                 muted
@@ -773,8 +773,13 @@ function SingleFeature(props: SingleFeatureProps) {
               >
                 <source src={info.videoSource} type="video/webm" />
                 Your browser does not support the video tag.
-              </video>
-              <div className="bg-white pointer-events-none absolute inset-0 border-t border-blue-500/20 mix-blend-overlay backdrop-blur-[1px] dark:bg-black"></div>
+              </video> */}
+
+              <div className="bg-white pointer-events-none absolute inset-0 mx-auto flex max-w-lg items-center justify-center border-t border-blue-500/20 mix-blend-overlay backdrop-blur-[1px] dark:bg-black">
+                <p className="dark:text-white/60 text-base text-sm italic leading-relaxed text-black/60">
+                  &quot;{info.extendedDescription}&quot;
+                </p>
+              </div>
             </AspectRatio>
           ) : info.embedId ? (
             <div className="w-full overflow-hidden rounded-2xl">

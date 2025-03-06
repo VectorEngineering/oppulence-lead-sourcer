@@ -527,7 +527,7 @@ const BenefitsSection = () => {
       gradientTo: "blue-400/10",
     },
     {
-      title: "Enterprise Features at Small Business Prices",
+      title: "Features at Small Business Prices",
       description:
         "Access powerful AI capabilities without the enterprise price tag that typically starts at $15,000+ per year.",
       extendedDescription:
