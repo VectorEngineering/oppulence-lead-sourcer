@@ -17,13 +17,6 @@ export default function Footer() {
           <p className="mt-5 text-sm leading-[1.75] text-neutral-500 dark:text-neutral-400">
             Building blocks for your business
           </p>
-          {/* <p
-            className="mb-4 text-xs font-bold text-gray-500 sm:text-xs"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            Oppulence is built on the innovations of Midday
-          </p> */}
         </div>
 
         {/* Sections with links */}
