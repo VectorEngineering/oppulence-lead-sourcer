@@ -39,11 +39,12 @@ export async function fetchRoute<TRequestBody = unknown, TResponseBody = unknown
 ): Promise<StepResponse<TResponseBody>> {
     const eCtx: ExecutionContext = {
         props: {},
+        exports: {},
         waitUntil: (promise: Promise<any>) => {
-            promise.catch(() => {})
+            promise.catch(() => { })
         },
-        passThroughOnException: () => {},
-        abort: (_reason?: any) => {}
+        passThroughOnException: () => { },
+        abort: (_reason?: any) => { }
     }
 
     const res = await app.request(
