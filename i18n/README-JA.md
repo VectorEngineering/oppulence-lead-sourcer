@@ -178,7 +178,7 @@ Flowise は、インスタンスを設定するためのさまざまな環境変
 
         [![Deploy on RepoCloud](https://d16t0pc4846x52.cloudfront.net/deploy.png)](https://repocloud.io/details/?app_id=29)
 
-            </details>
+              </details>
 
 ## ☁️ クラウドホスト
 
