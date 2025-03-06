@@ -419,7 +419,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
               onValueChange={handleCategoryChange}
               className="mt-4 flex w-full flex-col items-center"
             >
-              <TabsList className="grid h-full w-full max-w-2xl grid-cols-2 gap-1 rounded-lg bg-foreground p-1 md:grid-cols-4">
+              <TabsList className="grid h-full w-fit max-w-2xl grid-cols-2 gap-1 rounded-lg bg-foreground p-1">
                 <TabsTrigger
                   value="lead-management"
                   className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
@@ -427,22 +427,10 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                   🎯 Lead Management
                 </TabsTrigger>
                 <TabsTrigger
-                  value="financial"
-                  className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
-                >
-                  💰 Financial
-                </TabsTrigger>
-                <TabsTrigger
                   value="prospecting"
                   className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
                 >
                   🔍 Prospecting
-                </TabsTrigger>
-                <TabsTrigger
-                  value="contract"
-                  className="rounded-md data-[state=active]:bg-background data-[state=active]:shadow-sm"
-                >
-                  📝 Contracts
                 </TabsTrigger>
               </TabsList>
 
@@ -514,74 +502,6 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                 </div>
               </TabsContent>
 
-              <TabsContent value="financial" className="mt-6 w-full">
-                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
-                  <PricingTier
-                    title="Essential"
-                    price={billingCycle === "yearly" ? "23" : "29"}
-                    prevPrice={billingCycle === "yearly" ? "29" : "39"}
-                    description="Perfect for freelancers and solopreneurs"
-                    features={[
-                      "Income & expense tracking",
-                      "Basic financial reports",
-                      "Invoice generation",
-                      "Bank account integration",
-                      "Basic tax calculations",
-                    ]}
-                    buttonText="Start Free Trial"
-                    user={user}
-                    index={0}
-                    priceUnit={
-                      billingCycle === "yearly"
-                        ? "/month, billed yearly"
-                        : "/month"
-                    }
-                  />
-
-                  <PricingTier
-                    title="Growth"
-                    price={billingCycle === "yearly" ? "63" : "79"}
-                    prevPrice={billingCycle === "yearly" ? "79" : "99"}
-                    description="For growing businesses needing advanced features"
-                    features={[
-                      "Advanced financial reporting",
-                      "Recurring invoices",
-                      "Multi-currency support",
-                      "Expense categorization",
-                      "Cash flow forecasting",
-                      "Team access controls",
-                    ]}
-                    buttonText="Start Free Trial"
-                    user={user}
-                    index={1}
-                    isPopular={true}
-                    priceUnit={
-                      billingCycle === "yearly"
-                        ? "/month, billed yearly"
-                        : "/month"
-                    }
-                  />
-
-                  <PricingTier
-                    title="Enterprise"
-                    price="Custom"
-                    description="Custom solutions for large organizations"
-                    features={[
-                      "Custom integrations",
-                      "Advanced security features",
-                      "Dedicated account manager",
-                      "Custom reporting",
-                      "API access",
-                      "Advanced compliance tools",
-                    ]}
-                    buttonText="Contact Sales"
-                    user={user}
-                    index={2}
-                    priceUnit=""
-                  />
-                </div>
-              </TabsContent>
-
               <TabsContent value="prospecting" className="mt-6 w-full">
                 <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
                   <PricingTier
@@ -641,74 +561,6 @@ const PricingPage: React.FC<PricingPageProps> = ({ user }) => {
                       "Dedicated support",
                       "Advanced analytics",
                       "Custom workflows",
-                    ]}
-                    buttonText="Contact Sales"
-                    user={user}
-                    index={2}
-                    priceUnit=""
-                  />
-                </div>
-              </TabsContent>
-
-              <TabsContent value="contract" className="mt-6 w-full">
-                <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
-                  <PricingTier
-                    title="Starter"
-                    price={billingCycle === "yearly" ? "15" : "19"}
-                    prevPrice={billingCycle === "yearly" ? "19" : "29"}
-                    description="Basic contract management"
-                    features={[
-                      "10 contracts/month",
-                      "Basic templates",
-                      "E-signatures",
-                      "Contract storage",
-                      "Email notifications",
-                    ]}
-                    buttonText="Start Free Trial"
-                    user={user}
-                    index={0}
-                    priceUnit={
-                      billingCycle === "yearly"
-                        ? "/month, billed yearly"
-                        : "/month"
-                    }
-                  />
-
-                  <PricingTier
-                    title="Business"
-                    price={billingCycle === "yearly" ? "39" : "49"}
-                    prevPrice={billingCycle === "yearly" ? "49" : "69"}
-                    description="Advanced contract features"
-                    features={[
-                      "50 contracts/month",
-                      "Custom templates",
-                      "Contract analytics",
-                      "Team collaboration",
-                      "Approval workflows",
-                      "Contract reminders",
-                    ]}
-                    buttonText="Start Free Trial"
-                    user={user}
-                    index={1}
-                    isPopular={true}
-                    priceUnit={
-                      billingCycle === "yearly"
-                        ? "/month, billed yearly"
-                        : "/month"
-                    }
-                  />
-
-                  <PricingTier
-                    title="Enterprise"
-                    price="Custom"
-                    description="Custom contract solutions"
-                    features={[
-                      "Unlimited contracts",
-                      "Advanced workflow automation",
-                      "Custom integrations",
-                      "Dedicated support",
-                      "Advanced security",
-                      "Compliance features",
                     ]}
                     buttonText="Contact Sales"
                     user={user}

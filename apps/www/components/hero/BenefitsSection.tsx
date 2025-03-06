@@ -28,20 +28,23 @@ interface BenefitInfo {
     };
     highlight?: string;
     bookColor?: string;
+    primaryColor?: string; // For vibrant colors
+    gradientFrom?: string;
+    gradientTo?: string;
 }
 
 // Tag badge component with variants
 const categoryVariants = cva(
-    "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium",
+    "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium gap-1.5 transition-all duration-300 shadow-sm",
     {
         variants: {
             variant: {
-                "Efficiency": "bg-black/10 text-black dark:bg-white/10 dark:text-white",
-                "Sales": "bg-black/8 text-black dark:bg-white/8 dark:text-white",
-                "Analytics": "bg-black/6 text-black dark:bg-white/6 dark:text-white",
-                "Integration": "bg-black/10 text-black dark:bg-white/10 dark:text-white",
-                "Cost-Saving": "bg-black/8 text-black dark:bg-white/8 dark:text-white",
-                "Growth": "bg-black/6 text-black dark:bg-white/6 dark:text-white",
+                "Efficiency": "bg-gradient-to-r from-blue-500/20 to-blue-400/10 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Sales": "bg-gradient-to-r from-blue-500/20 to-blue-400/10 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Analytics": "bg-gradient-to-r from-blue-500/20 to-blue-400/10 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Integration": "bg-gradient-to-r from-blue-500/20 to-blue-400/10 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Cost-Saving": "bg-gradient-to-r from-blue-500/20 to-blue-400/10 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Growth": "bg-gradient-to-r from-blue-500/20 to-blue-400/10 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
             },
         },
         defaultVariants: {
@@ -50,11 +53,49 @@ const categoryVariants = cva(
     }
 );
 
-const BenefitCategory = ({ type }: { type: BenefitCategory }) => (
-    <span className={categoryVariants({ variant: type })}>
-        {type}
-    </span>
-);
+// Enhanced Category component with appropriate icons
+const BenefitCategory = ({ type }: { type: BenefitCategory }) => {
+    // Icons for each category type
+    const categoryIcons = {
+        "Efficiency": (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clipRule="evenodd" />
+            </svg>
+        ),
+        "Sales": (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                <path fillRule="evenodd" d="M1 2.75A.75.75 0 0 1 1.75 2h16.5a.75.75 0 0 1 0 1.5H18v8.75A2.75 2.75 0 0 1 15.25 15h-1.072l.798 3.06a.75.75 0 0 1-1.452.38L12.6 15H7.4l-.924 3.44a.75.75 0 0 1-1.452-.38L5.823 15H4.75A2.75 2.75 0 0 1 2 12.25V3.5h-.25A.75.75 0 0 1 1 2.75ZM7.373 15l-.391 1.464h6.037l-.392-1.464H7.373ZM13.25 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm-6.5 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 6.75 9Z" clipRule="evenodd" />
+            </svg>
+        ),
+        "Analytics": (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                <path d="M15.5 2A1.5 1.5 0 0 0 14 3.5v13a1.5 1.5 0 0 0 1.5 1.5h1a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 16.5 2h-1ZM9.5 6A1.5 1.5 0 0 0 8 7.5v9A1.5 1.5 0 0 0 9.5 18h1a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 10.5 6h-1ZM3.5 10A1.5 1.5 0 0 0 2 11.5v5A1.5 1.5 0 0 0 3.5 18h1A1.5 1.5 0 0 0 6 16.5v-5A1.5 1.5 0 0 0 4.5 10h-1Z" />
+            </svg>
+        ),
+        "Integration": (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                <path d="M12 4a2.5 2.5 0 1 0-4.996.076 2.5 2.5 0 0 0 4.996-.076ZM12 13a2.5 2.5 0 1 0-4.996.076 2.5 2.5 0 0 0 4.996-.076ZM5 10a2.5 2.5 0 1 0 .073-4.996A2.5 2.5 0 0 0 5 10ZM15 10a2.5 2.5 0 1 0 .073-4.996A2.5 2.5 0 0 0 15 10Z" />
+            </svg>
+        ),
+        "Cost-Saving": (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                <path fillRule="evenodd" d="M1 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm12 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM4 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm13-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM1.75 14.5a.75.75 0 0 0 0 1.5c4.417 0 8.693.603 12.749 1.73 1.111.309 2.251-.512 2.251-1.696v-.784a.75.75 0 0 0-1.5 0v.784a.272.272 0 0 1-.35.25A49.043 49.043 0 0 0 1.75 14.5Z" clipRule="evenodd" />
+            </svg>
+        ),
+        "Growth": (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
+                <path fillRule="evenodd" d="M10 1c-1.828 0-3.623.149-5.371.435a.75.75 0 0 0-.629.74v.387c-.827.157-1.642.345-2.445.564a.75.75 0 0 0-.552.698 5 5 0 0 0 4.503 5.152 6 6 0 0 0 2.946 1.822A6.451 6.451 0 0 0 7.768 13H7.5A1.5 1.5 0 0 0 6 14.5V17h-.75C4.56 17 4 17.56 4 18.25c0 .414.336.75.75.75h10.5a.75.75 0 0 0 .75-.75c0-.69-.56-1.25-1.25-1.25H14v-2.5a1.5 1.5 0 0 0-1.5-1.5h-.268a6.453 6.453 0 0 0-.684-2.202 6 6 0 0 0 2.946-1.822 5 5 0 0 0 4.503-5.152.75.75 0 0 0-.552-.698A31.804 31.804 0 0 0 16 2.562v-.387a.75.75 0 0 0-.629-.74A33.227 33.227 0 0 0 10 1ZM2.525 4.422C3.012 4.3 3.504 4.19 4 4.09V5c0 .74.134 1.448.38 2.103a3.503 3.503 0 0 1-1.855-2.68Zm14.95 0a3.503 3.503 0 0 1-1.854 2.68C15.866 6.449 16 5.74 16 5v-.91c.496.099.988.21 1.475.332Z" clipRule="evenodd" />
+            </svg>
+        ),
+    };
+
+    return (
+        <span className={categoryVariants({ variant: type })}>
+            {categoryIcons[type]}
+            {type}
+        </span>
+    );
+};
 
 // Animation variants
 const containerVariants = {
@@ -169,8 +210,31 @@ const spineVariants = {
     }
 };
 
+// Helper function to get color based on category (simplified to just blue)
+const getCategoryColor = (benefit: BenefitInfo) => {
+    return "text-blue-500 dark:text-blue-400";
+};
+
+// Helper function to get gradient based on category (simplified to white with blue border)
+const getCategoryGradient = (benefit: BenefitInfo) => {
+    return "from-white to-white";
+};
+
+// Helper function to get stat background based on category (simplified to just blue)
+const getStatBackground = (benefit: BenefitInfo) => {
+    return "bg-gradient-to-r from-blue-500/10 to-blue-400/5 border-blue-500/20";
+};
+
+// Helper function to get highlight border color based on category (simplified to just blue)
+const getHighlightBorder = (benefit: BenefitInfo) => {
+    return "border-blue-500/30 dark:border-blue-400/30";
+};
+
 const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const categoryColor = getCategoryColor(benefit);
+    const statBg = getStatBackground(benefit);
+    const highlightBorder = getHighlightBorder(benefit);
 
     const toggleBook = () => {
         setIsOpen(!isOpen);
@@ -185,30 +249,30 @@ const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
             <div className="relative h-full w-full transform-style-3d">
                 {/* Book spine */}
                 <motion.div
-                    className="book-spine"
+                    className="book-spine bg-white dark:bg-gray-900 border-r border-blue-200 dark:border-blue-800"
                     initial="closed"
                     animate={isOpen ? "open" : "closed"}
                     variants={spineVariants}
                 />
-                
+
                 {/* Book page edge - visible when open */}
                 {isOpen && <div className="book-page-edge" />}
 
                 {/* Book cover */}
                 <motion.div
-                    className="book-cover"
+                    className="book-cover bg-white dark:bg-gray-900 border border-blue-200 dark:border-blue-800 shadow-md"
                     initial="closed"
                     animate={isOpen ? "open" : "closed"}
                     variants={bookCoverVariants}
                 >
                     {/* Cover content */}
-                    <div className="absolute inset-0 p-6 flex flex-col justify-between border border-black/10 dark:border-white/10 rounded-r-md overflow-hidden">
+                    <div className="absolute inset-0 p-6 flex flex-col justify-between rounded-r-md overflow-hidden backdrop-blur-sm">
                         <div>
                             <motion.div
                                 variants={iconVariants}
-                                className="mb-6 p-4 inline-flex items-center justify-center rounded-xl bg-black/5 dark:bg-white/5"
+                                className={`mb-6 p-4 inline-flex items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-900/20 ${categoryColor}`}
                             >
-                                <benefit.icon className="h-7 w-7 text-black/70 dark:text-white/70" strokeWidth={1.5} />
+                                <benefit.icon className="h-7 w-7" strokeWidth={1.5} />
                             </motion.div>
 
                             <h3 className="text-xl font-bold mb-3 text-black dark:text-white">
@@ -222,8 +286,8 @@ const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
 
                         {/* Stats badge on cover */}
                         {benefit.stats && (
-                            <div className="inline-flex items-center gap-2 rounded-lg bg-black/5 dark:bg-white/5 px-3 py-1.5">
-                                <span className="text-xl font-bold text-black dark:text-white">{benefit.stats.value}</span>
+                            <div className={`inline-flex items-center gap-2 rounded-2xl ${statBg} border px-3 py-1.5`}>
+                                <span className={`text-xl font-bold ${categoryColor}`}>{benefit.stats.value}</span>
                                 <span className="text-xs text-black/60 dark:text-white/60">{benefit.stats.label}</span>
                             </div>
                         )}
@@ -239,7 +303,7 @@ const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
                     <div
                         className="absolute inset-0 p-6 flex flex-col justify-between rotateY-180 backface-hidden"
                     >
-                        <div className="h-full w-full bg-black/5 dark:bg-white/5 rounded-md" />
+                        <div className="h-full w-full bg-white/5 dark:bg-black/5 rounded-2xl" />
                     </div>
                 </motion.div>
 
@@ -262,7 +326,7 @@ const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
                         ))}
                     </motion.div>
 
-                    <h3 className="text-xl font-bold mb-3 text-black dark:text-white">
+                    <h3 className={`text-xl font-bold mb-3 text-black dark:text-white bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-blue-300`}>
                         {benefit.title}
                     </h3>
 
@@ -276,8 +340,8 @@ const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
                     </div>
 
                     {benefit.highlight && (
-                        <div className="flex items-center gap-2 mt-4 p-3 rounded-lg border-l-2 border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5">
-                            <Rocket className="h-4 w-4 text-black/60 dark:text-white/60" />
+                        <div className={`flex items-center gap-2 mt-4 p-3 rounded-2xl border-l-2 ${highlightBorder} bg-blue-50/50 dark:bg-blue-900/10`}>
+                            <Rocket className={`h-4 w-4 ${categoryColor}`} />
                             <p className="text-black/80 dark:text-white/80 text-sm font-medium">{benefit.highlight}</p>
                         </div>
                     )}
@@ -288,7 +352,7 @@ const BenefitBook = ({ benefit }: { benefit: BenefitInfo }) => {
                         <span>Click to close</span>
                     </div>
                 </motion.div>
-                
+
                 {/* Book shadow */}
                 <div className="book-shadow"></div>
             </div>
@@ -310,7 +374,9 @@ const BenefitsSection = () => {
                 label: "more qualified leads"
             },
             highlight: "AI-driven lead scoring can shorten sales cycles by 30%",
-            bookColor: "from-black/20 to-black/10 dark:from-white/20 dark:to-white/10"
+            primaryColor: "text-blue-500 dark:text-blue-400",
+            gradientFrom: "blue-500/20",
+            gradientTo: "blue-400/10"
         },
         {
             title: "60% Reduction in Lead Sourcing Costs",
@@ -323,7 +389,9 @@ const BenefitsSection = () => {
                 label: "cost reduction"
             },
             highlight: "Companies using AI tools save 5+ hours per week on lead research",
-            bookColor: "from-black/20 to-black/10 dark:from-white/20 dark:to-white/10"
+            primaryColor: "text-blue-500 dark:text-blue-400",
+            gradientFrom: "blue-500/20",
+            gradientTo: "blue-400/10"
         },
         {
             title: "74% Report Competitive Advantage",
@@ -336,7 +404,9 @@ const BenefitsSection = () => {
                 label: "competitive advantage"
             },
             highlight: "Three in four small firms think AI can save time and money long-term",
-            bookColor: "from-black/20 to-black/10 dark:from-white/20 dark:to-white/10"
+            primaryColor: "text-blue-500 dark:text-blue-400",
+            gradientFrom: "blue-500/20",
+            gradientTo: "blue-400/10"
         },
         {
             title: "Seamless Integration with Your Workflow",
@@ -349,7 +419,9 @@ const BenefitsSection = () => {
                 label: "of small businesses use CRMs"
             },
             highlight: "Any lead sourcing platform must play nicely with CRMs",
-            bookColor: "from-black/20 to-black/10 dark:from-white/20 dark:to-white/10"
+            primaryColor: "text-blue-500 dark:text-blue-400",
+            gradientFrom: "blue-500/20",
+            gradientTo: "blue-400/10"
         },
         {
             title: "AI-Powered Personalization at Scale",
@@ -362,7 +434,9 @@ const BenefitsSection = () => {
                 label: "higher engagement rates"
             },
             highlight: "Personalized outreach has shown to increase response rates by 200%",
-            bookColor: "from-black/20 to-black/10 dark:from-white/20 dark:to-white/10"
+            primaryColor: "text-blue-500 dark:text-blue-400",
+            gradientFrom: "blue-500/20",
+            gradientTo: "blue-400/10"
         },
         {
             title: "Enterprise Features at Small Business Prices",
@@ -375,7 +449,9 @@ const BenefitsSection = () => {
                 label: "AI adoption by 2025"
             },
             highlight: "Democratizing AI lead sourcing with powerful features at SMB-friendly prices",
-            bookColor: "from-black/20 to-black/10 dark:from-white/20 dark:to-white/10"
+            primaryColor: "text-blue-500 dark:text-blue-400",
+            gradientFrom: "blue-500/20",
+            gradientTo: "blue-400/10"
         }
     ];
 
@@ -394,7 +470,7 @@ const BenefitsSection = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="inline-block mb-4 px-4 py-1 rounded-full bg-black/10 dark:bg-white/10 text-black dark:text-white font-medium text-sm backdrop-blur-sm border border-black/5 dark:border-white/5"
+                        className="inline-block mb-4 px-4 py-1 rounded-full bg-blue-500/10 text-black dark:text-white font-medium text-sm backdrop-blur-sm border border-blue-500/20"
                     >
                         Small Business Advantages
                     </motion.div>
@@ -403,11 +479,11 @@ const BenefitsSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="mb-6 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-5xl lg:text-6xl"
+                        className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
                     >
                         Gain a <span className="relative inline-block">
-                            <span className="relative z-10">Competitive Edge</span>
-                            <span className="absolute bottom-2 left-0 right-0 h-3 bg-black/10 dark:bg-white/10 -z-10 transform skew-x-12"></span>
+                            <span className="relative z-10 bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-blue-300">Competitive Edge</span>
+                            <span className="absolute bottom-2 left-0 right-0 h-3 bg-blue-500/20 -z-10 transform skew-x-12"></span>
                         </span>
                     </motion.h2>
                     <motion.p
@@ -417,7 +493,7 @@ const BenefitsSection = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="mx-auto max-w-3xl text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed"
                     >
-                        Small businesses using our AI tools report a significant advantage in lead generation and sales conversion. In fact, companies using AI for lead generation have seen <span className="font-semibold text-black dark:text-white">50%+ increases in sales-ready leads</span> and a <span className="font-semibold text-black dark:text-white">60% reduction in costs</span>.
+                        Small businesses using our AI tools report a significant advantage in lead generation and sales conversion. In fact, companies using AI for lead generation have seen <span className="font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-blue-300">50%+ increases in sales-ready leads</span> and a <span className="font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent dark:from-blue-400 dark:to-blue-300">60% reduction in costs</span>.
                     </motion.p>
                 </div>
 
@@ -440,16 +516,16 @@ const BenefitsSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="mt-24 bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-2xl p-10 md:p-16 relative overflow-hidden"
+                    className="mt-24 bg-blue-50/80 dark:bg-blue-900/10 border border-blue-200/30 dark:border-blue-500/20 rounded-2xl p-10 md:p-16 relative overflow-hidden"
                 >
-                    <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-black/5 dark:bg-white/5 rounded-full blur-3xl opacity-50"></div>
-                    <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-black/5 dark:bg-white/5 rounded-full blur-3xl opacity-50"></div>
+                    <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
+                    <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl opacity-50"></div>
 
                     <div className="relative z-10 max-w-3xl mx-auto text-center">
-                        <svg className="h-12 w-12 mx-auto text-black/20 dark:text-white/20 mb-6" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="h-12 w-12 mx-auto text-blue-500/40 dark:text-blue-400/40 mb-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
                         </svg>
-                        <blockquote className="text-xl md:text-2xl font-medium text-black/80 dark:text-white/80 italic mb-6">
+                        <blockquote className="text-xl md:text-2xl font-medium italic mb-6 text-blue-900 dark:text-blue-100">
                             "Small firms, often limited in time and sales personnel, stand to gain a disproportionate advantage from these tools. In fact, companies using AI for lead generation have seen 50%+ increases in sales-ready leads and a 60% reduction in costs."
                         </blockquote>
                         <p className="text-black/50 dark:text-white/50">— From industry research, 2025</p>
@@ -464,18 +540,18 @@ const BenefitsSection = () => {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-24 text-center"
                 >
-                    <div className="inline-block p-0.5 rounded-full bg-gradient-to-r from-black/20 via-black/40 to-black/20 dark:from-white/20 dark:via-white/40 dark:to-white/20">
+                    <div className="inline-block p-0.5 rounded-full bg-gradient-to-r from-blue-200 to-gray-50 dark:from-blue-500 dark:to-blue-400">
                         <Link href="https://app.oppulence.app">
-                            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white dark:bg-black text-black dark:text-white font-medium hover:bg-white/95 dark:hover:bg-black/95 transition-colors shadow-xl backdrop-blur-sm">
-                                Start Your Competitive Advantage
-                                <svg className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white dark:bg-black text-black dark:text-white font-medium hover:bg-white/95 dark:hover:bg-black/95 transition-colors shadow-xl backdrop-blur-sm group">
+                                <span className="text-white group-hover:text-white dark:group-hover:text-white">Start Your Competitive Advantage</span>
+                                <svg className="h-4 w-4 ml-2 text-white group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                                 </svg>
                             </button>
                         </Link>
                     </div>
                     <p className="mt-4 text-black/50 dark:text-white/50 text-sm">
-                        Join the 74% of small businesses gaining a competitive edge with AI
+                        Join the <span className="text-blue-500 dark:text-blue-400">74%</span> of small businesses gaining a competitive edge with AI
                     </p>
                 </motion.div>
             </div>

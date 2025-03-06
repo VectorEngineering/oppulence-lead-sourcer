@@ -197,6 +197,7 @@ export function FAQContent() {
                     className={cn(
                       "flex justify-between",
                       activeCategory === category && "bg-muted",
+                      category === "leads" && "text-blue-500"
                     )}
                   >
                     <span className="capitalize">{category}</span>
@@ -222,7 +223,11 @@ export function FAQContent() {
                 <TabsTrigger
                   key={category}
                   value={category}
-                  className="capitalize data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  className={cn(
+                    "capitalize data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+                    category === "leads" && !activeCategory && "border-blue-500 text-blue-500",
+                    category === "leads" && activeCategory === "leads" && "!bg-blue-500 border-blue-500 text-white"
+                  )}
                 >
                   {category}
                   <Badge variant="secondary" className="ml-2">
@@ -306,7 +311,10 @@ export function FAQContent() {
                             {item.category && (
                               <Badge
                                 variant="outline"
-                                className="text-xs capitalize"
+                                className={cn(
+                                  "text-xs capitalize",
+                                  item.category === "leads" && "border-blue-500 text-blue-500 bg-blue-50"
+                                )}
                               >
                                 {item.category}
                               </Badge>
