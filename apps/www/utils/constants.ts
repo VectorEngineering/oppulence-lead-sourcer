@@ -212,7 +212,7 @@ export const socialMediaLinks = [
   // },
   {
     icon: TwitterLogo,
-    link: "https://x.com/yoanyomba_",
+    link: "https://x.com/getoppulence_",
   },
   // {
   //   icon: LinkedInLogo,

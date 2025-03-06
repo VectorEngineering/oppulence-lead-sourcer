@@ -722,7 +722,7 @@ function SingleFeature(props: SingleFeatureProps) {
 
           <div className="bg-white mb-8 rounded-lg border border-blue-500/20 p-4 backdrop-blur-sm dark:bg-black">
             <p className="dark:text-white/60 text-base italic leading-relaxed text-black/60">
-              "{info.extendedDescription}"
+              &quot;{info.extendedDescription}&quot;
             </p>
           </div>
 

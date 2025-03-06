@@ -1,12 +1,11 @@
 /* eslint-disable prettier/prettier */
 "use client";
 
-import { useEffect } from "react";
-
-import AOS from "aos";
 import "aos/dist/aos.css";
 
+import AOS from "aos";
 import PageIllustration from "@/components/page-illustration";
+import { useEffect } from "react";
 
 export default function DefaultLayout({
   children,
@@ -25,7 +24,7 @@ export default function DefaultLayout({
   return (
     <>
       <main className="grow">
-        <PageIllustration />
+        {/* <PageIllustration /> */}
         <div className="py-[10%]">{children}</div>
       </main>
     </>

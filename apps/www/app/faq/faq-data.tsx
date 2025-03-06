@@ -74,9 +74,9 @@ export const faqData: FAQItem[] = [
           </li>
           <li>
             <strong>Intelligent Lead Scoring & Prioritization:</strong> Our AI
-            analyzes each lead's attributes and engagement to automatically rank
-            them as hot, warm, or cold, ensuring you focus your limited time on
-            the most promising opportunities
+            analyzes each lead&apos;s attributes and engagement to automatically
+            rank them as hot, warm, or cold, ensuring you focus your limited
+            time on the most promising opportunities
           </li>
           <li>
             <strong>Seamless CRM Integration:</strong> Two-way synchronization
@@ -258,8 +258,8 @@ export const faqData: FAQItem[] = [
         <ul className="list-disc space-y-2 pl-5">
           <li>
             <strong>Quality Verification:</strong> Our AI enrichment includes
-            email verification and data validation to ensure you're working with
-            accurate information
+            email verification and data validation to ensure you&apos;re working
+            with accurate information
           </li>
           <li>
             <strong>Focus on Relevance:</strong> We emphasize finding fewer,
@@ -294,8 +294,8 @@ export const faqData: FAQItem[] = [
     answer: (
       <div className="space-y-4">
         <p>
-          We're constantly enhancing our lead sourcing capabilities. Upcoming
-          features include:
+          We&apos;re constantly enhancing our lead sourcing capabilities.
+          Upcoming features include:
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>

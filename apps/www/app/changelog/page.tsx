@@ -5,18 +5,10 @@ import { Metadata } from "next";
 import { format } from "date-fns";
 import updates from "./changelog";
 
-// Helper function to generate consistent slugs
-function generateSlug(update: { date: string; title: string }): string {
-  return `${update.date.replace(/\s/g, "-").toLowerCase()}-${update.title
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "")}`;
-}
-
 export const metadata: Metadata = {
-  title: "Changelog | Vector Lead Management",
+  title: "Changelog | Oppulence Lead Management",
   description:
-    "All the latest updates, improvements, and fixes to Vector Lead Management",
+    "All the latest updates, improvements, and fixes to Oppulence Lead Management",
 };
 
 export default function ChangelogPage() {
@@ -25,12 +17,12 @@ export default function ChangelogPage() {
       <div className="space-y-4">
         <h1 className="text-4xl font-bold tracking-tight">Changelog</h1>
         <p className="text-lg text-gray-600">
-          All the latest updates, improvements, and fixes to Vector Lead
+          All the latest updates, improvements, and fixes to Oppulence Lead
           Management
         </p>
         <div className="flex items-center gap-4">
           <Link
-            href="https://twitter.com/vectorleadmgmt"
+            href="https://x.com/getoppulence"
             target="_blank"
             className="text-gray-600 hover:text-gray-900"
           >
@@ -53,10 +45,11 @@ export default function ChangelogPage() {
                 />
                 <div className="group relative">
                   <div
-                    className={`h-4 w-4 rounded-full border-2 ${index === 0
-                      ? "bg-white border-blue-500"
-                      : "border-gray-200 bg-gray-50"
-                      }`}
+                    className={`h-4 w-4 rounded-full border-2 ${
+                      index === 0
+                        ? "bg-white border-blue-500"
+                        : "border-gray-200 bg-gray-50"
+                    }`}
                   />
                   <div className="absolute left-full ml-4 hidden whitespace-nowrap group-hover:block">
                     <div className="flex items-center gap-2">
@@ -70,10 +63,11 @@ export default function ChangelogPage() {
                   </div>
                 </div>
                 <div
-                  className={`h-full w-px ${index === updates.length - 1
-                    ? "bg-transparent"
-                    : "bg-gray-200"
-                    }`}
+                  className={`h-full w-px ${
+                    index === updates.length - 1
+                      ? "bg-transparent"
+                      : "bg-gray-200"
+                  }`}
                 />
               </div>
             ))}
@@ -85,7 +79,9 @@ export default function ChangelogPage() {
           {updates.map((update, index) => (
             <div key={index} className="py-8">
               <Link
-                href={`/changelog/${generateSlug(update)}`}
+                href={`/changelog/${update.date.replace(/\s/g, "-").toLowerCase()}-${update.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")}`}
                 className="block transition-colors hover:bg-gray-50"
               >
                 <article className="space-y-4">

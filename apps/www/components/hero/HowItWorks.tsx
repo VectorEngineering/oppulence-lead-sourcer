@@ -735,9 +735,9 @@ const HowItWorks = () => {
             </svg>
           </div>
           <blockquote className="mb-6 text-xl font-medium italic text-gray-900 dark:text-gray-100 md:text-2xl">
-            "Organizations with limited resources gain a substantial{" "}
+            &quot; Organizations with limited resources gain a substantial{" "}
             <span className="text-blue-500">strategic advantage</span> from
-            intelligent, data-driven prospect identification systems."
+            intelligent, data-driven prospect identification systems. &quot;
           </blockquote>
           <p className="text-gray-600 dark:text-gray-400">
             Enterprise Growth Strategy Report, 2025

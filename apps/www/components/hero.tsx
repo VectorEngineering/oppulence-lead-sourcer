@@ -13,8 +13,8 @@ export default function Hero() {
         <div className="relative z-10 mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-center px-4">
           <HeroContent />
         </div>
-        <QuoteCarousel />
-        <ScrollIndicator />
+        {/* <QuoteCarousel /> */}
+        {/* <ScrollIndicator /> */}
       </section>
     </>
   );

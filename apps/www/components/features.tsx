@@ -332,7 +332,8 @@ export default function Features() {
         <>
           <p className="pb-6">
             Leverage AI to generate personalized outreach messages and follow-up
-            sequences, tailored to each prospect's specific interests and needs.
+            sequences, tailored to each prospect`&quot;s specific interests and
+            needs.
           </p>
           <p>
             Studies show personalized outreach increases email response rates by{" "}
@@ -485,7 +486,7 @@ function SingleFeature(props: SingleFeatureProps) {
               variants={itemVariants}
               className="mb-8 border-l-2 border-foreground/10 pl-4 text-base italic leading-relaxed text-foreground/60"
             >
-              "{info.extendedDescription}"
+              `&quot;{info.extendedDescription}&quot;`
             </motion.p>
           )}
 

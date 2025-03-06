@@ -634,10 +634,10 @@ const BenefitsSection = () => {
               <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
             </svg>
             <blockquote className="mb-6 text-xl font-medium italic text-blue-900 dark:text-blue-100 md:text-2xl">
-              "Small firms, often limited in time and sales personnel, stand to
-              gain a disproportionate advantage from these tools. In fact,
-              companies using AI for lead generation have seen 50%+ increases in
-              sales-ready leads and a 60% reduction in costs."
+              &quot;Small firms, often limited in time and sales personnel,
+              stand to gain a disproportionate advantage from these tools. In
+              fact, companies using AI for lead generation have seen 50%+
+              increases in sales-ready leads and a 60% reduction in costs.&quot;
             </blockquote>
             <p className="dark:text-white/50 text-black/50">
               — From industry research, 2025

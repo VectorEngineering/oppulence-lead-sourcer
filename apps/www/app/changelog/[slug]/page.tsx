@@ -75,7 +75,7 @@ export async function generateMetadata({
 
   if (!update) {
     return {
-      title: "Not Found | Vector Lead Management",
+      title: "Not Found | Oppulence Lead Management",
       description: "The requested changelog entry could not be found.",
     };
   }
@@ -83,25 +83,25 @@ export async function generateMetadata({
   const description =
     typeof update.description === "string"
       ? update.description.substring(0, 150) + "..."
-      : "Read about the latest updates and improvements to Vector Lead Management.";
+      : "Read about the latest updates and improvements to Oppulence Lead Management.";
 
   return {
-    title: `${update.title} | Vector Lead Management Changelog`,
+    title: `${update.title} | Oppulence Lead Management Changelog`,
     description,
     openGraph: {
-      title: `${update.title} | Vector Lead Management Changelog`,
+      title: `${update.title} | Oppulence Lead Management Changelog`,
       description,
       type: "article",
       publishedTime: update.date,
       images: update.screenshot
         ? [
-          {
-            url: update.screenshot.src,
-            width: update.screenshot.width,
-            height: update.screenshot.height,
-            alt: update.screenshot.alt,
-          },
-        ]
+            {
+              url: update.screenshot.src,
+              width: update.screenshot.width,
+              height: update.screenshot.height,
+              alt: update.screenshot.alt,
+            },
+          ]
         : [],
     },
     twitter: {
@@ -125,7 +125,7 @@ export default async function ChangelogEntry({ params }: PageProps) {
 
   const relatedUpdates = getRelatedUpdates(update);
   const formattedDate = formatChangelogDate(update.date);
-  const shareUrl = `https://vector-lead.com/changelog/${slug}`;
+  const shareUrl = `https://Oppulence-lead.com/changelog/${slug}`;
 
   return (
     <div className="container mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
@@ -283,7 +283,7 @@ export default async function ChangelogEntry({ params }: PageProps) {
             author: {
               "@type": "Person",
               name: "Yoan Yomba",
-              url: "https://vector-lead.com/team/yoan-yomba",
+              url: "https://Oppulence-lead.com/team/yoan-yomba",
             },
           }),
         }}
