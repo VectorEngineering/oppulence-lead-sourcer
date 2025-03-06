@@ -1,10 +1,13 @@
 import {
   DiscordLogo,
+  FacebookLogo,
   GitHubLogo,
   LinkedInLogo,
+  TikTokLogo,
   TwitterLogo,
 } from "@/components/ui/icons";
 
+import { MdFacebook } from "react-icons/md";
 import { PricingTierData } from "@/types/pricing";
 
 export const TEST_MODE_ENABLED = ["true", "True", "TRUE"].includes(
@@ -202,20 +205,20 @@ export const footerSections = [
 ];
 
 export const socialMediaLinks = [
-  // {
-  //   icon: GitHubLogo,
-  //   link: "https://github.com/SolomonAIEngineering/solomonai/tree/main",
-  // },
-  // {
-  //   icon: DiscordLogo,
-  //   link: "https://discord.gg/GkmmZyex",
-  // },
+  {
+    icon: FacebookLogo,
+    link: "https://www.facebook.com/profile.php?id=61573590222070",
+  },
+  {
+    icon: TikTokLogo,
+    link: "https://www.tiktok.com/@getoppulence",
+  },
   {
     icon: TwitterLogo,
-    link: "https://x.com/getoppulence_",
+    link: "https://x.com/getoppulence",
   },
-  // {
-  //   icon: LinkedInLogo,
-  //   link: "https://www.linkedin.com/company/trypearai",
-  // },
+  {
+    icon: LinkedInLogo,
+    link: "https://www.linkedin.com/company/getoppulence/about/?viewAsMember=true",
+  },
 ];
