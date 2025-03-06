@@ -117,19 +117,6 @@ export default async function Header() {
                       <DropdownNavItem trigger="⚙️ Products">
                         <ul className="grid w-[400px] gap-4 bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px] rounded-xl">
                           <ListItem
-                            href="https://app.thinkthank.io/signup"
-                            title="💰 Financial Management"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
-                          >
-                            <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground mb-1">Complete financial management solution for your one-person business</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">Popular</span>
-                                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">New</span>
-                              </div>
-                            </div>
-                          </ListItem>
-                          <ListItem
                             href="https://app.oppulence.app/signup"
                             title="🎯 Lead Management"
                             className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
@@ -142,26 +129,14 @@ export default async function Header() {
                             </div>
                           </ListItem>
                           <ListItem
-                            href="https://prospector.oppulence.app"
+                            href="https://sourcing.oppulence.app"
                             title="🔍 Prospecting"
                             className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
                           >
                             <div className="space-y-1">
                               <p className="text-sm text-muted-foreground mb-1">Find and connect with ideal clients for your one-person business</p>
                               <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">Pro feature</span>
-                              </div>
-                            </div>
-                          </ListItem>
-                          <ListItem
-                            href="/contract-management"
-                            title="📝 Contract Management"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
-                          >
-                            <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground mb-1">Streamline contract workflows for your one-person business</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-600/20">Beta</span>
+                                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">Lead-Sourcing</span>
                               </div>
                             </div>
                           </ListItem>
@@ -250,7 +225,7 @@ export default async function Header() {
                             <div className="space-y-1">
                               <p className="text-sm text-muted-foreground">See what&apos;s new in Oppulence</p>
                               <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">v2.3.0</span>
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">v0.0.3</span>
                                 <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">Latest</span>
                               </div>
                             </div>

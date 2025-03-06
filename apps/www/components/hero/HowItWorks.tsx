@@ -207,7 +207,7 @@ const HowItWorks = () => {
 
     // Get title gradient color based on step
     const getTitleColor = (index: number) => {
-        return "bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent";
+        return "bg-gradient-to-r from-black to-black bg-clip-text text-transparent";
     };
 
     // Get stat box color based on step
@@ -357,7 +357,7 @@ const HowItWorks = () => {
                                 className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-16`}
                             >
                                 <div className="w-full lg:w-1/2 text-center lg:text-left">
-                                    <div className={`inline-flex items-center justify-center mb-6 rounded-full bg-gradient-to-r from-blue-500/20 to-blue-500/10 px-4 py-1 text-sm font-medium backdrop-blur-sm border border-blue-500/20`}>
+                                    <div className={`inline-flex items-center justify-center mb-6 rounded-full bg-background px-4 py-1 text-sm font-medium backdrop-blur-sm border border-blue-500/20`}>
                                         <span className="mr-2">{icons[step.icon](step)}</span>
                                         <span className={getNumberColor(index)}>Step {step.number}</span>
                                     </div>

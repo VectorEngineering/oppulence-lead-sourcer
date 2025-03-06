@@ -94,13 +94,13 @@ export async function generateMetadata({
       publishedTime: update.date,
       images: update.screenshot
         ? [
-            {
-              url: update.screenshot.src,
-              width: update.screenshot.width,
-              height: update.screenshot.height,
-              alt: update.screenshot.alt,
-            },
-          ]
+          {
+            url: update.screenshot.src,
+            width: update.screenshot.width,
+            height: update.screenshot.height,
+            alt: update.screenshot.alt,
+          },
+        ]
         : [],
     },
     twitter: {
@@ -161,13 +161,15 @@ export default async function ChangelogEntry({ params }: PageProps) {
           </h1>
           <div className="flex items-center gap-4">
             <div className="border-white relative h-10 w-10 overflow-hidden rounded-full border-2 shadow-sm">
-              <Image
-                src="/team/yoan.jpg"
-                alt="Yoan Yomba"
-                width={40}
-                height={40}
-                className="h-full w-full object-cover"
-              />
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                }}
+                className="h-full w-full object-cover flex items-center justify-center"
+              >
+                Y
+              </div>
             </div>
             <div>
               <p className="font-medium text-gray-900">Yoan Yomba</p>
@@ -179,7 +181,7 @@ export default async function ChangelogEntry({ params }: PageProps) {
         <Suspense fallback={<ImageSkeleton />}>
           {update.screenshot ? (
             <div className="overflow-hidden rounded-2xl border bg-gray-50 shadow-lg transition-all hover:shadow-xl">
-              <Image
+              {/* <Image
                 src={update.screenshot.src}
                 alt={update.screenshot.alt}
                 width={update.screenshot.width}
@@ -187,30 +189,19 @@ export default async function ChangelogEntry({ params }: PageProps) {
                 className="w-full"
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              />
+              /> */}
+              <div className="bg-white relative flex gap-x-2 h-[400px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
+                <div className="text-black text-3xl font-bold">
+                  {update.title}
+                </div>
+              </div>
             </div>
           ) : (
             <div className="bg-white relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
-              <div className="absolute inset-0">
-                <svg width="100%" height="100%" className="text-gray-100">
-                  <pattern
-                    id="swirl-pattern"
-                    x="0"
-                    y="0"
-                    width="40"
-                    height="40"
-                    patternUnits="userSpaceOnUse"
-                  >
-                    <path
-                      d="M20 0C8.954 0 0 8.954 0 20s8.954 20 20 20 20-8.954 20-20S31.046 0 20 0zm0 30c-5.523 0-10-4.477-10-10s4.477-10 10-10 10 4.477 10 10-4.477 10-10 10z"
-                      fill="currentColor"
-                    />
-                  </pattern>
-                  <rect width="100%" height="100%" fill="url(#swirl-pattern)" />
-                </svg>
-              </div>
-              <div className="text-sm font-medium text-gray-400">
-                No preview available
+              <div className="bg-white relative flex gap-x-2 h-[400px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
+                <div className="text-black text-3xl font-bold">
+                  {update.title}
+                </div>
               </div>
             </div>
           )}
@@ -356,14 +347,17 @@ function RelatedUpdateCard({ update }: RelatedUpdateCardProps) {
       className="bg-white group flex flex-col overflow-hidden rounded-lg border shadow-sm transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
       {update.screenshot ? (
-        <div className="aspect-video w-full overflow-hidden bg-gray-100">
-          <Image
+        <div className="aspect-video w-full overflow-hidden bg-gray-100 flex items-center justify-center">
+          {/* <Image
             src={update.screenshot.src}
             alt={update.screenshot.alt}
             width={400}
             height={225}
             className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
-          />
+          /> */}
+          <div className="text-black text-md font-bold">
+            {update.title}
+          </div>
         </div>
       ) : (
         <div className="flex aspect-video w-full items-center justify-center bg-gray-100">

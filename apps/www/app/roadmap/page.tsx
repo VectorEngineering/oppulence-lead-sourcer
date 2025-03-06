@@ -16,8 +16,6 @@ export const metadata: Metadata = {
 const products = [
   { id: "all", name: "All Products" },
   { id: "lead-sourcing", name: "Lead Sourcing" },
-  { id: "contract-management", name: "Contract Management" },
-  { id: "financial-management", name: "Financial Management" },
   { id: "crm", name: "CRM" },
 ];
 

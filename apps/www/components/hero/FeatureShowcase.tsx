@@ -441,7 +441,7 @@ const FeatureShowcase = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="inline-block mb-4 px-4 py-1 rounded-full bg-black/10 dark:bg-white/10 text-black dark:text-white font-medium text-sm backdrop-blur-sm border border-black/5 dark:border-white/5"
+                        className="inline-block mb-4 px-4 py-1 rounded-full bg-blue-500/10 dark:bg-blue-500/10 text-black dark:text-white font-medium text-sm backdrop-blur-sm border border-blue-500/20 dark:border-blue-500/20"
                     >
                         Enterprise-Grade Technology
                     </motion.div>
@@ -454,7 +454,7 @@ const FeatureShowcase = () => {
                     >
                         Lead Generation <span className="relative inline-block">
                             <span className="relative z-10 text-blue-500">Reimagined</span>
-                            <span className="absolute bottom-2 left-0 right-0 h-3 bg-black/10 dark:bg-white/10 -z-10 transform skew-x-12"></span>
+                            <span className="absolute bottom-2 left-0 right-0 h-3 bg-blue-500/20 dark:bg-blue-500/20 -z-10 transform skew-x-12"></span>
                         </span>
                     </motion.h2>
                     <motion.p
@@ -503,9 +503,9 @@ const FeatureShowcase = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.7, delay: 0.1 }}
-                                className="bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm"
+                                className="bg-white dark:bg-black border border-blue-500/20 dark:border-blue-500/20 rounded-2xl overflow-hidden backdrop-blur-sm"
                             >
-                                <div className="p-8 md:p-10 border-b border-black/10 dark:border-white/10">
+                                <div className="p-8 md:p-10 border-b border-blue-500/20">
                                     <h3 className="text-2xl md:text-3xl font-bold mb-3 text-black dark:text-white">{feature.title}</h3>
                                     <p className="text-black/70 dark:text-white/70 text-lg">{feature.description}</p>
                                 </div>
@@ -521,8 +521,8 @@ const FeatureShowcase = () => {
                                             className="flex flex-col"
                                         >
                                             <div className="flex items-center gap-2 mb-3">
-                                                <div className="w-8 h-8 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center">
-                                                    <span className="text-black dark:text-white font-medium">{detailIndex + 1}</span>
+                                                <div className="w-8 h-8 rounded-full bg-blue-500/10 dark:bg-blue-500/10 flex items-center justify-center">
+                                                    <span className="text-blue-500 dark:text-blue-500 font-medium">{detailIndex + 1}</span>
                                                 </div>
                                                 <h4 className="text-lg font-semibold text-black dark:text-white">{detail.subtitle}</h4>
                                             </div>
@@ -541,7 +541,7 @@ const FeatureShowcase = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="mt-32 bg-white dark:bg-black backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-black/10 dark:border-white/10"
+                    className="mt-32 bg-white dark:bg-black backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-blue-500/20 dark:border-blue-500/20"
                 >
                     <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-black dark:text-white">AI Adoption in Small Business</h3>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -568,9 +568,9 @@ const FeatureShowcase = () => {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-32 text-center"
                 >
-                    <div className="inline-block p-0.5 rounded-full bg-gradient-to-r from-black/20 via-black/40 to-black/20 dark:from-white/20 dark:via-white/40 dark:to-white/20">
+                    <div className="inline-block p-0.5 rounded-full bg-gradient-to-r from-blue-500/20 via-blue-500/40 to-blue-500/20 dark:from-blue-500/20 dark:via-blue-500/40 dark:to-blue-500/20">
                         <Link href="https://app.oppulence.app">
-                            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white dark:bg-black text-black dark:text-white font-medium hover:bg-white/95 dark:hover:bg-black/95 transition-colors shadow-xl backdrop-blur-sm">
+                            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white dark:bg-black text-blue-500 dark:text-blue-500 font-medium hover:bg-white/95 dark:hover:bg-black/95 transition-colors shadow-xl backdrop-blur-sm">
                                 Get Started
                                 <ArrowRight className="h-4 w-4 ml-2" />
                             </button>
@@ -618,15 +618,15 @@ function SingleFeature(props: SingleFeatureProps) {
                         {info.description}
                     </div>
 
-                    <div className="p-4 bg-white dark:bg-black rounded-lg border border-black/10 dark:border-white/10 backdrop-blur-sm mb-8">
+                    <div className="p-4 bg-white dark:bg-black rounded-lg border border-blue-500/20 backdrop-blur-sm mb-8">
                         <p className="text-black/60 dark:text-white/60 text-base italic leading-relaxed">
                             "{info.extendedDescription}"
                         </p>
                     </div>
 
                     {info.highlight && (
-                        <div className="flex items-center gap-2 mb-8 bg-white dark:bg-black p-3 rounded-lg border-l-2 border-black/30 dark:border-white/30">
-                            <Zap className="h-5 w-5 text-black/60 dark:text-white/60" />
+                        <div className="flex items-center gap-2 mb-8 bg-white dark:bg-black p-3 rounded-lg border-l-2 border-blue-500">
+                            <Zap className="h-5 w-5 text-blue-500" />
                             <p className="text-black/80 dark:text-white/80 font-medium">{info.highlight}</p>
                         </div>
                     )}
@@ -638,7 +638,7 @@ function SingleFeature(props: SingleFeatureProps) {
                             className="grid grid-cols-2 gap-6 mt-8"
                         >
                             {info.stats.map((stat, i) => (
-                                <div key={i} className="bg-white dark:bg-black backdrop-blur-sm rounded-xl p-4 border border-black/5 dark:border-white/5">
+                                <div key={i} className="bg-white dark:bg-black backdrop-blur-sm rounded-xl p-4 border border-blue-500/20">
                                     <p className="text-2xl font-bold text-blue-500">{stat.value}</p>
                                     <p className="text-sm text-black/60 dark:text-white/60">{stat.label}</p>
                                 </div>
@@ -649,7 +649,7 @@ function SingleFeature(props: SingleFeatureProps) {
 
                 <motion.div
                     variants={mediaVariants}
-                    className="w-full lg:w-1/2 overflow-hidden rounded-2xl border border-black/5 dark:border-white/5 shadow-xl"
+                    className="w-full lg:w-1/2 overflow-hidden rounded-2xl border border-blue-500/20 shadow-xl"
                 >
                     {info.videoSource ? (
                         <AspectRatio ratio={16 / 9}>
@@ -663,7 +663,7 @@ function SingleFeature(props: SingleFeatureProps) {
                                 <source src={info.videoSource} type="video/webm" />
                                 Your browser does not support the video tag.
                             </video>
-                            <div className="absolute inset-0 bg-white dark:bg-black mix-blend-overlay pointer-events-none backdrop-blur-[1px]"></div>
+                            <div className="absolute inset-0 bg-white dark:bg-black mix-blend-overlay pointer-events-none backdrop-blur-[1px] border-t border-blue-500/20"></div>
                         </AspectRatio>
                     ) : info.embedId ? (
                         <div className="w-full rounded-2xl overflow-hidden">
@@ -671,8 +671,8 @@ function SingleFeature(props: SingleFeatureProps) {
                             <div className="absolute inset-0 bg-white dark:bg-black mix-blend-overlay pointer-events-none"></div>
                         </div>
                     ) : (
-                        <div className={`aspect-square sm:aspect-video w-full rounded-2xl bg-gradient-to-br from-black/10 to-black/5 dark:from-white/10 dark:to-white/5 p-12 flex items-center justify-center shadow-lg border border-black/5 dark:border-white/5 backdrop-blur-sm relative overflow-hidden group`}>
-                            <info.icon className="h-20 w-20 text-black/70 dark:text-white/70 transition-transform duration-500 group-hover:scale-110 group-hover:text-black/90 dark:group-hover:text-white/90" strokeWidth={1.25} />
+                        <div className={`aspect-square sm:aspect-video w-full rounded-2xl bg-gradient-to-br from-blue-500/10 to-black/5 dark:from-blue-500/20 dark:to-white/5 p-12 flex items-center justify-center shadow-lg border border-black/5 dark:border-white/5 backdrop-blur-sm relative overflow-hidden group`}>
+                            <info.icon className="h-20 w-20 text-blue-500/70 dark:text-blue-500/70 transition-transform duration-500 group-hover:scale-110 group-hover:text-blue-500 dark:group-hover:text-blue-500" strokeWidth={1.25} />
 
                             {/* Design elements */}
                             <div className="absolute top-6 left-6 w-20 h-20 opacity-20">
@@ -685,6 +685,7 @@ function SingleFeature(props: SingleFeatureProps) {
                                     <rect x="20" y="20" width="60" height="60" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
                                 </svg>
                             </div>
+                            <div className="absolute inset-0 bg-white dark:bg-black mix-blend-overlay pointer-events-none backdrop-blur-[1px] border-t border-blue-500/20"></div>
                         </div>
                     )}
                 </motion.div>
