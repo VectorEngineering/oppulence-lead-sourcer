@@ -115,118 +115,156 @@ export default async function Header() {
                   <NavigationMenu className="rounded-2xl">
                     <NavigationMenuList className="space-x-1">
                       <DropdownNavItem trigger="⚙️ Products">
-                        <ul className="grid w-[400px] gap-4 bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px] rounded-xl">
+                        <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
                           <ListItem
                             href="https://app.oppulence.app/signup"
                             title="🎯 Lead Management"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground mb-1">Convert and manage leads effectively as a one-person business owner</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">AI-powered</span>
+                              <p className="mb-1 text-sm text-muted-foreground">
+                                Convert and manage leads effectively as a
+                                one-person business owner
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
+                                  AI-powered
+                                </span>
                               </div>
                             </div>
                           </ListItem>
                           <ListItem
                             href="https://sourcing.oppulence.app"
                             title="🔍 Prospecting"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground mb-1">Find and connect with ideal clients for your one-person business</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">Lead-Sourcing</span>
+                              <p className="mb-1 text-sm text-muted-foreground">
+                                Find and connect with ideal clients for your
+                                one-person business
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                                  Lead-Sourcing
+                                </span>
                               </div>
                             </div>
                           </ListItem>
                           <ListItem
                             href="https://docs.oppulence.app"
                             title="🧩 Developers"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30 md:col-span-2"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60 md:col-span-2"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground mb-1">Access the Oppulence API and documentation</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-600/20">Documentation</span>
-                                <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">API</span>
+                              <p className="mb-1 text-sm text-muted-foreground">
+                                Access the Oppulence API and documentation
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-600/20">
+                                  Documentation
+                                </span>
+                                <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
+                                  API
+                                </span>
                               </div>
                             </div>
                           </ListItem>
                         </ul>
                       </DropdownNavItem>
                       <DropdownNavItem trigger="📊 Resources">
-                        <ul className="grid w-[400px] gap-4 bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px] rounded-xl">
+                        <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
                           <ListItem
                             href="/about"
                             title="🏢 About"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">Learn more about Oppulence</p>
+                              <p className="text-sm text-muted-foreground">
+                                Learn more about Oppulence
+                              </p>
                             </div>
                           </ListItem>
                           <ListItem
                             href="/how-it-works"
                             title="🚀 How It Works"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">Learn how Oppulence works</p>
+                              <p className="text-sm text-muted-foreground">
+                                Learn how Oppulence works
+                              </p>
                             </div>
                           </ListItem>
                           <ListItem
                             href="/features"
                             title="✨ Features"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">Learn about the features of Oppulence</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">Updated</span>
+                              <p className="text-sm text-muted-foreground">
+                                Learn about the features of Oppulence
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                                  Updated
+                                </span>
                               </div>
                             </div>
                           </ListItem>
                           <ListItem
                             href="/benefit"
                             title="🌟 Benefits"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">Learn about the benefits of Oppulence</p>
+                              <p className="text-sm text-muted-foreground">
+                                Learn about the benefits of Oppulence
+                              </p>
                             </div>
                           </ListItem>
                           <ListItem
                             href="/blog"
                             title="📰 Blog"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">Read insights on Oppulence&apos;s development</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">New posts</span>
+                              <p className="text-sm text-muted-foreground">
+                                Read insights on Oppulence&apos;s development
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                  New posts
+                                </span>
                               </div>
                             </div>
                           </ListItem>
                           <ListItem
                             href="/faq"
                             title="❓ FAQ"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">Frequently asked questions about Oppulence</p>
+                              <p className="text-sm text-muted-foreground">
+                                Frequently asked questions about Oppulence
+                              </p>
                             </div>
                           </ListItem>
                           <ListItem
                             href="/changelog"
                             title="📈 Changelog"
-                            className="group relative p-4 hover:bg-muted/60 rounded-lg transition-all duration-200 border border-transparent hover:border-border/30 md:col-span-2"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60 md:col-span-2"
                           >
                             <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">See what&apos;s new in Oppulence</p>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">v0.0.3</span>
-                                <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">Latest</span>
+                              <p className="text-sm text-muted-foreground">
+                                See what&apos;s new in Oppulence
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                                  v0.0.3
+                                </span>
+                                <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
+                                  Latest
+                                </span>
                               </div>
                             </div>
                           </ListItem>
@@ -235,13 +273,17 @@ export default async function Header() {
                       <NavItem href="/roadmap">
                         <div className="flex items-center gap-1.5">
                           <span>🗺️ Roadmap</span>
-                          <span className="inline-flex items-center rounded-full bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">New</span>
+                          <span className="inline-flex items-center rounded-full bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                            New
+                          </span>
                         </div>
                       </NavItem>
                       <NavItem href="/pricing">
                         <div className="flex items-center gap-1.5">
                           <span>💎 Pricing</span>
-                          <span className="inline-flex items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Updated</span>
+                          <span className="inline-flex items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                            Updated
+                          </span>
                         </div>
                       </NavItem>
 
@@ -249,7 +291,7 @@ export default async function Header() {
                       {/* <NavItem href="https://solomon-ai.betteruptime.com/">
                         ⚡️ Status{" "}
                       </NavItem> */}
-                      {/* <NavItem href="https://engineering-docs.solomon-ai.app/">
+                      {/* <NavItem href="https://engineering-docs.oppulence.app/">
                         📖 Documentation
                       </NavItem> */}
                       {/* <NavItem
@@ -263,7 +305,7 @@ export default async function Header() {
                 </nav>
               </div>
               <div className="hidden items-center space-x-4 md:flex">
-                <AuthButton />
+                {/* <AuthButton /> */}
                 <DarkModeToggle />
               </div>
               <div className="md:hidden">

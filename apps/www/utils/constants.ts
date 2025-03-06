@@ -11,7 +11,7 @@ export const TEST_MODE_ENABLED = ["true", "True", "TRUE"].includes(
   process.env.NEXT_PUBLIC_TEST_MODE_ENABLED ?? "",
 );
 
-export const CONTACT_EMAIL = "engineering@solomon-ai.co";
+export const CONTACT_EMAIL = "eyoanyombapro@gmail.com";
 
 const NEXT_PUBLIC_STRIPE_WAITLIST_PRICE_ID = "price_1PZ9X608N4O93LU5yqMbGDtu";
 const NEXT_PUBLIC_STRIPE_WAITLIST_PRICE_ID_TEST =
@@ -195,7 +195,7 @@ export const footerSections = [
       },
       {
         text: "Email",
-        href: "mailto:engineering@solomon-ai.co",
+        href: "mailto:eyoanyombapro@gmail.com",
       },
     ],
   },

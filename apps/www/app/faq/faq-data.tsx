@@ -60,27 +60,43 @@ export const faqData: FAQItem[] = [
     answer: (
       <div className="space-y-4">
         <p>
-          Our AI-powered Lead Sourcing Software gives solo entrepreneurs a competitive edge with features designed specifically for small businesses:
+          Our AI-powered Lead Sourcing Software gives solo entrepreneurs a
+          competitive edge with features designed specifically for small
+          businesses:
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong>Comprehensive AI-Driven Data Enrichment:</strong> We automatically append vital information to each lead – including firmographics, social media profiles, recent news mentions, and intent signals – giving you richly detailed lead profiles without manual research
+            <strong>Comprehensive AI-Driven Data Enrichment:</strong> We
+            automatically append vital information to each lead – including
+            firmographics, social media profiles, recent news mentions, and
+            intent signals – giving you richly detailed lead profiles without
+            manual research
           </li>
           <li>
-            <strong>Intelligent Lead Scoring & Prioritization:</strong> Our AI analyzes each lead's attributes and engagement to automatically rank them as hot, warm, or cold, ensuring you focus your limited time on the most promising opportunities
+            <strong>Intelligent Lead Scoring & Prioritization:</strong> Our AI
+            analyzes each lead's attributes and engagement to automatically rank
+            them as hot, warm, or cold, ensuring you focus your limited time on
+            the most promising opportunities
           </li>
           <li>
-            <strong>Seamless CRM Integration:</strong> Two-way synchronization with popular CRM systems means leads flow directly into your existing workflow, with all enrichment data and scoring included
+            <strong>Seamless CRM Integration:</strong> Two-way synchronization
+            with popular CRM systems means leads flow directly into your
+            existing workflow, with all enrichment data and scoring included
           </li>
           <li>
-            <strong>Multi-Channel Prospecting:</strong> Find qualified prospects across social media, professional networks, and industry databases
+            <strong>Multi-Channel Prospecting:</strong> Find qualified prospects
+            across social media, professional networks, and industry databases
           </li>
           <li>
-            <strong>Personalized Outreach:</strong> AI-powered templates and suggestions help you craft highly relevant messages for each prospect
+            <strong>Personalized Outreach:</strong> AI-powered templates and
+            suggestions help you craft highly relevant messages for each
+            prospect
           </li>
         </ul>
         <p>
-          Our platform delivers enterprise-grade AI lead generation capabilities in a package specifically tailored for small business needs – easy to use, fully integrated, and affordably priced.
+          Our platform delivers enterprise-grade AI lead generation capabilities
+          in a package specifically tailored for small business needs – easy to
+          use, fully integrated, and affordably priced.
         </p>
       </div>
     ),
@@ -157,27 +173,37 @@ export const faqData: FAQItem[] = [
     answer: (
       <div className="space-y-4">
         <p>
-          AI-powered lead sourcing offers significant advantages for small businesses:
+          AI-powered lead sourcing offers significant advantages for small
+          businesses:
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong>Increased Efficiency:</strong> Companies using AI for lead generation have seen over 50% increases in sales-ready leads and a 60% reduction in costs
+            <strong>Increased Efficiency:</strong> Companies using AI for lead
+            generation have seen over 50% increases in sales-ready leads and a
+            60% reduction in costs
           </li>
           <li>
-            <strong>Competitive Advantage:</strong> 74% of small business owners believe employees using AI tools give them an edge over competitors
+            <strong>Competitive Advantage:</strong> 74% of small business owners
+            believe employees using AI tools give them an edge over competitors
           </li>
           <li>
-            <strong>Higher Quality Leads:</strong> AI identifies prospects most likely to convert, eliminating wasted effort on unqualified contacts
+            <strong>Higher Quality Leads:</strong> AI identifies prospects most
+            likely to convert, eliminating wasted effort on unqualified contacts
           </li>
           <li>
-            <strong>Time Savings:</strong> Automated research and enrichment eliminate hours of manual prospecting work, letting you focus on relationship-building
+            <strong>Time Savings:</strong> Automated research and enrichment
+            eliminate hours of manual prospecting work, letting you focus on
+            relationship-building
           </li>
           <li>
-            <strong>Data-Driven Decisions:</strong> Replace gut instinct with AI-powered insights about which leads deserve your attention
+            <strong>Data-Driven Decisions:</strong> Replace gut instinct with
+            AI-powered insights about which leads deserve your attention
           </li>
         </ul>
         <p>
-          For small businesses with limited time and sales personnel, AI-powered lead sourcing is particularly valuable, allowing you to compete effectively with larger organizations.
+          For small businesses with limited time and sales personnel, AI-powered
+          lead sourcing is particularly valuable, allowing you to compete
+          effectively with larger organizations.
         </p>
       </div>
     ),
@@ -192,23 +218,33 @@ export const faqData: FAQItem[] = [
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong>Machine Learning Lead Scoring:</strong> Predictive models that learn from historical conversion data to accurately predict which leads are most likely to become customers
+            <strong>Machine Learning Lead Scoring:</strong> Predictive models
+            that learn from historical conversion data to accurately predict
+            which leads are most likely to become customers
           </li>
           <li>
-            <strong>AI-Driven Data Enrichment:</strong> Intelligent systems that continuously scan multiple sources (web, social media, news, third-party data) to keep lead profiles comprehensive and up-to-date
+            <strong>AI-Driven Data Enrichment:</strong> Intelligent systems that
+            continuously scan multiple sources (web, social media, news,
+            third-party data) to keep lead profiles comprehensive and up-to-date
           </li>
           <li>
-            <strong>Natural Language Processing:</strong> Analyzes content and communications to extract insights and relevant information about prospects
+            <strong>Natural Language Processing:</strong> Analyzes content and
+            communications to extract insights and relevant information about
+            prospects
           </li>
           <li>
-            <strong>Intent Modeling:</strong> Advanced algorithms that identify buying signals and intent markers across digital channels
+            <strong>Intent Modeling:</strong> Advanced algorithms that identify
+            buying signals and intent markers across digital channels
           </li>
           <li>
-            <strong>Generative AI:</strong> Powers personalized outreach suggestions and content creation tailored to each prospect
+            <strong>Generative AI:</strong> Powers personalized outreach
+            suggestions and content creation tailored to each prospect
           </li>
         </ul>
         <p>
-          We continuously improve our AI capabilities to ensure you always have access to the most advanced lead sourcing technology available, without the complexity typically associated with enterprise solutions.
+          We continuously improve our AI capabilities to ensure you always have
+          access to the most advanced lead sourcing technology available,
+          without the complexity typically associated with enterprise solutions.
         </p>
       </div>
     ),
@@ -218,28 +254,36 @@ export const faqData: FAQItem[] = [
     question: "How does Oppulence handle lead quality and data privacy?",
     answer: (
       <div className="space-y-4">
-        <p>
-          We take both lead quality and data privacy very seriously:
-        </p>
+        <p>We take both lead quality and data privacy very seriously:</p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong>Quality Verification:</strong> Our AI enrichment includes email verification and data validation to ensure you're working with accurate information
+            <strong>Quality Verification:</strong> Our AI enrichment includes
+            email verification and data validation to ensure you're working with
+            accurate information
           </li>
           <li>
-            <strong>Focus on Relevance:</strong> We emphasize finding fewer, higher-quality leads rather than overwhelming you with quantity – every lead matches your specific criteria
+            <strong>Focus on Relevance:</strong> We emphasize finding fewer,
+            higher-quality leads rather than overwhelming you with quantity –
+            every lead matches your specific criteria
           </li>
           <li>
-            <strong>GDPR/CCPA Compliance:</strong> All lead sourcing activities comply with relevant data protection regulations
+            <strong>GDPR/CCPA Compliance:</strong> All lead sourcing activities
+            comply with relevant data protection regulations
           </li>
           <li>
-            <strong>Ethical AI Practices:</strong> Our lead scoring and prioritization algorithms are designed to avoid bias and provide fair assessments
+            <strong>Ethical AI Practices:</strong> Our lead scoring and
+            prioritization algorithms are designed to avoid bias and provide
+            fair assessments
           </li>
           <li>
-            <strong>Transparency:</strong> We provide clear explanations of how leads are sourced and why they received their scores
+            <strong>Transparency:</strong> We provide clear explanations of how
+            leads are sourced and why they received their scores
           </li>
         </ul>
         <p>
-          This commitment to quality and ethics means you can confidently use our platform knowing your lead generation activities are both effective and responsible.
+          This commitment to quality and ethics means you can confidently use
+          our platform knowing your lead generation activities are both
+          effective and responsible.
         </p>
       </div>
     ),
@@ -250,27 +294,41 @@ export const faqData: FAQItem[] = [
     answer: (
       <div className="space-y-4">
         <p>
-          We're constantly enhancing our lead sourcing capabilities. Upcoming features include:
+          We're constantly enhancing our lead sourcing capabilities. Upcoming
+          features include:
         </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong>Enhanced CRM Integration:</strong> Deeper bi-directional sync with popular CRMs, including automatic updates when lead status changes in either system
+            <strong>Enhanced CRM Integration:</strong> Deeper bi-directional
+            sync with popular CRMs, including automatic updates when lead status
+            changes in either system
           </li>
           <li>
-            <strong>Advanced AI Lead Scoring 2.0:</strong> More sophisticated predictive models that continuously learn from your conversion patterns to improve accuracy
+            <strong>Advanced AI Lead Scoring 2.0:</strong> More sophisticated
+            predictive models that continuously learn from your conversion
+            patterns to improve accuracy
           </li>
           <li>
-            <strong>Intent Data Integration:</strong> Incorporation of third-party intent signals to identify prospects actively researching solutions like yours
+            <strong>Intent Data Integration:</strong> Incorporation of
+            third-party intent signals to identify prospects actively
+            researching solutions like yours
           </li>
           <li>
-            <strong>AI-Powered Outreach Automation:</strong> More intelligent tools for creating personalized emails and follow-ups for each prospect
+            <strong>AI-Powered Outreach Automation:</strong> More intelligent
+            tools for creating personalized emails and follow-ups for each
+            prospect
           </li>
           <li>
-            <strong>Recommendation Engine:</strong> AI suggestions for identifying leads similar to your best customers and optimal follow-up strategies
+            <strong>Recommendation Engine:</strong> AI suggestions for
+            identifying leads similar to your best customers and optimal
+            follow-up strategies
           </li>
         </ul>
         <p>
-          Our goal is to evolve from a lead sourcing tool into a comprehensive lead management and engagement solution, essentially providing an AI junior sales team in a box for solo entrepreneurs and small businesses.
+          Our goal is to evolve from a lead sourcing tool into a comprehensive
+          lead management and engagement solution, essentially providing an AI
+          junior sales team in a box for solo entrepreneurs and small
+          businesses.
         </p>
       </div>
     ),

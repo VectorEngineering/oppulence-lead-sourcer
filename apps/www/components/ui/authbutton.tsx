@@ -28,11 +28,11 @@ export default async function AuthButton() {
     <div className="flex items-center space-x-4">
       {error || !data?.user ? (
         <>
-          <Link href="https://app.thinkthank.app/login">
+          {/* <Link href="https://app.thinkthank.app/login">
             <Button variant="outline" className="hidden md:inline-flex">
               Sign in
             </Button>
-          </Link>
+          </Link> */}
           <Link href="https:/app.thinkthank.app/login">
             <Button variant="outline">
               Try Oppulence

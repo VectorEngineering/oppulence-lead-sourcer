@@ -27,10 +27,10 @@ export default function TermsOfServiceComponent() {
                 Welcome, and thank you for your interest in Oppulence, Inc.
                 (Oppulence,” “we,” or “us”) and our website at&nbsp;
                 <Link
-                  href="http://www.solomon-ai.app"
+                  href="http://www.oppulence.app"
                   className="font-medium text-gray-900 underline"
                 >
-                  www.solomon-ai.app
+                  www.oppulence.app
                 </Link>
                 , along with the Software (as defined below), our related
                 websites, hosted applications or other downloadable
@@ -38,10 +38,10 @@ export default function TermsOfServiceComponent() {
                 the “Service”). These Terms and Conditions, including Solomon
                 AI’s Privacy Policy (available at:&nbsp;
                 <Link
-                  href="https://solomon-ai.app/privacy"
+                  href="https://oppulence.app/privacy"
                   className="font-medium text-gray-900 underline"
                 >
-                  https://solomon-ai.app/privacy
+                  https://oppulence.app/privacy
                 </Link>
                 ), (together, these “Terms”) are a legally binding contract
                 between you and Oppulence regarding your use of the Service.
@@ -405,10 +405,10 @@ export default function TermsOfServiceComponent() {
                     date at the top of these Terms and by maintaining a current
                     version of these Terms at{" "}
                     <Link
-                      href="https://solomon-ai.app/terms-of-service"
+                      href="https://oppulence.app/terms-of-service"
                       className="font-medium text-gray-900 underline"
                     >
-                      https://solomon-ai.app/terms-of-service
+                      https://oppulence.app/terms-of-service
                     </Link>
                     . All modifications will be effective when they are posted,
                     and your continued accessing or use of the Service will
@@ -991,10 +991,10 @@ export default function TermsOfServiceComponent() {
                         . Please read the Oppulence Privacy Policy (available
                         at:&nbsp;
                         <Link
-                          href="https://solomon-ai.app/privacy"
+                          href="https://oppulence.app/privacy"
                           className="font-medium text-gray-900 underline"
                         >
-                          https://solomon-ai.app/privacy
+                          https://oppulence.app/privacy
                         </Link>
                         ) (the “Privacy Policy”) carefully for information
                         relating to our collection, use, storage, and disclosure

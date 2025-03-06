@@ -1,4 +1,11 @@
-import { ArrowRight, Briefcase, Rocket, Shield, Target, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Briefcase,
+  Rocket,
+  Shield,
+  Target,
+  Zap,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -9,84 +16,91 @@ import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 interface FeatureTagProps {
-    icon: React.ElementType;
-    text: string;
-    index: number;
+  icon: React.ElementType;
+  text: string;
+  index: number;
 }
 
 const FeatureTag = ({ icon: Icon, text, index }: FeatureTagProps) => (
-    <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-        whileHover={{ scale: 1.05, y: -2 }}
-        className="flex items-center gap-2 rounded-full border border-foreground/5 bg-background/60 px-4 py-2 text-sm text-foreground/70 shadow-sm backdrop-blur-lg"
-    >
-        <Icon className="h-4 w-4 text-primary" /> {text}
-    </motion.div>
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+    whileHover={{ scale: 1.05, y: -2 }}
+    className="flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-sm text-gray-700 shadow-sm backdrop-blur-lg dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+  >
+    <Icon className="h-4 w-4 text-blue-500 dark:text-blue-400" /> {text}
+  </motion.div>
 );
 
 const HeroContent = () => {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
-    const features = [
-        { icon: Shield, text: "AI-Driven Data Enrichment" },
-        { icon: Rocket, text: "Intelligent Lead Scoring" },
-        { icon: Briefcase, text: "Seamless CRM Integration" },
-        { icon: Target, text: "Predictive Lead Analytics" },
-        { icon: Zap, text: "Automated Outreach Assistance" },
-    ];
+  const features = [
+    { icon: Shield, text: "Advanced Data Enrichment" },
+    { icon: Rocket, text: "Intelligent Prospect Scoring" },
+    { icon: Briefcase, text: "Enterprise CRM Integration" },
+    { icon: Target, text: "Predictive Analytics" },
+    { icon: Zap, text: "Automated Engagement" },
+  ];
 
-    return (
-        <div className="relative z-10 mx-auto max-w-4xl px-4 pt-16 text-center sm:pt-24 md:pt-32">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-6"
-            >
-                {isDark ? (
-                    <PearDarkHeroLogo
-                        width="48"
-                        height="48"
-                        alt="Pear Logo"
-                        className="mx-auto"
-                    />
-                ) : (
-                    <PearHeroLogo
-                        width="48"
-                        height="48"
-                        alt="Pear Logo"
-                        className="mx-auto"
-                    />
-                )}
-            </motion.div>
+  return (
+    <div className="relative z-10 mx-auto max-w-4xl px-4 pt-16 text-center sm:pt-24 md:pt-32">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mb-6"
+      >
+        {isDark ? (
+          <PearDarkHeroLogo
+            width="48"
+            height="48"
+            alt="Pear Logo"
+            className="mx-auto"
+          />
+        ) : (
+          <PearHeroLogo
+            width="48"
+            height="48"
+            alt="Pear Logo"
+            className="mx-auto"
+          />
+        )}
+      </motion.div>
 
-            <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl"
-            >
-                <span className="block sm:inline">AI-Powered Lead Sourcing </span>
-                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                    For Small Businesses
-                </span>
-            </motion.h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl"
+      >
+        <span className="block sm:inline">Prospect Identification </span>
+        <span className="relative">
+          <span className="text-gray-900 dark:text-gray-100">
+            for Growth-Focused{" "}
+            <span className="text-blue-500">Organizations</span>
+          </span>
+          <span className="absolute bottom-1 left-0 right-0 -z-10 hidden h-3 bg-blue-500/20 sm:block"></span>
+        </span>
+      </motion.h1>
 
-            <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mx-auto mb-8 max-w-2xl text-base text-foreground/70 sm:text-lg"
-            >
-                Your intelligent lead generation platform. Discover high-quality prospects,
-                automate data enrichment, and leverage AI-driven insights—all while reducing costs
-                by 60% and increasing sales-ready leads by over 50%.
-            </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="mx-auto mb-8 max-w-2xl text-base text-gray-600 dark:text-gray-400 sm:text-lg"
+      >
+        Your comprehensive business development platform. Discover
+        high-potential opportunities, implement data-driven insights, and
+        leverage advanced analytics—all while reducing acquisition costs by{" "}
+        <span className="font-medium text-blue-500">60%</span> and increasing
+        conversion-ready prospects by over{" "}
+        <span className="font-medium text-blue-500">50%</span>.
+      </motion.p>
 
-            <motion.div
+      {/* <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -100,35 +114,35 @@ const HeroContent = () => {
                         index={index}
                     />
                 ))}
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
+        <motion.div
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          className="inline-block"
+        >
+          <Button
+            asChild
+            size="lg"
+            className="text-white rounded-full bg-background px-6 py-5 shadow-md transition-all hover:bg-blue-600 hover:shadow-lg dark:bg-blue-500 dark:hover:bg-blue-600 sm:px-8 sm:py-6"
+          >
+            <Link
+              href="https://cal.com/solomonai/30min"
+              className="flex items-center gap-2"
             >
-                <motion.div
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-block"
-                >
-                    <Button
-                        asChild
-                        size="lg"
-                        className="rounded-full bg-primary px-6 py-5 text-primary-foreground shadow-md transition-all hover:bg-primary/90 hover:shadow-lg sm:px-8 sm:py-6"
-                    >
-                        <Link
-                            href="https://cal.com/solomonai/30min"
-                            className="flex items-center gap-2"
-                        >
-                            <span>Transform Your Lead Generation</span>
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
-                    </Button>
-                </motion.div>
-            </motion.div>
-        </div>
-    );
+              <span>Transform Your Business Development</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
 };
 
-export default HeroContent; 
+export default HeroContent;

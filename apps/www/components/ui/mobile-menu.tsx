@@ -129,7 +129,7 @@ export default function MobileMenu({
                   ) : (
                     <>
                       <Link
-                        href="https://app-business.solomon-ai.app"
+                        href="https://app-business.oppulence.app"
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
@@ -141,7 +141,7 @@ export default function MobileMenu({
                         </Button>
                       </Link>
                       <Link
-                        href="https://app-business.solomon-ai.app"
+                        href="https://app-business.oppulence.app"
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
@@ -170,7 +170,7 @@ export default function MobileMenu({
                           About
                         </MobileNavItem>
                         <MobileNavItem
-                          href="https://engineering-docs.solomon-ai.app/"
+                          href="https://engineering-docs.oppulence.app/"
                           onClick={() => setIsOpen(false)}
                         >
                           Documentation

@@ -62,14 +62,14 @@ const Navigation: React.FC = () => {
     },
     {
       label: "For Enterprise",
-      path: "https://enterprise.solomon-ai.app",
+      path: "https://enterprise.oppulence.app",
       isExternal: true,
       mobile: false,
     },
 
     // {
     //   label: "Docs",
-    //   path: "https://engineering-docs.solomon-ai.app/",
+    //   path: "https://engineering-docs.oppulence.app/",
     //   isExternal: false,
     //   mobile: false,
     // },

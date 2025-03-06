@@ -71,13 +71,13 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 
   const gradientStyle = mounted
     ? {
-      backgroundImage:
-        "linear-gradient(45deg, #1a237e, #006064, #1b5e20, #006064, #b71c1c)",
-      backgroundSize: "300% 300%",
-      animation: "rainbow-animation 5s ease infinite",
-      color: "white",
-      transition: "all 0.3s ease",
-    }
+        backgroundImage:
+          "linear-gradient(45deg, #1a237e, #006064, #1b5e20, #006064, #b71c1c)",
+        backgroundSize: "300% 300%",
+        animation: "rainbow-animation 5s ease infinite",
+        color: "white",
+        transition: "all 0.3s ease",
+      }
     : {};
 
   const handleDownload = async (os_type: string) => {
@@ -274,10 +274,10 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
               check back later. If you have concerns or questions, please
               contact{" "}
               <Link
-                href="mailto:engineering@solomon-ai.co"
+                href="mailto:eyoanyombapro@gmail.com"
                 className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
               >
-                engineering@solomon-ai.co
+                eyoanyombapro@gmail.com
               </Link>
               .
             </span>

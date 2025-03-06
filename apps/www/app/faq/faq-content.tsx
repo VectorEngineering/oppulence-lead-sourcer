@@ -197,7 +197,7 @@ export function FAQContent() {
                     className={cn(
                       "flex justify-between",
                       activeCategory === category && "bg-muted",
-                      category === "leads" && "text-blue-500"
+                      category === "leads" && "text-blue-500",
                     )}
                   >
                     <span className="capitalize">{category}</span>
@@ -224,9 +224,13 @@ export function FAQContent() {
                   key={category}
                   value={category}
                   className={cn(
-                    "capitalize data-[state=active]:text-white",
-                    category === "leads" && !activeCategory && "border-blue-500 text-blue-500",
-                    category === "leads" && activeCategory === "leads" && "border-blue-500 text-white"
+                    "data-[state=active]:text-white capitalize",
+                    category === "leads" &&
+                      !activeCategory &&
+                      "border-blue-500 text-blue-500",
+                    category === "leads" &&
+                      activeCategory === "leads" &&
+                      "text-white border-blue-500",
                   )}
                 >
                   {category}
@@ -313,7 +317,8 @@ export function FAQContent() {
                                 variant="outline"
                                 className={cn(
                                   "text-xs capitalize",
-                                  item.category === "leads" && "border-blue-500 text-blue-500 bg-blue-50"
+                                  item.category === "leads" &&
+                                    "border-blue-500 bg-blue-50 text-blue-500",
                                 )}
                               >
                                 {item.category}

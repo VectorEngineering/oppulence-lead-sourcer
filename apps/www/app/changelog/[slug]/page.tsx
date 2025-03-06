@@ -94,13 +94,13 @@ export async function generateMetadata({
       publishedTime: update.date,
       images: update.screenshot
         ? [
-          {
-            url: update.screenshot.src,
-            width: update.screenshot.width,
-            height: update.screenshot.height,
-            alt: update.screenshot.alt,
-          },
-        ]
+            {
+              url: update.screenshot.src,
+              width: update.screenshot.width,
+              height: update.screenshot.height,
+              alt: update.screenshot.alt,
+            },
+          ]
         : [],
     },
     twitter: {
@@ -166,7 +166,7 @@ export default async function ChangelogEntry({ params }: PageProps) {
                   width: "40px",
                   height: "40px",
                 }}
-                className="h-full w-full object-cover flex items-center justify-center"
+                className="flex h-full w-full items-center justify-center object-cover"
               >
                 Y
               </div>
@@ -190,16 +190,16 @@ export default async function ChangelogEntry({ params }: PageProps) {
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               /> */}
-              <div className="bg-white relative flex gap-x-2 h-[400px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
-                <div className="text-black text-3xl font-bold">
+              <div className="bg-white relative flex h-[400px] w-full items-center justify-center gap-x-2 overflow-hidden rounded-lg border shadow-lg">
+                <div className="text-3xl font-bold text-black">
                   {update.title}
                 </div>
               </div>
             </div>
           ) : (
             <div className="bg-white relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
-              <div className="bg-white relative flex gap-x-2 h-[400px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
-                <div className="text-black text-3xl font-bold">
+              <div className="bg-white relative flex h-[400px] w-full items-center justify-center gap-x-2 overflow-hidden rounded-lg border shadow-lg">
+                <div className="text-3xl font-bold text-black">
                   {update.title}
                 </div>
               </div>
@@ -347,7 +347,7 @@ function RelatedUpdateCard({ update }: RelatedUpdateCardProps) {
       className="bg-white group flex flex-col overflow-hidden rounded-lg border shadow-sm transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
       {update.screenshot ? (
-        <div className="aspect-video w-full overflow-hidden bg-gray-100 flex items-center justify-center">
+        <div className="flex aspect-video w-full items-center justify-center overflow-hidden bg-gray-100">
           {/* <Image
             src={update.screenshot.src}
             alt={update.screenshot.alt}
@@ -355,9 +355,7 @@ function RelatedUpdateCard({ update }: RelatedUpdateCardProps) {
             height={225}
             className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
           /> */}
-          <div className="text-black text-md font-bold">
-            {update.title}
-          </div>
+          <div className="text-md font-bold text-black">{update.title}</div>
         </div>
       ) : (
         <div className="flex aspect-video w-full items-center justify-center bg-gray-100">

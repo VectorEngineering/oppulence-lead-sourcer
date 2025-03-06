@@ -132,7 +132,7 @@ export function AppDownloadSection() {
         <TabsContent value="mac" className="mt-6">
           <AppDownload
             platform="Mac"
-            link="https://dub.solomon-ai.app/l66aUzF"
+            link="https://dub.oppulence.app/l66aUzF"
             features={[
               "Native Apple Silicon support",
               "Touch Bar integration",
@@ -143,7 +143,7 @@ export function AppDownloadSection() {
         <TabsContent value="windows" className="mt-6">
           <AppDownload
             platform="Windows"
-            link="https://dub.solomon-ai.app/CvbYQHY"
+            link="https://dub.oppulence.app/CvbYQHY"
             features={[
               "Windows Hello authentication",
               "Multi-monitor support",
@@ -154,7 +154,7 @@ export function AppDownloadSection() {
         <TabsContent value="linux" className="mt-6">
           <AppDownload
             platform="Linux"
-            link="https://dub.solomon-ai.app/NNudKB8"
+            link="https://dub.oppulence.app/NNudKB8"
             features={[
               "Native Wayland support",
               "System tray integration",

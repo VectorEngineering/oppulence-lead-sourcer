@@ -57,10 +57,19 @@ const AboutComponent: React.FC = () => {
               <span>🔍 Competitive Edge for Small Businesses</span>
             </p>
             <p className="text-left text-gray-500">
-              Artificial intelligence is rapidly transforming how small businesses find and nurture sales leads. Traditional lead sourcing – manual prospecting, purchasing static contact lists, or relying on gut feeling – is being replaced by AI-driven platforms that automate discovery, enrichment, and prioritization of prospects.
+              Artificial intelligence is rapidly transforming how small
+              businesses find and nurture sales leads. Traditional lead sourcing
+              – manual prospecting, purchasing static contact lists, or relying
+              on gut feeling – is being replaced by AI-driven platforms that
+              automate discovery, enrichment, and prioritization of prospects.
             </p>
             <p className="text-left text-gray-500">
-              Small firms, often limited in time and sales personnel, stand to gain a disproportionate advantage from these tools. Companies using AI for lead generation have seen over 50% increases in sales-ready leads and a 60% reduction in costs. In fact, 74% of small business owners believe employees using AI tools give them a competitive edge over peers. ⏳
+              Small firms, often limited in time and sales personnel, stand to
+              gain a disproportionate advantage from these tools. Companies
+              using AI for lead generation have seen over 50% increases in
+              sales-ready leads and a 60% reduction in costs. In fact, 74% of
+              small business owners believe employees using AI tools give them a
+              competitive edge over peers. ⏳
             </p>
           </div>
           <div className="flex flex-col items-start justify-start gap-3 md:pt-[10%]">
@@ -68,10 +77,21 @@ const AboutComponent: React.FC = () => {
               <span>💡 Data-Driven Intelligence</span>
             </p>
             <p className="text-left text-gray-500">
-              The lead generation landscape is undergoing a seismic shift away from manual list building and cold calls toward data-driven, automated strategies. Instead of relying on gut instinct or generic campaigns, companies are leveraging AI to analyze customer data and online behavior to pinpoint the most promising prospects. 🧠
+              The lead generation landscape is undergoing a seismic shift away
+              from manual list building and cold calls toward data-driven,
+              automated strategies. Instead of relying on gut instinct or
+              generic campaigns, companies are leveraging AI to analyze customer
+              data and online behavior to pinpoint the most promising prospects.
+              🧠
             </p>
             <p className="text-left text-gray-500">
-              AI-powered predictive analytics can identify prospects before they even raise their hand, by spotting intent signals or patterns that correlate with buying interest. Small businesses benefit by focusing their limited sales resources on leads most likely to convert, rather than exhausting effort on unqualified contacts. Our platform delivers rich intelligence on each lead and helps users craft relevant messages.
+              AI-powered predictive analytics can identify prospects before they
+              even raise their hand, by spotting intent signals or patterns that
+              correlate with buying interest. Small businesses benefit by
+              focusing their limited sales resources on leads most likely to
+              convert, rather than exhausting effort on unqualified contacts.
+              Our platform delivers rich intelligence on each lead and helps
+              users craft relevant messages.
             </p>
           </div>
           <div className="flex flex-col items-start justify-start gap-3 md:pt-[10%]">
@@ -79,10 +99,20 @@ const AboutComponent: React.FC = () => {
               <span>🔄 Seamless Integration</span>
             </p>
             <p className="text-left text-gray-500">
-              About 87% of companies with 10–100 employees use a CRM system as the heart of their sales operations. Any lead sourcing platform must play nicely with CRMs. Businesses want new leads flowing directly into their CRM, and updates like lead scores or contact enrichments syncing automatically.
+              About 87% of companies with 10–100 employees use a CRM system as
+              the heart of their sales operations. Any lead sourcing platform
+              must play nicely with CRMs. Businesses want new leads flowing
+              directly into their CRM, and updates like lead scores or contact
+              enrichments syncing automatically.
             </p>
             <p className="text-left text-gray-500">
-              Our platform integrates seamlessly with popular CRMs (like HubSpot, Pipedrive, Zoho) to fit into existing workflows. The result is a platform that streamlines lead generation end-to-end, making it the AI-powered growth engine for small businesses. With machine learning-based lead scoring and intent modeling, we help you identify and prioritize hot prospects, shortening sales cycles by an estimated 30%. 📈
+              Our platform integrates seamlessly with popular CRMs (like
+              HubSpot, Pipedrive, Zoho) to fit into existing workflows. The
+              result is a platform that streamlines lead generation end-to-end,
+              making it the AI-powered growth engine for small businesses. With
+              machine learning-based lead scoring and intent modeling, we help
+              you identify and prioritize hot prospects, shortening sales cycles
+              by an estimated 30%. 📈
             </p>
           </div>
         </div>

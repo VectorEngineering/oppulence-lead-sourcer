@@ -44,10 +44,11 @@ export default function ChangelogPage() {
                 />
                 <div className="group relative">
                   <div
-                    className={`h-4 w-4 rounded-full border-2 ${index === 0
-                      ? "bg-white border-blue-500"
-                      : "border-gray-200 bg-gray-50"
-                      }`}
+                    className={`h-4 w-4 rounded-full border-2 ${
+                      index === 0
+                        ? "bg-white border-blue-500"
+                        : "border-gray-200 bg-gray-50"
+                    }`}
                   />
                   <div className="absolute left-full ml-4 hidden whitespace-nowrap group-hover:block">
                     <div className="flex items-center gap-2">
@@ -61,10 +62,11 @@ export default function ChangelogPage() {
                   </div>
                 </div>
                 <div
-                  className={`h-full w-px ${index === updates.length - 1
-                    ? "bg-transparent"
-                    : "bg-gray-200"
-                    }`}
+                  className={`h-full w-px ${
+                    index === updates.length - 1
+                      ? "bg-transparent"
+                      : "bg-gray-200"
+                  }`}
                 />
               </div>
             ))}
@@ -83,8 +85,8 @@ export default function ChangelogPage() {
               >
                 <article className="space-y-4">
                   {update.screenshot ? (
-                    <div className="bg-white relative flex gap-x-2 h-[400px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
-                      <div className="text-black text-2xl font-bold max-w-md">
+                    <div className="bg-white relative flex h-[400px] w-full items-center justify-center gap-x-2 overflow-hidden rounded-lg border shadow-lg">
+                      <div className="max-w-md text-2xl font-bold text-black">
                         {update.title}
                       </div>
                       <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
@@ -92,8 +94,8 @@ export default function ChangelogPage() {
                       </span>
                     </div>
                   ) : (
-                    <div className="bg-white relative flex gap-x-2 h-[400px] w-full items-center justify-center overflow-hidden rounded-lg border shadow-lg">
-                      <div className="text-black text-2xl font-bold max-w-md">
+                    <div className="bg-white relative flex h-[400px] w-full items-center justify-center gap-x-2 overflow-hidden rounded-lg border shadow-lg">
+                      <div className="max-w-md text-2xl font-bold text-black">
                         {update.title}
                       </div>
                       <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
