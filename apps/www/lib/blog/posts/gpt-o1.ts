@@ -5,7 +5,7 @@ export const post = blogPostSchema.parse({
   url: "https://pearai.com/blog/gpt-o1",
   excerpt:
     "Learn how to integrate and effectively use GPT o1-mini and o1-preview models in PearAI, along with important considerations for optimal usage.",
-  date: "2024-09-15T00:00:00Z",
+  date: "2025-09-15T00:00:00Z",
   author: "Duke Pan",
   readingTime: "3 min",
   slug: "gpt-o1",

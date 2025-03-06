@@ -5,7 +5,7 @@ export const post = blogPostSchema.parse({
   url: "https://pearai.com/blog/wsl-setup",
   excerpt:
     "Easy step by step guide to setup WSL in PearAI, and get started with AI-powered coding in WSL.",
-  date: "2024-09-19T00:00:00Z",
+  date: "2025-09-19T00:00:00Z",
   author: "Himanshu",
   readingTime: "30 seconds",
   thumbnail:

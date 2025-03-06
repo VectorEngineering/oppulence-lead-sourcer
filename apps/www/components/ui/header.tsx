@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode, forwardRef } from "react";
+import { FeatureFlag, isFeatureEnabled } from "@/utils/feature-flags";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -91,6 +92,24 @@ export default async function Header() {
     redirect("/");
   };
 
+  // Use the type-safe feature flags
+  const showHowItWorks = isFeatureEnabled(FeatureFlag.HOW_IT_WORKS);
+  const showFeatures = isFeatureEnabled(FeatureFlag.FEATURES);
+  const showBenefits = isFeatureEnabled(FeatureFlag.BENEFITS);
+  const showLeadSourcingProduct = isFeatureEnabled(
+    FeatureFlag.LEAD_SOURCING_PRODUCT,
+  );
+  const showLeadManagementProduct = isFeatureEnabled(
+    FeatureFlag.LEAD_MANAGEMENT_PRODUCT,
+  );
+  const showDeveloperPlatformDocs = isFeatureEnabled(
+    FeatureFlag.DEVELOPER_PLATFORM_DOCS,
+  );
+  const showProducts =
+    showLeadSourcingProduct &&
+    showLeadManagementProduct &&
+    showDeveloperPlatformDocs;
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50 p-3 transition-all duration-300 ease-in-out">
       <div className="mx-auto max-w-6xl">
@@ -114,63 +133,71 @@ export default async function Header() {
                 <nav className="ml-10 hidden md:block" aria-label="Main menu">
                   <NavigationMenu className="rounded-2xl">
                     <NavigationMenuList className="space-x-1">
-                      <DropdownNavItem trigger="⚙️ Products">
-                        <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
-                          <ListItem
-                            href="https://app.thinkthank.io/register"
-                            title="🎯 Lead Management"
-                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
-                          >
-                            <div className="space-y-1">
-                              <p className="mb-1 text-sm text-muted-foreground">
-                                Convert and manage leads effectively as a
-                                one-person business owner
-                              </p>
-                              <div className="mt-1 flex flex-wrap gap-1">
-                                <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
-                                  AI-powered
-                                </span>
-                              </div>
-                            </div>
-                          </ListItem>
-                          <ListItem
-                            href="https://sourcing.oppulence.app"
-                            title="🔍 Prospecting"
-                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
-                          >
-                            <div className="space-y-1">
-                              <p className="mb-1 text-sm text-muted-foreground">
-                                Find and connect with ideal clients for your
-                                one-person business
-                              </p>
-                              <div className="mt-1 flex flex-wrap gap-1">
-                                <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
-                                  Lead-Sourcing
-                                </span>
-                              </div>
-                            </div>
-                          </ListItem>
-                          <ListItem
-                            href="https://docs.oppulence.app"
-                            title="🧩 Developers"
-                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60 md:col-span-2"
-                          >
-                            <div className="space-y-1">
-                              <p className="mb-1 text-sm text-muted-foreground">
-                                Access the Oppulence API and documentation
-                              </p>
-                              <div className="mt-1 flex flex-wrap gap-1">
-                                <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-600/20">
-                                  Documentation
-                                </span>
-                                <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
-                                  API
-                                </span>
-                              </div>
-                            </div>
-                          </ListItem>
-                        </ul>
-                      </DropdownNavItem>
+                      {showProducts && (
+                        <DropdownNavItem trigger="⚙️ Products">
+                          <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
+                            {showLeadManagementProduct && (
+                              <ListItem
+                                href="https://app.thinkthank.io/register"
+                                title="🎯 Lead Management"
+                                className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                              >
+                                <div className="space-y-1">
+                                  <p className="mb-1 text-sm text-muted-foreground">
+                                    Convert and manage leads effectively as a
+                                    one-person business owner
+                                  </p>
+                                  <div className="mt-1 flex flex-wrap gap-1">
+                                    <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
+                                      AI-powered
+                                    </span>
+                                  </div>
+                                </div>
+                              </ListItem>
+                            )}
+                            {showLeadSourcingProduct && (
+                              <ListItem
+                                href="https://sourcing.oppulence.app"
+                                title="🔍 Prospecting"
+                                className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                              >
+                                <div className="space-y-1">
+                                  <p className="mb-1 text-sm text-muted-foreground">
+                                    Find and connect with ideal clients for your
+                                    one-person business
+                                  </p>
+                                  <div className="mt-1 flex flex-wrap gap-1">
+                                    <span className="inline-flex items-center rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                                      Lead-Sourcing
+                                    </span>
+                                  </div>
+                                </div>
+                              </ListItem>
+                            )}
+                            {showDeveloperPlatformDocs && (
+                              <ListItem
+                                href="https://docs.oppulence.app"
+                                title="🧩 Developers"
+                                className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60 md:col-span-2"
+                              >
+                                <div className="space-y-1">
+                                  <p className="mb-1 text-sm text-muted-foreground">
+                                    Access the Oppulence API and documentation
+                                  </p>
+                                  <div className="mt-1 flex flex-wrap gap-1">
+                                    <span className="inline-flex items-center rounded-full bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 ring-1 ring-inset ring-slate-600/20">
+                                      Documentation
+                                    </span>
+                                    <span className="inline-flex items-center rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
+                                      API
+                                    </span>
+                                  </div>
+                                </div>
+                              </ListItem>
+                            )}
+                          </ul>
+                        </DropdownNavItem>
+                      )}
                       <DropdownNavItem trigger="📊 Resources">
                         <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
                           <ListItem
@@ -184,44 +211,50 @@ export default async function Header() {
                               </p>
                             </div>
                           </ListItem>
-                          <ListItem
-                            href="/how-it-works"
-                            title="🚀 How It Works"
-                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
-                          >
-                            <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">
-                                Learn how Oppulence works
-                              </p>
-                            </div>
-                          </ListItem>
-                          <ListItem
-                            href="/features"
-                            title="✨ Features"
-                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
-                          >
-                            <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">
-                                Learn about the features of Oppulence
-                              </p>
-                              <div className="mt-1 flex flex-wrap gap-1">
-                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
-                                  Updated
-                                </span>
+                          {showHowItWorks && (
+                            <ListItem
+                              href="/how-it-works"
+                              title="🚀 How It Works"
+                              className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                            >
+                              <div className="space-y-1">
+                                <p className="text-sm text-muted-foreground">
+                                  Learn how Oppulence works
+                                </p>
                               </div>
-                            </div>
-                          </ListItem>
-                          <ListItem
-                            href="/benefit"
-                            title="🌟 Benefits"
-                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
-                          >
-                            <div className="space-y-1">
-                              <p className="text-sm text-muted-foreground">
-                                Learn about the benefits of Oppulence
-                              </p>
-                            </div>
-                          </ListItem>
+                            </ListItem>
+                          )}
+                          {showFeatures && (
+                            <ListItem
+                              href="/features"
+                              title="✨ Features"
+                              className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                            >
+                              <div className="space-y-1">
+                                <p className="text-sm text-muted-foreground">
+                                  Learn about the features of Oppulence
+                                </p>
+                                <div className="mt-1 flex flex-wrap gap-1">
+                                  <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                                    Updated
+                                  </span>
+                                </div>
+                              </div>
+                            </ListItem>
+                          )}
+                          {showBenefits && (
+                            <ListItem
+                              href="/benefit"
+                              title="🌟 Benefits"
+                              className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                            >
+                              <div className="space-y-1">
+                                <p className="text-sm text-muted-foreground">
+                                  Learn about the benefits of Oppulence
+                                </p>
+                              </div>
+                            </ListItem>
+                          )}
                           <ListItem
                             href="/blog"
                             title="📰 Blog"
@@ -287,19 +320,30 @@ export default async function Header() {
                         </div>
                       </NavItem>
 
-                      {/* <NavItem href="/desktop-download">📥 Download</NavItem> */}
-                      {/* <NavItem href="https://solomon-ai.betteruptime.com/">
-                        ⚡️ Status{" "}
-                      </NavItem> */}
-                      {/* <NavItem href="https://engineering-docs.oppulence.app/">
-                        📖 Documentation
-                      </NavItem> */}
-                      {/* <NavItem
-                        href="https://github.com/SolomonAIEngineering/solomonai/tree/main"
-                        target="_blank"
-                      >
-                        🔗 GitHub
-                      </NavItem> */}
+                      {/* {showDownloadLink && (
+                        <NavItem href="/desktop-download">📥 Download</NavItem>
+                      )}
+
+                      {showStatusLink && (
+                        <NavItem href="https://solomon-ai.betteruptime.com/">
+                          ⚡️ Status
+                        </NavItem>
+                      )}
+
+                      {showDocsLink && (
+                        <NavItem href="https://engineering-docs.oppulence.app/">
+                          📖 Documentation
+                        </NavItem>
+                      )}
+
+                      {showGitHubLink && (
+                        <NavItem
+                          href="https://github.com/SolomonAIEngineering/solomonai/tree/main"
+                          target="_blank"
+                        >
+                          🔗 GitHub
+                        </NavItem>
+                      )} */}
                     </NavigationMenuList>
                   </NavigationMenu>
                 </nav>

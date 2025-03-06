@@ -6,7 +6,7 @@ export const post = blogPostSchema.parse({
   url: "https://pearai.com/blog/introducing-leetcode-feature",
   excerpt:
     "Improve your coding skills and interview readiness with PearAI's LeetCode integration. A practical tool for efficient technical interview preparation.",
-  date: "2024-09-15T00:00:00Z",
+  date: "2025-09-15T00:00:00Z",
   author: "Nang, IcePrey",
   readingTime: "4 min",
   slug: "introducing-leetcode-feature",

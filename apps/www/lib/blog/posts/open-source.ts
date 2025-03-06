@@ -5,7 +5,7 @@ export const post = blogPostSchema.parse({
   url: "https://pearai.com/blog/why-open-source",
   excerpt:
     "Discover why open source is crucial for AI code editors and how PearAI leverages this approach to create a superior product with a thriving community.",
-  date: "2024-09-26T00:00:00Z",
+  date: "2025-09-26T00:00:00Z",
   author: "Duke Pan",
   readingTime: "3 minutes",
   thumbnail:

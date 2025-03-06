@@ -5,7 +5,7 @@ export const post = blogPostSchema.parse({
   url: "https://pearai.com/blog/download-pearai-on-linux",
   excerpt:
     "An easy-to-follow guide for downloading and installing PearAI on a wide range of Linux distributions, ensuring a smooth setup for both beginners and experienced users.",
-  date: "2024-09-11T00:00:00Z",
+  date: "2025-09-11T00:00:00Z",
   author: "Maximiliano Farfán",
   readingTime: "2 min",
   thumbnail:

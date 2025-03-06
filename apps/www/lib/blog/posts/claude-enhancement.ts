@@ -5,7 +5,7 @@ export const post = blogPostSchema.parse({
   url: "https://pearai.com/blog/enhancing-pearai-with-anthropic-claude-3-5",
   excerpt:
     "How we leveraged Claude 3.5 to improve code syntax and logic in our open-source AI code editor, and the unique challenges we faced in implementation.",
-  date: "2024-08-20T00:00:00Z",
+  date: "2025-08-20T00:00:00Z",
   author: "Conor Quinlan",
   readingTime: "3 min",
   slug: "enhancing-pearai-with-anthropic-claude-3-5",

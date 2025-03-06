@@ -2,7 +2,7 @@ import { blogPostSchema } from "../types";
 
 export const post = blogPostSchema.parse({
   title: "Setting Up Auto-Complete On PearAI",
-  date: "2024-08-31T00:00:00Z",
+  date: "2025-08-31T00:00:00Z",
   excerpt:
     "PearAI supports tab autocomplete, and this is how to set this up. Tab autocomplete predicts / suggests what you would type next as you're coding!",
   thumbnail:
