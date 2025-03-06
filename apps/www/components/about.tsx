@@ -37,10 +37,10 @@ const AboutComponent: React.FC = () => {
         }
       >
         <h1 className="text-center text-4xl font-bold">
-          Empowering Solo Entrepreneurs{" "}
+          AI-Powered Lead Sourcing{" "}
           <span className="relative">
             <span className="relative z-10 text-foreground">
-              Block by Block 🏗️
+              for Small Businesses 🚀
             </span>
             <span
               className="absolute bottom-0 left-0 w-full"
@@ -54,63 +54,35 @@ const AboutComponent: React.FC = () => {
         <div className="flex w-full max-w-3xl flex-col gap-2">
           <div className="flex flex-col items-start justify-start gap-3 md:pt-[10%]">
             <p className="flex items-center gap-2 text-xl font-bold">
-              <span>🎯 Current Market Challenge</span>
+              <span>🔍 Competitive Edge for Small Businesses</span>
             </p>
             <p className="text-left text-gray-500">
-              Modern entrepreneurs face unprecedented complexity in business
-              operations. As a solo business owner, you&lsquo;re tasked with
-              executing multiple critical roles simultaneously – from strategic
-              planning to daily operations. Traditional enterprise solutions,
-              designed for large teams, create unnecessary complexity and
-              inefficiency.
+              Artificial intelligence is rapidly transforming how small businesses find and nurture sales leads. Traditional lead sourcing – manual prospecting, purchasing static contact lists, or relying on gut feeling – is being replaced by AI-driven platforms that automate discovery, enrichment, and prioritization of prospects.
             </p>
             <p className="text-left text-gray-500">
-              Resource optimization becomes paramount when operating
-              independently. Each moment spent managing disparate systems
-              directly impacts business growth potential. The current fragmented
-              approach to business management creates significant operational
-              friction, making scalability a formidable challenge. ⏳
+              Small firms, often limited in time and sales personnel, stand to gain a disproportionate advantage from these tools. Companies using AI for lead generation have seen over 50% increases in sales-ready leads and a 60% reduction in costs. In fact, 74% of small business owners believe employees using AI tools give them a competitive edge over peers. ⏳
             </p>
           </div>
           <div className="flex flex-col items-start justify-start gap-3 md:pt-[10%]">
             <p className="flex items-center gap-2 text-xl font-bold">
-              <span>💡 Strategic Innovation</span>
+              <span>💡 Data-Driven Intelligence</span>
             </p>
             <p className="text-left text-gray-500">
-              Oppulence introduces a paradigm shift in business management
-              through its modular architecture. 🧱 Each component is
-              meticulously engineered for solo entrepreneurs, creating an
-              integrated ecosystem that evolves with your enterprise. Our
-              platform unifies essential business functions into a cohesive,
-              intelligent system.
+              The lead generation landscape is undergoing a seismic shift away from manual list building and cold calls toward data-driven, automated strategies. Instead of relying on gut instinct or generic campaigns, companies are leveraging AI to analyze customer data and online behavior to pinpoint the most promising prospects. 🧠
             </p>
             <p className="text-left text-gray-500">
-              At the core of our solution is an advanced AI engine that
-              functions as your operational cornerstone. 🤖 Our intelligent
-              automation adapts to your unique business processes, continuously
-              optimizing workflows and ensuring 24/7 operational efficiency.
-              This systematic approach transforms how solo entrepreneurs manage
-              and scale their businesses.
+              AI-powered predictive analytics can identify prospects before they even raise their hand, by spotting intent signals or patterns that correlate with buying interest. Small businesses benefit by focusing their limited sales resources on leads most likely to convert, rather than exhausting effort on unqualified contacts. Our platform delivers rich intelligence on each lead and helps users craft relevant messages.
             </p>
           </div>
           <div className="flex flex-col items-start justify-start gap-3 md:pt-[10%]">
             <p className="flex items-center gap-2 text-xl font-bold">
-              <span>🚀 Scaling Excellence</span>
+              <span>🔄 Seamless Integration</span>
             </p>
             <p className="text-left text-gray-500">
-              Our vision transcends conventional solo business limitations. Each
-              element of Oppulence is architected as a foundational building
-              block, engineered to support exponential growth. 📈 The platform
-              maintains its efficiency and effectiveness whether you&lsquo;re
-              managing dozens or thousands of business relationships.
+              About 87% of companies with 10–100 employees use a CRM system as the heart of their sales operations. Any lead sourcing platform must play nicely with CRMs. Businesses want new leads flowing directly into their CRM, and updates like lead scores or contact enrichments syncing automatically.
             </p>
             <p className="text-left text-gray-500">
-              Through strategic user collaboration, we continuously refine our
-              platform. We&lsquo;re not merely developing software; we&lsquo;re
-              establishing the infrastructure for next-generation
-              entrepreneurship. 🌟 Every enhancement represents a calculated
-              step toward building a more robust, scalable business architecture
-              – designed for unprecedented solo success.
+              Our platform integrates seamlessly with popular CRMs (like HubSpot, Pipedrive, Zoho) to fit into existing workflows. The result is a platform that streamlines lead generation end-to-end, making it the AI-powered growth engine for small businesses. With machine learning-based lead scoring and intent modeling, we help you identify and prioritize hot prospects, shortening sales cycles by an estimated 30%. 📈
             </p>
           </div>
         </div>

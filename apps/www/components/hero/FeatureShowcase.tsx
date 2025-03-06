@@ -453,7 +453,7 @@ const FeatureShowcase = () => {
                         className="mb-6 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-5xl lg:text-6xl"
                     >
                         Lead Generation <span className="relative inline-block">
-                            <span className="relative z-10">Reimagined</span>
+                            <span className="relative z-10 text-blue-500">Reimagined</span>
                             <span className="absolute bottom-2 left-0 right-0 h-3 bg-black/10 dark:bg-white/10 -z-10 transform skew-x-12"></span>
                         </span>
                     </motion.h2>
@@ -464,7 +464,7 @@ const FeatureShowcase = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="mx-auto max-w-3xl text-lg md:text-xl text-black/70 dark:text-white/70 leading-relaxed"
                     >
-                        Our platform delivers enterprise-grade AI lead generation capabilities in a package tailored for small business needs — easy to use, seamlessly integrated, and remarkably affordable. By 2025, <span className="font-semibold text-black dark:text-white">72% of businesses will be using AI</span> in their processes.
+                        Our platform delivers enterprise-grade AI lead generation capabilities in a package tailored for small business needs — easy to use, seamlessly integrated, and remarkably affordable. By 2025, <span className="font-semibold text-blue-500">72% of businesses will be using AI</span> in their processes.
                     </motion.p>
                 </div>
 
@@ -546,15 +546,15 @@ const FeatureShowcase = () => {
                     <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-black dark:text-white">AI Adoption in Small Business</h3>
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="text-center">
-                            <h4 className="text-5xl font-bold text-black dark:text-white mb-2">72%</h4>
+                            <h4 className="text-5xl font-bold text-blue-500 mb-2">72%</h4>
                             <p className="text-black/60 dark:text-white/60">AI adoption in business processes by 2025</p>
                         </div>
                         <div className="text-center">
-                            <h4 className="text-5xl font-bold text-black dark:text-white mb-2">74%</h4>
+                            <h4 className="text-5xl font-bold text-blue-500 mb-2">74%</h4>
                             <p className="text-black/60 dark:text-white/60">of small businesses see AI as a competitive edge</p>
                         </div>
                         <div className="text-center">
-                            <h4 className="text-5xl font-bold text-black dark:text-white mb-2">50%+</h4>
+                            <h4 className="text-5xl font-bold text-blue-500 mb-2">50%+</h4>
                             <p className="text-black/60 dark:text-white/60">increase in sales-ready leads with AI tools</p>
                         </div>
                     </div>
@@ -639,7 +639,7 @@ function SingleFeature(props: SingleFeatureProps) {
                         >
                             {info.stats.map((stat, i) => (
                                 <div key={i} className="bg-white dark:bg-black backdrop-blur-sm rounded-xl p-4 border border-black/5 dark:border-white/5">
-                                    <p className="text-2xl font-bold text-black dark:text-white">{stat.value}</p>
+                                    <p className="text-2xl font-bold text-blue-500">{stat.value}</p>
                                     <p className="text-sm text-black/60 dark:text-white/60">{stat.label}</p>
                                 </div>
                             ))}

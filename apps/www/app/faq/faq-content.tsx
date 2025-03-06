@@ -138,7 +138,7 @@ export function FAQContent() {
         transition={{ duration: 0.5 }}
         className="mb-12 text-center"
       >
-        <h1 className="mb-4 text-4xl font-bold text-primary md:text-5xl">
+        <h1 className="mb-4 text-4xl font-bold text-black md:text-5xl">
           Frequently Asked Questions
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
@@ -152,14 +152,14 @@ export function FAQContent() {
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative flex-1">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Search className="h-4 w-4 text-muted-foreground" />
+              <Search className="h-4 w-4 text-blue-500" />
             </div>
             <Input
               type="text"
               placeholder="Search FAQs..."
               value={searchQuery || ""}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full pl-10 pr-10"
+              className="w-full border-blue-200 pl-10 pr-10 focus-visible:ring-blue-500"
               aria-label="Search frequently asked questions"
             />
             {searchQuery && (
@@ -224,9 +224,9 @@ export function FAQContent() {
                   key={category}
                   value={category}
                   className={cn(
-                    "capitalize data-[state=active]:bg-primary data-[state=active]:text-primary-foreground",
+                    "capitalize data-[state=active]:text-white",
                     category === "leads" && !activeCategory && "border-blue-500 text-blue-500",
-                    category === "leads" && activeCategory === "leads" && "!bg-blue-500 border-blue-500 text-white"
+                    category === "leads" && activeCategory === "leads" && "border-blue-500 text-white"
                   )}
                 >
                   {category}
@@ -263,7 +263,7 @@ export function FAQContent() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="rounded-lg border border-muted bg-muted/20 p-8 text-center"
+              className="rounded-lg border border-blue-200 bg-blue-50/20 p-8 text-center"
             >
               <p className="text-lg font-medium text-muted-foreground">
                 No FAQs found matching your search.
@@ -274,7 +274,7 @@ export function FAQContent() {
                   handleSearchChange("");
                   handleCategoryChange("all");
                 }}
-                className="mt-2"
+                className="mt-2 text-blue-500 hover:text-blue-700"
               >
                 Clear filters
               </Button>
@@ -303,9 +303,9 @@ export function FAQContent() {
                   >
                     <AccordionItem
                       value={`item-${index}`}
-                      className="rounded-lg border shadow-sm"
+                      className="rounded-lg border border-blue-100 shadow-sm"
                     >
-                      <AccordionTrigger className="px-4 py-3 text-left hover:bg-muted/50">
+                      <AccordionTrigger className="px-4 py-3 text-left hover:bg-blue-50">
                         <div className="flex flex-col items-start gap-1">
                           <div className="flex items-center gap-2">
                             {item.category && (

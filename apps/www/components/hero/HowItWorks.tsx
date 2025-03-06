@@ -32,11 +32,11 @@ const tagVariants = cva(
         variants: {
             variant: {
                 "AI-Powered": "bg-gradient-to-r from-blue-500/20 to-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
-                "Time-Saving": "bg-gradient-to-r from-emerald-500/20 to-teal-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30 hover:shadow-emerald-500/10 hover:scale-105",
-                "Data-Driven": "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
-                "Integration": "bg-gradient-to-r from-sky-500/20 to-blue-500/20 text-sky-600 dark:text-sky-300 border border-sky-500/30 hover:shadow-sky-500/10 hover:scale-105",
-                "Automation": "bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30 hover:shadow-amber-500/10 hover:scale-105",
-                "Cost-Effective": "bg-gradient-to-r from-green-500/20 to-lime-500/20 text-green-600 dark:text-green-300 border border-green-500/30 hover:shadow-green-500/10 hover:scale-105",
+                "Time-Saving": "bg-gradient-to-r from-blue-500/20 to-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Data-Driven": "bg-gradient-to-r from-blue-500/20 to-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Integration": "bg-gradient-to-r from-blue-500/20 to-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Automation": "bg-gradient-to-r from-blue-500/20 to-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
+                "Cost-Effective": "bg-gradient-to-r from-blue-500/20 to-blue-500/20 text-blue-600 dark:text-blue-300 border border-blue-500/30 hover:shadow-blue-500/10 hover:scale-105",
             },
         },
         defaultVariants: {
@@ -93,53 +93,53 @@ const HowItWorks = () => {
     const steps: Step[] = [
         {
             number: "01",
-            title: "Define Your Ideal Prospect",
-            description: "Specify industry, company size, location, and other criteria to define your perfect customer profile.",
-            extendedDescription: "Small businesses often struggle with identifying their ideal customers. Our AI-powered platform allows you to precisely define your target market based on firmographics, technographics, and behavioral data. Studies show that companies with clearly defined ICPs see 68% higher win rates.",
+            title: "Competitive Edge for Small Businesses",
+            description: "AI is transforming how small businesses find and nurture sales leads with automated discovery and prioritization.",
+            extendedDescription: "Small firms, often limited in time and sales personnel, stand to gain a disproportionate advantage from these tools. Companies using AI for lead generation have seen over 50% increases in sales-ready leads and a 60% reduction in costs. In fact, 74% of small business owners believe employees using AI tools give them a competitive edge over peers.",
             icon: "target-audience",
             color: "from-blue-500/20 to-blue-600/10",
             imageUrl: "/images/how-it-works/define-prospect.svg",
             tags: ["AI-Powered", "Data-Driven"],
             stats: [
                 { value: "74%", label: "of small business owners believe AI tools give them a competitive edge" },
-                { value: "2x", label: "more qualified leads when using data-driven targeting" }
+                { value: "60%", label: "reduction in lead sourcing costs" }
             ]
         },
         {
             number: "02",
-            title: "AI Finds & Enriches Leads",
-            description: "Our AI automatically sources and enriches leads with complete contact info, social profiles, and company data.",
-            extendedDescription: "Say goodbye to manual prospecting. Our platform uses advanced AI to scan billions of data points across the web, finding prospects that match your criteria and enriching them with over 50+ data points including contact details, social profiles, technographics, and company information.",
+            title: "Data-Driven Intelligence",
+            description: "The lead generation landscape is shifting from manual list building to automated, data-driven strategies.",
+            extendedDescription: "The lead generation landscape is undergoing a seismic shift away from manual list building and cold calls toward data-driven, automated strategies. Instead of relying on gut instinct or generic campaigns, companies are leveraging AI to analyze customer data and online behavior to pinpoint the most promising prospects.",
             icon: "ai-search",
             color: "from-blue-500/20 to-blue-600/10",
             imageUrl: "/images/how-it-works/ai-enrichment.svg",
             tags: ["AI-Powered", "Time-Saving", "Data-Driven"],
             stats: [
-                { value: "60%", label: "reduction in lead sourcing costs" },
+                { value: "50%", label: "increase in sales-ready leads" },
                 { value: "87%", label: "data accuracy with AI verification" }
             ]
         },
         {
             number: "03",
-            title: "Prioritize with AI Scoring",
-            description: "Machine learning models score each lead based on fit and likelihood to convert, focusing your efforts.",
-            extendedDescription: "Not all leads are created equal. Our proprietary AI scoring algorithm analyzes 30+ variables to determine which leads are most likely to convert, allowing your team to focus on the highest-value opportunities. Machine learning continuously improves predictions based on your success patterns.",
+            title: "AI-Powered Predictive Analytics",
+            description: "AI identifies prospects before they raise their hand by spotting intent signals that correlate with buying interest.",
+            extendedDescription: "AI-powered predictive analytics can identify prospects before they even raise their hand, by spotting intent signals or patterns that correlate with buying interest. Small businesses benefit by focusing their limited sales resources on leads most likely to convert, rather than exhausting effort on unqualified contacts.",
             icon: "analytics",
-            color: "from-blue-500/20 to-cyan-600/10",
+            color: "from-blue-500/20 to-blue-500/10",
             imageUrl: "/images/how-it-works/ai-scoring.svg",
             tags: ["AI-Powered", "Data-Driven", "Automation"],
             stats: [
                 { value: "30%", label: "shorter sales cycles with AI lead prioritization" },
-                { value: "50%", label: "increase in sales-ready leads" }
+                { value: "2x", label: "more qualified leads when using data-driven targeting" }
             ]
         },
         {
             number: "04",
-            title: "Connect with Your CRM",
-            description: "Seamlessly push enriched leads to your CRM with bi-directional sync to keep data fresh.",
-            extendedDescription: "We integrate seamlessly with popular CRMs like HubSpot, Salesforce, and Pipedrive. Bi-directional synchronization ensures your lead data is always up-to-date. With 87% of small businesses using CRM systems, our platform fits perfectly into your existing workflow.",
+            title: "Seamless CRM Integration",
+            description: "About 87% of small businesses use CRM systems as the heart of their sales operations.",
+            extendedDescription: "About 87% of companies with 10–100 employees use a CRM system as the heart of their sales operations. Any lead sourcing platform must play nicely with CRMs. Businesses want new leads flowing directly into their CRM, and updates like lead scores or contact enrichments syncing automatically.",
             icon: "integration",
-            color: "from-sky-500/20 to-blue-600/10",
+            color: "from-blue-500/20 to-blue-500/10",
             imageUrl: "/images/how-it-works/crm-integration.svg",
             tags: ["Integration", "Time-Saving", "Automation"],
             stats: [
@@ -149,11 +149,11 @@ const HowItWorks = () => {
         },
         {
             number: "05",
-            title: "Engage with AI Assistance",
-            description: "Get AI-suggested personalized outreach messages and follow-up timing for maximum response.",
-            extendedDescription: "Our AI analyzes successful engagement patterns to suggest personalized outreach messages and optimal follow-up timing. This level of personalization has shown to increase email response rates by 200% and conversion rates by 40% for small businesses.",
+            title: "Enhanced Lead Engagement",
+            description: "Our platform integrates seamlessly with popular CRMs to streamline lead generation end-to-end.",
+            extendedDescription: "Our platform integrates seamlessly with popular CRMs (like HubSpot, Pipedrive, Zoho) to fit into existing workflows. The result is a platform that streamlines lead generation end-to-end, making it the AI-powered growth engine for small businesses. With machine learning-based lead scoring and intent modeling, we help you identify and prioritize hot prospects.",
             icon: "message",
-            color: "from-amber-500/20 to-orange-600/10",
+            color: "from-blue-500/20 to-blue-500/10",
             imageUrl: "/images/how-it-works/ai-engagement.svg",
             tags: ["AI-Powered", "Automation", "Time-Saving"],
             stats: [
@@ -165,15 +165,7 @@ const HowItWorks = () => {
 
     // Icons for each step with enhanced colors
     const getIconColor = (step: Step) => {
-        const colorMap = {
-            "target-audience": "text-blue-500 dark:text-blue-400",
-            "ai-search": "text-blue-500 dark:text-blue-400",
-            "analytics": "text-blue-500 dark:text-blue-400",
-            "integration": "text-sky-500 dark:text-sky-400",
-            "message": "text-amber-500 dark:text-amber-400",
-        };
-
-        return colorMap[step.icon] || "text-foreground/70";
+        return "text-blue-500 dark:text-blue-400";
     };
 
     const icons: Record<IconType, (step: Step) => React.ReactNode> = {
@@ -215,54 +207,22 @@ const HowItWorks = () => {
 
     // Get title gradient color based on step
     const getTitleColor = (index: number) => {
-        const colorMap = [
-            "bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent",
-            "bg-gradient-to-r from-blue-600 to-sky-600 bg-clip-text text-transparent",
-            "bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent",
-            "bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent",
-            "bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent",
-        ];
-
-        return colorMap[index] || "text-foreground";
+        return "bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent";
     };
 
     // Get stat box color based on step
     const getStatBgColor = (index: number) => {
-        const colorMap = [
-            "bg-gradient-to-br from-blue-50/90 to-blue-100/30 dark:from-blue-950/20 dark:to-blue-900/10 border-blue-200/30 dark:border-blue-800/30",
-            "bg-gradient-to-br from-blue-50/90 to-blue-100/30 dark:from-blue-950/20 dark:to-blue-900/10 border-blue-200/30 dark:border-blue-800/30",
-            "bg-gradient-to-br from-blue-50/90 to-blue-100/30 dark:from-blue-950/20 dark:to-blue-900/10 border-blue-200/30 dark:border-blue-800/30",
-            "bg-gradient-to-br from-sky-50/90 to-sky-100/30 dark:from-sky-950/20 dark:to-sky-900/10 border-sky-200/30 dark:border-sky-800/30",
-            "bg-gradient-to-br from-amber-50/90 to-amber-100/30 dark:from-amber-950/20 dark:to-amber-900/10 border-amber-200/30 dark:border-amber-800/30",
-        ];
-
-        return colorMap[index] || "bg-foreground/5 border-foreground/10";
+        return "bg-gradient-to-br from-blue-50/90 to-blue-100/30 dark:from-blue-950/20 dark:to-blue-900/10 border-blue-200/30 dark:border-blue-800/30";
     };
 
     // Get stat value color based on step
     const getStatValueColor = (index: number) => {
-        const colorMap = [
-            "text-blue-600 dark:text-blue-400",
-            "text-blue-600 dark:text-blue-400",
-            "text-blue-600 dark:text-blue-400",
-            "text-sky-600 dark:text-sky-400",
-            "text-amber-600 dark:text-amber-400",
-        ];
-
-        return colorMap[index] || "text-foreground";
+        return "text-blue-600 dark:text-blue-400";
     };
 
     // Get number color based on step
     const getNumberColor = (index: number) => {
-        const colorMap = [
-            "text-blue-600/80 dark:text-blue-400/80",
-            "text-blue-600/80 dark:text-blue-400/80",
-            "text-blue-600/80 dark:text-blue-400/80",
-            "text-sky-600/80 dark:text-sky-400/80",
-            "text-amber-600/80 dark:text-amber-400/80",
-        ];
-
-        return colorMap[index] || "text-foreground/80";
+        return "text-blue-600/80 dark:text-blue-400/80";
     };
 
     // Custom animation variants for better interactions
@@ -337,12 +297,12 @@ const HowItWorks = () => {
     };
 
     return (
-        <section className="py-32 bg-gradient-to-b from-background to-background/95 relative overflow-hidden">
+        <section className="py-32 text-white relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0 overflow-hidden opacity-20">
-                <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0,rgba(0,0,0,0)_45%)]"></div>
-                <div className="absolute top-0 right-0 w-[70%] h-[50%] bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.02)_0,rgba(0,0,0,0)_50%)]"></div>
-                <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.015)_0,rgba(0,0,0,0)_60%)]"></div>
+                <div className="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.03)_0,rgba(0,0,0,0)_45%)]"></div>
+                <div className="absolute top-0 right-0 w-[70%] h-[50%] bg-[radial-gradient(ellipse_at_top_right,rgba(59,130,246,0.02)_0,rgba(0,0,0,0)_50%)]"></div>
+                <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.015)_0,rgba(0,0,0,0)_60%)]"></div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -352,9 +312,9 @@ const HowItWorks = () => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500/10 to-blue-500/10 text-foreground font-medium text-sm backdrop-blur-sm border border-blue-500/20"
+                        className="inline-block mb-4 px-4 py-1 rounded-full bg-gradient-to-r from-blue-500/10 to-blue-500/10 text-white font-medium text-sm backdrop-blur-sm border border-blue-500/20"
                     >
-                        AI-Powered Process
+                        AI-Powered Lead Sourcing
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -363,8 +323,8 @@ const HowItWorks = () => {
                         transition={{ duration: 0.6 }}
                         className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
                     >
-                        How It <span className="relative inline-block">
-                            <span className="relative z-10 bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">Works</span>
+                        For <span className="relative inline-block">
+                            <span className="relative z-10 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Small Businesses</span>
                             <span className="absolute bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-blue-500/20 to-blue-500/20 -z-10 transform skew-x-12"></span>
                         </span>
                     </motion.h2>
@@ -373,9 +333,9 @@ const HowItWorks = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="mx-auto max-w-3xl text-lg md:text-xl text-foreground/70 leading-relaxed"
+                        className="mx-auto max-w-3xl text-lg md:text-xl text-white/70 leading-relaxed"
                     >
-                        Our AI-powered lead sourcing platform delivers high-quality leads, saves time, and maximizes your conversion rates. Small businesses using our platform have reported a <span className="font-semibold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">50%+ increase in sales-ready leads</span> and a <span className="font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">60% reduction in lead acquisition costs</span>.
+                        Artificial intelligence is rapidly transforming how small businesses find and nurture sales leads. Traditional lead sourcing is being replaced by AI-driven platforms that automate discovery, enrichment, and prioritization of prospects. Companies using AI for lead generation have seen a <span className="font-semibold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">50%+ increase in sales-ready leads</span> and a <span className="font-semibold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">60% reduction in costs</span>.
                     </motion.p>
                 </div>
 
@@ -387,7 +347,7 @@ const HowItWorks = () => {
                     className="relative max-w-6xl mx-auto"
                 >
                     {/* Connecting line with gradient */}
-                    <div className="absolute left-1/2 top-12 bottom-12 w-[3px] bg-gradient-to-b from-blue-500/20 via-blue-500/30 to-amber-500/20 transform -translate-x-1/2 hidden lg:block rounded-full"></div>
+                    <div className="absolute left-1/2 top-12 bottom-12 w-[3px] bg-gradient-to-b from-blue-500/20 via-blue-500/30 to-blue-400/20 transform -translate-x-1/2 hidden lg:block rounded-full"></div>
 
                     <div className="space-y-32">
                         {steps.map((step, index) => (
@@ -397,7 +357,7 @@ const HowItWorks = () => {
                                 className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-16`}
                             >
                                 <div className="w-full lg:w-1/2 text-center lg:text-left">
-                                    <div className={`inline-flex items-center justify-center mb-6 rounded-full bg-gradient-to-r ${step.color} px-4 py-1 text-sm font-medium backdrop-blur-sm border border-foreground/5`}>
+                                    <div className={`inline-flex items-center justify-center mb-6 rounded-full bg-gradient-to-r from-blue-500/20 to-blue-500/10 px-4 py-1 text-sm font-medium backdrop-blur-sm border border-blue-500/20`}>
                                         <span className="mr-2">{icons[step.icon](step)}</span>
                                         <span className={getNumberColor(index)}>Step {step.number}</span>
                                     </div>
@@ -414,11 +374,11 @@ const HowItWorks = () => {
                                         ))}
                                     </motion.div>
 
-                                    <p className="text-foreground/70 text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-6">{step.description}</p>
+                                    <p className="text-white/70 text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-6">{step.description}</p>
 
                                     <motion.p
                                         variants={fadeInUpVariants}
-                                        className="text-foreground/60 text-base leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8"
+                                        className="text-white/60 text-base leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8"
                                     >
                                         {step.extendedDescription}
                                     </motion.p>
@@ -431,10 +391,10 @@ const HowItWorks = () => {
                                             {step.stats.map((stat, i) => (
                                                 <div
                                                     key={i}
-                                                    className={`rounded-xl p-4 border backdrop-blur-sm shadow-sm ${getStatBgColor(index)}`}
+                                                    className={`rounded-xl p-4 border border-blue-500/30 backdrop-blur-sm shadow-sm bg-gradient-to-br from-white to-blue-900/20`}
                                                 >
-                                                    <p className={`text-2xl font-bold ${getStatValueColor(index)}`}>{stat.value}</p>
-                                                    <p className="text-sm text-foreground/60">{stat.label}</p>
+                                                    <p className={`text-2xl font-bold text-blue-400`}>{stat.value}</p>
+                                                    <p className="text-sm text-white/60">{stat.label}</p>
                                                 </div>
                                             ))}
                                         </motion.div>
@@ -442,34 +402,34 @@ const HowItWorks = () => {
                                 </div>
 
                                 <div className="relative w-full lg:w-1/2">
-                                    <div className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${step.color} p-8 flex items-center justify-center shadow-lg border border-foreground/5 backdrop-blur-sm`}>
+                                    <div className={`aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-900/30 to-background p-8 flex items-center justify-center shadow-lg border border-blue-500/20 backdrop-blur-sm`}>
                                         {/* For development, showing a placeholder. In production, use actual illustrations */}
                                         <div className="relative w-full h-full flex items-center justify-center">
                                             {/* This is where your actual illustration would go */}
-                                            <div className="text-5xl font-bold text-foreground/30 flex items-center justify-center h-full">
-                                                <div className={`bg-foreground/5 p-10 rounded-2xl backdrop-blur-sm flex flex-col items-center gap-6 border border-foreground/10 shadow-inner`}>
-                                                    <div className={`w-16 h-16 flex items-center justify-center ${getIconColor(step)}`}>
+                                            <div className="text-5xl font-bold text-white/30 flex items-center justify-center h-full">
+                                                <div className={`bg-blue-900/20 p-10 rounded-2xl backdrop-blur-sm flex flex-col items-center gap-6 border border-blue-500/20 shadow-inner`}>
+                                                    <div className={`w-16 h-16 flex items-center justify-center text-blue-400`}>
                                                         {icons[step.icon](step)}
                                                     </div>
-                                                    <div className={`w-16 h-1 bg-gradient-to-r ${step.color} rounded-full`}></div>
-                                                    <span className={`text-6xl font-bold ${getNumberColor(index)}`}>{step.number}</span>
+                                                    <div className={`w-16 h-1 bg-gradient-to-r from-blue-500/50 to-blue-500/20 rounded-full`}></div>
+                                                    <span className={`text-6xl font-bold text-blue-400/80`}>{step.number}</span>
                                                 </div>
                                             </div>
                                         </div>
 
                                         {/* Abstract decoration elements with matching colors */}
-                                        <div className={`absolute -top-3 -right-3 w-20 h-20 bg-gradient-to-br ${step.color} rounded-full blur-xl opacity-60`}></div>
-                                        <div className={`absolute -bottom-5 -left-5 w-24 h-24 bg-gradient-to-tr ${step.color} rounded-full blur-xl opacity-40`}></div>
+                                        <div className={`absolute -top-3 -right-3 w-20 h-20 bg-gradient-to-br from-blue-500/30 to-blue-600/10 rounded-full blur-xl opacity-60`}></div>
+                                        <div className={`absolute -bottom-5 -left-5 w-24 h-24 bg-gradient-to-tr from-blue-500/30 to-blue-600/10 rounded-full blur-xl opacity-40`}></div>
 
                                         {/* Design elements */}
                                         <div className="absolute top-4 right-4 w-20 h-20">
-                                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-full ${getIconColor(step)} opacity-20`}>
+                                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-full text-blue-400 opacity-20`}>
                                                 <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
                                                 <circle cx="50" cy="50" r="25" stroke="currentColor" strokeWidth="0.5" />
                                             </svg>
                                         </div>
                                         <div className="absolute bottom-4 left-4 w-20 h-20">
-                                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-full ${getIconColor(step)} opacity-20`}>
+                                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-full text-blue-400 opacity-20`}>
                                                 <rect x="20" y="20" width="60" height="60" stroke="currentColor" strokeWidth="0.5" />
                                                 <rect x="30" y="30" width="40" height="40" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
                                             </svg>
@@ -479,9 +439,9 @@ const HowItWorks = () => {
                                     {/* Connection point with colored glow */}
                                     <div className="absolute top-1/2 transform -translate-y-1/2 hidden lg:block">
                                         <div className={`${index % 2 === 0 ? "-left-3" : "-right-3"} absolute`}>
-                                            <div className={`w-6 h-6 rounded-full ${getStatValueColor(index)} shadow-lg flex items-center justify-center relative`}>
-                                                <div className="w-2 h-2 rounded-full bg-background"></div>
-                                                <div className={`absolute -inset-2 ${step.color} rounded-full animate-pulse opacity-70`}></div>
+                                            <div className={`w-6 h-6 rounded-full text-blue-400 shadow-lg flex items-center justify-center relative`}>
+                                                <div className="w-2 h-2 rounded-full bg-white"></div>
+                                                <div className={`absolute -inset-2 from-blue-500/30 to-blue-600/10 rounded-full animate-pulse opacity-70`}></div>
                                             </div>
                                         </div>
                                     </div>
@@ -497,20 +457,20 @@ const HowItWorks = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="mt-32 bg-gradient-to-r from-blue-500/10 via-blue-500/10 to-amber-500/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-blue-500/20"
+                    className="mt-32 bg-gradient-to-r from-blue-900/30 to-blue-800/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-blue-500/20"
                 >
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="text-center">
-                            <h4 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent mb-2">72%</h4>
-                            <p className="text-foreground/60">AI adoption in business processes in 2025</p>
+                            <h4 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-2">74%</h4>
+                            <p className="text-white/60">of small business owners believe AI tools give them a competitive edge</p>
                         </div>
                         <div className="text-center">
-                            <h4 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">87%</h4>
-                            <p className="text-foreground/60">of small businesses use CRM systems</p>
+                            <h4 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-2">87%</h4>
+                            <p className="text-white/60">of small businesses use CRM systems</p>
                         </div>
                         <div className="text-center">
-                            <h4 className="text-5xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-2">3x</h4>
-                            <p className="text-foreground/60">ROI with AI-powered lead generation</p>
+                            <h4 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-2">50%</h4>
+                            <p className="text-white/60">increase in sales-ready leads with AI</p>
                         </div>
                     </div>
                 </motion.div>
@@ -528,14 +488,14 @@ const HowItWorks = () => {
                             <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"></path>
                         </svg>
                     </div>
-                    <blockquote className="text-xl md:text-2xl font-medium italic mb-6 bg-gradient-to-r from-blue-600 via-blue-600 to-amber-600 bg-clip-text text-transparent">
-                        "74% of small business owners believe employees using AI tools give them a competitive edge over peers."
+                    <blockquote className="text-xl md:text-2xl font-medium italic mb-6 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                        "Small firms, often limited in time and sales personnel, stand to gain a disproportionate advantage from AI-powered lead generation tools."
                     </blockquote>
-                    <p className="text-foreground/60">U.S. Chamber of Commerce, 2025</p>
+                    <p className="text-white/60">AI Lead Sourcing Trends, 2025</p>
                 </motion.div>
 
                 {/* Final call-to-action with enhanced gradient */}
-                <Link href="https://app.oppulence.app/login">
+                <Link href="/contact">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -543,16 +503,16 @@ const HowItWorks = () => {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="mt-24 text-center"
                     >
-                        <div className="inline-block p-0.5 rounded-full bg-gradient-to-r from-blue-600 via-blue-600 to-amber-600">
-                            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-background text-foreground font-medium hover:bg-background/95 transition-colors shadow-xl backdrop-blur-sm group">
-                                <span className="bg-gradient-to-r from-blue-600 via-blue-600 to-amber-600 bg-clip-text text-transparent group-hover:text-transparent">Get Started Today</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2 text-amber-500 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <div className="inline-block p-0.5 rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+                            <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-background text-white font-medium hover:bg-black/95 transition-colors shadow-xl backdrop-blur-sm group">
+                                <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent group-hover:text-transparent">Get Started Today</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2 text-blue-500 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
                             </button>
                         </div>
-                        <p className="mt-4 text-foreground/50 text-sm">
-                            Join the <span className="text-blue-500 dark:text-blue-400">72%</span> of businesses leveraging AI for a competitive advantage
+                        <p className="mt-4 text-white/50 text-sm">
+                            Join the <span className="text-blue-400">74%</span> of small businesses leveraging AI for a competitive advantage
                         </p>
                     </motion.div>
                 </Link>
