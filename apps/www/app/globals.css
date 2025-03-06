@@ -114,6 +114,11 @@
     --document-text: 0, 0%, 0%;
     --signature-primary: 0, 0%, 0%;
     --signature-accent: 216, 100%, 50%;
+
+    /* 3D Book effect variables */
+    --book-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+    --book-spine-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.1);
+    --book-page-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   }
 
   .dark {
@@ -1086,5 +1091,137 @@ pre.shiki {
   .backdrop-saturate-200 {
     backdrop-filter: saturate(200%);
     -webkit-backdrop-filter: saturate(200%);
+  }
+
+  /* 3D Transform Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotateY-180 {
+    transform: rotateY(180deg);
+  }
+
+  /* Book-specific styles */
+  .book-spine {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2px 0 0 2px;
+    box-shadow: var(--book-spine-shadow);
+    transform-origin: left;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark .book-spine {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .book-cover {
+    position: absolute;
+    inset: 0;
+    margin-left: 20px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 4px 4px 0;
+    box-shadow: var(--book-shadow);
+    transform-origin: left;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark .book-cover {
+    background-color: black;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .book-pages {
+    position: absolute;
+    inset: 0;
+    margin-left: 10px;
+    background-color: white;
+    border-radius: 0 4px 4px 0;
+    box-shadow: var(--book-page-shadow);
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-image: 
+      linear-gradient(to bottom, transparent 29px, rgba(0, 0, 0, 0.05) 30px);
+    background-size: 100% 30px;
+  }
+
+  .dark .book-pages {
+    background-color: black;
+    background-image: 
+      linear-gradient(to bottom, transparent 29px, rgba(255, 255, 255, 0.05) 30px);
+  }
+
+  .book-shadow {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+    border-radius: 100%;
+    filter: blur(4px);
+    transform: translateY(2px);
+  }
+
+  .dark .book-shadow {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  }
+
+  /* Book page edge effect */
+  .book-page-edge {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    width: 3px;
+    left: 10px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 1px;
+    z-index: 1;
+  }
+
+  .book-page-edge::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.05) 0px, 
+        rgba(0, 0, 0, 0.05) 1px, 
+        transparent 1px, 
+        transparent 5px);
+    background-size: 100% 5px;
+  }
+
+  .dark .book-page-edge {
+    background-color: #111;
+  }
+
+  .dark .book-page-edge::after {
+    background-image: 
+      linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.05) 0px, 
+        rgba(255, 255, 255, 0.05) 1px, 
+        transparent 1px, 
+        transparent 5px);
   }
 }

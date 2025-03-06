@@ -503,7 +503,7 @@ const FeatureShowcase = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.7, delay: 0.1 }}
-                                className="bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm"
+                                className="bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm"
                             >
                                 <div className="p-8 md:p-10 border-b border-black/10 dark:border-white/10">
                                     <h3 className="text-2xl md:text-3xl font-bold mb-3 text-black dark:text-white">{feature.title}</h3>
@@ -541,7 +541,7 @@ const FeatureShowcase = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="mt-32 bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-black/10 dark:border-white/10"
+                    className="mt-32 bg-white dark:bg-black backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-black/10 dark:border-white/10"
                 >
                     <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-black dark:text-white">AI Adoption in Small Business</h3>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -618,14 +618,14 @@ function SingleFeature(props: SingleFeatureProps) {
                         {info.description}
                     </div>
 
-                    <div className="p-4 bg-black/5 dark:bg-white/5 rounded-lg border border-black/10 dark:border-white/10 backdrop-blur-sm mb-8">
+                    <div className="p-4 bg-white dark:bg-black rounded-lg border border-black/10 dark:border-white/10 backdrop-blur-sm mb-8">
                         <p className="text-black/60 dark:text-white/60 text-base italic leading-relaxed">
                             "{info.extendedDescription}"
                         </p>
                     </div>
 
                     {info.highlight && (
-                        <div className="flex items-center gap-2 mb-8 bg-black/5 dark:bg-white/5 p-3 rounded-lg border-l-2 border-black/30 dark:border-white/30">
+                        <div className="flex items-center gap-2 mb-8 bg-white dark:bg-black p-3 rounded-lg border-l-2 border-black/30 dark:border-white/30">
                             <Zap className="h-5 w-5 text-black/60 dark:text-white/60" />
                             <p className="text-black/80 dark:text-white/80 font-medium">{info.highlight}</p>
                         </div>
@@ -638,7 +638,7 @@ function SingleFeature(props: SingleFeatureProps) {
                             className="grid grid-cols-2 gap-6 mt-8"
                         >
                             {info.stats.map((stat, i) => (
-                                <div key={i} className="bg-black/5 dark:bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-black/5 dark:border-white/5">
+                                <div key={i} className="bg-white dark:bg-black backdrop-blur-sm rounded-xl p-4 border border-black/5 dark:border-white/5">
                                     <p className="text-2xl font-bold text-black dark:text-white">{stat.value}</p>
                                     <p className="text-sm text-black/60 dark:text-white/60">{stat.label}</p>
                                 </div>
@@ -663,12 +663,12 @@ function SingleFeature(props: SingleFeatureProps) {
                                 <source src={info.videoSource} type="video/webm" />
                                 Your browser does not support the video tag.
                             </video>
-                            <div className="absolute inset-0 bg-black/5 dark:bg-white/5 mix-blend-overlay pointer-events-none backdrop-blur-[1px]"></div>
+                            <div className="absolute inset-0 bg-white dark:bg-black mix-blend-overlay pointer-events-none backdrop-blur-[1px]"></div>
                         </AspectRatio>
                     ) : info.embedId ? (
                         <div className="w-full rounded-2xl overflow-hidden">
                             <YoutubeEmbed embedId={info.embedId} />
-                            <div className="absolute inset-0 bg-black/5 dark:bg-white/5 mix-blend-overlay pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-white dark:bg-black mix-blend-overlay pointer-events-none"></div>
                         </div>
                     ) : (
                         <div className={`aspect-square sm:aspect-video w-full rounded-2xl bg-gradient-to-br from-black/10 to-black/5 dark:from-white/10 dark:to-white/5 p-12 flex items-center justify-center shadow-lg border border-black/5 dark:border-white/5 backdrop-blur-sm relative overflow-hidden group`}>

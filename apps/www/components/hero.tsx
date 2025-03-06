@@ -20,7 +20,6 @@ export default function Hero() {
         <ScrollIndicator />
       </section>
 
-      <BenefitsSection />
       <CallToActionSection />
     </>
   );

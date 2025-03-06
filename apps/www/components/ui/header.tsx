@@ -181,6 +181,13 @@ export default async function Header() {
                             Learn about the features of Oppulence
                           </ListItem>
                           <ListItem
+                            href="/benefit"
+                            title="🔍 Benefits"
+                            className="p-4 hover:bg-muted/50"
+                          >
+                            Learn about the benefits of Oppulence
+                          </ListItem>
+                          <ListItem
                             href="/blog"
                             title="✍️ Blog"
                             className="p-4 hover:bg-muted/50"
