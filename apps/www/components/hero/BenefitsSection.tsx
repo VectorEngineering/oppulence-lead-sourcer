@@ -654,7 +654,7 @@ const BenefitsSection = () => {
           className="mt-24 text-center"
         >
           <div className="inline-block rounded-full bg-gradient-to-r from-blue-200 to-gray-50 p-0.5 dark:from-blue-500 dark:to-blue-400">
-            <Link href="https://app.thinkthank.app">
+            <Link href="https://app.thinkthank.io">
               <button className="bg-white dark:text-white hover:bg-white/95 group inline-flex items-center justify-center rounded-full px-8 py-4 font-medium text-black shadow-xl backdrop-blur-sm transition-colors dark:bg-black dark:hover:bg-black/95">
                 <span className="text-white group-hover:text-white dark:group-hover:text-white">
                   Start Your Competitive Advantage

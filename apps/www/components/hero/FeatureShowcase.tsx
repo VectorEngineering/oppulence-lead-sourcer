@@ -672,7 +672,7 @@ const FeatureShowcase = () => {
           className="mt-32 text-center"
         >
           <div className="inline-block rounded-full bg-gradient-to-r from-blue-500/20 via-blue-500/40 to-blue-500/20 p-0.5 dark:from-blue-500/20 dark:via-blue-500/40 dark:to-blue-500/20">
-            <Link href="https://app.thinkthank.app">
+            <Link href="https://app.thinkthank.io">
               <button className="bg-white hover:bg-white/95 inline-flex items-center justify-center rounded-full px-8 py-4 font-medium text-blue-500 shadow-xl backdrop-blur-sm transition-colors dark:bg-black dark:text-blue-500 dark:hover:bg-black/95">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
