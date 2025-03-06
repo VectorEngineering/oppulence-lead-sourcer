@@ -294,7 +294,7 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
                     isPopular && "bg-primary hover:bg-primary/90",
                   )}
                   onClick={() => {
-                    window.location.href = "https://app.oppulence.app/register";
+                    window.location.href = "https://app.thinkthank.app/register";
                   }}
                   aria-label={`Subscribe to ${title} plan`}
                 >

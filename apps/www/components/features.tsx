@@ -422,7 +422,7 @@ export default function Features() {
           className="mt-32 text-center"
         >
           <div className="inline-block rounded-full bg-gradient-to-r from-foreground/20 via-foreground to-foreground/20 p-0.5">
-            <Link href="https://app.oppulence.app/register">
+            <Link href="https://app.thinkthank.app/register">
               <button className="inline-flex items-center justify-center rounded-full bg-background px-8 py-4 font-medium text-foreground shadow-xl backdrop-blur-sm transition-colors hover:bg-background/95">
                 Start Generating High-Quality Leads
                 <svg

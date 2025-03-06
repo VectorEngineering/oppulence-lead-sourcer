@@ -117,7 +117,7 @@ export default async function Header() {
                       <DropdownNavItem trigger="⚙️ Products">
                         <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5 md:w-[550px] md:grid-cols-2 lg:w-[650px]">
                           <ListItem
-                            href="https://app.oppulence.app/register"
+                            href="https://app.thinkthank.app/register"
                             title="🎯 Lead Management"
                             className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
