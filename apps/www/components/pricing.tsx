@@ -1,7 +1,5 @@
 "use client";
 
-import { AppleLogo, LinuxLogo, WindowsLogo } from "./ui/icons";
-import { CONTACT_EMAIL, PRICING_TIERS } from "@/utils/constants";
 import {
   Card,
   CardContent,
@@ -9,13 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Check, ChevronDown, Info, Sparkles } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+import { Check, Info, Sparkles } from "lucide-react";
 import { PricingPageProps, PricingTierProps } from "@/types/pricing";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -29,9 +21,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Badge } from "./ui/badge";
 import { Button } from "@/components/ui/button";
-import { CopyInput } from "./ui/copy-input";
+import { CONTACT_EMAIL } from "@/utils/constants";
 import Link from "next/link";
-import Spinner from "./ui/spinner";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useCheckout } from "@/hooks/useCheckout";
@@ -80,13 +71,13 @@ const PricingTier: React.FC<ExtendedPricingTierProps> = ({
 
   const gradientStyle = mounted
     ? {
-        backgroundImage:
-          "linear-gradient(45deg, #1a237e, #006064, #1b5e20, #006064, #b71c1c)",
-        backgroundSize: "300% 300%",
-        animation: "rainbow-animation 5s ease infinite",
-        color: "white",
-        transition: "all 0.3s ease",
-      }
+      backgroundImage:
+        "linear-gradient(45deg, #1a237e, #006064, #1b5e20, #006064, #b71c1c)",
+      backgroundSize: "300% 300%",
+      animation: "rainbow-animation 5s ease infinite",
+      color: "white",
+      transition: "all 0.3s ease",
+    }
     : {};
 
   const handleDownload = async (os_type: string) => {
