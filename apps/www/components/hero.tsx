@@ -10,8 +10,10 @@ export default function Hero() {
     <>
       <section className="no-scrollbar relative min-h-[90vh] overflow-hidden bg-background">
         <GradientBackground />
+        <div className="relative z-10 mx-auto flex w-full max-w-screen-2xl flex-col items-center justify-center px-4">
+          <HeroContent />
+        </div>
         <QuoteCarousel />
-        <HeroContent />
         <ScrollIndicator />
       </section>
     </>
