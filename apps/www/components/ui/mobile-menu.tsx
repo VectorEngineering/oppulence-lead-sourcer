@@ -151,7 +151,7 @@ export default function MobileMenu({
                     </>
                   ) : (
                     <>
-                      <Link
+                      {/* <Link
                         href="https://app.thinkthank.io"
                         onClick={() => setIsOpen(false)}
                       >
@@ -174,7 +174,7 @@ export default function MobileMenu({
                           <SquareArrowRight className="mr-2 h-4 w-4" />
                           Try Oppulence
                         </Button>
-                      </Link>
+                      </Link> */}
                     </>
                   )}
                 </div>
