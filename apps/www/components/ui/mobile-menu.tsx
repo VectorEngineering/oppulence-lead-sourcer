@@ -152,7 +152,7 @@ export default function MobileMenu({
                   ) : (
                     <>
                       <Link
-                        href="https://app-business.oppulence.app"
+                        href="https://app.thinkthank.io"
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
@@ -164,7 +164,7 @@ export default function MobileMenu({
                         </Button>
                       </Link>
                       <Link
-                        href="https://app-business.oppulence.app"
+                        href="https://app.thinkthank.io"
                         onClick={() => setIsOpen(false)}
                       >
                         <Button
