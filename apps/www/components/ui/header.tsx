@@ -309,7 +309,7 @@ export default async function Header() {
                         <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5">
                           <ListItem
                             href="/masterplan"
-                            title="Part 1: AI-Powered Lead Sourcing"
+                            title="Part Un: AI-Powered Lead Sourcing"
                             className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">
@@ -341,7 +341,7 @@ export default async function Header() {
                           </ListItem>
                           <ListItem
                             href="/masterplan-part-three"
-                            title="Part 3: AI-to-AI Economy"
+                            title="Part Trois: AI-to-AI Economy"
                             className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
                           >
                             <div className="space-y-1">

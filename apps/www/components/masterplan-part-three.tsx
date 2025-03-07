@@ -13,7 +13,7 @@ const MasterPlanPartThreeComponent: React.FC = () => {
         <h1 className="text-center text-4xl font-bold">
           <span className="relative">
             <span className="relative z-10 text-foreground">
-              AI-Powered Lead Sourcing: Master Plan, Part 3
+              AI-Powered Lead Sourcing: Master Plan, Part Trois
             </span>
             <span
               className="absolute bottom-0 left-0 w-full"
@@ -402,7 +402,7 @@ const MasterPlanPartThreeComponent: React.FC = () => {
             </p>
 
             <p className="pt-6 font-semibold">
-              So, in short, Master Plan, Part 3 is:
+              So, in short, Master Plan, Part Trois is:
             </p>
 
             <ol className="list-decimal space-y-2 pl-6">

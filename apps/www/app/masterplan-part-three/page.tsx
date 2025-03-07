@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import { constructMetadata } from "@/lib/utils";
 
 export const metadata: Metadata = constructMetadata({
-  title: "Master Plan, Part 3 | AI-Powered Lead Sourcing",
+  title: "Master Plan, Part Trois | AI-Powered Lead Sourcing",
   description:
     "Our vision for the future of B2B relationships in the AI-to-AI economy and continuous-service ecosystems.",
   canonical: "/masterplan-part-three",

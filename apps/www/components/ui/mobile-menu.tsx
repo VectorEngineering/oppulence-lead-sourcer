@@ -281,7 +281,7 @@ export default function MobileMenu({
                           href="/masterplan"
                           onClick={() => setIsOpen(false)}
                         >
-                          Part 1: AI-Powered Lead Sourcing
+                          Part Un: AI-Powered Lead Sourcing
                         </MobileNavItem>
                         <MobileNavItem
                           href="/masterplan-part-deux"
@@ -293,7 +293,7 @@ export default function MobileMenu({
                           href="/masterplan-part-three"
                           onClick={() => setIsOpen(false)}
                         >
-                          Part 3: AI-to-AI Economy
+                          Part Trois: AI-to-AI Economy
                         </MobileNavItem>
                       </ul>
                     </AccordionContent>
