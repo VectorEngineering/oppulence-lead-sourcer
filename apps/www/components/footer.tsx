@@ -3,6 +3,7 @@ import { footerSections, socialMediaLinks } from "@/utils/constants";
 
 import { Button } from "./ui/button";
 import Link from "next/link";
+import LogoImage from "./ui/logo-image";
 import PearDarkLogo from "./ui/PearDark.svg";
 
 export default function Footer() {
@@ -11,8 +12,16 @@ export default function Footer() {
       <div className="grid grid-cols-2 gap-x-2 gap-y-8 pb-12 sm:grid-cols-4 sm:gap-6 xl:grid-cols-6">
         {/* Logo and tagline */}
         <div className="col-span-full mb-2 sm:mb-8 xl:col-span-2 xl:mb-0">
-          <Link className="-ml-1 inline-block dark:invert" href="/">
-            <PearDarkLogo />
+          <Link className="-ml-1 inline-block" href="/">
+            <div className="flex items-center">
+              <LogoImage
+                width={40}
+                height={40}
+                className="h-10 w-10"
+                darkMode={true}
+              />
+              <div className="h6 ml-2 font-bold">Oppulence</div>
+            </div>
           </Link>
           <p className="mt-5 text-sm leading-[1.75] text-neutral-500 dark:text-neutral-400">
             Building blocks for your business

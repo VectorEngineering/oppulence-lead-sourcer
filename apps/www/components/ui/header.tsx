@@ -15,6 +15,7 @@ import DarkModeToggle from "./darkmode-toggle";
 import Link from "next/link";
 import { List } from "@radix-ui/react-navigation-menu";
 import LogoIcon from "../logo-icon";
+import LogoImage from "./logo-image";
 import MobileMenu from "./mobile-menu";
 import PearGreenLogo from "./PearGreen.svg";
 import { cn } from "@/lib/utils";
@@ -128,6 +129,7 @@ export default async function Header() {
                 >
                   {/* <PearGreenLogo /> */}
                   {/* <LogoIcon /> */}
+                  <LogoImage width={32} height={32} className="h-8 w-8" />
                   <div className="h6 ml-2 font-bold">Oppulence</div>
                 </Link>
                 <nav className="ml-10 hidden md:block" aria-label="Main menu">
@@ -297,6 +299,59 @@ export default async function Header() {
                                 </span>
                                 <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
                                   Latest
+                                </span>
+                              </div>
+                            </div>
+                          </ListItem>
+                        </ul>
+                      </DropdownNavItem>
+                      <DropdownNavItem trigger="🔐 Master Plan">
+                        <ul className="grid w-[400px] gap-4 rounded-xl bg-background p-5">
+                          <ListItem
+                            href="/masterplan"
+                            title="Part 1: AI-Powered Lead Sourcing"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                          >
+                            <div className="space-y-1">
+                              <p className="text-sm text-muted-foreground">
+                                Our secret AI-powered lead sourcing strategy
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-red-50 px-2 py-0.5 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">
+                                  Confidential
+                                </span>
+                              </div>
+                            </div>
+                          </ListItem>
+                          <ListItem
+                            href="/masterplan-part-deux"
+                            title="Part Deux: Autonomous Engagement"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                          >
+                            <div className="space-y-1">
+                              <p className="text-sm text-muted-foreground">
+                                Our expanded vision for fully autonomous sales
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-purple-50 px-2 py-0.5 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-600/20">
+                                  New
+                                </span>
+                              </div>
+                            </div>
+                          </ListItem>
+                          <ListItem
+                            href="/masterplan-part-three"
+                            title="Part 3: AI-to-AI Economy"
+                            className="group relative rounded-lg border border-transparent p-4 transition-all duration-200 hover:border-border/30 hover:bg-muted/60"
+                          >
+                            <div className="space-y-1">
+                              <p className="text-sm text-muted-foreground">
+                                The future of B2B relationships in the AI-to-AI
+                                economy
+                              </p>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                                  Future
                                 </span>
                               </div>
                             </div>

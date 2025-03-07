@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FeatureFlag, isFeatureEnabled } from "@/utils/feature-flags";
 import {
   LogIn,
   LogOut,
@@ -27,6 +28,7 @@ import { useEffect, useState } from "react";
 
 import { Button } from "./button";
 import Link from "next/link";
+import LogoImage from "./logo-image";
 import { User } from "@supabase/supabase-js";
 import { useTheme } from "next-themes";
 
@@ -40,6 +42,24 @@ export default function MobileMenu({
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  // Feature flags
+  const showHowItWorks = isFeatureEnabled(FeatureFlag.HOW_IT_WORKS);
+  const showFeatures = isFeatureEnabled(FeatureFlag.FEATURES);
+  const showBenefits = isFeatureEnabled(FeatureFlag.BENEFITS);
+  const showLeadSourcingProduct = isFeatureEnabled(
+    FeatureFlag.LEAD_SOURCING_PRODUCT,
+  );
+  const showLeadManagementProduct = isFeatureEnabled(
+    FeatureFlag.LEAD_MANAGEMENT_PRODUCT,
+  );
+  const showDeveloperPlatformDocs = isFeatureEnabled(
+    FeatureFlag.DEVELOPER_PLATFORM_DOCS,
+  );
+  const showProducts =
+    showLeadSourcingProduct &&
+    showLeadManagementProduct &&
+    showDeveloperPlatformDocs;
 
   useEffect(() => {
     setMounted(true);
@@ -84,7 +104,10 @@ export default function MobileMenu({
         >
           <div>
             <SheetHeader className="mb-4">
-              <SheetTitle className="text-center">Oppulence Menu</SheetTitle>
+              <div className="mb-2 flex items-center justify-center gap-2">
+                <LogoImage width={24} height={24} className="h-6 w-6" />
+                <SheetTitle className="text-center">Oppulence Menu</SheetTitle>
+              </div>
             </SheetHeader>
             <nav aria-label="Mobile menu">
               <ul className="space-y-1">
@@ -159,59 +182,135 @@ export default function MobileMenu({
                   Home
                 </MobileNavItem>
                 <Accordion type="single" collapsible className="w-full">
+                  {showProducts && (
+                    <AccordionItem value="products">
+                      <AccordionTrigger>⚙️ Products</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="ml-4 space-y-1">
+                          {showLeadManagementProduct && (
+                            <MobileNavItem
+                              href="https://app.thinkthank.io/register"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              🎯 Lead Management
+                            </MobileNavItem>
+                          )}
+                          {showLeadSourcingProduct && (
+                            <MobileNavItem
+                              href="https://sourcing.oppulence.app"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              🔍 Prospecting
+                            </MobileNavItem>
+                          )}
+                          {showDeveloperPlatformDocs && (
+                            <MobileNavItem
+                              href="https://docs.oppulence.app"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              🧩 Developers
+                            </MobileNavItem>
+                          )}
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                  )}
                   <AccordionItem value="resources">
-                    <AccordionTrigger>Resources</AccordionTrigger>
+                    <AccordionTrigger>📊 Resources</AccordionTrigger>
                     <AccordionContent>
                       <ul className="ml-4 space-y-1">
                         <MobileNavItem
                           href="/about"
                           onClick={() => setIsOpen(false)}
                         >
-                          About
+                          🏢 About
                         </MobileNavItem>
-                        <MobileNavItem
-                          href="https://engineering-docs.oppulence.app/"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Documentation
-                        </MobileNavItem>
+                        {showHowItWorks && (
+                          <MobileNavItem
+                            href="/how-it-works"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            🚀 How It Works
+                          </MobileNavItem>
+                        )}
+                        {showFeatures && (
+                          <MobileNavItem
+                            href="/features"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            ✨ Features
+                          </MobileNavItem>
+                        )}
+                        {showBenefits && (
+                          <MobileNavItem
+                            href="/benefit"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            🌟 Benefits
+                          </MobileNavItem>
+                        )}
                         <MobileNavItem
                           href="/blog"
                           onClick={() => setIsOpen(false)}
                         >
-                          Blog
+                          📰 Blog
                         </MobileNavItem>
-
                         <MobileNavItem
                           href="/faq"
                           onClick={() => setIsOpen(false)}
                         >
-                          FAQ
+                          ❓ FAQ
                         </MobileNavItem>
                         <MobileNavItem
                           href="/changelog"
                           onClick={() => setIsOpen(false)}
                         >
-                          Changelog
+                          📈 Changelog
                         </MobileNavItem>
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
+
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="masterplan">
+                    <AccordionTrigger>🔐 Master Plan</AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="ml-4 space-y-1">
+                        <MobileNavItem
+                          href="/masterplan"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Part 1: AI-Powered Lead Sourcing
+                        </MobileNavItem>
+                        <MobileNavItem
+                          href="/masterplan-part-deux"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Part Deux: Autonomous Engagement
+                        </MobileNavItem>
+                        <MobileNavItem
+                          href="/masterplan-part-three"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Part 3: AI-to-AI Economy
+                        </MobileNavItem>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+
+                <MobileNavItem href="/roadmap" onClick={() => setIsOpen(false)}>
+                  🗺️ Roadmap{" "}
+                  <span className="ml-1 rounded-full bg-blue-50 px-1.5 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                    New
+                  </span>
+                </MobileNavItem>
                 <MobileNavItem href="/pricing" onClick={() => setIsOpen(false)}>
-                  Pricing
-                </MobileNavItem>
-                <MobileNavItem
-                  href="/desktop-download"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Download
-                </MobileNavItem>
-                <MobileNavItem
-                  href="https://solomon-ai.betteruptime.com/"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Uptime
+                  💎 Pricing{" "}
+                  <span className="ml-1 rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                    Updated
+                  </span>
                 </MobileNavItem>
               </ul>
             </nav>

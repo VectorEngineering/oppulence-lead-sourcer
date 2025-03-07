@@ -1,9 +1,6 @@
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
-import { Badge } from "./ui/badge";
 import type React from "react";
-import { Tweet } from "@/components/tweet";
-import { components } from "./ui/my-tweet";
 
 type VideoData = {
   src: string;
